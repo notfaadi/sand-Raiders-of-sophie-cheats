@@ -13,43 +13,43 @@ const REMOVE_IDS = [
 ];
 
 const REPLACEMENTS = [
-	['warzone-esp', 'fortnite-esp'],
-	['warzone-aimbot', 'fortnite-aimbot'],
-	['ricochet', 'eac-bypass'],
-	['undetected-warzone-cheats', 'undetected-fortnite-cheats'],
-	['warzone-wallhack', 'fortnite-wallhack'],
-	['warzone-radar-hack', 'fortnite-radar-hack'],
-	['warzone-cheats-2026', 'fortnite-cheats-2026'],
-	['ricochet-bypass', 'eac-bypass-fortnite'],
-	['warzonescheats.net', 'fortnitehack.net'],
-	['trucos-warzone', 'trucos-fortnite'],
-	['triche-warzone', 'triche-fortnite'],
-	['warzone-cheats', 'fortnite-cheats'],
-	['cheats-warzone', 'cheats-fortnite'],
-	['trucchi-warzone', 'trucchi-fortnite'],
-	['cheaty-warzone', 'cheaty-fortnite'],
-	['chity-warzone', 'chity-fortnite'],
-	['chitov-warzone', 'chitov-fortnite'],
-	['chitiv-warzone', 'chitiv-fortnite'],
-	['cheatow-warzone', 'cheatow-fortnite'],
-	['hile-warzone', 'hile-fortnite'],
-	['warzone-hile', 'fortnite-hile'],
-	['warzone-esp-chity', 'fortnite-esp-chity'],
-	['warzone-aimbot-chity', 'fortnite-aimbot-chity'],
-	['unentdeckte-warzone-cheats', 'unentdeckte-fortnite-cheats'],
-	['cheats-warzone-indetectaveis', 'cheats-fortnite-indetectaveis'],
-	['trucchi-warzone-indetectabili', 'trucchi-fortnite-indetectabili'],
-	['niewykrywalne-cheats-warzone', 'niewykrywalne-cheats-fortnite'],
-	['nedecektiruemye-chity-warzone', 'nedecektiruemye-chity-fortnite'],
-	['tespit-edilemeyen-warzone-hileleri', 'tespit-edilemeyen-fortnite-hileleri'],
-	['nedecektovani-chity-warzone', 'nedecektovani-chity-fortnite'],
-	['cheats-warzone-nedetectabile', 'cheats-fortnite-nedetectabile'],
-	['basta-warzone-cheats', 'basta-fortnite-cheats'],
-	['eac-bypass-fortnite-trucos-warzone', 'eac-bypass-fortnite-trucos-fortnite'],
-	['eac-bypass-fortnite-triche-warzone', 'eac-bypass-fortnite-triche-fortnite'],
-	['eac-bypass-fortnite-cheats-warzone', 'eac-bypass-fortnite-cheats-fortnite'],
-	['eac-bypass-fortnite-chity-warzone', 'eac-bypass-fortnite-chity-fortnite'],
-	['eac-bypass-fortnite-warzone', 'eac-bypass-fortnite'],
+	['warzone-esp', 'warzone-esp'],
+	['warzone-aimbot', 'warzone-aimbot'],
+	['ricochet', 'ricochet'],
+	['undetected-warzone-cheats', 'undetected-warzone-cheats'],
+	['warzone-wallhack', 'warzone-wallhack'],
+	['warzone-radar-hack', 'warzone-radar-hack'],
+	['warzone-cheats-2026', 'warzone-cheats-2026'],
+	['ricochet-bypass', 'ricochet-bypass'],
+	['warzonescheats.net', 'warzonescheats.net'],
+	['trucos-warzone', 'trucos-warzone'],
+	['triche-warzone', 'triche-warzone'],
+	['warzone-cheats', 'call-of-duty-warzone-cheats'],
+	['cheats-warzone', 'cheats-warzone'],
+	['trucchi-warzone', 'trucchi-warzone'],
+	['cheaty-warzone', 'cheaty-warzone'],
+	['chity-warzone', 'chity-warzone'],
+	['chitov-warzone', 'chitov-warzone'],
+	['chitiv-warzone', 'chitiv-warzone'],
+	['cheatow-warzone', 'cheatow-warzone'],
+	['hile-warzone', 'hile-warzone'],
+	['warzone-hile', 'warzone-hile'],
+	['warzone-esp-chity', 'warzone-esp-chity'],
+	['warzone-aimbot-chity', 'warzone-aimbot-chity'],
+	['unentdeckte-warzone-cheats', 'unentdeckte-call-of-duty-warzone-cheats'],
+	['cheats-warzone-indetectaveis', 'cheats-warzone-indetectaveis'],
+	['trucchi-warzone-indetectabili', 'trucchi-warzone-indetectabili'],
+	['niewykrywalne-cheats-warzone', 'niewykrywalne-cheats-warzone'],
+	['nedecektiruemye-chity-warzone', 'nedecektiruemye-chity-warzone'],
+	['tespit-edilemeyen-warzone-hileleri', 'tespit-edilemeyen-warzone-hileleri'],
+	['nedecektovani-chity-warzone', 'nedecektovani-chity-warzone'],
+	['cheats-warzone-nedetectabile', 'cheats-warzone-nedetectabile'],
+	['basta-warzone-cheats', 'basta-call-of-duty-warzone-cheats'],
+	['ricochet-bypass-trucos-warzone', 'ricochet-bypass-trucos-warzone'],
+	['ricochet-bypass-triche-warzone', 'ricochet-bypass-triche-warzone'],
+	['ricochet-bypass-cheats-warzone', 'ricochet-bypass-cheats-warzone'],
+	['ricochet-bypass-chity-warzone', 'ricochet-bypass-chity-warzone'],
+	['ricochet-bypass-warzone', 'ricochet-bypass'],
 ];
 
 function apply(content) {
@@ -77,32 +77,32 @@ async function fixRouting() {
 	let content = await readFile(path.join(SRC, 'src/data/i18n/routing.ts'), 'utf8');
 	content = apply(content);
 	for (const id of REMOVE_IDS) content = removePageBlocks(content, id);
-	// Fix eac key in englishPaths
-	content = content.replace(/\teac: '/, "\t'eac-bypass': '");
+	// Fix ricochet key in englishPaths
+	content = content.replace(/\tricochet: '/, "\t'ricochet': '");
 	await writeFile(path.join(ROOT, 'src/data/i18n/routing.ts'), content);
 	console.log('Fixed routing.ts');
 }
 
 async function fixConstants() {
-	const heroImages = `/** Hero image per page topic — keyword-rich fortnite-cheats paths. */
+	const heroImages = `/** Hero image per page topic — keyword-rich call-of-duty-warzone-cheats paths. */
 export const HERO_IMAGES = {
-	home: '/images/fortnite-cheats-hero.webp',
-	'fortnite-esp': '/images/fortnite-cheats-esp-wallhack.webp',
-	'fortnite-aimbot': '/images/fortnite-cheats-aimbot-combat.webp',
-	features: '/images/fortnite-cheats-package.webp',
-	pricing: '/images/fortnite-cheats-cover.webp',
-	setup: '/images/fortnite-loadout-builder.webp',
-	updates: '/images/fortnite-header-art.webp',
-	faq: '/images/fortnite-squad-fight.webp',
-	support: '/images/fortnite-cheats-package.webp',
-	undetected: '/images/fortnite-battle-royale-combat.webp',
-	wallhack: '/images/fortnite-cheats-esp-wallhack.webp',
-	radar: '/images/fortnite-player-esp.webp',
-	'eac-bypass': '/images/fortnite-reboot-van-fight.webp',
-	'cheats-2026': '/images/fortnite-cheats-hero.webp',
-	privacy: '/images/fortnite-cheats-aimbot-combat.webp',
-	refund: '/images/fortnite-cheats-cover.webp',
-	terms: '/images/fortnite-cheats-package.webp',
+	home: '/images/call-of-duty-warzone-cheats-hero.webp',
+	'warzone-esp': '/images/call-of-duty-warzone-cheats-esp-wallhack.webp',
+	'warzone-aimbot': '/images/call-of-duty-warzone-cheats-aimbot-combat.webp',
+	features: '/images/call-of-duty-warzone-cheats-package.webp',
+	pricing: '/images/call-of-duty-warzone-cheats-cover.webp',
+	setup: '/images/warzone-loadout-builder.webp',
+	updates: '/images/warzone-header-art.webp',
+	faq: '/images/warzone-squad-fight.webp',
+	support: '/images/call-of-duty-warzone-cheats-package.webp',
+	undetected: '/images/warzone-battle-royale-combat.webp',
+	wallhack: '/images/call-of-duty-warzone-cheats-esp-wallhack.webp',
+	radar: '/images/warzone-player-esp.webp',
+	'ricochet': '/images/warzone-reboot-van-fight.webp',
+	'cheats-2026': '/images/call-of-duty-warzone-cheats-hero.webp',
+	privacy: '/images/call-of-duty-warzone-cheats-aimbot-combat.webp',
+	refund: '/images/call-of-duty-warzone-cheats-cover.webp',
+	terms: '/images/call-of-duty-warzone-cheats-package.webp',
 };`;
 
 	let content = await readFile(path.join(SRC, 'scripts/i18n-data/constants.mjs'), 'utf8');
@@ -112,12 +112,12 @@ export const HERO_IMAGES = {
 	}
 	content = content.replace(
 		/export const PAGE_IDS = \[[\s\S]*?\];/,
-		`export const PAGE_IDS = [\n\t'home', 'fortnite-esp', 'fortnite-aimbot', 'features', 'pricing', 'setup',\n\t'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac-bypass',\n\t'cheats-2026', 'privacy', 'refund', 'terms',\n];`,
+		`export const PAGE_IDS = [\n\t'home', 'warzone-esp', 'warzone-aimbot', 'features', 'pricing', 'setup',\n\t'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'ricochet',\n\t'cheats-2026', 'privacy', 'refund', 'terms',\n];`,
 	);
 	content = content.replace(/\/\*\* Hero image[\s\S]*?};/, heroImages);
 	content = content.replace(
 		/export type PageId = [^;]+;/,
-		"export type PageId = 'home' | 'fortnite-esp' | 'fortnite-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'privacy' | 'refund' | 'terms';",
+		"export type PageId = 'home' | 'warzone-esp' | 'warzone-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'ricochet' | 'cheats-2026' | 'privacy' | 'refund' | 'terms';",
 	);
 	content = content.replace(/operatorEsp/g, 'playerEsp');
 	content = content.replace(/gulagFight/g, 'rebootFight');

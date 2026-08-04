@@ -2,7 +2,5 @@ User-agent: *
 Allow: /
 Allow: /images/
 
-# Single submission path: the index covers per-locale + image sitemaps.
-# sitemap.xml (English pages + blog) kept as an explicit hint for crawlers.
-Sitemap: https://fortnitehack.net/sitemap-index.xml
-Sitemap: https://fortnitehack.net/sitemap.xml
+# Primary sitemap for Google Search Console — index covers EN, locale, and image sitemaps.
+Sitemap: https://warzonehacks.net/sitemap.xml

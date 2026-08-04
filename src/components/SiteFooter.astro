@@ -2,6 +2,7 @@
 import { getUi, getPageContent } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { getBlogBasePath } from '../data/blog/helpers';
 import { siteConfig } from '../data/site';
 
 interface Props {
@@ -13,27 +14,12 @@ const ui = getUi(locale);
 
 const exploreLinks = [
 	{ label: ui.nav.home, href: getLocalizedPath('home', locale) },
-	{ label: getPageContent(locale, 'undetected').h1.split('—')[0].trim(), href: getLocalizedPath('undetected', locale) },
 	{ label: getPageContent(locale, 'hacks').h1.split('—')[0].trim(), href: getLocalizedPath('hacks', locale) },
+	{ label: ui.nav.esp, href: getLocalizedPath('warzone-esp', locale) },
 	{ label: getPageContent(locale, 'best-cheats').h1.split('—')[0].trim(), href: getLocalizedPath('best-cheats', locale) },
-	{ label: getPageContent(locale, 'cheat-download').h1.split('—')[0].trim(), href: getLocalizedPath('cheat-download', locale) },
-	{ label: getPageContent(locale, 'wallhack').h1.split('—')[0].trim(), href: getLocalizedPath('wallhack', locale) },
-	{ label: getPageContent(locale, 'esp-hack').h1.split('—')[0].trim(), href: getLocalizedPath('esp-hack', locale) },
-	{ label: getPageContent(locale, 'radar').h1.split('—')[0].trim(), href: getLocalizedPath('radar', locale) },
-	{ label: getPageContent(locale, 'eac-bypass').h1.split('—')[0].trim(), href: getLocalizedPath('eac-bypass', locale) },
-	{ label: getPageContent(locale, 'cheats-2026').h1.split('—')[0].trim(), href: getLocalizedPath('cheats-2026', locale) },
-	{ label: ui.nav.aimbot, href: getLocalizedPath('fortnite-aimbot', locale) },
-	{ label: getPageContent(locale, 'aimbot-hack').h1.split('—')[0].trim(), href: getLocalizedPath('aimbot-hack', locale) },
-	{ label: getPageContent(locale, 'soft-aim').h1.split('—')[0].trim(), href: getLocalizedPath('soft-aim', locale) },
-	{ label: ui.nav.esp, href: getLocalizedPath('fortnite-esp', locale) },
-	{ label: getPageContent(locale, 'mod-menu').h1.split('—')[0].trim(), href: getLocalizedPath('mod-menu', locale) },
-	{ label: getPageContent(locale, 'unlock-all').h1.split('—')[0].trim(), href: getLocalizedPath('unlock-all', locale) },
-	{ label: ui.nav.features, href: getLocalizedPath('features', locale) },
 	{ label: ui.nav.pricing, href: getLocalizedPath('pricing', locale) },
-	{ label: ui.nav.setup, href: getLocalizedPath('setup', locale) },
 	{ label: ui.nav.faq, href: getLocalizedPath('faq', locale) },
-	{ label: 'Blog', href: '/blog/' },
-	{ label: 'Reviews', href: '/reviews/' },
+	{ label: 'Blog', href: getBlogBasePath(locale) },
 ];
 
 const helpLinks = [
@@ -49,13 +35,17 @@ const helpLinks = [
 	<div class="shell footer__inner">
 		<div class="footer__brand">
 			<p class="footer__name">{ui.product.title}</p>
-			<p class="footer__text">{ui.footer.tagline}</p>
+			<p class="footer__text">
+				{ui.footer.tagline.split('\n').map((line) => (
+					<span class="footer__text-line">{line}</span>
+				))}
+			</p>
 			<p class="footer__official">{ui.common.officialLanguageNote}</p>
 		</div>
 		<nav class="footer__cols" aria-label="Footer">
-			<div>
+			<div class="footer__explore">
 				<p class="footer__label">{ui.footer.explore}</p>
-				<ul>
+				<ul class="footer__explore-list">
 					{exploreLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
 				</ul>
 			</div>
@@ -73,14 +63,15 @@ const helpLinks = [
 <style>
 	.footer {
 		border-top: 1px solid rgba(168, 85, 247, 0.12);
-		padding-block: 2rem;
-		padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+		padding-block: 1.25rem;
+		padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
 	}
 
 	.footer__inner {
 		display: grid;
 		grid-template-columns: 1.2fr 1fr;
-		gap: 2rem;
+		gap: 1.25rem;
+		align-items: start;
 	}
 
 	.footer__name {
@@ -91,29 +82,36 @@ const helpLinks = [
 	}
 
 	.footer__text {
-		margin: 0.55rem 0 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.12rem;
+		margin: 0.45rem 0 0;
 		color: var(--color-faint);
-		font-size: 0.9rem;
-		line-height: 1.55;
-		max-width: 28rem;
+		font-size: 0.88rem;
+		line-height: 1.35;
+		max-width: 20rem;
+	}
+
+	.footer__text-line {
+		display: block;
 	}
 
 	.footer__official {
-		margin: 0.65rem 0 0;
+		margin: 0.35rem 0 0;
 		color: var(--color-orchid);
-		font-size: 0.78rem;
-		line-height: 1.45;
-		max-width: 28rem;
+		font-size: 0.72rem;
+		line-height: 1.3;
+		max-width: 20rem;
 	}
 
 	.footer__cols {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.25rem;
+		grid-template-columns: 1.35fr 1fr;
+		gap: 1rem;
 	}
 
 	.footer__label {
-		margin: 0 0 0.65rem;
+		margin: 0 0 0.4rem;
 		font-size: 0.72rem;
 		font-weight: 700;
 		letter-spacing: 0.1em;
@@ -126,12 +124,30 @@ const helpLinks = [
 		padding: 0;
 		list-style: none;
 		display: grid;
-		gap: 0.45rem;
+		gap: 0.35rem;
+	}
+
+	.footer__explore-list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		column-gap: 0.65rem;
+		row-gap: 0.2rem;
+	}
+
+	.footer__explore-list li {
+		display: inline-flex;
+	}
+
+	.footer__explore-list a {
+		font-size: 0.8rem;
+		line-height: 1.25;
+		white-space: nowrap;
 	}
 
 	.footer a {
 		color: var(--color-muted);
-		font-size: 0.92rem;
+		font-size: 0.85rem;
 		font-weight: 600;
 	}
 
@@ -141,12 +157,12 @@ const helpLinks = [
 
 	@media (max-width: 760px) {
 		.footer {
-			padding-block: 1.5rem;
+			padding-block: 1.1rem;
 		}
 
 		.footer__inner {
 			grid-template-columns: 1fr;
-			gap: 1.35rem;
+			gap: 1rem;
 		}
 
 		.footer__cols {
@@ -157,12 +173,15 @@ const helpLinks = [
 	@media (max-width: 480px) {
 		.footer__cols {
 			grid-template-columns: 1fr;
+			gap: 0.85rem;
 		}
 
-		.footer__cols > div:first-child ul {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			column-gap: 0.75rem;
+		.footer__explore-list {
+			column-gap: 0.5rem;
+		}
+
+		.footer__explore-list a {
+			font-size: 0.78rem;
 		}
 	}
 </style>

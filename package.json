@@ -1,5 +1,5 @@
 {
-  "name": "fortnite-cheats",
+	"name": "warzone-hacks",
   "type": "module",
   "version": "1.0.0",
   "engines": {
@@ -10,16 +10,15 @@
     "build": "astro build",
     "build:validate": "astro build && node scripts/validate-sitemaps.mjs",
     "optimize:images": "node scripts/optimize-responsive-images.mjs",
-    "fetch:images": "node scripts/fetch-fortnite-images.mjs",
+    "fetch:images": "node scripts/fetch-warzone-images.mjs",
     "preview": "astro preview",
     "validate:sitemaps": "node scripts/validate-sitemaps.mjs",
     "generate:i18n": "node scripts/generate-i18n-content.mjs",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name=fortnitecheats",
-    "pages:deploy": "wrangler pages deploy dist --project-name=fortnitecheats",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=warzonehacks",
+    "pages:deploy": "wrangler pages deploy dist --project-name=warzonehacks",
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource-variable/outfit": "^5.2.8",
     "@fontsource-variable/syne": "^5.2.7",
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.9",

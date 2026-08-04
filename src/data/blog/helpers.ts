@@ -1,25 +1,26 @@
 import { siteConfig } from '../site';
-import { fortniteImages } from '../fortnite';
+import { warzoneImages } from '../warzone';
 import {
 	defaultLocale,
 	localeCodes,
 	type LocaleCode,
 	locales,
 } from '../i18n/locales';
+import { resolvePageContextFromPath } from '../i18n/routing';
 import type { BlogImageKey, BlogPostDefinition, BlogTranslation, ResolvedBlogPost } from './types';
 import { blogPosts as rawBlogPosts } from './posts.generated';
 
 const imageMap: Record<BlogImageKey, string> = {
-	hero: fortniteImages.hero,
-	espWallhack: fortniteImages.espWallhack,
-	aimbotCombat: fortniteImages.aimbotCombat,
-	squadFight: fortniteImages.squadFight,
-	headerArt: fortniteImages.headerArt,
-	cheatsPackage: fortniteImages.cheatsPackage,
-	playerEsp: fortniteImages.playerEsp,
-	rebootFight: fortniteImages.rebootFight,
-	battleRoyaleCombat: fortniteImages.battleRoyaleCombat,
-	battleRoyaleIslandMap: fortniteImages.battleRoyaleIsland,
+	hero: warzoneImages.hero,
+	espWallhack: warzoneImages.espWallhack,
+	aimbotCombat: warzoneImages.aimbotCombat,
+	squadFight: warzoneImages.aimbotSkeleton,
+	headerArt: warzoneImages.playerEsp,
+	cheatsPackage: warzoneImages.cheatsCombat,
+	playerEsp: warzoneImages.playerEsp,
+	rebootFight: warzoneImages.aimbotCombat,
+	battleRoyaleCombat: warzoneImages.cheatsCombat,
+	battleRoyaleIslandMap: warzoneImages.hero,
 };
 
 function expandTranslations(
@@ -44,6 +45,34 @@ export function getBlogImageSrc(key: BlogImageKey): string {
 
 export function getBlogBasePath(locale: LocaleCode): string {
 	return locale === defaultLocale ? '/blog/' : `/${locale}/blog/`;
+}
+
+export function isBlogPath(pathname: string): boolean {
+	const context = resolvePageContextFromPath(pathname);
+	return Boolean(context.isBlogIndex || context.blogSlug);
+}
+
+export function findPostBySlug(slug: string, locale?: LocaleCode): BlogPostDefinition | undefined {
+	return blogPosts.find((post) => {
+		if (locale) {
+			return post.translations[locale]?.slug === slug;
+		}
+		return localeCodes.some((code) => post.translations[code]?.slug === slug);
+	});
+}
+
+/** Target URL for the same blog index or post in another locale. */
+export function getBlogLocaleSwitchHref(pathname: string, targetLocale: LocaleCode): string {
+	const context = resolvePageContextFromPath(pathname);
+
+	if (context.blogSlug) {
+		const post = findPostBySlug(context.blogSlug, context.locale);
+		if (post) {
+			return getBlogPostPath(targetLocale, post.translations[targetLocale].slug);
+		}
+	}
+
+	return getBlogBasePath(targetLocale);
 }
 
 export function getBlogPostPath(locale: LocaleCode, slug: string): string {
@@ -126,12 +155,8 @@ export function getAllBlogStaticPaths(): { params: { lang?: string; slug: string
 	return paths;
 }
 
-/** English blog routes only (locale blog pages ship later). */
-export function getBlogSitemapEntries() {
-	const locale = defaultLocale;
-
-	// The blog index reflects its newest post, so its lastmod is the max of all
-	// post `updated` dates — never older than any post it links to.
+/** Blog sitemap entries for one locale (index + all posts). */
+export function getBlogSitemapEntriesForLocale(locale: LocaleCode) {
 	const indexLastmod = blogPosts.reduce(
 		(max, post) => (post.updated > max ? post.updated : max),
 		blogPosts[0]?.updated ?? new Date().toISOString().slice(0, 10),
@@ -147,13 +172,13 @@ export function getBlogSitemapEntries() {
 		{
 			path: getBlogBasePath(locale),
 			lastmod: indexLastmod,
-			priority: 0.92,
+			priority: locale === defaultLocale ? 0.92 : 0.9,
 			changefreq: 'daily',
 			images: [
 				{
 					url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-					title: 'Fortnite Hacks Intel blog',
-					caption: 'Fortnite Intel blog covering meta guides, ESP, Aimbot, and EAC notes',
+					title: 'Warzone Hacks Intel blog',
+					caption: 'Warzone Intel blog covering meta guides, ESP, Aimbot, and Ricochet notes',
 				},
 			],
 		},
@@ -162,10 +187,13 @@ export function getBlogSitemapEntries() {
 	for (const post of blogPosts) {
 		const t = post.translations[locale];
 		const imageSrc = getBlogImageSrc(post.imageKey);
+		const isProductPost = /Warzone Hacks|Warzone Cheats|Aimbot|ESP|Undetected|Comparisons/i.test(
+			post.category,
+		);
 		entries.push({
 			path: getBlogPostPath(locale, t.slug),
 			lastmod: post.updated,
-			priority: 0.9,
+			priority: isProductPost ? (locale === defaultLocale ? 0.95 : 0.93) : locale === defaultLocale ? 0.88 : 0.86,
 			changefreq: 'weekly',
 			images: [
 				{
@@ -178,4 +206,9 @@ export function getBlogSitemapEntries() {
 	}
 
 	return entries;
+}
+
+/** English blog routes in the primary sitemap (localized posts live in per-locale sitemaps). */
+export function getBlogSitemapEntries() {
+	return getBlogSitemapEntriesForLocale(defaultLocale);
 }

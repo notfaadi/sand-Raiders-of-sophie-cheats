@@ -6,39 +6,39 @@ export const LOCALES = [
 ];
 
 export const PAGE_IDS = [
-	'home', 'fortnite-esp', 'fortnite-aimbot', 'features', 'pricing', 'setup',
-	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac-bypass',
+	'home', 'warzone-esp', 'warzone-aimbot', 'features', 'pricing', 'setup',
+	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'ricochet',
 	'cheats-2026', 'hacks', 'cheat-download', 'mod-menu', 'soft-aim', 'best-cheats',
 	'aimbot-hack', 'esp-hack', 'unlock-all', 'privacy', 'refund', 'terms',
 ];
 
-/** Hero image per page topic — keyword-rich fortnite-cheats paths. */
+/** Hero image per page — six unique Warzone cheat screenshots (primary pages each get a distinct file). */
 export const HERO_IMAGES = {
-	home: '/images/fortnite-cheats-hero.webp',
-	'fortnite-esp': '/images/fortnite-cheats-esp-wallhack.webp',
-	'fortnite-aimbot': '/images/fortnite-cheats-aimbot-combat.webp',
-	features: '/images/fortnite-cheats-package.webp',
-	pricing: '/images/fortnite-cheats-cover.webp',
-	setup: '/images/fortnite-loadout-builder.webp',
-	updates: '/images/fortnite-header-art.webp',
-	faq: '/images/fortnite-squad-fight.webp',
-	support: '/images/fortnite-cheats-package.webp',
-	undetected: '/images/fortnite-battle-royale-combat.webp',
-	wallhack: '/images/fortnite-cheats-esp-wallhack.webp',
-	radar: '/images/fortnite-player-esp.webp',
-	'eac-bypass': '/images/fortnite-reboot-van-fight.webp',
-	'cheats-2026': '/images/fortnite-cheats-hero.webp',
-	hacks: '/images/fortnite-battle-royale-combat.webp',
-	'cheat-download': '/images/fortnite-cheats-package.webp',
-	'mod-menu': '/images/fortnite-loadout-builder.webp',
-	'soft-aim': '/images/fortnite-cheats-aimbot-combat.webp',
-	'best-cheats': '/images/fortnite-cheats-hero.webp',
-	'aimbot-hack': '/images/fortnite-cheats-aimbot-combat.webp',
-	'esp-hack': '/images/fortnite-cheats-esp-wallhack.webp',
-	'unlock-all': '/images/fortnite-player-esp.webp',
-	privacy: '/images/fortnite-cheats-aimbot-combat.webp',
-	refund: '/images/fortnite-cheats-cover.webp',
-	terms: '/images/fortnite-cheats-package.webp',
+	home: '/images/warzone-esp-player-tags.webp',
+	'warzone-esp': '/images/warzone-esp-radar.webp',
+	'warzone-aimbot': '/images/warzone-aimbot-sniper.webp',
+	features: '/images/warzone-aimbot-skeleton.webp',
+	pricing: '/images/warzone-cheats-combat.webp',
+	setup: '/images/warzone-esp-radar.webp',
+	updates: '/images/warzone-esp-player-tags.webp',
+	faq: '/images/warzone-aimbot-skeleton.webp',
+	support: '/images/warzone-cheats-combat.webp',
+	undetected: '/images/warzone-wallhack-skeleton.webp',
+	wallhack: '/images/warzone-wallhack-skeleton.webp',
+	radar: '/images/warzone-esp-radar.webp',
+	ricochet: '/images/warzone-aimbot-sniper.webp',
+	'cheats-2026': '/images/warzone-esp-player-tags.webp',
+	hacks: '/images/warzone-cheats-combat.webp',
+	'cheat-download': '/images/warzone-cheats-combat.webp',
+	'mod-menu': '/images/warzone-esp-radar.webp',
+	'soft-aim': '/images/warzone-aimbot-skeleton.webp',
+	'best-cheats': '/images/warzone-esp-player-tags.webp',
+	'aimbot-hack': '/images/warzone-aimbot-skeleton.webp',
+	'esp-hack': '/images/warzone-wallhack-skeleton.webp',
+	'unlock-all': '/images/warzone-esp-radar.webp',
+	privacy: '/images/warzone-aimbot-sniper.webp',
+	refund: '/images/warzone-cheats-combat.webp',
+	terms: '/images/warzone-aimbot-skeleton.webp',
 };
 
 export const TS_HEADER = `import type { LocaleCode } from './locales';
@@ -58,7 +58,7 @@ export type PageContent = {
 \tctaSecondaryHref?: string;
 };
 export type LocaleUi = {
-\tnav: { home: string; aimbot: string; esp: string; features: string; pricing: string; setup: string; updates: string; faq: string; buyNow: string };
+\tnav: { home: string; hacks: string; aimbot: string; esp: string; features: string; pricing: string; setup: string; updates: string; faq: string; buyNow: string };
 \thero: { accent: string; accentShort: string; subtitle: string; subtitleShort: string; buyNow: string; seeFeatures: string };
 \ttrust: { status: string; statusNote: string; statusShort: string; delivery: string; platform: string; antiCheat: string; antiCheatShort: string };
 \tproduct: { title: string; addToCart: string; monthly: string; lifetime: string; available: string; gameBadge: string; platformBadge: string; statusBadge: string };
@@ -70,7 +70,7 @@ export type LocaleUi = {
 \t\theaderArt: string; cheatsPackage: string; rebootFight: string; battleRoyale: string; battleRoyaleIsland: string;
 \t};
 };
-export type PageId = 'home' | 'fortnite-esp' | 'fortnite-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
+export type PageId = 'home' | 'warzone-esp' | 'warzone-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'ricochet' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
 `;
 
 /** Clamp meta strings to SEO limits without ugly ellipsis. */
@@ -101,7 +101,7 @@ export function stripZadeyoFromMeta(text) {
 		.replace(/\s*Zadeyo delivery\.?/gi, ' instant digital delivery.')
 		.replace(/\s*and Zadeyo delivery\.?/gi, ' and instant digital delivery.')
 		.replace(/\|\s*Instant Zadeyo Delivery/g, '| Instant Digital Delivery')
-		.replace(/Buy on Zadeyo/g, 'Buy Fortnite Hacks')
+		.replace(/Buy on Zadeyo/g, 'Buy Warzone Hacks')
 		.replace(/\s{2,}/g, ' ')
 		.trim();
 }
@@ -123,8 +123,8 @@ export function section(h2, ...args) {
 
 /** Authoritative external citation helpers (open in new tab). */
 export const EXT = {
-	epic: '<a href="https://www.epicgames.com/fortnite" target="_blank" rel="noopener noreferrer">Epic Games Fortnite</a>',
-	fortnite: '<a href="https://www.fortnite.com/" target="_blank" rel="noopener noreferrer">Fortnite.com</a>',
-	status: '<a href="https://status.epicgames.com/" target="_blank" rel="noopener noreferrer">Epic Games Status</a>',
-	eac: '<a href="https://www.easy.ac/" target="_blank" rel="noopener noreferrer">Easy Anti-Cheat</a>',
+	activision: '<a href="https://www.callofduty.com/warzone" target="_blank" rel="noopener noreferrer">Call of Duty Warzone</a>',
+	warzone: '<a href="https://www.callofduty.com/warzone" target="_blank" rel="noopener noreferrer">Call of Duty Warzone</a>',
+	status: '<a href="https://support.activision.com/" target="_blank" rel="noopener noreferrer">Activision Support</a>',
+	ricochet: '<a href="https://www.callofduty.com/ricochet" target="_blank" rel="noopener noreferrer">Ricochet Anti-Cheat</a>',
 };

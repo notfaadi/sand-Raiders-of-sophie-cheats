@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { productInfo, siteConfig } from '../data/site';
+import { productInfo, siteConfig, seoKeywords } from '../data/site';
 import I18nHead from '../components/I18nHead.astro';
 import LocaleSuggest from '../components/LocaleSuggest.astro';
 import { defaultLocale, localeMap, locales, type LocaleCode } from '../data/i18n/locales';
@@ -59,6 +59,8 @@ const siteDescription = `${productInfo.tagline}. ${productInfo.summary}`;
 const localeMeta = localeMap[locale];
 const ogLocaleAlternates = locales.filter((l) => l.code !== locale);
 const schemaLanguage = localeMeta.ogLocale.replace('_', '-');
+const schemaLanguages = locales.map((l) => l.ogLocale.replace('_', '-'));
+const worldwidePlace = { '@type': 'Place' as const, name: siteConfig.market };
 
 const graph: Record<string, unknown>[] = [
 	{
@@ -80,7 +82,7 @@ const graph: Record<string, unknown>[] = [
 		url: siteConfig.url,
 		name: siteConfig.name,
 		description: siteDescription,
-		inLanguage: schemaLanguage,
+		inLanguage: schemaLanguages,
 		publisher: { '@id': `${siteConfig.url}/#organization` },
 	},
 	{
@@ -89,6 +91,7 @@ const graph: Record<string, unknown>[] = [
 		name: siteConfig.name,
 		url: siteConfig.url,
 		email: siteConfig.supportEmail,
+		areaServed: worldwidePlace,
 		logo: {
 			'@type': 'ImageObject',
 			url: logoURL,
@@ -100,7 +103,8 @@ const graph: Record<string, unknown>[] = [
 			'@type': 'ContactPoint',
 			contactType: 'customer support',
 			email: siteConfig.supportEmail,
-			availableLanguage: ['English', 'Spanish', 'French', 'German', 'Portuguese'],
+			areaServed: worldwidePlace,
+			availableLanguage: locales.map((l) => l.name),
 		},
 	},
 ];
@@ -151,17 +155,9 @@ if (softwareNode) {
 		<meta name="robots" content={robots} />
 		<meta name="googlebot" content={robots} />
 		<meta name="description" content={description} />
+		<meta name="keywords" content={seoKeywords.join(', ')} />
 		<meta name="author" content={siteConfig.name} />
 		<link rel="canonical" href={canonicalURL} />
-		{pageId && <I18nHead pageId={pageId} locale={locale} />}
-		<link rel="icon" href="/favicon.ico" sizes="any" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-		<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-		<link rel="sitemap" type="application/xml" title="Sitemap Index" href="/sitemap-index.xml" />
-		<link rel="sitemap" type="application/xml" title="Page Sitemap" href="/sitemap.xml" />
-		<link rel="sitemap" type="application/xml" title="Image Sitemap" href="/sitemap-images.xml" />
 		{
 			lcpImage && (
 				<link
@@ -181,12 +177,14 @@ if (softwareNode) {
 					as="image"
 					href={lcpImageSrcSet.split(' ')[0]}
 					type="image/webp"
+					fetchpriority="high"
 					imagesrcset={lcpImageSrcSet}
 					imagesizes={lcpImageSizes}
 					media="(min-width: 761px)"
 				/>
 			)
 		}
+		{pageId && <I18nHead pageId={pageId} locale={locale} />}
 
 		<meta property="og:type" content={type} />
 		<meta property="og:site_name" content={siteConfig.name} />
@@ -215,6 +213,13 @@ if (softwareNode) {
 		)}
 
 		<title>{title}</title>
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 	</head>
 	<body>
 		<script is:inline defer src="/trusted-types-policy.js"></script>

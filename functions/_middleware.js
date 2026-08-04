@@ -1,32 +1,64 @@
-﻿const CANONICAL_ORIGIN = 'https://fortnitehack.net';
-const APEX_HOST = 'fortnitehack.net';
-const WWW_HOST = 'www.fortnitehack.net';
+﻿const CANONICAL_ORIGIN = 'https://warzonehacks.net';
+const APEX_HOST = 'warzonehacks.net';
+const WWW_HOST = 'www.warzonehacks.net';
 
 /** Legacy domains → canonical apex (301). */
 const LEGACY_HOSTS = new Set([
+	'fortnitehack.net',
+	'www.fortnitehack.net',
 	'fortnitecheats.xyz',
 	'www.fortnitecheats.xyz',
 	'fortnitecheats.net',
 	'www.fortnitecheats.net',
 	'fortnitecheats.com',
 	'www.fortnitecheats.com',
+	'warzonescheats.net',
+	'www.warzonescheats.net',
+	'warzonescheats.com',
+	'www.warzonescheats.com',
+	'warzonescheats.xyz',
+	'www.warzonescheats.xyz',
 ]);
 
 // Keep in sync with public/_redirects (which preserves query strings by default, as we do below).
-// All targets are final canonical URLs — no chains/loops (no target is also a key).
 const PATH_REDIRECTS = {
 	'/sitemap-0.xml': '/sitemap.xml',
-	'/fortnite-cheats': '/',
-	'/fortnite-cheats/': '/',
-	'/fortnite-cheats-2026': '/fortnite-cheats-2026/',
-	'/warzone-aimbot': '/fortnite-aimbot/',
-	'/warzone-aimbot/': '/fortnite-aimbot/',
-	'/warzone-esp': '/fortnite-esp/',
-	'/warzone-esp/': '/fortnite-esp/',
-	'/eac-bypass': '/eac-bypass-fortnite/',
-	'/eac-bypass/': '/eac-bypass-fortnite/',
-	'/ricochet-bypass': '/eac-bypass-fortnite/',
-	'/ricochet-bypass/': '/eac-bypass-fortnite/',
+	'/sitemap-index.xml': '/sitemap.xml',
+	'/call-of-duty-warzone-cheats': '/',
+	'/call-of-duty-warzone-cheats/': '/',
+	'/warzone-cheats-2026': '/warzone-cheats-2026/',
+	'/warzone-cheats': '/warzone-cheats-2026/',
+	'/warzone-cheats/': '/warzone-cheats-2026/',
+	'/fortnite-aimbot': '/warzone-aimbot/',
+	'/fortnite-aimbot/': '/warzone-aimbot/',
+	'/fortnite-esp': '/warzone-esp/',
+	'/fortnite-esp/': '/warzone-esp/',
+	'/fortnite-hacks': '/warzone-hacks/',
+	'/fortnite-hacks/': '/warzone-hacks/',
+	'/eac-bypass': '/ricochet-bypass/',
+	'/eac-bypass/': '/ricochet-bypass/',
+	'/eac-bypass-fortnite': '/ricochet-bypass/',
+	'/eac-bypass-fortnite/': '/ricochet-bypass/',
+	'/blog/patch-notes-buffs-nerfs-vaults': '/blog/warzone-patch-notes-guide/',
+	'/blog/patch-notes-buffs-nerfs-vaults/': '/blog/warzone-patch-notes-guide/',
+	'/blog/chapter-7-season-3-skin-leaks-vbucks': '/blog/warzone-skin-leaks-guide/',
+	'/blog/chapter-7-season-3-skin-leaks-vbucks/': '/blog/warzone-skin-leaks-guide/',
+	'/blog/hammer-ar-s-tier-data-analysis': '/blog/warzone-weapon-tier-list/',
+	'/blog/hammer-ar-s-tier-data-analysis/': '/blog/warzone-weapon-tier-list/',
+	'/blog/zero-build-meta-broken-aggressive-strategies': '/blog/warzone-resurgence-aggressive-strategies/',
+	'/blog/zero-build-meta-broken-aggressive-strategies/': '/blog/warzone-resurgence-aggressive-strategies/',
+	'/blog/fncs-meta-watch-tournament-drops': '/blog/warzone-tournament-meta-guide/',
+	'/blog/fncs-meta-watch-tournament-drops/': '/blog/warzone-tournament-meta-guide/',
+	'/blog/secret-loot-routes-full-gold': '/blog/warzone-loot-routes-guide/',
+	'/blog/secret-loot-routes-full-gold/': '/blog/warzone-loot-routes-guide/',
+	'/blog/bugha-settings-pro-setup': '/blog/warzone-pro-settings-guide/',
+	'/blog/bugha-settings-pro-setup/': '/blog/warzone-pro-settings-guide/',
+	'/blog/creative-warmup-maps-pros-use': '/blog/warzone-warmup-maps-ranked/',
+	'/blog/creative-warmup-maps-pros-use/': '/blog/warzone-warmup-maps-ranked/',
+	'/reviews/warzone-esp-zero-build-review-buildsr4k': '/reviews/warzone-esp-resurgence-review-buildsr4k/',
+	'/reviews/warzone-esp-zero-build-review-buildsr4k/': '/reviews/warzone-esp-resurgence-review-buildsr4k/',
+	'/reviews/warzone-radar-hack-review-vanlifefn': '/reviews/warzone-radar-hack-review-vanlifewz/',
+	'/reviews/warzone-radar-hack-review-vanlifefn/': '/reviews/warzone-radar-hack-review-vanlifewz/',
 };
 
 const SECURITY_HEADERS = {
@@ -103,7 +135,6 @@ export async function onRequest(context) {
 	const needsHttpsRedirect = isProductionHost && proto === 'http';
 
 	if (needsHostRedirect || needsHttpsRedirect) {
-		// Map legacy paths here too so www/legacy-host + legacy-path resolves in ONE hop.
 		const mappedPath = PATH_REDIRECTS[url.pathname] ?? url.pathname;
 		const target = new URL(mappedPath + url.search, CANONICAL_ORIGIN);
 		const headers = new Headers({
@@ -119,7 +150,6 @@ export async function onRequest(context) {
 	const pathRedirect = PATH_REDIRECTS[url.pathname];
 	if (pathRedirect) {
 		const headers = new Headers({
-			// Preserve query string, matching public/_redirects behavior.
 			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),
 			'Cache-Control': 'no-store',
 		});

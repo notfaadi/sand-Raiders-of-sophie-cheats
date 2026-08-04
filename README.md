@@ -1,6 +1,6 @@
-# Fortnite Hacks — Marketing Site
+# Warzone Hacks — Marketing Site
 
-Static Astro 7 site for [fortnitehack.net](https://fortnitehack.net), adapted from the Warzone Cheats template. Primary SEO keyword: **fortnite hacks** (secondary: fortnite cheats, aimbot, ESP).
+Static Astro 7 site for [warzonehacks.net](https://warzonehacks.net). Primary SEO keyword: **warzone hacks** (secondary: warzone cheats, aimbot, ESP).
 
 ## Stack
 
@@ -23,7 +23,7 @@ Build and validate sitemaps:
 npm run build:validate
 ```
 
-Fetch fresh Fortnite WebP images (optional):
+Fetch fresh Warzone WebP images (optional):
 
 ```bash
 npm run fetch:images
@@ -32,14 +32,13 @@ npm run optimize:images
 
 ## Deploy (Cloudflare Pages)
 
-1. Create a Cloudflare Pages project named **fortnitecheats** (or rename to match)
+1. Create a Cloudflare Pages project named **warzonehacks**
 2. Connect this repo or upload `dist/` after `npm run build`
 3. Build command: `npm run build`
 4. Output directory: `dist`
-5. Add custom domain **fortnitehack.net** (apex) and redirect **www** → apex
+5. Add custom domain **warzonehacks.net** (apex) and redirect **www** → apex
 6. Enable SSL **Always Use HTTPS**
-7. DNS: proxied A/AAAA or CNAME for apex + www
-8. Legacy domains (`fortnitecheats.xyz`, `.net`, `.com`) 301 via `functions/_middleware.js`
+7. Legacy Fortnite domains 301 via `functions/_middleware.js`
 
 CLI deploy:
 
@@ -47,47 +46,11 @@ CLI deploy:
 npm run pages:deploy
 ```
 
-Requires `wrangler` auth (`wrangler login`).
-
 ## Environment
 
 - Node.js >= 22.12.0
-- Checkout URL: Zadeyo Fortnite product (`siteConfig.checkoutUrl` in `src/data/site.ts`)
-
-## Project structure
-
-| Path | Purpose |
-|------|---------|
-| `src/data/site.ts` | Brand, checkout, nav, FAQs |
-| `src/data/fortnite.ts` | Keyword-named image map |
-| `src/data/i18n/` | Routing, locales, generated content |
-| `src/pages/` | English page routes |
-| `src/pages/[lang]/` | Localized dynamic routes |
-| `scripts/generate-i18n-content.mjs` | Regenerate `content.generated.ts` |
-| `scripts/generate-blog-posts.mjs` | Regenerate blog posts |
-| `scripts/fetch-fortnite-images.mjs` | Fortnite WebP image pipeline |
-| `scripts/validate-sitemaps.mjs` | Post-build SEO validation |
-| `functions/_middleware.js` | www/legacy redirects, HTTPS, security headers |
-
-## SEO
-
-- Meta titles/descriptions per page and locale
-- Primary keyword: fortnite hacks (pillar: `/fortnite-hacks/`)
-- Secondary: fortnite cheats, fortnite cheats 2026, aimbot, ESP, undetected
-- JSON-LD: FAQPage, SoftwareApplication, Organization, WebPage (via layouts)
-- hreflang on all 22 locales + x-default
-- Sitemaps: index, English, per-locale, images
-- Canonical URLs on `https://fortnitehack.net`
-
-## Google Search Console
-
-After deploy:
-
-1. Verify domain property for `fortnitehack.net`
-2. Submit `https://fortnitehack.net/sitemap-index.xml`
-3. Request indexing for homepage, `/fortnite-hacks/`, and key landing pages
-4. Monitor Coverage and Core Web Vitals
+- Checkout URL: Zadeyo Warzone product (`siteConfig.checkoutUrl` in `src/data/site.ts`)
 
 ## License
 
-Private — for fortnitehack.net deployment only.
+Private — for warzonehacks.net deployment only.

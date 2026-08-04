@@ -1,4 +1,5 @@
 import { getPageContent } from './i18n';
+import { getBlogSitemapEntriesForLocale } from './blog/helpers';
 import { getLocalizedPath, hreflangLinksXml, pageIds, type PageId } from './i18n/routing';
 import { defaultLocale, localeCodes, type LocaleCode } from './i18n/locales';
 import { siteConfig } from './site';
@@ -7,7 +8,7 @@ import { escapeXml } from './sitemap-xml';
 
 export type LocaleSitemapEntry = {
 	path: string;
-	pageId: PageId;
+	pageId?: PageId;
 	lastmod: string;
 	priority: number;
 	changefreq: string;
@@ -17,21 +18,15 @@ export type LocaleSitemapEntry = {
 /** Non-English locale codes included in regional sitemaps. */
 export const i18nLocaleCodes = localeCodes.filter((code) => code !== defaultLocale);
 
-export function localeSitemapFilename(locale: LocaleCode): string {
-	return `sitemap-${locale}.xml`;
-}
+const BLOG_PAGES_PER_LOCALE = 18; // /blog/ index + 17 posts
 
-export function localeSitemapUrl(locale: LocaleCode): string {
-	return new URL(`/${localeSitemapFilename(locale)}`, siteConfig.url).href;
-}
-
-/** Build sitemap entries for one non-English locale (25 pages). */
+/** Build sitemap entries for one non-English locale (25 product pages + 18 blog URLs). */
 export function buildLocaleSitemapEntries(locale: LocaleCode): LocaleSitemapEntry[] {
 	if (locale === defaultLocale) {
-		throw new Error(`English pages belong in sitemap.xml, not sitemap-${locale}.xml`);
+		throw new Error(`English pages belong in sitemap-en.xml, not sitemap-${locale}.xml`);
 	}
 
-	return pageIds.map((pageId) => {
+	const productEntries: LocaleSitemapEntry[] = pageIds.map((pageId) => {
 		const meta = pageSitemapMeta[pageId];
 		const page = pageId === 'home' ? null : getPageContent(locale, pageId);
 
@@ -51,11 +46,31 @@ export function buildLocaleSitemapEntries(locale: LocaleCode): LocaleSitemapEntr
 						},
 		};
 	});
+
+	const blogEntries: LocaleSitemapEntry[] = getBlogSitemapEntriesForLocale(locale).map((entry) => ({
+		path: entry.path,
+		lastmod: entry.lastmod,
+		priority: entry.priority,
+		changefreq: entry.changefreq,
+		image: entry.images[0],
+	}));
+
+	return [...productEntries, ...blogEntries];
+}
+
+export { BLOG_PAGES_PER_LOCALE };
+
+export function localeSitemapFilename(locale: LocaleCode): string {
+	return `sitemap-${locale}.xml`;
+}
+
+export function localeSitemapUrl(locale: LocaleCode): string {
+	return new URL(`/${localeSitemapFilename(locale)}`, siteConfig.url).href;
 }
 
 export function renderLocaleSitemapUrlBlock(entry: LocaleSitemapEntry): string {
 	const loc = new URL(entry.path, siteConfig.url).href;
-	const hreflangBlock = `\n${hreflangLinksXml(entry.pageId, escapeXml)}`;
+	const hreflangBlock = entry.pageId ? `\n${hreflangLinksXml(entry.pageId, escapeXml)}` : '';
 	const imageBlock = entry.image
 		? `\n    <image:image>
       <image:loc>${escapeXml(entry.image.url)}</image:loc>

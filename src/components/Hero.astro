@@ -1,5 +1,5 @@
 ---
-import { heroSizes, heroSrc, heroSrcSet } from '../lib/responsive-images';
+import { heroSizes, heroSrc, heroSrcSet, heroWidth, heroHeight } from '../lib/responsive-images';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
@@ -49,10 +49,11 @@ const featuresUrl = getLocalizedPath('features', locale);
 				src={heroSrc}
 				alt={ui.images.hero}
 				class="hero__bg"
-				width="1400"
-				height="788"
+				width={heroWidth}
+				height={heroHeight}
 				fetchpriority="high"
-				decoding="async"
+				loading="eager"
+				decoding="sync"
 			/>
 		</picture>
 		<div class="hero__splash" aria-hidden="true"></div>
@@ -63,7 +64,7 @@ const featuresUrl = getLocalizedPath('features', locale);
 		<div class="hero__copy">
 			<h1 class="hero__title">
 				<span class="hero__line">
-					<span class="hero__word">Fortnite</span>
+					<span class="hero__word">Warzone</span>
 					<span class="hero__word">Hacks</span>
 				</span>
 				<span class="text-gradient hero__accent">{accent}</span>

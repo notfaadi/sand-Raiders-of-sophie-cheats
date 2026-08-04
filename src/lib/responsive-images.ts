@@ -27,10 +27,10 @@ export function contentSrcSet(baseSrc: string): string | undefined {
 }
 
 export const heroResponsive: ResponsiveWidth[] = [
-	{ src: '/images/fortnite-cheats-hero-480w.webp', width: 480 },
-	{ src: '/images/fortnite-cheats-hero-640w.webp', width: 640 },
-	{ src: '/images/fortnite-cheats-hero-960w.webp', width: 960 },
-	{ src: '/images/fortnite-cheats-hero-1400w.webp', width: 1400 },
+	{ src: '/images/warzone-esp-player-tags-480w.webp', width: 480 },
+	{ src: '/images/warzone-esp-player-tags-640w.webp', width: 640 },
+	{ src: '/images/warzone-esp-player-tags-960w.webp', width: 960 },
+	{ src: '/images/warzone-esp-player-tags.webp', width: 1024 },
 ];
 
 /** Desktop srcset (mobile uses a dedicated `<picture>` source — see Hero.astro). */
@@ -43,6 +43,10 @@ export const heroSizes = '100vw';
 
 /** Mobile LCP preload — only the 480w file (no imagesrcset upscaling). */
 export const heroPreloadSrc = heroResponsive[0].src;
+
+/** Intrinsic dimensions for hero LCP (matches warzone-esp-player-tags.webp). */
+export const heroWidth = 1024;
+export const heroHeight = 524;
 
 /** Responsive widths for below-fold content images. */
 export const contentWidths = [480, 960] as const;

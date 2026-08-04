@@ -30,6 +30,7 @@ const articleUrl = absoluteBlogUrl(locale, t.slug);
 const articleSchema = {
 	'@type': 'Article',
 	'@id': `${articleUrl}#article`,
+	url: articleUrl,
 	headline: t.title,
 	description: t.metaDescription,
 	datePublished: post.published,
@@ -61,7 +62,7 @@ function localizeParagraphHtml(html: string): string {
 
 /** Keep document titles within ~60 chars without cutting mid-word. */
 function pageTitle(headline: string): string {
-	const suffix = ' | Fortnite Intel';
+	const suffix = ' | Warzone Intel';
 	if (headline.length + suffix.length <= 60) return `${headline}${suffix}`;
 	if (headline.length <= 60) return headline;
 	const trimmed = headline.slice(0, 57);

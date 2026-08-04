@@ -1,5 +1,5 @@
 ---
-import { fortniteImages } from '../data/fortnite';
+import { warzoneImages } from '../data/warzone';
 import { getUi } from '../data/i18n';
 import { getGalleryUi } from '../data/i18n/gallery-ui';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
@@ -19,16 +19,16 @@ const gallery = getGalleryUi(locale);
 
 // Only images NOT already shown in the hero or product card — the gallery must not
 // repeat visuals from earlier homepage sections. Never pair cheatsPackage with the
-// old island-map path (identical bytes); fortniteImages.gallery is the source list.
+// old island-map path (identical bytes); warzoneImages.gallery is the source list.
 const galleryAlts = [
 	ui.images.cheatsPackage,
-	ui.images.battleRoyaleIsland,
+	ui.images.espWallhack,
+	ui.images.aimbotCombat,
 	ui.images.headerArt,
 	ui.images.squadFight,
-	undefined,
 ] as const;
 
-const galleryImages = fortniteImages.gallery.map((image, index) => ({
+const galleryImages = warzoneImages.gallery.map((image, index) => ({
 	src: image.src,
 	alt: galleryAlts[index] ?? image.alt,
 	featured: index === 0,

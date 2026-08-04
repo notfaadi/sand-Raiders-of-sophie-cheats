@@ -12,11 +12,11 @@ export function absoluteReviewUrl(slug?: string): string {
 
 const reviewOgImage = {
 	url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-	title: 'Fortnite Hacks customer reviews',
-	caption: 'Fortnite Hacks buyer reviews for ESP soft aim, radar, and cloud DMA',
+	title: 'Warzone Hacks customer reviews',
+	caption: 'Warzone Hacks buyer reviews for ESP soft aim, radar, and cloud DMA',
 };
 
-/** English review routes for sitemap.xml — /reviews/ index + one URL per review. */
+/** English review routes for sitemap-en.xml — /reviews/ index + one URL per review. */
 export function getReviewSitemapEntries() {
 	const indexLastmod = customerReviews.reduce(
 		(max, review) => (review.date > max ? review.date : max),
@@ -48,7 +48,7 @@ export function getReviewSitemapEntries() {
 			images: [
 				{
 					url: reviewOgImage.url,
-					title: `Fortnite Hacks review by @${review.handle}`,
+					title: `Warzone Hacks review by @${review.handle}`,
 					caption: review.seoDescription,
 				},
 			],

@@ -4,7 +4,7 @@ import { getPageContent, type PageId } from '../data/i18n';
 import { getLocalizedPath, localizeInternalHref } from '../data/i18n/routing';
 import type { LocaleCode } from '../data/i18n/locales';
 import { seoFaqs, siteConfig } from '../data/site';
-import { fortniteImages } from '../data/fortnite';
+import { warzoneImages } from '../data/warzone';
 
 interface Props {
 	locale: LocaleCode;
@@ -21,9 +21,9 @@ function localizeParagraphHtml(html: string): string {
 }
 
 const galleryPool = [
-	fortniteImages.product[0],
-	fortniteImages.product[1],
-	fortniteImages.product[2],
+	warzoneImages.product[0],
+	warzoneImages.product[1],
+	warzoneImages.product[2],
 ];
 
 const faqSchema =

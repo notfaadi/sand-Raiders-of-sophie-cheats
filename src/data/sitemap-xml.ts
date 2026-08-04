@@ -23,3 +23,20 @@ export const sitemapResponseHeaders = {
 	'Content-Type': 'application/xml; charset=utf-8',
 	'Cache-Control': 'public, max-age=3600',
 } as const;
+
+export function renderSitemapIndexXml(subSitemaps: { loc: string; lastmod: string }[]): string {
+	const entries = subSitemaps
+		.map(
+			({ loc, lastmod }) => `  <sitemap>
+    <loc>${escapeXml(loc)}</loc>
+    <lastmod>${escapeXml(lastmod)}</lastmod>
+  </sitemap>`,
+		)
+		.join('\n');
+
+	return `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+</sitemapindex>
+`;
+}

@@ -4,9 +4,9 @@ import Navbar from '../components/Navbar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
-import { fortniteImages } from '../data/fortnite';
-import { heroPreloadSrc, heroSizes, heroSrcSet, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
-import { englishPaths, pageIds, type PageId } from '../data/i18n/routing';
+import { warzoneImages } from '../data/warzone';
+import { heroPreloadSrc, heroSizes, heroSrcSet, heroWidth, heroHeight, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
+import { resolvePageContextFromPath, type PageId } from '../data/i18n/routing';
 import { defaultLocale } from '../data/i18n/locales';
 
 type GalleryInput = string | { src: string; alt: string };
@@ -36,10 +36,10 @@ const {
 	heading,
 	intro,
 	eyebrow,
-	heroImage = fortniteImages.hero,
-	heroAlt = 'Fortnite Cheats visual for Fortnite',
-	gallery = fortniteImages.product.slice(0, 3),
-	galleryTitle = 'Fortnite gameplay reference',
+	heroImage = warzoneImages.hero,
+	heroAlt = 'Warzone Cheats visual for Call of Duty: Warzone',
+	gallery = warzoneImages.product.slice(0, 3),
+	galleryTitle = 'Call of Duty: Warzone gameplay reference',
 	ctaPrimary,
 	ctaSecondary,
 	showGallery = true,
@@ -48,10 +48,7 @@ const {
 } = Astro.props;
 
 function resolvePageId(path: string): PageId | undefined {
-	for (const id of pageIds) {
-		if (englishPaths[id] === path) return id;
-	}
-	return undefined;
+	return resolvePageContextFromPath(path).pageId;
 }
 
 const pageId = pageIdProp ?? resolvePageId(canonicalPath);
@@ -66,7 +63,7 @@ const normalizedGallery = gallery
 			return { src: item.src, alt: item.alt };
 		}
 
-		const file = item.split('/').pop()?.replace(/\.webp$/i, '') ?? 'fortnite-cheats';
+		const file = item.split('/').pop()?.replace(/\.webp$/i, '') ?? 'warzone-hacks';
 		const keywordAlt = file
 			.split('-')
 			.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
@@ -84,7 +81,7 @@ const breadcrumbs = [
 	{ label: heading },
 ];
 
-const isHeroLcp = heroImage === fortniteImages.hero;
+const isHeroLcp = heroImage === warzoneImages.hero;
 const lcpImage = isHeroLcp ? heroPreloadSrc : undefined;
 const lcpImageSrcSet = isHeroLcp ? heroSrcSet : undefined;
 const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
@@ -120,11 +117,12 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 							<img
 								src={heroPreloadSrc}
 								alt={heroAlt}
-								width="1600"
-								height="900"
+								width={heroWidth}
+								height={heroHeight}
 								class="banner__img"
 								fetchpriority="high"
-								decoding="async"
+								loading="eager"
+								decoding="sync"
 							/>
 						</picture>
 					) : (
@@ -549,6 +547,8 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 		gap: 1rem;
 		padding-top: 0.5rem;
 		border-top: 1px solid rgba(168, 85, 247, 0.12);
+		content-visibility: auto;
+		contain-intrinsic-size: 1px 480px;
 	}
 
 	.gallery-block__head {

@@ -28,74 +28,76 @@ async function resolveDistRoot() {
 		'Could not find sitemap.xml in dist/ or dist/client/. Run `astro build` first.',
 	);
 }
-const SITE = 'https://fortnitehack.net';
+const SITE = 'https://warzonehacks.net';
 
 const BLOG_PAGES = 18; // /blog/ index + 17 posts
 const REVIEW_PAGES = 11; // /reviews/ index + 10 review detail pages
 const ENGLISH_PAGES = 25 + BLOG_PAGES + REVIEW_PAGES;
 const I18N_LOCALES = 21;
-const PAGES_PER_LOCALE = 25;
+const PRODUCT_PAGES_PER_LOCALE = 25;
+const BLOG_PAGES_PER_LOCALE = 18;
+const PAGES_PER_LOCALE = PRODUCT_PAGES_PER_LOCALE + BLOG_PAGES_PER_LOCALE;
 const I18N_URLS = I18N_LOCALES * PAGES_PER_LOCALE;
 const TOTAL_PAGES = ENGLISH_PAGES + I18N_URLS;
 const HREFLANG_PER_URL = 23;
 const SITEMAP_INDEX_ENTRIES = 1 + I18N_LOCALES + 1; // EN + locales + images
-const IMAGE_SITEMAP_ENTRIES = 13; // unique keyword assets in fortniteImages.sitemap
+const IMAGE_SITEMAP_ENTRIES = 6; // unique keyword assets in warzoneImages.sitemap
 
 const ENGLISH_PATHS = [
 	'/',
-	'/fortnite-esp/',
-	'/fortnite-aimbot/',
+	'/warzone-esp/',
+	'/warzone-aimbot/',
 	'/features/',
 	'/pricing/',
 	'/setup/',
 	'/updates/',
 	'/faq/',
 	'/support/',
-	'/undetected-fortnite-cheats/',
-	'/fortnite-wallhack/',
-	'/fortnite-radar-hack/',
-	'/eac-bypass-fortnite/',
-	'/fortnite-cheats-2026/',
-	'/fortnite-hacks/',
-	'/fortnite-cheat-download/',
-	'/fortnite-mod-menu/',
-	'/fortnite-soft-aim/',
-	'/best-fortnite-cheats/',
-	'/fortnite-aimbot-hack/',
-	'/fortnite-esp-hack/',
-	'/fortnite-unlock-all/',
+	'/undetected-warzone-cheats/',
+	'/warzone-wallhack/',
+	'/warzone-radar-hack/',
+	'/ricochet-bypass/',
+	'/warzone-cheats-2026/',
+	'/warzone-hacks/',
+	'/warzone-cheat-download/',
+	'/warzone-mod-menu/',
+	'/warzone-soft-aim/',
+	'/best-warzone-cheats/',
+	'/warzone-aimbot-hack/',
+	'/warzone-esp-hack/',
+	'/warzone-unlock-all/',
 	'/privacy-policy/',
 	'/refund-policy/',
 	'/terms/',
 	'/blog/',
-	'/blog/zero-build-meta-broken-aggressive-strategies/',
-	'/blog/secret-loot-routes-full-gold/',
-	'/blog/hammer-ar-s-tier-data-analysis/',
-	'/blog/chapter-7-season-3-skin-leaks-vbucks/',
-	'/blog/fncs-meta-watch-tournament-drops/',
-	'/blog/bugha-settings-pro-setup/',
-	'/blog/creative-warmup-maps-pros-use/',
-	'/blog/patch-notes-buffs-nerfs-vaults/',
-	'/blog/fortnite-hacks-complete-guide-2026/',
-	'/blog/fortnite-cheats-buyers-guide/',
-	'/blog/fortnite-cheats-2026-whats-new/',
-	'/blog/fortnite-aimbot-settings-guide/',
-	'/blog/fortnite-esp-wallhack-explained/',
-	'/blog/undetected-fortnite-hacks-eac/',
-	'/blog/fortnite-hacks-vs-cheatvault-comparison/',
-	'/blog/elitefn-vs-fortnite-hacks-two-week-test/',
-	'/blog/fortnite-hacks-vs-ghostware-features-pricing/',
+	'/blog/warzone-resurgence-aggressive-strategies/',
+	'/blog/warzone-loot-routes-guide/',
+	'/blog/warzone-weapon-tier-list/',
+	'/blog/warzone-skin-leaks-guide/',
+	'/blog/warzone-tournament-meta-guide/',
+	'/blog/warzone-pro-settings-guide/',
+	'/blog/warzone-warmup-maps-ranked/',
+	'/blog/warzone-patch-notes-guide/',
+	'/blog/warzone-hacks-complete-guide-2026/',
+	'/blog/call-of-duty-warzone-cheats-buyers-guide/',
+	'/blog/warzone-cheats-2026-whats-new/',
+	'/blog/warzone-aimbot-settings-guide/',
+	'/blog/warzone-esp-wallhack-explained/',
+	'/blog/undetected-warzone-hacks-ricochet/',
+	'/blog/warzone-hacks-vs-cheatvault-comparison/',
+	'/blog/elitefn-vs-warzone-hacks-two-week-test/',
+	'/blog/warzone-hacks-vs-ghostware-features-pricing/',
 	'/reviews/',
-	'/reviews/fortnite-soft-aim-review-xkrypt0/',
-	'/reviews/fortnite-esp-zero-build-review-buildsr4k/',
-	'/reviews/fortnite-cloud-dma-review-dma-wizard/',
-	'/reviews/fortnite-controller-soft-aim-review-ctrl-player99/',
-	'/reviews/fortnite-hack-setup-review-stormchaser07/',
-	'/reviews/fortnite-loot-esp-review-lootgoblinx/',
-	'/reviews/fortnite-soft-aim-ranked-review-rankedgrind42/',
-	'/reviews/fortnite-radar-hack-review-vanlifefn/',
-	'/reviews/fortnite-eac-update-review-patchdaymike/',
-	'/reviews/fortnite-sniper-soft-aim-review-snipezonly/',
+	'/reviews/warzone-soft-aim-review-xkrypt0/',
+	'/reviews/warzone-esp-resurgence-review-buildsr4k/',
+	'/reviews/warzone-cloud-dma-review-dma-wizard/',
+	'/reviews/warzone-controller-soft-aim-review-ctrl-player99/',
+	'/reviews/warzone-hack-setup-review-stormchaser07/',
+	'/reviews/warzone-loot-esp-review-lootgoblinx/',
+	'/reviews/warzone-soft-aim-ranked-review-rankedgrind42/',
+	'/reviews/warzone-radar-hack-review-vanlifewz/',
+	'/reviews/warzone-ricochet-update-review-patchdaymike/',
+	'/reviews/warzone-sniper-soft-aim-review-snipezonly/',
 ];
 
 const LOCALE_CODES = [
@@ -151,16 +153,37 @@ async function main() {
 		console.log(`Using build output at ${path.relative(ROOT, DIST)}/\n`);
 	}
 
-	const sitemapEn = await readFile(path.join(DIST, 'sitemap.xml'), 'utf8');
+	const sitemapIndex = await readFile(path.join(DIST, 'sitemap.xml'), 'utf8');
+	const sitemapEn = await readFile(path.join(DIST, 'sitemap-en.xml'), 'utf8');
 	const sitemapI18n = await readFile(path.join(DIST, 'sitemap-i18n.xml'), 'utf8');
-	const sitemapIndex = await readFile(path.join(DIST, 'sitemap-index.xml'), 'utf8');
 	const sitemapImages = await readFile(path.join(DIST, 'sitemap-images.xml'), 'utf8');
 	const robots = await readFile(path.join(ROOT, 'public', 'robots.txt'), 'utf8');
+	const redirects = await readFile(path.join(ROOT, 'public', '_redirects'), 'utf8');
 
+	const indexLocs = extractLocs(sitemapIndex);
 	const enLocs = extractLocs(sitemapEn);
 	const i18nLocs = extractLocs(sitemapI18n);
 	const imageLocs = extractLocs(sitemapImages);
-	const indexLocs = extractLocs(sitemapIndex);
+
+	// sitemap.xml must be a sitemap index (not a urlset)
+	if (!sitemapIndex.includes('<sitemapindex')) {
+		fail('sitemap.xml must be a sitemap index (<sitemapindex>)');
+		bump();
+	} else ok('sitemap.xml is a valid sitemap index');
+
+	// Legacy sitemap-index.xml must not be emitted — redirect handles old URLs
+	try {
+		await access(path.join(DIST, 'sitemap-index.xml'));
+		fail('sitemap-index.xml must not exist in dist/ (use redirect to sitemap.xml)');
+		bump();
+	} catch {
+		ok('sitemap-index.xml not emitted (legacy URL redirects to sitemap.xml)');
+	}
+
+	if (!redirects.includes('/sitemap-index.xml /sitemap.xml 301')) {
+		fail('_redirects missing 301: /sitemap-index.xml → /sitemap.xml');
+		bump();
+	} else ok('_redirects 301s sitemap-index.xml → sitemap.xml');
 
 	// Per-locale sitemap files
 	const localeSitemapLocs = {};
@@ -183,9 +206,9 @@ async function main() {
 
 	// Count checks
 	if (enLocs.length !== ENGLISH_PAGES) {
-		fail(`sitemap.xml: expected ${ENGLISH_PAGES} URLs, got ${enLocs.length}`);
+		fail(`sitemap-en.xml: expected ${ENGLISH_PAGES} URLs, got ${enLocs.length}`);
 		bump();
-	} else ok(`sitemap.xml has ${ENGLISH_PAGES} English URLs`);
+	} else ok(`sitemap-en.xml has ${ENGLISH_PAGES} English URLs`);
 
 	if (i18nLocs.length !== I18N_URLS) {
 		fail(`sitemap-i18n.xml: expected ${I18N_URLS} URLs, got ${i18nLocs.length}`);
@@ -206,18 +229,18 @@ async function main() {
 	for (const p of ENGLISH_PATHS) {
 		const full = `${SITE}${p === '/' ? '/' : p}`;
 		if (!enLocs.includes(full)) {
-			fail(`Missing English URL in sitemap.xml: ${full}`);
+			fail(`Missing English URL in sitemap-en.xml: ${full}`);
 			bump();
 		}
 	}
-	if (errors === 0) ok(`All ${ENGLISH_PAGES} English canonical paths present in sitemap.xml`);
+	if (errors === 0) ok(`All ${ENGLISH_PAGES} English canonical paths present in sitemap-en.xml`);
 
 	// No overlap between EN and i18n sitemaps
 	const overlap = enLocs.filter((u) => i18nLocs.includes(u));
 	if (overlap.length > 0) {
 		fail(`Duplicate URLs in both sitemaps: ${overlap.join(', ')}`);
 		bump();
-	} else ok('No duplicate URLs between sitemap.xml and sitemap-i18n.xml');
+	} else ok('No duplicate URLs between sitemap-en.xml and sitemap-i18n.xml');
 
 	// Per-locale sitemaps match combined i18n sitemap
 	const perLocaleSet = new Set(Object.values(localeSitemapLocs).flat());
@@ -229,7 +252,7 @@ async function main() {
 		bump();
 	} else ok('Per-locale sitemaps match sitemap-i18n.xml URL set');
 
-	// HTTPS + trailing slash
+	// HTTPS + trailing slash (page URLs only — sub-sitemap .xml locs omit trailing slash)
 	for (const loc of [...enLocs, ...i18nLocs]) {
 		if (!loc.startsWith('https://')) {
 			fail(`Non-HTTPS URL: ${loc}`);
@@ -239,8 +262,22 @@ async function main() {
 			fail(`URL missing trailing slash: ${loc}`);
 			bump();
 		}
+		if (loc.includes('www.')) {
+			fail(`URL must use apex domain (no www): ${loc}`);
+			bump();
+		}
 	}
-	if (errors === 0) ok('All sitemap URLs use HTTPS with trailing slashes');
+	for (const loc of indexLocs) {
+		if (!loc.startsWith('https://')) {
+			fail(`Non-HTTPS sub-sitemap URL: ${loc}`);
+			bump();
+		}
+		if (loc.includes('www.')) {
+			fail(`Sub-sitemap URL must use apex domain (no www): ${loc}`);
+			bump();
+		}
+	}
+	if (errors === 0) ok('All sitemap URLs use HTTPS apex with trailing slashes');
 
 	// hreflang on homepage
 	const homeHreflang = extractHreflangCount(sitemapEn, `${SITE}/`);
@@ -249,44 +286,45 @@ async function main() {
 		bump();
 	} else ok(`Homepage has ${HREFLANG_PER_URL} hreflang alternates (22 locales + x-default)`);
 
-	// sitemap index — EN + 21 locale sitemaps + images
+	// sitemap.xml index — EN + 21 locale sitemaps + images
 	if (indexLocs.length !== SITEMAP_INDEX_ENTRIES) {
-		fail(`sitemap-index.xml: expected ${SITEMAP_INDEX_ENTRIES} sub-sitemaps, got ${indexLocs.length}`);
+		fail(`sitemap.xml: expected ${SITEMAP_INDEX_ENTRIES} sub-sitemaps, got ${indexLocs.length}`);
 		bump();
-	} else ok(`sitemap-index.xml lists ${SITEMAP_INDEX_ENTRIES} sub-sitemaps`);
+	} else ok(`sitemap.xml lists ${SITEMAP_INDEX_ENTRIES} sub-sitemaps`);
 
-	if (!indexLocs.includes(`${SITE}/sitemap.xml`)) {
-		fail('sitemap-index.xml missing sitemap.xml');
+	if (!indexLocs.includes(`${SITE}/sitemap-en.xml`)) {
+		fail('sitemap.xml missing sitemap-en.xml');
 		bump();
 	}
 	if (!indexLocs.includes(`${SITE}/sitemap-images.xml`)) {
-		fail('sitemap-index.xml missing sitemap-images.xml');
+		fail('sitemap.xml missing sitemap-images.xml');
 		bump();
 	}
 	for (const locale of I18N_LOCALE_CODES) {
 		const loc = `${SITE}/sitemap-${locale}.xml`;
 		if (!indexLocs.includes(loc)) {
-			fail(`sitemap-index.xml missing sitemap-${locale}.xml`);
+			fail(`sitemap.xml missing sitemap-${locale}.xml`);
 			bump();
 		}
 	}
-	if (errors === 0) ok('sitemap-index.xml lists English, all 21 locale, and image sitemaps');
+	if (errors === 0) ok('sitemap.xml lists English, all 21 locale, and image sitemaps');
 
-	// robots.txt — single submission path: index (covers locale + image sitemaps) + English sitemap.
-	for (const sub of ['sitemap-index.xml', 'sitemap.xml']) {
-		if (!robots.includes(`${SITE}/${sub}`)) {
-			fail(`robots.txt missing Sitemap: ${sub}`);
-			bump();
-		}
+	// robots.txt — single GSC submission path
+	if (!robots.includes(`${SITE}/sitemap.xml`)) {
+		fail('robots.txt missing Sitemap: sitemap.xml');
+		bump();
 	}
-	// Redundant listings cause double-submission confusion in GSC — must NOT be in robots.txt.
-	for (const sub of ['sitemap-i18n.xml', 'sitemap-images.xml', 'sitemap-blog.xml']) {
+	if (robots.includes(`${SITE}/sitemap-index.xml`)) {
+		fail('robots.txt must not list legacy sitemap-index.xml');
+		bump();
+	}
+	for (const sub of ['sitemap-i18n.xml', 'sitemap-images.xml', 'sitemap-en.xml', 'sitemap-blog.xml']) {
 		if (robots.includes(`${SITE}/${sub}`)) {
-			fail(`robots.txt must not list redundant sitemap: ${sub} (already covered by sitemap-index.xml)`);
+			fail(`robots.txt must not list redundant sitemap: ${sub} (already covered by sitemap.xml index)`);
 			bump();
 		}
 	}
-	if (errors === 0) ok('robots.txt lists primary sitemap URLs only (no redundant listings)');
+	if (errors === 0) ok('robots.txt lists sitemap.xml only (primary GSC submission path)');
 
 	// Built HTML vs sitemap total
 	const htmlPaths = await collectHtmlPaths(DIST);
@@ -336,6 +374,7 @@ async function main() {
 		process.exit(1);
 	}
 	console.log('All sitemap checks passed.');
+	console.log(`\nSubmit to Google Search Console: ${SITE}/sitemap.xml`);
 }
 
 main().catch((err) => {

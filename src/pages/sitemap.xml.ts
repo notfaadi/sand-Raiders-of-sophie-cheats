@@ -1,50 +1,31 @@
 import type { APIRoute } from 'astro';
-import { absolutePageUrl, pageSitemapEntries } from '../data/page-sitemap';
 import { getBlogSitemapEntries } from '../data/blog/helpers';
-import { getReviewSitemapEntries } from '../data/reviews';
-import { hreflangLinksXml, resolvePageIdFromPath } from '../data/i18n/routing';
-import { escapeXml, renderUrlsetXml, sitemapResponseHeaders } from '../data/sitemap-xml';
+import { siteConfig } from '../data/site';
+import { i18nLocaleCodes, localeSitemapUrl } from '../data/sitemap-locale';
+import { latestPageLastmod } from '../data/sitemap-meta';
+import { renderSitemapIndexXml, sitemapResponseHeaders } from '../data/sitemap-xml';
 
 export const prerender = true;
 
-/** Primary English page sitemap with Google image extensions and hreflang alternates. */
+/** Primary sitemap index for Google Search Console — EN + 21 locale + image sitemaps. */
 export const GET: APIRoute = () => {
-	const blogEntries = getBlogSitemapEntries()
-		.filter((entry) => !entry.path.match(/^\/[a-z]{2}\//))
-		.map((entry) => ({
-			path: entry.path,
-			lastmod: entry.lastmod,
-			changefreq: entry.changefreq,
-			priority: entry.priority,
-			images: entry.images,
-		}));
+	const pageLastmod = latestPageLastmod();
+	// sitemap-en.xml also contains blog URLs, so its lastmod must cover the newest post update.
+	const englishLastmod = getBlogSitemapEntries().reduce(
+		(max, entry) => (entry.lastmod > max ? entry.lastmod : max),
+		pageLastmod,
+	);
 
-	const reviewEntries = getReviewSitemapEntries();
+	const subSitemaps: { loc: string; lastmod: string }[] = [
+		{ loc: new URL('/sitemap-en.xml', siteConfig.url).href, lastmod: englishLastmod },
+		...i18nLocaleCodes.map((locale) => ({
+			loc: localeSitemapUrl(locale),
+			lastmod: pageLastmod,
+		})),
+		{ loc: new URL('/sitemap-images.xml', siteConfig.url).href, lastmod: pageLastmod },
+	];
 
-	const urls = [...pageSitemapEntries, ...blogEntries, ...reviewEntries].map((entry) => {
-		const images = entry.images
-			.map(
-				(image) => `    <image:image>
-      <image:loc>${escapeXml(image.url)}</image:loc>
-      <image:title>${escapeXml(image.title)}</image:title>
-      <image:caption>${escapeXml(image.caption)}</image:caption>
-    </image:image>`,
-			)
-			.join('\n');
-
-		const imageBlock = images ? `\n${images}` : '';
-		const pageId = resolvePageIdFromPath(entry.path);
-		const hreflangBlock = pageId ? `\n${hreflangLinksXml(pageId, escapeXml)}` : '';
-
-		return `  <url>
-    <loc>${escapeXml(absolutePageUrl(entry.path))}</loc>
-    <lastmod>${escapeXml(entry.lastmod)}</lastmod>
-    <changefreq>${entry.changefreq}</changefreq>
-    <priority>${entry.priority.toFixed(2)}</priority>${hreflangBlock}${imageBlock}
-  </url>`;
-	});
-
-	const xml = renderUrlsetXml(urls);
+	const xml = renderSitemapIndexXml(subSitemaps);
 
 	return new Response(xml, { headers: sitemapResponseHeaders });
 };

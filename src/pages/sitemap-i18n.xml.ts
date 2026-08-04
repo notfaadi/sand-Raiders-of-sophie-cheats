@@ -10,7 +10,7 @@ export const prerender = true;
 
 /**
  * Combined localized sitemap (525 URLs) — kept for backward compatibility.
- * Prefer sitemap-index.xml → sitemap-{locale}.xml for regional Search Console submission.
+ * Prefer sitemap.xml → sitemap-{locale}.xml for regional Search Console submission.
  */
 export const GET: APIRoute = () => {
 	const entries = buildAllI18nSitemapEntries();

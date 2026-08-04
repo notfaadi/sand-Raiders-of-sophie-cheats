@@ -13,7 +13,7 @@ function escapeXml(value: string): string {
 export const prerender = true;
 
 /**
- * Dedicated image sitemap: each keyword asset is listed under its best host URL
+ * Dedicated image sitemap: ricocheth keyword asset is listed under its best host URL
  * so Google Image Search can fetch and associate titles/captions cleanly.
  */
 export const GET: APIRoute = () => {

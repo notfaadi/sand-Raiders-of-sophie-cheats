@@ -1,7 +1,7 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import { getUi } from '../data/i18n';
-import { getLocalizedPath, getNavForLocale, type PageId } from '../data/i18n/routing';
+import { getLocalizedPath, getNavForLocale, resolvePageContextFromPath, type PageId } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { mainNav, siteConfig } from '../data/site';
 
@@ -10,7 +10,9 @@ interface Props {
 	pageId?: PageId;
 }
 
-const { locale = defaultLocale, pageId = 'home' } = Astro.props;
+const { locale = defaultLocale, pageId: pageIdProp } = Astro.props;
+const pathContext = resolvePageContextFromPath(Astro.url.pathname);
+const pageId = pageIdProp ?? pathContext.pageId ?? 'home';
 const ui = getUi(locale);
 const navLinks = getNavForLocale(locale, ui.nav);
 const current = Astro.url.pathname;
@@ -26,7 +28,7 @@ const isActive = (href: string) => {
 <header class="nav" data-nav>
 	<div class="nav__backdrop" data-nav-backdrop hidden aria-hidden="true"></div>
 	<div class="nav__bar">
-		<a href={getLocalizedPath('home', locale)} class="nav__brand" aria-label="Fortnite Hacks home page">
+		<a href={getLocalizedPath('home', locale)} class="nav__brand" aria-label="Warzone Hacks home page">
 			<img
 				src={siteConfig.logo}
 				alt={siteConfig.logoAlt}
@@ -36,8 +38,8 @@ const isActive = (href: string) => {
 				decoding="async"
 				fetchpriority="low"
 			/>
-			<span class="nav__name">Fortnite Hacks</span>
-			<span class="sr-only">Fortnite Hacks home</span>
+			<span class="nav__name">Warzone Hacks</span>
+			<span class="sr-only">Warzone Hacks home</span>
 		</a>
 
 		<nav class="nav__links" id="nav-panel" data-nav-panel aria-label="Primary">
