@@ -7,6 +7,10 @@ http://warzonehacks.net/* https://warzonehacks.net/:splat 301
 
 /sitemap-0.xml /sitemap.xml 301
 /sitemap-index.xml /sitemap.xml 301
+/sitemap.xml/ /sitemap.xml 301
+/sitemap-en.xml/ /sitemap-en.xml 301
+/sitemap-i18n.xml/ /sitemap-i18n.xml 301
+/sitemap-images.xml/ /sitemap-images.xml 301
 /call-of-duty-warzone-cheats / 301
 /call-of-duty-warzone-cheats/ / 301
 /warzone-cheats-2026 /warzone-cheats-2026/ 301

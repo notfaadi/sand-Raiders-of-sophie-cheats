@@ -80,29 +80,31 @@ The deployed `functions/_middleware.js` also enforces apex canonical host, legac
 
 Verify these URLs return **200** with correct content:
 
-- `https://warzonescheats.net/`
-- `https://warzonescheats.net/es/`
-- `https://warzonescheats.net/warzone-hacks/`
-- `https://warzonescheats.net/warzone-aimbot/`
-- `https://warzonescheats.net/sitemap-index.xml`
-- `https://warzonescheats.net/robots.txt`
+- `https://warzonehacks.net/`
+- `https://warzonehacks.net/es/`
+- `https://warzonehacks.net/warzone-hacks/`
+- `https://warzonehacks.net/warzone-aimbot/`
+- `https://warzonehacks.net/sitemap.xml`
+- `https://warzonehacks.net/robots.txt`
 
 Verify redirects:
 
-- `http://warzonescheats.net` → `https://warzonescheats.net` (301)
-- `https://www.warzonescheats.net` → `https://warzonescheats.net` (301)
-- `https://warzonescheats.xyz` → `https://warzonescheats.net` (301)
-- Legacy paths (e.g. `/warzone-aimbot/`) → Call of Duty: Warzone equivalents (301)
+- `http://warzonehacks.net` → `https://warzonehacks.net` (301)
+- `https://www.warzonehacks.net` → `https://warzonehacks.net` (301)
+- Legacy domains (e.g. `warzonescheats.net`) → `https://warzonehacks.net` (301)
+- `/sitemap-index.xml` → `/sitemap.xml` (301)
+- Legacy paths (e.g. `/fortnite-hacks/`) → Warzone equivalents (301)
 
 ## 5. Google Search Console
 
 1. Go to [Google Search Console](https://search.google.com/search-console).
-2. **Add property** → choose **Domain** → enter `warzonescheats.net`.
+2. **Add property** → choose **Domain** → enter `warzonehacks.net`.
 3. Verify ownership via the **DNS TXT record** Cloudflare provides (add in Cloudflare DNS, wait for propagation, then confirm in GSC).
 4. After verification, open **Sitemaps** and submit:
    ```
-   https://warzonescheats.net/sitemap-index.xml
+   https://warzonehacks.net/sitemap.xml
    ```
+   Remove any legacy submissions (`sitemap-index.xml`, old `warzonescheats.net` URLs).
 5. Use **URL Inspection** to request indexing for:
    - Homepage (`/`)
    - Pillar page (`/warzone-hacks/`)
@@ -124,11 +126,11 @@ Verify redirects:
 
 - [ ] `npm run build:validate` passes locally
 - [ ] Cloudflare Pages project attached to this repo
-- [ ] Custom domain `warzonescheats.net` attached and active
+- [ ] Custom domain `warzonehacks.net` attached and active
 - [ ] `www` redirects to apex
-- [ ] Legacy domains 301 to `warzonescheats.net`
+- [ ] Legacy domains 301 to `warzonehacks.net`
 - [ ] Always Use HTTPS enabled
-- [ ] `robots.txt` and sitemaps serve from `https://warzonescheats.net`
+- [ ] `robots.txt` and sitemaps serve from `https://warzonehacks.net`
 - [ ] Google Search Console domain verified
-- [ ] `sitemap-index.xml` submitted in GSC
+- [ ] `sitemap.xml` submitted in GSC
 - [ ] Homepage and `/warzone-hacks/` requested for indexing

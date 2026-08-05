@@ -24,6 +24,10 @@ const LEGACY_HOSTS = new Set([
 const PATH_REDIRECTS = {
 	'/sitemap-0.xml': '/sitemap.xml',
 	'/sitemap-index.xml': '/sitemap.xml',
+	'/sitemap.xml/': '/sitemap.xml',
+	'/sitemap-en.xml/': '/sitemap-en.xml',
+	'/sitemap-i18n.xml/': '/sitemap-i18n.xml',
+	'/sitemap-images.xml/': '/sitemap-images.xml',
 	'/call-of-duty-warzone-cheats': '/',
 	'/call-of-duty-warzone-cheats/': '/',
 	'/warzone-cheats-2026': '/warzone-cheats-2026/',
@@ -124,6 +128,12 @@ function applySecurityHeaders(headers, { html = false } = {}) {
 	}
 }
 
+/** Flat .xml sitemaps — redirect any other *.xml/ trailing-slash URL (locale sitemaps). */
+function xmlTrailingSlashRedirect(pathname) {
+	if (!pathname.endsWith('.xml/')) return null;
+	return pathname.slice(0, -1);
+}
+
 export async function onRequest(context) {
 	const url = new URL(context.request.url);
 	const host = url.hostname.toLowerCase();
@@ -147,7 +157,8 @@ export async function onRequest(context) {
 		return new Response(null, { status: 301, headers });
 	}
 
-	const pathRedirect = PATH_REDIRECTS[url.pathname];
+	const pathRedirect =
+		PATH_REDIRECTS[url.pathname] ?? xmlTrailingSlashRedirect(url.pathname);
 	if (pathRedirect) {
 		const headers = new Headers({
 			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),
