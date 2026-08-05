@@ -151,9 +151,10 @@ async function generateFavicons() {
 	);
 	console.log('Wrote public/favicon.ico');
 
-	const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" fill="#0a0612"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="system-ui,sans-serif" font-size="340" font-weight="800" fill="#9333ea">Z</text></svg>`;
+	const svgBase64 = logoBuffer.toString('base64');
+	const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><rect width="512" height="512" fill="#0a0612"/><image width="512" height="512" href="data:image/png;base64,${svgBase64}"/></svg>`;
 	await writeFile(path.join(publicDir, 'favicon.svg'), faviconSvg);
-	console.log('Wrote public/favicon.svg');
+	console.log('Wrote public/favicon.svg (embedded PNG)');
 }
 
 await mkdir(imagesDir, { recursive: true });

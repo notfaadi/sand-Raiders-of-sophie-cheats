@@ -11,6 +11,7 @@
     "build:validate": "astro build && node scripts/validate-sitemaps.mjs",
     "optimize:images": "node scripts/optimize-responsive-images.mjs",
     "fetch:images": "node scripts/fetch-warzone-images.mjs",
+    "generate:brand": "node scripts/generate-brand-assets.mjs",
     "preview": "astro preview",
     "validate:sitemaps": "node scripts/validate-sitemaps.mjs",
     "generate:i18n": "node scripts/generate-i18n-content.mjs",
