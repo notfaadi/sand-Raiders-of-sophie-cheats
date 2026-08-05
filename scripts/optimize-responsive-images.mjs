@@ -12,7 +12,7 @@ const CONTENT_WIDTHS = [480, 960];
 
 const SKIP_PATTERNS = [
 	/-\d+w\.webp$/i,
-	/zadeyo-logo/i,
+	/warzone-hacks-logo/i,
 	/favicon/i,
 ];
 

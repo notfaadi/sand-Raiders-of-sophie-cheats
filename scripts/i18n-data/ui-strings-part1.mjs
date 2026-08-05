@@ -3,7 +3,7 @@
 export const uiStrings = {
 	en: {
 		nav: { home: 'Home', hacks: 'Hacks', aimbot: 'Aimbot', esp: 'ESP', features: 'Features', pricing: 'Pricing', setup: 'Setup', updates: 'Updates', faq: 'FAQ', buyNow: 'Buy Now' },
-		hero: { accent: 'Undetected Warzone Hacks — ESP, Aimbot & Wallhack', accentShort: 'Undetected warzone hacks', subtitle: 'Warzone hacks with warzone esp, radar hack and warzone aimbot for Windows PC — Ricochet maintenance included.', subtitleShort: 'Warzone esp, radar & aimbot for PC', buyNow: 'Buy Warzone Hacks', seeFeatures: 'See Features' },
+		hero: { accent: '2026 — Undetected ESP, Aimbot & Wallhack', accentShort: 'Undetected warzone hacks 2026', subtitle: 'Warzone hacks with warzone esp, radar hack and warzone aimbot for Windows PC — Ricochet maintenance included.', subtitleShort: 'Warzone esp, radar & aimbot for PC', buyNow: 'Buy Warzone Hacks', seeFeatures: 'See Features' },
 		trust: { status: 'Online', statusNote: 'Warzone Hacks — undetected warzone hacks live for Warzone on Windows PC.', statusShort: 'Live', delivery: 'Instant digital delivery', platform: 'Windows 10 & 11', antiCheat: 'Ricochet maintenance supported', antiCheatShort: 'Ricochet anti-cheat supported' },
 		product: { title: 'Warzone Hacks', addToCart: 'Add to Cart', monthly: 'Monthly', lifetime: 'Lifetime', available: 'Available now', gameBadge: 'Warzone', platformBadge: 'Windows PC', statusBadge: 'Undetected warzone hacks' },
 		reviews: { title: 'What players say', subtitle: 'Recent feedback from Warzone Hacks buyers', outOf: 'out of 5', countLabel: 'reviews' },

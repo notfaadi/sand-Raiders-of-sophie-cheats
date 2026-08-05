@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { pageId, locale = 'en' } = Astro.props;
-const alternates = getHreflangAlternates(pageId);
+const alternates = getHreflangAlternates(pageId, locale);
 ---
 
 {

@@ -45,8 +45,8 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					buyNow: "Buy Now",
 				},
 				hero: {
-					accent: "Undetected Warzone Hacks — ESP, Aimbot & Wallhack",
-					accentShort: "Undetected warzone hacks",
+					accent: "2026 — Undetected ESP, Aimbot & Wallhack",
+					accentShort: "Undetected warzone hacks 2026",
 					subtitle: "Warzone hacks with warzone esp, radar hack and warzone aimbot for Windows PC — Ricochet maintenance included.",
 					subtitleShort: "Warzone esp, radar & aimbot for PC",
 					buyNow: "Buy Warzone Hacks",
@@ -105,7 +105,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 			pages: {
 				home: {
 					title: "Warzone Hacks 2026 | Undetected ESP, Aimbot & Wallhack",
-					description: "Undetected warzone hacks for PC — warzone esp, wallhack, radar and warzone aimbot. Also searched as warzone cheats. Compare plans and Ricochet updates for 2026.",
+					description: "Warzone cheats & warzone hacks for PC — undetected warzone esp, wallhack, radar and warzone aimbot. Compare plans and 2026 Ricochet updates.",
 					h1: "Warzone Hacks — Undetected ESP, Wallhack & Aimbot",
 					intro: "Warzone Hacks is the undetected warzone hacks package for Windows PC — also searched as warzone cheats and warzone hack. Warzone esp wallhack, 2D radar, and warzone aimbot with Ricochet maintenance after every major patch.",
 					imageAlt: "Warzone ESP player tags hack",

@@ -5,6 +5,7 @@ import I18nHead from '../components/I18nHead.astro';
 import LocaleSuggest from '../components/LocaleSuggest.astro';
 import { defaultLocale, localeMap, locales, type LocaleCode } from '../data/i18n/locales';
 import type { PageId } from '../data/i18n/content.generated';
+import { buildCanonicalUrl } from '../data/i18n/routing';
 
 interface Crumb {
 	label: string;
@@ -45,8 +46,7 @@ const {
 	lcpImageSizes = '100vw',
 } = Astro.props;
 
-const path = canonicalPath.endsWith('/') || canonicalPath.includes('.') ? canonicalPath : `${canonicalPath}/`;
-const canonicalURL = new URL(path === '//' ? '/' : path, siteConfig.url).href;
+const canonicalURL = buildCanonicalUrl(canonicalPath);
 const ogImageURL = new URL(ogImage, siteConfig.url).href;
 const logoURL = new URL(siteConfig.logoRaster, siteConfig.url).href;
 const ogImageIsLogo = ogImage === siteConfig.logo;
@@ -84,6 +84,12 @@ const graph: Record<string, unknown>[] = [
 		description: siteDescription,
 		inLanguage: schemaLanguages,
 		publisher: { '@id': `${siteConfig.url}/#organization` },
+		logo: {
+			'@type': 'ImageObject',
+			url: logoURL,
+			width: siteConfig.logoRasterWidth,
+			height: siteConfig.logoRasterHeight,
+		},
 	},
 	{
 		'@type': 'Organization',
@@ -219,6 +225,7 @@ if (softwareNode) {
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 	</head>
 	<body>

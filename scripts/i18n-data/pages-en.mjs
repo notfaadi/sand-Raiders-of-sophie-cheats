@@ -5,7 +5,7 @@ export const enPages = {
 	home: {
 		title: 'Warzone Hacks 2026 | Undetected ESP, Aimbot & Wallhack',
 		description:
-			'Undetected warzone hacks for PC — warzone esp, wallhack, radar and warzone aimbot. Also searched as warzone cheats. Compare plans and Ricochet updates for 2026.',
+			'Warzone cheats & warzone hacks for PC — undetected warzone esp, wallhack, radar and warzone aimbot. Compare plans and 2026 Ricochet updates.',
 		h1: 'Warzone Hacks — Undetected ESP, Wallhack & Aimbot',
 		intro:
 			'Warzone Hacks is the undetected warzone hacks package for Windows PC — also searched as warzone cheats and warzone hack. Warzone esp wallhack, 2D radar, and warzone aimbot with Ricochet maintenance after every major patch.',

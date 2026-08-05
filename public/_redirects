@@ -1,4 +1,9 @@
-# Path redirects only — keep in sync with PATH_REDIRECTS in functions/_middleware.js.
+# Host canonicalization — keep in sync with functions/_middleware.js (301 → https://warzonehacks.net).
+https://www.warzonehacks.net/* https://warzonehacks.net/:splat 301
+http://www.warzonehacks.net/* https://warzonehacks.net/:splat 301
+http://warzonehacks.net/* https://warzonehacks.net/:splat 301
+
+# Path redirects — keep in sync with PATH_REDIRECTS in functions/_middleware.js.
 
 /sitemap-0.xml /sitemap.xml 301
 /sitemap-index.xml /sitemap.xml 301

@@ -65,7 +65,7 @@ const REMOVE_PREFIXES = [
 async function removeOldWarzoneImages() {
 	const files = await readdir(imagesDir).catch(() => []);
 	for (const file of files) {
-		if (file.includes('zadeyo-logo')) continue;
+		if (file.includes('warzone-hacks-logo')) continue;
 		const base = file.replace(/(-\d+w)?\.webp$/i, '');
 		if (REMOVE_PREFIXES.includes(base)) {
 			await unlink(path.join(imagesDir, file));
@@ -126,7 +126,7 @@ async function generateResponsiveVariants() {
 }
 
 async function generateFavicons() {
-	const logoPath = path.join(imagesDir, 'zadeyo-logo.png');
+	const logoPath = path.join(imagesDir, 'warzone-hacks-logo.png');
 	const logoBuffer = await sharp(logoPath)
 		.resize(512, 512, { fit: 'contain', background: { r: 10, g: 6, b: 18, alpha: 1 } })
 		.png()

@@ -3,6 +3,7 @@ import {
 	defaultLocale,
 	isLocaleCode,
 	localeCodes,
+	localeMap,
 	type LocaleCode,
 	locales,
 } from './locales';
@@ -697,20 +698,38 @@ export function localizeInternalHref(href: string, locale: LocaleCode): string {
 	return href;
 }
 
-export function absoluteLocalizedUrl(pageId: PageId, locale: LocaleCode): string {
-	return new URL(getLocalizedPath(pageId, locale), siteConfig.url).href;
+/** Canonical absolute URL — always https apex with trailing slash (matches Layout.astro). */
+export function buildCanonicalUrl(path: string): string {
+	const normalized =
+		!path || path === '/'
+			? '/'
+			: path.endsWith('/') || path.includes('.')
+				? path
+				: `${path}/`;
+	return new URL(normalized, siteConfig.url).href;
 }
 
-export function getHreflangAlternates(pageId: PageId) {
+export function absoluteLocalizedUrl(pageId: PageId, locale: LocaleCode): string {
+	return buildCanonicalUrl(getLocalizedPath(pageId, locale));
+}
+
+export function getHreflangAlternates(pageId: PageId, currentLocale: LocaleCode = defaultLocale) {
+	const byLocale = localeCodes.map((code) => ({
+		hreflang: localeMap[code].hreflang,
+		href: absoluteLocalizedUrl(pageId, code),
+		code,
+	}));
+	const self = byLocale.find((alt) => alt.code === currentLocale)!;
+	const others = byLocale.filter((alt) => alt.code !== currentLocale);
+	const xDefault = {
+		hreflang: 'x-default' as const,
+		href: absoluteLocalizedUrl(pageId, defaultLocale),
+	};
+	// Self-referential hreflang first — required by Google/Seobility for the active locale.
 	return [
-		...localeCodes.map((code) => ({
-			hreflang: locales.find((l) => l.code === code)!.hreflang,
-			href: absoluteLocalizedUrl(pageId, code),
-		})),
-		{
-			hreflang: 'x-default' as const,
-			href: absoluteLocalizedUrl(pageId, defaultLocale),
-		},
+		{ hreflang: self.hreflang, href: self.href },
+		...others.map(({ hreflang, href }) => ({ hreflang, href })),
+		xDefault,
 	];
 }
 
