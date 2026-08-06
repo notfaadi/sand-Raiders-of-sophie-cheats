@@ -2,14 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import { getSelfHreflangAlternates } from '../data/i18n/routing';
 import { siteConfig } from '../data/site';
 
 const title = 'Page Not Found | Warzone Hacks';
 const description =
-	'That Warzone Hacks page is missing. Return home or browse ESP, Aimbot, pricing, setup, reviews, and the Warzone Intel blog.';
+	'That Warzone Hacks page is missing. Return home or browse warzone esp, warzone aimbot, pricing, setup, reviews, and the Warzone Intel blog.';
+const canonicalPath = Astro.url.pathname;
+const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 ---
 
-<Layout title={title} description={description} canonicalPath="/" noindex={true}>
+<Layout
+	title={title}
+	description={description}
+	canonicalPath={canonicalPath}
+	hreflangAlternates={hreflangAlternates}
+	noindex={true}
+>
 	<Navbar />
 	<main class="missing">
 		<div class="shell missing__inner">

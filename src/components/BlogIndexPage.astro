@@ -8,6 +8,7 @@ import {
 	getAllPostsForLocale,
 	getBlogBasePath,
 	getFeaturedPosts,
+	getBlogIndexHreflangAlternates,
 } from '../data/blog/helpers';
 import { siteConfig } from '../data/site';
 import { getLocalizedPath } from '../data/i18n/routing';
@@ -22,6 +23,7 @@ const posts = getAllPostsForLocale(locale);
 const featured = getFeaturedPosts(locale, 3);
 const canonicalPath = getBlogBasePath(locale);
 const canonicalURL = absoluteBlogUrl(locale);
+const hreflangAlternates = getBlogIndexHreflangAlternates(locale);
 const homeHref = getLocalizedPath('home', locale);
 
 const articleListSchema = {
@@ -48,6 +50,7 @@ const articleListSchema = {
 	title={ui.blogTitle}
 	description={ui.blogDescription}
 	canonicalPath={canonicalPath}
+	hreflangAlternates={hreflangAlternates}
 	locale={locale}
 	breadcrumbs={[{ label: ui.home, href: homeHref }, { label: ui.blogH1 }]}
 	extraGraph={[articleListSchema]}

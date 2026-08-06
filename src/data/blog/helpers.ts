@@ -113,23 +113,41 @@ export function getPostBySlug(locale: LocaleCode, slug: string): ResolvedBlogPos
 	return post ? resolvePost(post, locale) : undefined;
 }
 
-/**
- * ⚠️ QUARANTINED — DO NOT USE YET.
- * Builds hreflang alternates pointing at localized blog URLs (`/{lang}/blog/…`)
- * that DO NOT EXIST as routes: only English blog pages are built today.
- * Wiring this into pages would emit hreflang links to 404s (GSC indexing errors).
- * Keep unused until localized blog routes actually ship.
- */
-export function getHreflangAlternates(post: BlogPostDefinition) {
+/** Hreflang alternates for a blog post — current locale first, then x-default. */
+export function getBlogPostHreflangAlternates(
+	post: BlogPostDefinition,
+	currentLocale: LocaleCode = defaultLocale,
+) {
+	const byLocale = localeCodes.map((code) => ({
+		hreflang: locales.find((l) => l.code === code)!.hreflang,
+		href: absoluteBlogUrl(code, post.translations[code].slug),
+		code,
+	}));
+	const self = byLocale.find((alt) => alt.code === currentLocale)!;
+	const others = byLocale.filter((alt) => alt.code !== currentLocale);
 	return [
-		...localeCodes.map((code) => ({
-			hreflang: locales.find((l) => l.code === code)!.hreflang,
-			href: absoluteBlogUrl(code, post.translations[code].slug),
-		})),
+		{ hreflang: self.hreflang, href: self.href },
+		...others.map(({ hreflang, href }) => ({ hreflang, href })),
 		{
-			hreflang: 'x-default',
+			hreflang: 'x-default' as const,
 			href: absoluteBlogUrl(defaultLocale, post.translations[defaultLocale].slug),
 		},
+	];
+}
+
+/** Hreflang alternates for a blog index — current locale first, then x-default. */
+export function getBlogIndexHreflangAlternates(currentLocale: LocaleCode = defaultLocale) {
+	const byLocale = localeCodes.map((code) => ({
+		hreflang: locales.find((l) => l.code === code)!.hreflang,
+		href: absoluteBlogUrl(code),
+		code,
+	}));
+	const self = byLocale.find((alt) => alt.code === currentLocale)!;
+	const others = byLocale.filter((alt) => alt.code !== currentLocale);
+	return [
+		{ hreflang: self.hreflang, href: self.href },
+		...others.map(({ hreflang, href }) => ({ hreflang, href })),
+		{ hreflang: 'x-default' as const, href: absoluteBlogUrl(defaultLocale) },
 	];
 }
 

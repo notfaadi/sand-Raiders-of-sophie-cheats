@@ -5,7 +5,7 @@ import I18nHead from '../components/I18nHead.astro';
 import LocaleSuggest from '../components/LocaleSuggest.astro';
 import { defaultLocale, localeMap, locales, type LocaleCode } from '../data/i18n/locales';
 import type { PageId } from '../data/i18n/content.generated';
-import { buildCanonicalUrl } from '../data/i18n/routing';
+import { buildCanonicalUrl, type HreflangAlternate } from '../data/i18n/routing';
 
 interface Crumb {
 	label: string;
@@ -23,6 +23,7 @@ interface Props {
 	breadcrumbs?: Crumb[];
 	locale?: LocaleCode;
 	pageId?: PageId;
+	hreflangAlternates?: HreflangAlternate[];
 	extraGraph?: Record<string, unknown>[];
 	lcpImage?: string;
 	lcpImageSrcSet?: string;
@@ -40,6 +41,7 @@ const {
 	breadcrumbs,
 	locale = defaultLocale,
 	pageId,
+	hreflangAlternates,
 	extraGraph = [],
 	lcpImage,
 	lcpImageSrcSet,
@@ -191,6 +193,12 @@ if (softwareNode) {
 			)
 		}
 		{pageId && <I18nHead pageId={pageId} locale={locale} />}
+		{
+			!pageId &&
+				hreflangAlternates?.map((alt) => (
+					<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+				))
+		}
 
 		<meta property="og:type" content={type} />
 		<meta property="og:site_name" content={siteConfig.name} />

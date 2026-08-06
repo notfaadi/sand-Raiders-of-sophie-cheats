@@ -3,6 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
 import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../../data/site';
+import { getSelfHreflangAlternates } from '../../../data/i18n/routing';
 import { getReviewPath, reviewsBasePath } from '../../../data/reviews';
 import type { CustomerReview } from '../../../data/site';
 
@@ -17,6 +18,7 @@ const { review } = Astro.props as { review: CustomerReview };
 
 const canonicalPath = getReviewPath(review.slug);
 const canonicalURL = new URL(canonicalPath, siteConfig.url).href;
+const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 
 function stars(rating: number): string {
 	return '★'.repeat(rating) + '☆'.repeat(5 - rating);
@@ -73,6 +75,7 @@ const extraGraph: Record<string, unknown>[] = [
 	title={review.seoTitle}
 	description={review.seoDescription}
 	canonicalPath={canonicalPath}
+	hreflangAlternates={hreflangAlternates}
 	ogImage={siteConfig.defaultOgImage}
 	ogImageAlt={`Warzone Hacks review by @${review.handle}`}
 	type="article"

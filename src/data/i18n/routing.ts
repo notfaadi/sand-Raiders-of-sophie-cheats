@@ -713,6 +713,20 @@ export function absoluteLocalizedUrl(pageId: PageId, locale: LocaleCode): string
 	return buildCanonicalUrl(getLocalizedPath(pageId, locale));
 }
 
+export type HreflangAlternate = { hreflang: string; href: string };
+
+/** Self-referential hreflang for single-locale pages (reviews, 404). */
+export function getSelfHreflangAlternates(
+	path: string,
+	locale: LocaleCode = defaultLocale,
+): HreflangAlternate[] {
+	const href = buildCanonicalUrl(path);
+	return [
+		{ hreflang: localeMap[locale].hreflang, href },
+		{ hreflang: 'x-default', href },
+	];
+}
+
 export function getHreflangAlternates(pageId: PageId, currentLocale: LocaleCode = defaultLocale) {
 	const byLocale = localeCodes.map((code) => ({
 		hreflang: localeMap[code].hreflang,

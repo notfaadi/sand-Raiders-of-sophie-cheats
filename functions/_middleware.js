@@ -134,6 +134,14 @@ function xmlTrailingSlashRedirect(pathname) {
 	return pathname.slice(0, -1);
 }
 
+/** Add trailing slash for directory-style paths (matches Astro trailingSlash: 'always'). */
+function trailingSlashRedirect(pathname) {
+	if (!pathname || pathname === '/' || pathname.includes('.') || pathname.endsWith('/')) {
+		return null;
+	}
+	return `${pathname}/`;
+}
+
 export async function onRequest(context) {
 	const url = new URL(context.request.url);
 	const host = url.hostname.toLowerCase();
@@ -158,7 +166,9 @@ export async function onRequest(context) {
 	}
 
 	const pathRedirect =
-		PATH_REDIRECTS[url.pathname] ?? xmlTrailingSlashRedirect(url.pathname);
+		PATH_REDIRECTS[url.pathname] ??
+		xmlTrailingSlashRedirect(url.pathname) ??
+		trailingSlashRedirect(url.pathname);
 	if (pathRedirect) {
 		const headers = new Headers({
 			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),

@@ -7,6 +7,7 @@ import {
 	absoluteBlogUrl,
 	getAllPostsForLocale,
 	getBlogBasePath,
+	getBlogPostHreflangAlternates,
 } from '../data/blog/helpers';
 import type { ResolvedBlogPost } from '../data/blog/types';
 import { siteConfig } from '../data/site';
@@ -27,6 +28,7 @@ const related = getAllPostsForLocale(locale)
 	.slice(0, 3);
 
 const articleUrl = absoluteBlogUrl(locale, t.slug);
+const hreflangAlternates = getBlogPostHreflangAlternates(post, locale);
 const articleSchema = {
 	'@type': 'Article',
 	'@id': `${articleUrl}#article`,
@@ -75,6 +77,7 @@ function pageTitle(headline: string): string {
 	title={pageTitle(t.title)}
 	description={t.metaDescription}
 	canonicalPath={post.canonicalPath}
+	hreflangAlternates={hreflangAlternates}
 	ogImage={post.imageSrc}
 	ogImageAlt={t.imageAlt}
 	type="article"
