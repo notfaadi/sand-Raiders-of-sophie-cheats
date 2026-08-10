@@ -129,7 +129,7 @@ const help = [
 		font-size: 0.75rem;
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 760px) {
 		.site-footer__grid {
 			grid-template-columns: 1fr;
 			gap: 1.75rem;
@@ -138,11 +138,12 @@ const help = [
 		.site-footer a:not(.site-footer__brand) {
 			display: inline-flex;
 			align-items: center;
-			min-height: 2.5rem;
+			min-height: var(--touch-min, 2.75rem);
+			overflow-wrap: anywhere;
 		}
 
 		.site-footer__bottom {
-			padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+			padding-bottom: max(1.35rem, var(--safe-bottom, env(safe-area-inset-bottom, 0px)));
 		}
 	}
 </style>

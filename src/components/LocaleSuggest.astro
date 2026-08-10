@@ -69,7 +69,14 @@ const pageSlugs = JSON.stringify(localizedSlugs[pageId] ?? {});
 			if (!target || !textEl) return;
 
 			const href = getLocalizedPath(preferred);
-			textEl.innerHTML = `${target.nativeName} (${target.region}) — <a href="${href}">${target.name} version</a>`;
+			textEl.replaceChildren();
+			textEl.append(
+				document.createTextNode(`${target.nativeName} (${target.region}) — `),
+			);
+			const link = document.createElement('a');
+			link.href = href;
+			link.textContent = `${target.name} version`;
+			textEl.append(link);
 			bar.hidden = false;
 			bar.classList.remove('is-hidden');
 
@@ -78,7 +85,7 @@ const pageSlugs = JSON.stringify(localizedSlugs[pageId] ?? {});
 				bar.hidden = true;
 			});
 
-			bar.querySelector('a')?.addEventListener('click', () => {
+			link.addEventListener('click', () => {
 				document.cookie = `${cookieName}=${preferred};path=/;max-age=31536000;SameSite=Lax`;
 			});
 		};

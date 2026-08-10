@@ -369,7 +369,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 	@media (max-width: 760px) {
 		.hero {
 			aspect-ratio: auto;
-			min-height: clamp(20rem, 68vw, 26rem);
+			min-height: min(68svh, 28rem);
 			max-height: none;
 			display: flex;
 			flex-direction: column;
@@ -377,33 +377,41 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 		}
 
 		.hero__media img {
-			/* Show the full banner instead of cropping/zooming */
-			object-fit: contain;
-			object-position: center center;
+			object-fit: cover;
+			object-position: 72% 28%;
 		}
 
 		.hero__veil {
 			background: linear-gradient(
 				180deg,
-				rgba(5, 5, 6, 0.12) 0%,
-				rgba(5, 5, 6, 0.35) 38%,
-				rgba(5, 5, 6, 0.88) 72%,
+				rgba(5, 5, 6, 0.08) 0%,
+				rgba(5, 5, 6, 0.28) 32%,
+				rgba(5, 5, 6, 0.82) 68%,
 				rgba(5, 5, 6, 0.96) 100%
 			);
 		}
 
 		.hero__content {
 			transform: none;
-			padding-top: 1.5rem;
-			padding-bottom: max(1.75rem, env(safe-area-inset-bottom, 0px));
+			padding-top: 1.25rem;
+			padding-bottom: max(1.5rem, var(--safe-bottom, env(safe-area-inset-bottom, 0px)));
 		}
 
 		.hero__copy {
 			width: 100%;
+			gap: 0.65rem;
 		}
 
 		.hero__brand {
 			font-size: clamp(1.85rem, 8vw, 2.5rem);
+		}
+
+		.hero__lede {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			overflow: hidden;
+			font-size: 0.95rem;
 		}
 
 		.hero__buy {
@@ -411,19 +419,59 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 			justify-content: flex-start;
 			min-height: var(--touch-min, 2.75rem);
 		}
+
+		.hero__features li {
+			min-height: 2.25rem;
+			align-items: flex-start;
+		}
+
+		.hero__features li span {
+			overflow-wrap: anywhere;
+		}
 	}
 
 	@media (max-width: 480px) {
 		.hero {
-			min-height: clamp(19rem, 78vw, 24rem);
+			min-height: min(62svh, 24rem);
 		}
 
 		.hero__brand {
-			font-size: clamp(1.7rem, 9vw, 2.1rem);
+			font-size: clamp(1.7rem, 8.5vw, 2.15rem);
+		}
+
+		.hero__buy {
+			flex-wrap: wrap;
+			row-gap: 0.35rem;
+		}
+
+		.hero__buy-price {
+			margin-left: 0;
 		}
 
 		.hero__features {
-			column-gap: 0.75rem;
+			column-gap: 0.65rem;
+			row-gap: 0.35rem;
+		}
+	}
+
+	@media (max-width: 360px) {
+		.hero__features {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-height: 480px) and (orientation: landscape) {
+		.hero {
+			min-height: auto;
+			padding-block: 0.75rem;
+		}
+
+		.hero__features {
+			display: none;
+		}
+
+		.hero__lede {
+			-webkit-line-clamp: 1;
 		}
 	}
 </style>

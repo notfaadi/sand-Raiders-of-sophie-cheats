@@ -162,12 +162,8 @@ if (softwareNode) {
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<meta name="color-scheme" content="dark" />
 		<meta name="theme-color" content={brandTheme.bg} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-			rel="stylesheet"
-		/>
+		{/* Self-hosted Inter + Syne via CSS — no Google Fonts (avoids CSP console errors). */}
+		<script is:inline src="/trusted-types-policy.js"></script>
 		<meta name="robots" content={robots} />
 		<meta name="googlebot" content={robots} />
 		<meta name="description" content={description} />
@@ -244,7 +240,6 @@ if (softwareNode) {
 		<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 	</head>
 	<body>
-		<script is:inline defer src="/trusted-types-policy.js"></script>
 		{pageId && <LocaleSuggest currentLocale={locale} pageId={pageId} />}
 		<slot />
 		<InlineBrandEditor />

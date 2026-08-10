@@ -514,16 +514,24 @@ const useHomeHero = heroImage === warzoneImages.hero;
 		}
 	}
 
-	@media (max-width: 640px) {
+	@media (max-width: 760px) {
+		.banner {
+			min-height: min(52svh, 22rem);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+		}
+
 		.banner__shell {
 			padding-block: 1.75rem 1.35rem;
+			padding-bottom: max(1.35rem, var(--safe-bottom, env(safe-area-inset-bottom, 0px)));
 		}
 
 		.banner__scrim {
 			background: linear-gradient(
 				180deg,
-				rgba(8, 9, 10, 0.45) 0%,
-				rgba(8, 9, 10, 0.88) 70%,
+				rgba(8, 9, 10, 0.35) 0%,
+				rgba(8, 9, 10, 0.82) 62%,
 				rgba(8, 9, 10, 0.96) 100%
 			);
 		}
@@ -537,6 +545,13 @@ const useHomeHero = heroImage === warzoneImages.hero;
 		.banner__title {
 			font-size: clamp(1.55rem, 7.5vw, 2rem);
 			overflow-wrap: anywhere;
+		}
+
+		.banner__intro {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+			overflow: hidden;
 		}
 
 		.banner__actions {
@@ -554,7 +569,9 @@ const useHomeHero = heroImage === warzoneImages.hero;
 			width: 100%;
 			min-width: 0;
 		}
+	}
 
+	@media (max-width: 640px) {
 		.gallery-block__grid {
 			grid-template-columns: 1fr;
 		}

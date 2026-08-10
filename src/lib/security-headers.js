@@ -16,6 +16,7 @@ const CSP_BASE = [
 export const CONTENT_SECURITY_POLICY = [
 	...CSP_BASE,
 	"script-src 'self'",
+	"script-src-attr 'none'",
 	"connect-src 'self'",
 	"trusted-types default",
 	"require-trusted-types-for 'script'",

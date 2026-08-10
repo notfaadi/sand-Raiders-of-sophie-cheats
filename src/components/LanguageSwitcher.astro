@@ -152,12 +152,14 @@ const currentMeta = locales.find((l) => l.code === currentLocale)!;
 		color: var(--color-faint);
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.lang-switcher__panel {
 			position: fixed;
-			left: var(--page-gutter);
-			right: var(--page-gutter);
+			left: max(var(--page-gutter), var(--safe-left, 0px));
+			right: max(var(--page-gutter), var(--safe-right, 0px));
 			width: auto;
+			max-height: min(70dvh, 24rem);
+			overflow: auto;
 		}
 	}
 </style>

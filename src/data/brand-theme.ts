@@ -172,7 +172,7 @@ export function deriveBrandTheme(input: Partial<BrandThemeInput> = {}): BrandThe
 		lineStrong,
 		ink: '#f5f5f7',
 		inkMuted: '#a1a1aa',
-		inkFaint: '#71717a',
+		inkFaint: '#8b8b93',
 		ok: '#34d399',
 		warn: '#f43f5e',
 		toneVoid,
