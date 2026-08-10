@@ -4,6 +4,7 @@ export {
 	fillBrandTokens,
 	homeSeo,
 	seoDescription,
+	seoPageTitle,
 	seoTitle,
 	siteConfig,
 	seoKeywords,

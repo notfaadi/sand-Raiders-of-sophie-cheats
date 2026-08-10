@@ -834,22 +834,16 @@ export function seoTitle(topic: string): string {
 	return title.length <= 60 ? title : \`\${topic} | \${brand.name}\`;
 }
 
-/** Keep titles SERP-safe after token fill (matches Brand Studio max). */
-export function seoPageTitle(template: string): string {
-	const text = fillBrandTokens(template).trim();
-	return text.length <= 70 ? text : \`\${text.slice(0, 67).trim()}…\`;
-}
-
 /** Keep descriptions short; tokens allowed. */
 export function seoDescription(template: string): string {
 	const text = fillBrandTokens(template).trim();
 	return text.length <= 160 ? text : \`\${text.slice(0, 157).trim()}…\`;
 }
 
-/** Resolved EN home meta from brand.seo */
+/** Resolved EN home meta from brand.seo (title clamp lives in site-core.seoPageTitle). */
 export function homeSeo() {
 	return {
-		title: seoPageTitle(brand.seo.homeTitle),
+		title: fillBrandTokens(brand.seo.homeTitle),
 		description: seoDescription(brand.seo.homeDescription),
 	};
 }
@@ -860,9 +854,10 @@ export function homeSeo() {
 		!out.includes('\n\tcopy: {') ||
 		!out.includes('\n\tsitemap: {') ||
 		!out.includes('\n\ttheme: {') ||
+		!out.includes('export function seoDescription') ||
 		!out.includes('export function homeSeo')
 	) {
-		throw new Error('Brand Studio refused to write brand.ts without seo/copy/sitemap/theme/homeSeo');
+		throw new Error('Brand Studio refused to write brand.ts without seo/copy/sitemap/theme/helpers');
 	}
 	return out;
 }
@@ -874,9 +869,10 @@ export function writeBrandAndSync(data) {
 		!contents.includes('\tsitemap: {') ||
 		!contents.includes('\tseo: {') ||
 		!contents.includes('\tcopy: {') ||
+		!contents.includes('function seoDescription') ||
 		!contents.includes('function homeSeo')
 	) {
-		throw new Error('Refusing to write brand.ts: missing seo/copy/sitemap/theme/homeSeo block');
+		throw new Error('Refusing to write brand.ts: missing seo/copy/sitemap/theme/helpers block');
 	}
 	const tmp = `${BRAND_PATH}.${randomBytes(8).toString('hex')}.tmp`;
 	writeFileSync(tmp, contents, 'utf8');

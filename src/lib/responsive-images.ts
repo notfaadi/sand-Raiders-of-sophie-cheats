@@ -27,7 +27,7 @@ export function contentSrcSet(baseSrc: string): string | undefined {
 }
 
 export const heroResponsive: ResponsiveWidth[] = [
-	{ src: '/images/warzone-hero-banner.webp', width: 1920 },
+	{ src: '/images/hero-banner.webp', width: 1024 },
 ];
 
 /** Desktop srcset (mobile uses a dedicated `<picture>` source — see Hero.astro). */
@@ -41,9 +41,9 @@ export const heroSizes = '100vw';
 /** LCP preload for homepage hero. */
 export const heroPreloadSrc = heroResponsive[0].src;
 
-/** Intrinsic dimensions for hero LCP (matches warzone-hero-banner.webp). */
-export const heroWidth = 1920;
-export const heroHeight = 671;
+/** Intrinsic dimensions for hero LCP (matches hero-banner.webp). */
+export const heroWidth = 1024;
+export const heroHeight = 357;
 
 /** Responsive widths for below-fold content images. */
 export const contentWidths = [480, 960] as const;

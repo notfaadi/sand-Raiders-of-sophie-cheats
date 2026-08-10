@@ -1,6 +1,6 @@
 import type { PageId } from './content.generated';
-import { fillBrandTokens, seoDescription, seoPageTitle } from '../brand';
-import { brandCopy, brandSeo } from '../site-core';
+import { fillBrandTokens, seoDescription } from '../brand';
+import { brandCopy, brandSeo, seoPageTitle } from '../site-core';
 
 export type SimpleSection = {
 	h2: string;

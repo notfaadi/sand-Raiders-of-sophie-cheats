@@ -2,7 +2,7 @@ import { siteConfig } from './site';
 
 /** User-provided Warzone cheat/ESP screenshots — six unique keyword SEO filenames. */
 export const warzoneImages = {
-	hero: '/images/warzone-hero-banner.webp',
+	hero: '/images/hero-banner.webp',
 	espWallhack: '/images/warzone-wallhack-skeleton.webp',
 	aimbotCombat: '/images/warzone-aimbot-sniper.webp',
 	aimbotSkeleton: '/images/warzone-aimbot-skeleton.webp',

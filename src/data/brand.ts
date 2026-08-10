@@ -5,9 +5,9 @@
  */
 export const brand = {
 	/** Public brand name (nav, footer, H1 hero, schema Organization) */
-	name: 'The Isle Cheats',
+	name: 'Warzone Cheats',
 	/** Short product label if needed */
-	shortName: 'Valorant Cheats',
+	shortName: 'Warzone',
 	/** Canonical origin — no trailing slash */
 	url: 'https://warzonehacks.net',
 	locale: 'en',
@@ -16,17 +16,17 @@ export const brand = {
 	checkoutUrl: 'https://zadeyo.com/go/AMAN?to=%2Fproducts%2Fwarzone',
 
 	/** Game this template instance targets */
-	game: 'Valorant Cheats',
+	game: 'Warzone',
 	/** Anti-cheat name used in Status / FAQ copy */
-	antiCheat: 'Vanguard',
+	antiCheat: 'RICOCHET',
 
 	logo: '/images/warzone-hacks-logo.webp',
 	logoRaster: '/images/warzone-hacks-logo.png',
 	logoRasterWidth: 512,
 	logoRasterHeight: 512,
 	logoAlt: 'Scorpio Hacks logo',
-	defaultOgImage: '/images/warzone-cheats-combat.webp',
-	heroImage: '/images/warzone-hero-banner.webp',
+	defaultOgImage: '/images/hero-banner.webp',
+	heroImage: '/images/hero-banner.webp',
 
 	plans: [
 		{ id: 'monthly', label: 'Monthly', price: 35, duration: 'P30D' },
@@ -37,15 +37,15 @@ export const brand = {
 
 	/**
 	 * Site color tones — accent + canvas + soft/deep/hover/panel.
-	 * Edit in Brand Studio → Colors (all tones customizable).
+	 * Edit in Brand Studio → Colors (tones are fully customizable).
 	 */
 	theme: {
-		accent: '#17004d',
-		bg: '#050505',
-		soft: '#6b4dff',
-		deep: '#0c0029',
-		hover: '#3a1a8a',
-		panel: '#0d0d0d',
+		accent: '#682df0',
+		bg: '#0d0d0d',
+		soft: '#7e4bf7',
+		deep: '#27027e',
+		hover: '#7a44f8',
+		panel: '#09080c',
 	},
 
 	/**
@@ -53,9 +53,11 @@ export const brand = {
 	 * Keep 5–8 terms.
 	 */
 	keywords: {
-		primary: 'marathon hacks',
+		primary: 'Warzone hacks',
 		list: [
-			'marathon hacks',
+			'Warzone hacks',
+			'Best marathon hacks',
+			'Marathon Hacks guides',
 			'marathon cheats',
 			'marathon hack',
 			'marathon esp',
@@ -69,7 +71,7 @@ export const brand = {
 	 */
 	seo: {
 		homeTitle: '{brand} | Undetected {primaryKeyword}',
-		homeDescription: '{primaryKeyword} for Windows 10 PC - Hacks, aimbot, and radar with {antiCheat} maintenance. Compare plans and buy.',
+		homeDescription: '{primaryKeyword} for Windows PC - ESP, aimbot, and ESP with {antiCheat} maintenance. Compare plans and buy.',
 		featuresTitle: '{game} Features | {brand}',
 		featuresDescription: 'Everything in one {game} license for Windows PC -- ESP, aimbot, radar, and patch updates.',
 		storeTitle: '{game} Store | {brand}',
@@ -77,7 +79,7 @@ export const brand = {
 		statusTitle: '{game} Status | {brand}',
 		statusDescription: 'Live status for {brand} after {game} or {antiCheat} patches. Check before you queue.',
 		previewTitle: '{game} Preview | {brand}',
-		previewDescription: 'Quick preview of {brand} -- ESP, aimbot, radar, and updates after {game} patches.',
+		previewDescription: 'Quick preview of {brand} -- ESP, aimbot, ESP, and updates after {game} patches.',
 		setupTitle: '{game} Setup | {brand}',
 		setupDescription: 'Install and launch {brand} on Windows PC. Short setup steps after you buy.',
 		supportTitle: '{game} Support | {brand}',
@@ -183,22 +185,16 @@ export function seoTitle(topic: string): string {
 	return title.length <= 60 ? title : `${topic} | ${brand.name}`;
 }
 
-/** Keep titles SERP-safe after token fill (matches Brand Studio max). */
-export function seoPageTitle(template: string): string {
-	const text = fillBrandTokens(template).trim();
-	return text.length <= 70 ? text : `${text.slice(0, 67).trim()}…`;
-}
-
 /** Keep descriptions short; tokens allowed. */
 export function seoDescription(template: string): string {
 	const text = fillBrandTokens(template).trim();
 	return text.length <= 160 ? text : `${text.slice(0, 157).trim()}…`;
 }
 
-/** Resolved EN home meta from brand.seo */
+/** Resolved EN home meta from brand.seo (title clamp lives in site-core.seoPageTitle). */
 export function homeSeo() {
 	return {
-		title: seoPageTitle(brand.seo.homeTitle),
+		title: fillBrandTokens(brand.seo.homeTitle),
 		description: seoDescription(brand.seo.homeDescription),
 	};
 }

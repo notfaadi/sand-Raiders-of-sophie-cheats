@@ -1,6 +1,15 @@
-import { brand, fillBrandTokens, seoDescription, seoPageTitle, seoTitle } from './brand';
+import { brand, fillBrandTokens, seoDescription, seoTitle } from './brand';
 
-export { brand, fillBrandTokens, seoDescription, seoPageTitle, seoTitle };
+/**
+ * Title clamp lives here — NOT in brand.ts.
+ * Brand Studio rewrites brand.ts on every save; helpers here stay stable.
+ */
+export function seoPageTitle(template: string): string {
+	const text = fillBrandTokens(template).trim();
+	return text.length <= 70 ? text : `${text.slice(0, 67).trim()}…`;
+}
+
+export { brand, fillBrandTokens, seoDescription, seoTitle };
 
 const copyDefaults = {
 	tagline: 'Undetected {primaryKeyword} — ESP, aimbot, and radar for PC',
