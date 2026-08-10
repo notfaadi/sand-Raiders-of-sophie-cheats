@@ -3,11 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getSelfHreflangAlternates } from '../data/i18n/routing';
-import { siteConfig } from '../data/site';
+import { fillBrandTokens, productInfo, siteConfig } from '../data/site';
 
-const title = 'Page Not Found | Warzone Hacks';
-const description =
-	'That Warzone Hacks page is missing. Return home or browse warzone esp, warzone aimbot, pricing, setup, reviews, and the Warzone Intel blog.';
+const title = fillBrandTokens('Page Not Found | {brand}');
+const description = fillBrandTokens(
+	'That {brand} page is missing. Return home or browse features, store, setup, reviews, and the blog.',
+);
 const canonicalPath = Astro.url.pathname;
 const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 ---
@@ -21,20 +22,22 @@ const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 >
 	<Navbar />
 	<main class="missing">
-		<div class="shell missing__inner">
+		<div class="shell">
+			<div class="shell-content missing__inner">
 			<p class="missing__code">404</p>
 			<h1 class="missing__title">Page not found</h1>
 			<p class="missing__text">
-				The URL you opened is not on {siteConfig.name}. Use the links below to continue comparing ESP,
-				Aimbot, pricing, and setup for Call of Duty: Warzone on Windows PC.
+				The URL you opened is not on {siteConfig.name}. Use the links below for ESP, aimbot, store, and setup
+				for {productInfo.game} on Windows PC.
 			</p>
 			<div class="missing__actions">
-				<a class="btn-buy" href="/">Back to Warzone Hacks home</a>
-				<a class="missing__ghost" href="/warzone-hacks/">Call of Duty: Warzone hacks guide</a>
-				<a class="missing__ghost" href="/pricing/">Pricing</a>
+				<a class="btn-buy" href="/">Back to {siteConfig.name} home</a>
+				<a class="missing__ghost" href="/warzone-hacks/">{productInfo.game} preview</a>
+				<a class="missing__ghost" href="/pricing/">Store</a>
 				<a class="missing__ghost" href="/reviews/">Reviews</a>
 				<a class="missing__ghost" href="/blog/">Blog</a>
 				<a class="missing__ghost" href="/support/">Support</a>
+			</div>
 			</div>
 		</div>
 	</main>
@@ -50,7 +53,6 @@ const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 	}
 
 	.missing__inner {
-		max-width: 40rem;
 		display: grid;
 		gap: 0.85rem;
 	}
@@ -61,7 +63,7 @@ const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 		font-size: clamp(2.5rem, 8vw, 4rem);
 		font-weight: 800;
 		letter-spacing: 0.04em;
-		color: rgba(192, 132, 252, 0.55);
+		color: color-mix(in srgb, var(--magenta-soft) 55%, transparent);
 		line-height: 1;
 	}
 
@@ -70,11 +72,12 @@ const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 		font-family: var(--font-display);
 		font-size: clamp(1.6rem, 4vw, 2.2rem);
 		font-weight: 800;
+		color: var(--ink);
 	}
 
 	.missing__text {
 		margin: 0;
-		color: var(--color-muted);
+		color: var(--ink-muted);
 		line-height: 1.65;
 		max-width: 36rem;
 	}
@@ -93,16 +96,17 @@ const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 		min-height: 2.5rem;
 		padding: 0.55rem 0.95rem;
 		border-radius: 0.7rem;
-		border: 1px solid rgba(192, 132, 252, 0.25);
-		background: rgba(34, 28, 48, 0.85);
-		color: var(--color-ink);
+		border: 1px solid var(--line-strong);
+		background: var(--bg-elevated);
+		color: var(--ink);
 		font-size: 0.9rem;
 		font-weight: 700;
 		text-decoration: none;
 	}
 
 	.missing__ghost:hover {
-		border-color: rgba(192, 132, 252, 0.5);
+		border-color: color-mix(in srgb, var(--magenta) 40%, var(--line-strong));
+		color: var(--magenta-soft);
 	}
 
 	@media (max-width: 720px) {

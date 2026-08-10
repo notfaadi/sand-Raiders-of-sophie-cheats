@@ -2,13 +2,33 @@
 /**
  * Validates built sitemaps match all routable pages.
  * Run after `npm run build`: node scripts/validate-sitemaps.mjs
+ * Site URL and image-sitemap count come from src/data/brand.ts.
  */
+import { readFileSync } from 'node:fs';
 import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
+
+function readBrandSource() {
+	return readFileSync(path.join(ROOT, 'src/data/brand.ts'), 'utf8');
+}
+
+function readBrandUrl() {
+	const src = readBrandSource();
+	const m = src.match(/(?:^|\n)\turl:\s*'((?:\\'|[^'])*)'/);
+	if (!m) throw new Error('brand.ts missing url');
+	return m[1].replace(/\\'/g, "'").replace(/\/$/, '');
+}
+
+function countBrandSitemapImages() {
+	const src = readBrandSource();
+	const block = src.match(/sitemap:\s*\{([\s\S]*?)\n\t\},/);
+	if (!block) return 6;
+	return [...block[1].matchAll(/src:\s*'/g)].length || 6;
+}
 
 /** dist/ for static builds; dist/client/ when a Cloudflare adapter rearranges assets. */
 async function resolveDistRoot() {
@@ -28,7 +48,8 @@ async function resolveDistRoot() {
 		'Could not find sitemap.xml in dist/ or dist/client/. Run `astro build` first.',
 	);
 }
-const SITE = 'https://warzonehacks.net';
+const SITE = readBrandUrl();
+const IMAGE_SITEMAP_ENTRIES = countBrandSitemapImages();
 
 const BLOG_PAGES = 18; // /blog/ index + 17 posts
 const REVIEW_PAGES = 11; // /reviews/ index + 10 review detail pages
@@ -41,7 +62,6 @@ const I18N_URLS = I18N_LOCALES * PAGES_PER_LOCALE;
 const TOTAL_PAGES = ENGLISH_PAGES + I18N_URLS;
 const HREFLANG_PER_URL = 23;
 const SITEMAP_INDEX_ENTRIES = 1 + I18N_LOCALES + 1; // EN + locales + images
-const IMAGE_SITEMAP_ENTRIES = 6; // unique keyword assets in warzoneImages.sitemap
 
 const ENGLISH_PATHS = [
 	'/',

@@ -1,5 +1,6 @@
 import { siteConfig } from '../site';
 import { warzoneImages } from '../warzone';
+import { blogSitemapImageMeta } from '../brand-sitemap';
 import {
 	defaultLocale,
 	localeCodes,
@@ -195,8 +196,7 @@ export function getBlogSitemapEntriesForLocale(locale: LocaleCode) {
 			images: [
 				{
 					url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-					title: 'Warzone Hacks Intel blog',
-					caption: 'Warzone Intel blog covering meta guides, ESP, Aimbot, and Ricochet notes',
+					...blogSitemapImageMeta(),
 				},
 			],
 		},

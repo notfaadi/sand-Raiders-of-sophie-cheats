@@ -1,54 +1,34 @@
 ---
-import { heroSizes, heroSrc, heroSrcSet, heroWidth, heroHeight } from '../lib/responsive-images';
-import { getUi } from '../data/i18n';
-import { getLocalizedPath } from '../data/i18n/routing';
-import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import { siteConfig } from '../data/site';
+import type { LocaleCode } from '../data/i18n/locales';
+import { productInfo, siteConfig } from '../data/site';
+import { brandCopy } from '../data/site-core';
+import { fillBrandTokens } from '../data/brand';
+import { heroWidth, heroHeight } from '../lib/responsive-images';
 
 interface Props {
-	accent?: string;
-	subtitle?: string;
-	subtitleShort?: string;
 	locale?: LocaleCode;
 }
 
-const locale = Astro.props.locale ?? defaultLocale;
-const ui = getUi(locale);
+const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo.plans[0];
+const ctaBuy = fillBrandTokens(brandCopy.ctaBuy);
+const chips = [
+	{ key: 'chipEsp', label: fillBrandTokens(brandCopy.chipEsp) },
+	{ key: 'chipAim', label: fillBrandTokens(brandCopy.chipAim) },
+	{ key: 'chipRadar', label: fillBrandTokens(brandCopy.chipRadar) },
+	{ key: 'chipUpdates', label: fillBrandTokens(brandCopy.chipUpdates) },
+] as const;
 
-const {
-	accent = ui.hero.accent,
-	subtitle = ui.hero.subtitle,
-	subtitleShort = ui.hero.subtitleShort,
-} = Astro.props;
-
-const buyUrl = siteConfig.checkoutUrl;
-const featuresUrl = getLocalizedPath('features', locale);
+const heroSrc = siteConfig.heroImage || '/images/warzone-hero-banner.webp';
+const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 ---
 
-<section class="hero" aria-label={ui.images.hero}>
-	<div class="hero__media">
-		{/*
-		  Mobile: single 480w candidate (ignores DPR upscaling that would pull 960/1400).
-		  Desktop: full responsive srcset.
-		*/}
+<section class="hero" aria-label={siteConfig.name}>
+	<div class="hero__media" aria-hidden="true">
 		<picture>
-			<source
-				media="(max-width: 760px)"
-				srcset={heroSrc}
-				type="image/webp"
-				width="480"
-				height="270"
-			/>
-			<source
-				media="(min-width: 761px)"
-				srcset={heroSrcSet}
-				sizes={heroSizes}
-				type="image/webp"
-			/>
+			<source srcset={heroSrc} type="image/webp" />
 			<img
-				src={heroSrc}
-				alt={ui.images.hero}
-				class="hero__bg"
+				src={heroPng}
+				alt=""
 				width={heroWidth}
 				height={heroHeight}
 				fetchpriority="high"
@@ -56,39 +36,95 @@ const featuresUrl = getLocalizedPath('features', locale);
 				decoding="sync"
 			/>
 		</picture>
-		<div class="hero__splash" aria-hidden="true"></div>
-		<div class="hero__veil" aria-hidden="true"></div>
 	</div>
+	<div class="hero__veil" aria-hidden="true"></div>
 
-	<div class="hero__inner">
+	<div class="shell hero__content">
 		<div class="hero__copy">
-			<h1 class="hero__title">
-				<span class="hero__line">
-					<span class="hero__word">Warzone</span>
-					<span class="hero__word">Hacks</span>
-				</span>
-				<span class="text-gradient hero__accent">{accent}</span>
-			</h1>
-			<p class="hero__subtitle hero__subtitle--full">{subtitle}</p>
-			<p class="hero__subtitle hero__subtitle--short">{subtitleShort}</p>
-			<div class="hero__cta">
-				<a href={buyUrl} class="btn-buy" rel="noopener noreferrer" aria-label={ui.hero.buyNow}>
-					{ui.hero.buyNow}
-				</a>
-				<a href={featuresUrl} class="hero__btn hero__btn--ghost">
-					{ui.hero.seeFeatures}
+			<h1 class="hero__brand" data-edit="name">{siteConfig.name}</h1>
+			<p class="hero__lede" data-edit="heroLede">{productInfo.heroLede}</p>
+			<div class="hero__actions">
+				<a class="hero__buy" href={siteConfig.checkoutUrl} rel="noopener noreferrer">
+					<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							d="M4.5 6.5h2.1l1.2 9.2h9.4l1.8-6.6H8.1M9.2 19.2a.9.9 0 100-1.8.9.9 0 000 1.8zm7.4 0a.9.9 0 100-1.8.9.9 0 000 1.8z"
+							stroke="currentColor"
+							stroke-width="1.7"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+					<span class="hero__buy-label" data-edit="ctaBuy">{ctaBuy}</span>
+					<span class="hero__buy-price">from ${monthly.price}</span>
 				</a>
 			</div>
+			<ul class="hero__features">
+				{
+					chips.map((chip) => (
+						<li>
+							<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+								{chip.key === 'chipEsp' && (
+									<>
+										<circle cx="12" cy="12" r="7.5" stroke="currentColor" stroke-width="1.6" />
+										<path
+											d="M12 8.5v3.2L14.2 14"
+											stroke="currentColor"
+											stroke-width="1.6"
+											stroke-linecap="round"
+										/>
+									</>
+								)}
+								{chip.key === 'chipAim' && (
+									<path
+										d="M12 4.5l1.7 4.8H19l-4 3.1 1.5 4.8L12 14.8 7.5 17.2 9 12.4 5 9.3h5.3L12 4.5z"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linejoin="round"
+									/>
+								)}
+								{chip.key === 'chipRadar' && (
+									<>
+										<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6" />
+										<circle cx="12" cy="12" r="7.5" stroke="currentColor" stroke-width="1.6" />
+										<path
+											d="M12 2.8v2.2M12 19v2.2M2.8 12h2.2M19 12h2.2"
+											stroke="currentColor"
+											stroke-width="1.6"
+											stroke-linecap="round"
+										/>
+									</>
+								)}
+								{chip.key === 'chipUpdates' && (
+									<path
+										d="M5 13.2l4.2 4.2L19 7.6"
+										stroke="currentColor"
+										stroke-width="1.8"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								)}
+							</svg>
+							<span data-edit={chip.key}>{chip.label}</span>
+						</li>
+					))
+				}
+			</ul>
 		</div>
 	</div>
 </section>
 
 <style>
 	.hero {
+		--hero-pad-y: clamp(2rem, 4vw, 3rem);
+		--hero-stack: clamp(0.7rem, 1.6vw, 0.9rem);
 		position: relative;
-		overflow: hidden;
 		isolation: isolate;
-		min-height: clamp(380px, 52vw, 520px);
+		display: grid;
+		align-items: center;
+		overflow: hidden;
+		background: #050506;
+		min-height: clamp(26rem, 42vw, 34rem);
+		height: auto;
 	}
 
 	.hero__media {
@@ -97,172 +133,195 @@ const featuresUrl = getLocalizedPath('features', locale);
 		z-index: 0;
 	}
 
-	.hero__bg {
-		position: absolute;
-		inset: 0;
+	.hero__media picture,
+	.hero__media img {
+		display: block;
 		width: 100%;
 		height: 100%;
+	}
+
+	.hero__media img {
 		object-fit: cover;
-		object-position: 70% 40%;
-		transform: translateZ(0) scale(1.03);
-		backface-visibility: hidden;
-	}
-
-	@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
-		.hero__bg {
-			will-change: transform;
-			animation: kenburns 18s ease-in-out infinite alternate;
-		}
-	}
-
-	.hero__splash {
-		position: absolute;
-		inset: 0;
-		background:
-			radial-gradient(ellipse 55% 80% at 78% 45%, rgba(168, 85, 247, 0.55), transparent 70%),
-			radial-gradient(ellipse 40% 60% at 92% 70%, rgba(217, 70, 239, 0.35), transparent 65%),
-			radial-gradient(ellipse 35% 50% at 60% 20%, rgba(124, 58, 237, 0.4), transparent 70%);
-		pointer-events: none;
-		opacity: 0.9;
-	}
-
-	@media (prefers-reduced-motion: no-preference) {
-		.hero__splash {
-			animation: pulse-glow 7s ease-in-out infinite;
-		}
+		object-position: right center;
+		image-rendering: -webkit-optimize-contrast;
+		transform: translateZ(0);
+		animation: hero-in 0.9s ease-out both;
 	}
 
 	.hero__veil {
 		position: absolute;
 		inset: 0;
-		background:
-			linear-gradient(90deg, #0a0612 0%, rgba(10, 6, 18, 0.92) 34%, rgba(10, 6, 18, 0.35) 62%, rgba(10, 6, 18, 0.55) 100%),
-			linear-gradient(180deg, rgba(10, 6, 18, 0.35) 0%, transparent 40%, rgba(10, 6, 18, 0.75) 100%);
+		z-index: 1;
 		pointer-events: none;
+		background: linear-gradient(
+			90deg,
+			rgba(5, 5, 6, 0.78) 0%,
+			rgba(5, 5, 6, 0.52) 34%,
+			rgba(5, 5, 6, 0.18) 58%,
+			transparent 74%
+		);
 	}
 
-	.hero__inner {
+	.hero__content {
 		position: relative;
-		z-index: 1;
-		display: flex;
-		align-items: center;
-		width: min(100% - (var(--page-gutter) * 2), var(--page-max));
-		margin: 0 auto;
-		padding: 4.25rem 0 3.5rem;
-		min-height: inherit;
+		z-index: 2;
+		padding-block: var(--hero-pad-y);
+		align-self: center;
+		/* Sit a touch above true center so title reads mid-image */
+		transform: translateY(clamp(-1.5rem, -3vw, -0.35rem));
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		justify-items: start;
+		box-sizing: border-box;
 	}
 
 	.hero__copy {
-		max-width: min(42rem, 100%);
-		min-width: 0;
-		animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-	}
-
-	.hero__eyebrow {
-		margin: 0 0 0.85rem;
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--color-orchid);
-	}
-
-	.hero__title {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.85rem, 4.6vw, 3.75rem);
-		font-weight: 800;
-		line-height: 1.15;
-		letter-spacing: -0.03em;
 		display: flex;
 		flex-direction: column;
-		gap: 0.18em;
-		text-shadow: 0 8px 32px rgba(10, 6, 18, 0.65);
-		text-wrap: balance;
-		overflow-wrap: break-word;
-		word-break: normal;
-		hyphens: none;
-	}
-
-	.hero__line {
-		display: flex;
-		flex-wrap: wrap;
-		column-gap: 0.28em;
-		row-gap: 0.02em;
+		align-items: stretch;
+		gap: var(--hero-stack);
+		width: min(100%, 28rem);
 		max-width: 100%;
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		animation: rise 0.65s ease-out both;
 	}
 
-	.hero__word {
-		display: inline-block;
-	}
-
-	.hero__word--for {
+	.hero__brand {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: clamp(2.1rem, 4.4vw, 3.25rem);
 		font-weight: 700;
-		opacity: 0.9;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+		overflow-wrap: anywhere;
+		color: #fff;
+		width: 100%;
 	}
 
-	.hero__accent {
-		display: block;
-		max-width: 100%;
-		width: fit-content;
-		padding-bottom: 0.06em;
-	}
-
-	.hero__subtitle {
-		margin: 1.2rem 0 0;
-		max-width: 28rem;
+	.hero__lede {
+		margin: 0;
+		width: 100%;
+		max-width: none;
 		font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-		line-height: 1.65;
-		color: #d4cae6;
-		animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+		line-height: 1.5;
+		color: color-mix(in srgb, #fff 74%, var(--ink-muted));
 	}
 
-	.hero__cta {
+	.hero__actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin-top: 1.6rem;
-		animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+		align-items: center;
+		gap: 0.7rem;
+		margin: 0;
+		width: 100%;
 	}
 
-	.hero__btn {
+	.hero__buy {
 		display: inline-flex;
 		align-items: center;
-		justify-content: center;
-		padding: 0.85rem 1.25rem;
-		border-radius: 0.8rem;
-		font-size: 0.95rem;
+		justify-content: flex-start;
+		gap: 0.55rem;
+		width: auto;
+		max-width: 100%;
+		min-height: 3rem;
+		padding: 0.55rem 0.55rem 0.55rem 1.05rem;
+		border-radius: 999px;
+		background: #fff;
+		color: #09090b;
+		font-size: 0.9375rem;
 		font-weight: 700;
-		text-align: center;
+		letter-spacing: -0.015em;
+		box-shadow:
+			0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset,
+			0 10px 28px rgba(0, 0, 0, 0.28);
 		transition:
-			transform 0.2s ease,
-			filter 0.2s ease,
-			background 0.2s ease,
-			border-color 0.2s ease;
+			transform 0.18s ease,
+			background 0.18s ease,
+			box-shadow 0.18s ease;
 	}
 
-	.hero__btn--ghost {
-		border: 1px solid rgba(192, 132, 252, 0.35);
-		background: rgba(18, 16, 26, 0.82);
-		color: var(--color-ink);
+	.hero__buy svg {
+		width: 1.05rem;
+		height: 1.05rem;
+		flex-shrink: 0;
+		opacity: 0.85;
 	}
 
-	@media (min-width: 761px) {
-		.hero__btn--ghost {
-			background: rgba(18, 16, 26, 0.55);
-			backdrop-filter: blur(8px);
-		}
+	.hero__buy-label {
+		padding-right: 0.15rem;
 	}
 
-	.hero__btn--ghost:hover {
-		border-color: rgba(192, 132, 252, 0.6);
-		background: rgba(48, 36, 72, 0.65);
+	.hero__buy-price {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2rem;
+		margin-left: auto;
+		padding: 0 0.85rem;
+		border-radius: 999px;
+		background: #09090b;
+		color: #fff;
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: -0.01em;
 	}
 
-	@keyframes rise-in {
+	.hero__buy:hover {
+		background: #f4f4f5;
+		color: #09090b;
+		transform: translateY(-2px);
+		box-shadow:
+			0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset,
+			0 14px 32px rgba(0, 0, 0, 0.34);
+	}
+
+	.hero__buy:hover .hero__buy-price {
+		background: var(--magenta);
+	}
+
+	.hero__buy:active {
+		transform: translateY(0);
+	}
+
+	.hero__features {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: 1rem;
+		row-gap: 0.55rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		width: 100%;
+		max-width: none;
+	}
+
+	.hero__features li {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-width: 0;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		line-height: 1.3;
+		color: color-mix(in srgb, #fff 72%, transparent);
+	}
+
+	.hero__features li span {
+		min-width: 0;
+	}
+
+	.hero__features svg {
+		width: 1rem;
+		height: 1rem;
+		flex-shrink: 0;
+		color: var(--magenta-soft);
+	}
+
+	@keyframes rise {
 		from {
 			opacity: 0;
-			transform: translateY(18px);
+			transform: translateY(10px);
 		}
 		to {
 			opacity: 1;
@@ -270,140 +329,92 @@ const featuresUrl = getLocalizedPath('features', locale);
 		}
 	}
 
-	@keyframes kenburns {
+	@keyframes hero-in {
 		from {
-			transform: translateZ(0) scale(1.04) translate3d(0, 0, 0);
+			opacity: 0.7;
 		}
 		to {
-			transform: translateZ(0) scale(1.1) translate3d(-1.5%, 1%, 0);
-		}
-	}
-
-	@keyframes pulse-glow {
-		0%,
-		100% {
-			opacity: 0.82;
-		}
-		50% {
-			opacity: 0.95;
+			opacity: 1;
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.hero__copy,
-		.hero__subtitle,
-		.hero__cta,
-		.hero__bg,
-		.hero__splash {
+		.hero__media img {
 			animation: none;
+		}
+
+		.hero__buy,
+		.hero__buy:hover {
+			transition: none;
+			transform: none;
+		}
+
+		.hero__content {
+			transform: translateY(clamp(-1.5rem, -3vw, -0.35rem));
 		}
 	}
 
-	.hero__subtitle--short {
-		display: none;
+	@media (max-width: 900px) {
+		.hero {
+			min-height: clamp(26rem, 58vw, 32rem);
+		}
 	}
 
 	@media (max-width: 760px) {
 		.hero {
-			min-height: min(68svh, 520px);
+			min-height: min(32rem, 88dvh);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
 		}
 
-		.hero__subtitle--full {
-			display: none;
-		}
-
-		.hero__subtitle--short {
-			display: block;
-		}
-
-		.hero__bg {
-			object-position: center 32%;
-			animation: none;
-			transform: none;
-			will-change: auto;
-		}
-
-		.hero__splash {
-			display: none;
-		}
-
-		.hero__copy,
-		.hero__subtitle,
-		.hero__cta {
-			animation: none;
+		.hero__media img {
+			object-position: 78% center;
 		}
 
 		.hero__veil {
-			background:
-				linear-gradient(180deg, rgba(10, 6, 18, 0.55) 0%, rgba(10, 6, 18, 0.35) 42%, rgba(10, 6, 18, 0.96) 100%),
-				linear-gradient(90deg, rgba(10, 6, 18, 0.72), rgba(10, 6, 18, 0.35) 80%);
+			background: linear-gradient(
+				180deg,
+				rgba(5, 5, 6, 0.12) 0%,
+				rgba(5, 5, 6, 0.35) 38%,
+				rgba(5, 5, 6, 0.88) 72%,
+				rgba(5, 5, 6, 0.96) 100%
+			);
 		}
 
-		.hero__inner {
-			align-items: flex-end;
-			padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
-			padding-bottom: 1.35rem;
-			min-height: inherit;
+		.hero__content {
+			transform: none;
+			padding-top: 1.5rem;
+			padding-bottom: max(1.75rem, env(safe-area-inset-bottom, 0px));
 		}
 
 		.hero__copy {
-			max-width: none;
 			width: 100%;
 		}
 
-		.hero__title {
-			font-family: var(--font-sans);
-			font-size: clamp(1.65rem, 8vw, 2.15rem);
-			font-weight: 800;
-			line-height: 1.18;
-			letter-spacing: -0.025em;
-			gap: 0.22rem;
+		.hero__brand {
+			font-size: clamp(1.85rem, 8vw, 2.5rem);
 		}
 
-		.hero__line {
-			flex-direction: row;
-			flex-wrap: wrap;
-			column-gap: 0.28em;
+		.hero__buy {
 			width: 100%;
-		}
-
-		.hero__accent {
-			width: 100%;
-			font-size: 0.92em;
-			line-height: 1.25;
-			padding-bottom: 0.08em;
-		}
-
-		.hero__subtitle--short {
-			margin-top: 0.75rem;
-			max-width: none;
-			font-size: 0.92rem;
-			line-height: 1.55;
-		}
-
-		.hero__cta {
-			flex-direction: column;
-			align-items: stretch;
-			gap: 0.6rem;
-			margin-top: 1.1rem;
-			width: 100%;
-		}
-
-		.hero__btn {
-			width: 100%;
-			min-height: var(--touch-min);
-			padding: 0.8rem 1rem;
-			font-size: 0.92rem;
+			justify-content: flex-start;
+			min-height: var(--touch-min, 2.75rem);
 		}
 	}
 
-	@media (max-width: 380px) {
-		.hero__title {
-			font-size: 1.5rem;
+	@media (max-width: 480px) {
+		.hero {
+			min-height: min(30rem, 86dvh);
 		}
 
-		.hero__subtitle--short {
-			font-size: 0.88rem;
+		.hero__brand {
+			font-size: clamp(1.7rem, 9vw, 2.1rem);
+		}
+
+		.hero__features {
+			column-gap: 0.75rem;
 		}
 	}
 </style>

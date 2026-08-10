@@ -5,6 +5,7 @@ import { defaultLocale, localeCodes, type LocaleCode } from './i18n/locales';
 import { siteConfig } from './site';
 import { pageSitemapMeta } from './sitemap-meta';
 import { escapeXml } from './sitemap-xml';
+import { sitemapLastmod } from './brand-sitemap';
 
 export type LocaleSitemapEntry = {
 	path: string;
@@ -33,7 +34,7 @@ export function buildLocaleSitemapEntries(locale: LocaleCode): LocaleSitemapEntr
 		return {
 			path: getLocalizedPath(pageId, locale),
 			pageId,
-			lastmod: meta.lastmod,
+			lastmod: sitemapLastmod(meta.lastmod),
 			priority: meta.i18nPriority,
 			changefreq: meta.changefreq,
 			image:

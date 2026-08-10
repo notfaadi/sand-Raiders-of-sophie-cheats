@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import { brandStudioPlugin } from './scripts/brand-studio/vite-plugin.mjs';
 
 // Static Cloudflare Pages site — no deployment adapter.
 // Do not add @astrojs/cloudflare; sitemaps and HTML must emit to dist/ root.
@@ -18,7 +19,7 @@ export default defineConfig({
 		format: 'directory',
 	},
 	vite: {
-		plugins: [tailwindcss()],
+		plugins: [tailwindcss(), brandStudioPlugin()],
 		build: {
 			cssMinify: true,
 			minify: 'terser',

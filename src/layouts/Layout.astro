@@ -1,8 +1,10 @@
 ---
 import '../styles/global.css';
 import { productInfo, siteConfig, seoKeywords } from '../data/site';
+import { brandTheme, brandThemeInlineStyle, brandThemeRootCss } from '../data/brand-theme';
 import I18nHead from '../components/I18nHead.astro';
 import LocaleSuggest from '../components/LocaleSuggest.astro';
+import InlineBrandEditor from '../components/InlineBrandEditor.astro';
 import { defaultLocale, localeMap, locales, type LocaleCode } from '../data/i18n/locales';
 import type { PageId } from '../data/i18n/content.generated';
 import { buildCanonicalUrl, type HreflangAlternate } from '../data/i18n/routing';
@@ -154,12 +156,18 @@ if (softwareNode) {
 ---
 
 <!doctype html>
-<html lang={locale} dir={localeMeta.dir}>
+<html lang={locale} dir={localeMeta.dir} style={brandThemeInlineStyle()}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<meta name="color-scheme" content="dark" />
-		<meta name="theme-color" content="#0a0612" />
+		<meta name="theme-color" content={brandTheme.bg} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="robots" content={robots} />
 		<meta name="googlebot" content={robots} />
 		<meta name="description" content={description} />
@@ -227,11 +235,10 @@ if (softwareNode) {
 		)}
 
 		<title>{title}</title>
-		<link rel="icon" href="/favicon.ico" sizes="any" />
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
 		<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
@@ -240,5 +247,8 @@ if (softwareNode) {
 		<script is:inline defer src="/trusted-types-policy.js"></script>
 		{pageId && <LocaleSuggest currentLocale={locale} pageId={pageId} />}
 		<slot />
+		<InlineBrandEditor />
+		{/* After Vite/Tailwind CSS so brand tokens win over @theme defaults */}
+		<style id="brand-theme-vars" set:html={brandThemeRootCss()}></style>
 	</body>
 </html>

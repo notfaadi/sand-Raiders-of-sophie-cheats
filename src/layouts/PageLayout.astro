@@ -3,11 +3,19 @@ import Layout from './Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getUi } from '../data/i18n';
-import { getLocalizedPath } from '../data/i18n/routing';
+import { getLocalizedPath, resolvePageContextFromPath, type PageId } from '../data/i18n/routing';
 import { warzoneImages } from '../data/warzone';
-import { heroPreloadSrc, heroSizes, heroSrcSet, heroWidth, heroHeight, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
-import { resolvePageContextFromPath, type PageId } from '../data/i18n/routing';
+import {
+	heroPreloadSrc,
+	heroSizes,
+	heroSrcSet,
+	heroWidth,
+	heroHeight,
+	contentSrcSet,
+	galleryTileSizes,
+} from '../lib/responsive-images';
 import { defaultLocale } from '../data/i18n/locales';
+import { siteConfig } from '../data/site';
 
 type GalleryInput = string | { src: string; alt: string };
 
@@ -22,8 +30,9 @@ interface Props {
 	heroAlt?: string;
 	gallery?: ReadonlyArray<GalleryInput>;
 	galleryTitle?: string;
-	ctaPrimary?: { href: string; label: string };
+	ctaPrimary?: { href: string; label: string; edit?: string };
 	ctaSecondary?: { href: string; label: string };
+	introEdit?: string;
 	showGallery?: boolean;
 	locale?: import('../data/i18n/locales').LocaleCode;
 	pageId?: import('../data/i18n/content.generated').PageId;
@@ -37,11 +46,12 @@ const {
 	intro,
 	eyebrow,
 	heroImage = warzoneImages.hero,
-	heroAlt = 'Warzone Cheats visual for Call of Duty: Warzone',
+	heroAlt = siteConfig.name,
 	gallery = warzoneImages.product.slice(0, 3),
-	galleryTitle = 'Call of Duty: Warzone gameplay reference',
+	galleryTitle = 'In-game look',
 	ctaPrimary,
 	ctaSecondary,
+	introEdit,
 	showGallery = true,
 	locale = defaultLocale,
 	pageId: pageIdProp,
@@ -52,27 +62,14 @@ function resolvePageId(path: string): PageId | undefined {
 }
 
 const pageId = pageIdProp ?? resolvePageId(canonicalPath);
-
 const ui = getUi(locale);
 const homeHref = getLocalizedPath('home', locale);
 const resolvedEyebrow = eyebrow ?? ui.product.title;
 
 const normalizedGallery = gallery
 	.map((item) => {
-		if (typeof item !== 'string') {
-			return { src: item.src, alt: item.alt };
-		}
-
-		const file = item.split('/').pop()?.replace(/\.webp$/i, '') ?? 'warzone-hacks';
-		const keywordAlt = file
-			.split('-')
-			.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-			.join(' ');
-
-		return {
-			src: item,
-			alt: heroAlt || `${keywordAlt} - ${ui.product.title}`,
-		};
+		if (typeof item !== 'string') return { src: item.src, alt: item.alt };
+		return { src: item, alt: heroAlt };
 	})
 	.filter((item) => Boolean(item.src));
 
@@ -81,10 +78,7 @@ const breadcrumbs = [
 	{ label: heading },
 ];
 
-const isHeroLcp = heroImage === warzoneImages.hero;
-const lcpImage = isHeroLcp ? heroPreloadSrc : undefined;
-const lcpImageSrcSet = isHeroLcp ? heroSrcSet : undefined;
-const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
+const useHomeHero = heroImage === warzoneImages.hero;
 ---
 
 <Layout
@@ -96,16 +90,16 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 	breadcrumbs={breadcrumbs}
 	locale={locale}
 	pageId={pageId}
-	lcpImage={lcpImage}
-	lcpImageSrcSet={lcpImageSrcSet}
-	lcpImageSizes={lcpImageSizes}
+	lcpImage={useHomeHero ? heroPreloadSrc : undefined}
+	lcpImageSrcSet={useHomeHero ? heroSrcSet : undefined}
+	lcpImageSizes={useHomeHero ? heroSizes : undefined}
 >
 	<Navbar locale={locale} pageId={pageId} />
 	<main class="page">
 		<section class="banner">
-			<div class="banner__media">
+			<div class="banner__media" aria-hidden="true">
 				{
-					isHeroLcp ? (
+					useHomeHero ? (
 						<picture>
 							<source media="(max-width: 760px)" srcset={heroPreloadSrc} type="image/webp" />
 							<source
@@ -116,7 +110,7 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 							/>
 							<img
 								src={heroPreloadSrc}
-								alt={heroAlt}
+								alt=""
 								width={heroWidth}
 								height={heroHeight}
 								class="banner__img"
@@ -128,54 +122,53 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 					) : (
 						<img
 							src={heroImage}
-							alt={heroAlt}
+							alt=""
 							width="1600"
 							height="900"
 							class="banner__img"
-							loading="lazy"
+							loading="eager"
 							decoding="async"
 						/>
 					)
 				}
-				<div class="banner__scrim" aria-hidden="true"></div>
+				<div class="banner__scrim"></div>
 			</div>
-			<div class="shell banner__content">
-				<nav class="banner__crumbs" aria-label="Breadcrumb">
-					<a href={homeHref}>{ui.nav.home}</a>
-					<span aria-hidden="true">/</span>
-					<span aria-current="page">{heading}</span>
-				</nav>
-				<p class="banner__eyebrow">{resolvedEyebrow}</p>
-				<h1 class="banner__title">{heading}</h1>
-				<p class="banner__intro">{intro}</p>
-				{
-					(ctaPrimary || ctaSecondary) && (
-						<div class="banner__actions">
-							{ctaPrimary && (
-								<a
-									class:list={[
-										ctaPrimary.label === 'Buy Now' ? 'btn-buy' : 'btn btn--primary',
-									]}
-									href={ctaPrimary.href}
-									rel={ctaPrimary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-								>
-									{ctaPrimary.label}
-								</a>
-							)}
-							{ctaSecondary && (
-								<a
-									class:list={[
-										ctaSecondary.label === 'Buy Now' ? 'btn-buy' : 'btn btn--ghost',
-									]}
-									href={ctaSecondary.href}
-									rel={ctaSecondary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-								>
-									{ctaSecondary.label}
-								</a>
-							)}
-						</div>
-					)
-				}
+
+			<div class="shell banner__shell">
+				<div class="banner__content">
+					<nav class="banner__crumbs" aria-label="Breadcrumb">
+						<a href={homeHref}>{ui.nav.home}</a>
+						<span aria-hidden="true">/</span>
+						<span aria-current="page">{heading}</span>
+					</nav>
+					<p class="banner__eyebrow">{resolvedEyebrow}</p>
+					<h1 class="banner__title">{heading}</h1>
+					<p class="banner__intro" data-edit={introEdit || undefined}>{intro}</p>
+					{
+						(ctaPrimary || ctaSecondary) && (
+							<div class="banner__actions">
+								{ctaPrimary && (
+									<a
+										class="btn-buy"
+										href={ctaPrimary.href}
+										rel={ctaPrimary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+									>
+										<span data-edit={ctaPrimary.edit || undefined}>{ctaPrimary.label}</span>
+									</a>
+								)}
+								{ctaSecondary && (
+									<a
+										class="btn btn--ghost"
+										href={ctaSecondary.href}
+										rel={ctaSecondary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+									>
+										{ctaSecondary.label}
+									</a>
+								)}
+							</div>
+						)
+					}
+				</div>
 			</div>
 		</section>
 
@@ -187,10 +180,10 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 			{
 				showGallery && normalizedGallery.length > 0 && (
 					<section class="gallery-block" aria-labelledby="page-gallery-title">
-						<div class="gallery-block__head">
-							<p class="gallery-block__eyebrow">{ui.product.title}</p>
-							<h2 id="page-gallery-title" class="gallery-block__title">{galleryTitle}</h2>
-						</div>
+						<header class="gallery-block__head">
+							<p class="gallery-block__eyebrow">Gallery</p>
+							<h2 id="page-gallery-title">{galleryTitle}</h2>
+						</header>
 						<div class="gallery-block__grid">
 							{normalizedGallery.map((image) => (
 								<figure class="gallery-block__item">
@@ -204,7 +197,6 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 										loading="lazy"
 										decoding="async"
 									/>
-									<figcaption>{image.alt}</figcaption>
 								</figure>
 							))}
 						</div>
@@ -219,371 +211,290 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 <style>
 	.page {
 		overflow-x: clip;
-		padding-bottom: calc(3.25rem + env(safe-area-inset-bottom, 0px));
+		padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
 	}
 
 	.banner {
 		position: relative;
 		isolation: isolate;
-		border-bottom: 1px solid rgba(168, 85, 247, 0.12);
-		margin-bottom: 2rem;
+		min-height: clamp(16rem, 32vw, 22rem);
+		display: grid;
+		align-items: end;
+		border-bottom: 1px solid var(--line-soft);
+		background: var(--bg);
 	}
 
 	.banner__media {
 		position: absolute;
 		inset: 0;
 		z-index: 0;
+		overflow: hidden;
 	}
 
+	.banner__media picture,
 	.banner__img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: center 30%;
+		object-position: center center;
 	}
 
 	.banner__scrim {
 		position: absolute;
 		inset: 0;
-		background:
-			linear-gradient(180deg, rgba(10, 6, 18, 0.72) 0%, rgba(10, 6, 18, 0.88) 100%),
-			linear-gradient(90deg, rgba(10, 6, 18, 0.55), rgba(10, 6, 18, 0.35) 50%, rgba(10, 6, 18, 0.55));
+		background: linear-gradient(
+			90deg,
+			rgba(8, 9, 10, 0.94) 0%,
+			rgba(8, 9, 10, 0.72) 42%,
+			rgba(8, 9, 10, 0.25) 100%
+		);
+	}
+
+	.banner__shell {
+		position: relative;
+		z-index: 1;
+		padding-block: clamp(2.25rem, 4.5vw, 3.25rem) clamp(1.5rem, 3vw, 2.25rem);
 	}
 
 	.banner__content {
-		position: relative;
-		z-index: 1;
-		max-width: 720px;
-		margin-inline: auto;
-		padding: 2.75rem 0 2.5rem;
-		text-align: center;
+		width: min(100%, 34rem);
 	}
 
 	.banner__crumbs {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
+		display: flex;
 		flex-wrap: wrap;
-		gap: 0.45rem;
-		margin-bottom: 1rem;
+		align-items: center;
+		gap: 0.4rem;
+		margin: 0 0 0.75rem;
 		font-size: 0.8rem;
-		color: var(--color-faint);
+		color: var(--ink-faint);
 	}
 
 	.banner__crumbs a {
-		color: var(--color-muted);
+		color: var(--ink-muted);
 		font-weight: 600;
 	}
 
 	.banner__crumbs a:hover {
-		color: var(--color-orchid);
+		color: var(--magenta-soft);
 	}
 
 	.banner__eyebrow {
-		margin: 0 0 0.55rem;
+		margin: 0 0 0.4rem;
 		font-size: 0.72rem;
 		font-weight: 700;
-		letter-spacing: 0.14em;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: var(--color-orchid);
+		color: var(--magenta-soft);
 	}
 
 	.banner__title {
 		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+		font-size: clamp(1.75rem, 3.6vw, 2.4rem);
 		font-weight: 800;
-		letter-spacing: -0.03em;
-		line-height: 1.12;
+		letter-spacing: -0.035em;
+		line-height: 1.1;
+		color: var(--ink);
 	}
 
 	.banner__intro {
-		margin: 0.9rem auto 0;
-		max-width: 36rem;
-		color: #cfc3e3;
-		font-size: 1.02rem;
-		line-height: 1.65;
+		margin: 0.7rem 0 0;
+		color: var(--ink-muted);
+		font-size: 0.975rem;
+		line-height: 1.55;
 	}
 
 	.banner__actions {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: center;
 		gap: 0.65rem;
-		margin-top: 1.35rem;
+		margin-top: 1.2rem;
 	}
 
 	.btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 2.7rem;
-		padding: 0.7rem 1.15rem;
-		border-radius: 0.75rem;
-		font-size: 0.92rem;
-		font-weight: 700;
-		transition:
-			transform 0.2s ease,
-			filter 0.2s ease,
-			background 0.2s ease,
-			border-color 0.2s ease;
-	}
-
-	.btn--primary {
-		background: var(--gradient-brand);
-		color: white;
-		box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
-	}
-
-	.btn--primary:hover {
-		transform: translateY(-1px);
-		filter: brightness(1.05);
-		color: white;
+		min-height: 2.5rem;
+		padding: 0.65rem 1.15rem;
+		border-radius: 999px;
+		font-size: 0.9rem;
+		font-weight: 600;
 	}
 
 	.btn--ghost {
-		border: 1px solid rgba(192, 132, 252, 0.28);
-		background: rgba(18, 16, 26, 0.55);
-		color: var(--color-ink);
+		border: 1px solid color-mix(in srgb, #fff 20%, transparent);
+		color: var(--ink);
+		background: color-mix(in srgb, var(--bg) 40%, transparent);
 	}
 
 	.btn--ghost:hover {
-		border-color: rgba(192, 132, 252, 0.5);
-		color: var(--color-ink);
+		border-color: var(--magenta-soft);
+		color: var(--magenta-soft);
 	}
 
 	.page__wrap {
 		display: grid;
 		gap: 2rem;
-		justify-items: center;
+		padding-block: clamp(1.5rem, 3vw, 2.25rem) 3rem;
 	}
 
 	.article {
-		width: min(100%, 760px);
+		width: min(100%, var(--content-max));
 		display: grid;
-		gap: 1rem;
-		text-align: left;
-		color: #d8cee9;
-		line-height: 1.7;
+		gap: 0.75rem;
+		color: var(--ink-muted);
+		line-height: 1.55;
 	}
 
 	.article :global(.card-panel) {
-		padding: 1.35rem 1.45rem;
-		border-radius: 0.95rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(22, 18, 32, 0.9);
-		display: grid;
-		gap: 0.8rem;
+		padding: 1.1rem 1.15rem;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: var(--bg-panel);
 	}
 
 	.article :global(h2) {
-		margin: 0;
+		margin: 0 0 0.4rem;
 		font-family: var(--font-display);
-		font-size: 1.2rem;
+		font-size: 1.05rem;
 		font-weight: 800;
 		letter-spacing: -0.02em;
-		color: var(--color-ink);
-	}
-
-	.article :global(h3) {
-		margin: 0;
-		font-size: 1rem;
-		font-weight: 700;
-		color: var(--color-ink);
+		color: var(--ink);
 	}
 
 	.article :global(p) {
 		margin: 0;
-		color: var(--color-muted);
+		font-size: 0.9375rem;
 	}
 
 	.article :global(ul) {
-		margin: 0;
+		margin: 0.55rem 0 0;
 		padding: 0;
 		list-style: none;
 		display: grid;
-		gap: 0.5rem;
+		gap: 0.35rem;
 	}
 
 	.article :global(li) {
 		position: relative;
-		padding: 0.55rem 0.75rem 0.55rem 2rem;
-		border-radius: 0.65rem;
-		background: rgba(10, 6, 18, 0.4);
-		border: 1px solid rgba(168, 85, 247, 0.1);
-		color: #d4cae6;
-		font-size: 0.95rem;
+		padding-left: 0.95rem;
+		font-size: 0.9rem;
+		color: var(--ink-muted);
 	}
 
 	.article :global(li::before) {
 		content: '';
 		position: absolute;
-		left: 0.8rem;
-		top: 50%;
-		width: 0.4rem;
-		height: 0.4rem;
+		left: 0;
+		top: 0.55em;
+		width: 0.35rem;
+		height: 0.35rem;
 		border-radius: 999px;
-		background: var(--color-orchid);
-		transform: translateY(-50%);
+		background: var(--magenta-soft);
 	}
 
 	.article :global(a) {
-		color: var(--color-orchid);
-		font-weight: 600;
+		color: var(--magenta-soft);
+		font-weight: 500;
 	}
 
 	.article :global(a:hover) {
-		color: #e9d5ff;
+		color: var(--ink);
 	}
 
 	.article :global(.price-grid) {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.75rem;
+		gap: 0.65rem;
+		margin-top: 0.55rem;
 	}
 
 	.article :global(.price-card) {
 		display: grid;
-		gap: 0.3rem;
+		gap: 0.2rem;
 		justify-items: center;
 		padding: 1.2rem 0.9rem;
-		border-radius: 0.85rem;
-		border: 1px solid rgba(192, 132, 252, 0.18);
-		background: rgba(10, 6, 18, 0.45);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: var(--bg-elevated);
 		text-align: center;
 		text-decoration: none;
 		color: inherit;
-		transition:
-			border-color 0.2s ease,
-			transform 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.article :global(.price-card:hover) {
-		border-color: rgba(192, 132, 252, 0.4);
-		transform: translateY(-1px);
+		border-color: color-mix(in srgb, var(--magenta) 40%, var(--line));
 	}
 
 	.article :global(.price-card.is-featured) {
-		background: linear-gradient(160deg, #6d28d9, #9333ea 55%, #a21caf);
-		border-color: transparent;
-		color: white;
-	}
-
-	.article :global(.price-card.is-featured .price-card__meta) {
-		color: rgba(255, 255, 255, 0.88);
+		border-color: color-mix(in srgb, var(--magenta) 45%, var(--line));
+		background: color-mix(in srgb, var(--magenta) 12%, var(--bg-panel));
 	}
 
 	.article :global(.price-card__label) {
-		font-size: 0.78rem;
-		font-weight: 800;
-		letter-spacing: 0.08em;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
 		text-transform: uppercase;
+		color: var(--ink-faint);
 	}
 
 	.article :global(.price-card__price) {
 		font-family: var(--font-display);
-		font-size: 1.9rem;
+		font-size: 1.85rem;
 		font-weight: 800;
-		color: var(--color-ink);
+		letter-spacing: -0.04em;
+		color: var(--ink);
 	}
 
 	.article :global(.price-card.is-featured .price-card__price) {
-		color: white;
+		color: var(--magenta-soft);
 	}
 
 	.article :global(.price-card__meta) {
-		font-size: 0.78rem;
-		color: var(--color-muted);
-	}
-
-	.article :global(.cta-row) {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.6rem;
-		margin-top: 0.25rem;
-	}
-
-	.article :global(.cta-btn) {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-height: 2.55rem;
-		padding: 0.65rem 1.05rem;
-		border-radius: 0.7rem;
-		font-size: 0.9rem;
-		font-weight: 700;
-		transition:
-			transform 0.2s ease,
-			filter 0.2s ease,
-			border-color 0.2s ease;
-	}
-
-	.article :global(.cta-btn--primary) {
-		background: var(--gradient-brand);
-		color: white;
-		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-	}
-
-	.article :global(.cta-btn--primary:hover) {
-		transform: translateY(-1px);
-		filter: brightness(1.05);
-		color: white;
-	}
-
-	.article :global(.cta-btn--ghost) {
-		border: 1px solid rgba(192, 132, 252, 0.28);
-		background: transparent;
-		color: var(--color-ink);
-	}
-
-	.article :global(.cta-btn--ghost:hover) {
-		border-color: rgba(192, 132, 252, 0.5);
-		color: var(--color-ink);
+		font-size: 0.8rem;
+		color: var(--ink-muted);
 	}
 
 	.gallery-block {
-		width: min(100%, 960px);
+		width: 100%;
 		display: grid;
-		gap: 1rem;
-		padding-top: 0.5rem;
-		border-top: 1px solid rgba(168, 85, 247, 0.12);
-		content-visibility: auto;
-		contain-intrinsic-size: 1px 480px;
+		gap: 0.85rem;
 	}
 
-	.gallery-block__head {
-		text-align: center;
+	.gallery-block__head h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 1.15rem;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--ink);
 	}
 
 	.gallery-block__eyebrow {
-		margin: 0 0 0.35rem;
-		font-size: 0.7rem;
+		margin: 0 0 0.3rem;
+		font-size: 0.72rem;
 		font-weight: 700;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: var(--color-orchid);
-	}
-
-	.gallery-block__title {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: 1.35rem;
-		font-weight: 800;
+		color: var(--magenta-soft);
 	}
 
 	.gallery-block__grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 0.75rem;
+		gap: 0.65rem;
 	}
 
 	.gallery-block__item {
-		position: relative;
 		margin: 0;
 		overflow: hidden;
-		border-radius: 0.85rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: #12081f;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: var(--bg-elevated);
 		aspect-ratio: 16 / 10;
 	}
 
@@ -591,105 +502,61 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		transition: transform 0.4s ease;
-	}
-
-	.gallery-block__item:hover img {
-		transform: scale(1.03);
-	}
-
-	.gallery-block__item figcaption {
-		position: absolute;
-		inset: auto 0 0;
-		padding: 1.4rem 0.75rem 0.65rem;
-		background: linear-gradient(transparent, rgba(10, 6, 18, 0.92));
-		color: #d8cfea;
-		font-size: 0.72rem;
-		font-weight: 600;
 	}
 
 	@media (max-width: 800px) {
 		.article :global(.price-grid) {
 			grid-template-columns: 1fr;
 		}
+
+		.gallery-block__grid {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 
 	@media (max-width: 640px) {
-		.page {
-			padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+		.banner__shell {
+			padding-block: 1.75rem 1.35rem;
 		}
 
-		.banner {
-			margin-bottom: 1.25rem;
+		.banner__scrim {
+			background: linear-gradient(
+				180deg,
+				rgba(8, 9, 10, 0.45) 0%,
+				rgba(8, 9, 10, 0.88) 70%,
+				rgba(8, 9, 10, 0.96) 100%
+			);
 		}
 
 		.banner__content {
-			padding: 2rem 0 1.65rem;
-			max-width: none;
-		}
-
-		.banner__crumbs {
-			font-size: 0.75rem;
-			margin-bottom: 0.75rem;
+			width: 100%;
+			max-width: 100%;
+			min-width: 0;
 		}
 
 		.banner__title {
-			font-size: clamp(1.45rem, 6.5vw, 2rem);
-			line-height: 1.15;
+			font-size: clamp(1.55rem, 7.5vw, 2rem);
 			overflow-wrap: anywhere;
-		}
-
-		.banner__intro {
-			font-size: 0.92rem;
-			line-height: 1.55;
-			max-width: none;
 		}
 
 		.banner__actions {
 			flex-direction: column;
 			align-items: stretch;
-			width: 100%;
 		}
 
-		.banner__actions .btn-buy,
+		.banner__actions :global(.btn-buy),
 		.banner__actions .btn {
 			width: 100%;
 			min-height: var(--touch-min);
 		}
 
-		.page__wrap {
-			gap: 1.35rem;
-		}
-
 		.article {
 			width: 100%;
-		}
-
-		.article :global(.card-panel) {
-			padding: 1rem 0.95rem;
-		}
-
-		.article :global(h2) {
-			font-size: 1.05rem;
-			line-height: 1.35;
-		}
-
-		.article :global(.cta-row) {
-			flex-direction: column;
-		}
-
-		.article :global(.cta-btn) {
-			width: 100%;
-			min-height: var(--touch-min);
-			justify-content: center;
+			min-width: 0;
 		}
 
 		.gallery-block__grid {
 			grid-template-columns: 1fr;
-		}
-
-		.gallery-block__item figcaption {
-			font-size: 0.68rem;
 		}
 	}
 </style>

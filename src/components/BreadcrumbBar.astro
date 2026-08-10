@@ -69,15 +69,15 @@ const updatesHref = getLocalizedPath('updates', locale);
 
 <style>
 	.crumb-bar {
-		border-block: 1px solid rgba(168, 85, 247, 0.12);
-		background: rgba(14, 10, 22, 0.94);
+		border-block: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg) 94%, transparent);
 		content-visibility: auto;
 		contain-intrinsic-size: 1px 64px;
 	}
 
 	@media (min-width: 761px) {
 		.crumb-bar {
-			background: rgba(14, 10, 22, 0.85);
+			background: color-mix(in srgb, var(--bg) 86%, transparent);
 			backdrop-filter: blur(12px);
 		}
 	}
@@ -120,11 +120,11 @@ const updatesHref = getLocalizedPath('updates', locale);
 	}
 
 	.crumb-bar__link:hover {
-		color: var(--color-orchid);
+		color: var(--magenta-soft);
 	}
 
 	.crumb-bar__current {
-		color: var(--color-ink);
+		color: var(--ink);
 		font-weight: 500;
 	}
 
@@ -135,20 +135,19 @@ const updatesHref = getLocalizedPath('updates', locale);
 		flex-shrink: 0;
 		padding: 0.55rem 1rem;
 		border-radius: 0.65rem;
-		border: 1px solid rgba(192, 132, 252, 0.22);
-		background: rgba(34, 28, 48, 0.8);
-		color: var(--color-ink);
+		border: 1px solid var(--line-strong);
+		background: var(--bg-elevated);
+		color: var(--ink);
 		font-size: 0.875rem;
 		font-weight: 600;
 		transition:
 			border-color 0.2s ease,
-			background 0.2s ease,
-			box-shadow 0.2s ease;
+			background 0.2s ease;
 	}
 
 	.activity-btn:hover {
-		border-color: rgba(192, 132, 252, 0.45);
-		background: rgba(48, 36, 72, 0.9);
+		border-color: color-mix(in srgb, var(--magenta) 40%, var(--line-strong));
+		background: var(--bg-hover);
 	}
 
 	.activity-btn__label--short {

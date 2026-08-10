@@ -1,14 +1,9 @@
 ---
 import { warzoneImages } from '../data/warzone';
 import { getUi } from '../data/i18n';
-import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
-import {
-	contentSrcSet,
-	productMainSizes,
-	productThumbSizes,
-} from '../lib/responsive-images';
+import { contentSrcSet, productMainSizes } from '../lib/responsive-images';
 
 interface Props {
 	name?: string;
@@ -17,10 +12,8 @@ interface Props {
 
 const locale = Astro.props.locale ?? defaultLocale;
 const ui = getUi(locale);
-
 const { name = ui.product.title } = Astro.props;
 
-/** Localized alts aligned 1:1 with warzoneImages.product; undefined falls back to data alt. */
 const productAlts = [
 	ui.images.espWallhack,
 	ui.images.aimbotCombat,
@@ -30,470 +23,94 @@ const productAlts = [
 	ui.images.cheatsPackage,
 ] as const;
 
-/** Single shared list for main preview + thumbnails (index selection in script). */
-const images = warzoneImages.product.map((image, index) => ({
-	src: image.src,
-	alt: productAlts[index] ?? image.alt,
-	srcset: contentSrcSet(image.src),
-}));
-const main = images[0];
+const mainImage = warzoneImages.product[0];
+const mainAlt = productAlts[0] ?? mainImage.alt;
 const monthlyPlan = productInfo.plans.find((plan) => plan.id === 'monthly') ?? productInfo.plans[0];
 ---
 
-<section class="product surface-card" id="product" data-product aria-label="Product details">
-	<div class="product__media">
-		<figure class="product__figure media-frame">
-			<img
-				src={main.src}
-				srcset={main.srcset}
-				sizes={productMainSizes}
-				alt={main.alt}
-				width="1280"
-				height="720"
-				class="product__image"
-				data-main-image
-				loading="lazy"
-				decoding="async"
-			/>
-			<span class="product__credit" aria-hidden="true">Warzone Hacks Preview</span>
-		</figure>
-		<div class="product__thumbs" role="group" aria-label="Product preview images">
-			{
-				images.map((image, index) => (
-					<button
-						type="button"
-						class:list={['product__thumb media-frame', { 'is-active': index === 0 }]}
-						aria-label={`Show ${image.alt}`}
-						aria-pressed={index === 0 ? 'true' : 'false'}
-						data-thumb
-						data-index={String(index)}
-						data-src={image.src}
-						data-srcset={image.srcset}
-						data-alt={image.alt}
-					>
-						<img
-							src={image.src}
-							srcset={image.srcset}
-							sizes={productThumbSizes}
-							alt={image.alt}
-							width="320"
-							height="200"
-							loading="lazy"
-							decoding="async"
-						/>
-					</button>
-				))
-			}
-		</div>
-	</div>
+<section class="product surface-card" id="product" aria-label="Product details">
+	<figure class="product__figure media-frame">
+		<img
+			src={mainImage.src}
+			srcset={contentSrcSet(mainImage.src)}
+			sizes={productMainSizes}
+			alt={mainAlt}
+			width="1280"
+			height="720"
+			loading="lazy"
+			decoding="async"
+		/>
+	</figure>
 
 	<div class="product__details">
 		<h2 class="product__title">{name}</h2>
-
-		<div class="product__badges">
-			<span class="badge">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-					<path
-						d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 5.1L12 14.8 7.5 16.8l.9-5.1L4.8 8.2l5-.7L12 3z"
-						stroke="currentColor"
-						stroke-width="1.6"
-						stroke-linejoin="round"></path>
-				</svg>
-				{ui.product.gameBadge}
-			</span>
-			<span class="badge">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-					<circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.6"></circle>
-					<path d="M12 8v4.2l2.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-					></path>
-				</svg>
-				{ui.product.platformBadge}
-			</span>
-			<span class="badge badge--status">
-				<span class="badge__dot" aria-hidden="true"></span>
-				{ui.product.statusBadge}
-			</span>
-		</div>
-
-		<div class="product__price-row">
-			<p class="product__price">${monthlyPlan.price}</p>
-			<p class="product__price-note">{ui.product.monthly} · {ui.product.available}</p>
-		</div>
-
+		<p class="product__meta">
+			{ui.product.gameBadge} · {ui.product.platformBadge} · {ui.product.statusBadge}
+		</p>
+		<p class="product__price">
+			${monthlyPlan.price}
+			<span>{ui.product.monthly}</span>
+		</p>
 		<a
 			href={siteConfig.checkoutUrl}
-			class="cart-btn bg-brand"
+			class="btn-buy product__buy"
 			rel="noopener noreferrer"
-			aria-label={`${ui.common.buyNow} — ${ui.product.title}`}
 		>
-			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-				<path
-					d="M13 3L4 14h6l-1 7 9-11h-6l1-7z"
-					stroke="currentColor"
-					stroke-width="1.7"
-					stroke-linecap="round"
-					stroke-linejoin="round"></path>
-			</svg>
-			<span>{ui.common.buyNow} — ${monthlyPlan.price}</span>
+			{ui.common.buyNow} — ${monthlyPlan.price}
 		</a>
-
-		<div class="buy-also">
-			<p class="buy-also__label">{ui.common.relatedPages}</p>
-			<div class="buy-also__row">
-				<a href={getLocalizedPath('warzone-esp', locale)} class="alt-link">{ui.nav.esp}</a>
-				<a href={getLocalizedPath('warzone-aimbot', locale)} class="alt-link">{ui.nav.aimbot}</a>
-				<a href={getLocalizedPath('features', locale)} class="alt-link">{ui.nav.features}</a>
-				<a href={getLocalizedPath('setup', locale)} class="alt-link">{ui.nav.setup}</a>
-				<a href={getLocalizedPath('pricing', locale)} class="alt-link">{ui.nav.pricing}</a>
-			</div>
-		</div>
 	</div>
 </section>
-
-<script>
-	/** Mirror `contentSrcSet` (480 / 960) when data-srcset is missing. */
-	function toContentSrcSet(baseSrc: string): string | undefined {
-		const match = baseSrc.match(/^(.+\/)(.+)\.webp$/i);
-		if (!match) return undefined;
-		const [, dir, name] = match;
-		if (name.endsWith('-640w') || name.endsWith('-960w') || name.endsWith('-1400w')) {
-			return undefined;
-		}
-		return [480, 960].map((width) => `${dir}${name}-${width}w.webp ${width}w`).join(', ');
-	}
-
-	document.querySelectorAll('[data-product]').forEach((root) => {
-		const mainImage = root.querySelector('[data-main-image]');
-		const thumbs = Array.from(root.querySelectorAll('[data-thumb]'));
-		if (!(mainImage instanceof HTMLImageElement) || thumbs.length === 0) return;
-
-		const select = (index: number) => {
-			const thumb = thumbs[index];
-			if (!(thumb instanceof HTMLElement)) return;
-
-			const src = thumb.getAttribute('data-src');
-			const alt = thumb.getAttribute('data-alt');
-			const srcset = thumb.getAttribute('data-srcset') || (src ? toContentSrcSet(src) : null);
-			if (!src) return;
-
-			thumbs.forEach((btn, i) => {
-				const on = i === index;
-				btn.classList.toggle('is-active', on);
-				btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-			});
-
-			mainImage.style.opacity = '0';
-			window.setTimeout(() => {
-				// Browsers prefer srcset over src — both must change or the preview stays put.
-				mainImage.src = src;
-				if (srcset) mainImage.srcset = srcset;
-				else mainImage.removeAttribute('srcset');
-				if (alt) mainImage.alt = alt;
-				mainImage.style.opacity = '1';
-			}, 140);
-		};
-
-		thumbs.forEach((thumb, index) => {
-			thumb.addEventListener('click', () => select(index));
-		});
-	});
-</script>
 
 <style>
 	.product {
 		display: grid;
-		grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
-		gap: clamp(1.5rem, 3vw, 2.5rem);
-		align-items: start;
-		width: 100%;
-		margin: 0;
-		padding: clamp(1.25rem, 2.5vw, 2rem);
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		padding: 1.25rem;
 		border-radius: var(--radius-card);
-	}
-
-	@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
-		.product {
-			animation: card-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
-		}
-	}
-
-	.product__media {
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		min-width: 0;
 	}
 
 	.product__figure {
 		margin: 0;
 		aspect-ratio: 16 / 10;
-		border: 1px solid rgba(192, 132, 252, 0.28);
-		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
-	}
-
-	.product__image {
-		transition:
-			transform 0.45s ease,
-			opacity 0.14s ease;
-	}
-
-	.product__figure:hover .product__image {
-		transform: scale(1.025);
-	}
-
-	.product__credit {
-		position: absolute;
-		right: 0.7rem;
-		bottom: 0.7rem;
-		z-index: 2;
-		padding: 0.28rem 0.55rem;
-		border-radius: 999px;
-		background: rgba(10, 6, 18, 0.72);
-		border: 1px solid rgba(192, 132, 252, 0.25);
-		color: #d8c9ef;
-		font-size: 0.68rem;
-		font-weight: 700;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		backdrop-filter: blur(6px);
-	}
-
-	.product__thumbs {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 0.55rem;
-	}
-
-	.product__thumb {
-		padding: 0;
-		aspect-ratio: 16 / 10;
-		width: 100%;
-		border: 2px solid transparent;
-		border-radius: 0.75rem;
-		cursor: pointer;
-		transition:
-			border-color 0.2s ease,
-			box-shadow 0.2s ease,
-			transform 0.2s ease;
-	}
-
-	.product__thumb.is-active,
-	.product__thumb:hover {
-		border-color: var(--color-orchid);
-		transform: translateY(-1px);
 	}
 
 	.product__title {
 		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.85rem, 3.5vw, 2.5rem);
-		font-weight: 800;
-		letter-spacing: -0.03em;
-		line-height: 1.1;
-	}
-
-	.product__badges {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.55rem;
-		margin-top: 1rem;
-	}
-
-	.badge {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		padding: 0.4rem 0.75rem;
-		border-radius: 999px;
-		border: 1px solid rgba(192, 132, 252, 0.25);
-		background: rgba(34, 28, 48, 0.9);
-		color: var(--color-orchid);
-		font-size: 0.72rem;
+		font-size: 1.5rem;
 		font-weight: 700;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
+		line-height: 1.2;
 	}
 
-	.badge--status {
-		color: var(--color-mint);
-		border-color: rgba(52, 211, 153, 0.3);
-	}
-
-	.badge__dot {
-		width: 0.5rem;
-		height: 0.5rem;
-		border-radius: 999px;
-		background: var(--color-mint);
-	}
-
-	.product__price-row {
-		display: flex;
-		align-items: baseline;
-		flex-wrap: wrap;
-		gap: 0.35rem 0.85rem;
-		margin-top: 1.35rem;
+	.product__meta {
+		margin: 0.5rem 0 0;
+		font-size: 0.8125rem;
+		color: var(--color-muted);
 	}
 
 	.product__price {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(2rem, 4vw, 2.75rem);
-		font-weight: 800;
-		letter-spacing: -0.03em;
+		margin: 1rem 0 0;
+		font-size: 2rem;
+		font-weight: 700;
+		line-height: 1;
 	}
 
-	.product__price-note {
-		margin: 0;
-		font-size: 0.82rem;
-		font-weight: 600;
+	.product__price span {
+		display: block;
+		margin-top: 0.25rem;
+		font-size: 0.8125rem;
+		font-weight: 500;
 		color: var(--color-muted);
 	}
 
-	.cart-btn {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.6rem;
+	.product__buy {
 		width: 100%;
 		margin-top: 1.25rem;
-		padding: 1rem 1.25rem;
-		border: 0;
-		border-radius: 0.9rem;
-		color: white;
-		font-size: 1rem;
-		font-weight: 700;
-		letter-spacing: 0.01em;
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
-		transition:
-			transform 0.2s ease,
-			box-shadow 0.2s ease,
-			filter 0.2s ease;
 	}
 
-	.cart-btn:hover {
-		transform: translateY(-1px);
-		filter: brightness(1.05);
-		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
-		color: white;
-	}
-
-	.buy-also {
-		margin-top: 1.35rem;
-	}
-
-	.buy-also__label {
-		margin: 0 0 0.65rem;
-		font-size: 0.8rem;
-		font-weight: 600;
-		color: var(--color-faint);
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-	}
-
-	.buy-also__row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.65rem;
-	}
-
-	.alt-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45rem;
-		padding: 0.65rem 0.95rem;
-		border-radius: 999px;
-		border: 1px solid rgba(192, 132, 252, 0.2);
-		background: rgba(26, 22, 38, 0.8);
-		color: var(--color-muted);
-		font-size: 0.82rem;
-		font-weight: 600;
-		transition:
-			color 0.2s ease,
-			border-color 0.2s ease,
-			background 0.2s ease;
-	}
-
-	.alt-link:hover {
-		color: var(--color-ink);
-		border-color: rgba(192, 132, 252, 0.45);
-		background: rgba(48, 36, 72, 0.85);
-	}
-
-	@keyframes card-in {
-		from {
-			opacity: 0;
-			transform: translateY(22px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.product__details {
-		min-width: 0;
-		padding-top: 0.15rem;
-	}
-
-	@media (max-width: 900px) {
+	@media (max-width: 720px) {
 		.product {
 			grid-template-columns: 1fr;
-			padding: 1rem;
-			gap: 1.15rem;
-		}
-	}
-
-	@media (max-width: 560px) {
-		.product {
-			padding: 0.85rem;
-			border-radius: 1rem;
-		}
-
-		.product__title {
-			font-size: clamp(1.45rem, 6.5vw, 1.85rem);
-		}
-
-		.product__badges {
-			gap: 0.4rem;
-		}
-
-		.badge {
-			font-size: 0.66rem;
-			padding: 0.38rem 0.62rem;
-		}
-
-		.product__thumbs {
-			display: flex;
-			gap: 0.5rem;
-			overflow-x: auto;
-			padding-bottom: 0.25rem;
-			scroll-snap-type: x mandatory;
-			-webkit-overflow-scrolling: touch;
-			scrollbar-width: none;
-		}
-
-		.product__thumbs::-webkit-scrollbar {
-			display: none;
-		}
-
-		.product__thumb {
-			flex: 0 0 42%;
-			max-width: 9.5rem;
-			scroll-snap-align: start;
-		}
-
-		.product__price {
-			font-size: clamp(1.75rem, 8vw, 2.25rem);
-		}
-
-		.alt-link {
-			flex: 1 1 100%;
-			justify-content: center;
-			min-height: var(--touch-min);
-		}
-
-		.cart-btn {
-			min-height: var(--touch-min);
 		}
 	}
 </style>

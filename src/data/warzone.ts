@@ -2,7 +2,7 @@ import { siteConfig } from './site';
 
 /** User-provided Warzone cheat/ESP screenshots — six unique keyword SEO filenames. */
 export const warzoneImages = {
-	hero: '/images/warzone-esp-player-tags.webp',
+	hero: '/images/warzone-hero-banner.webp',
 	espWallhack: '/images/warzone-wallhack-skeleton.webp',
 	aimbotCombat: '/images/warzone-aimbot-sniper.webp',
 	aimbotSkeleton: '/images/warzone-aimbot-skeleton.webp',
@@ -36,36 +36,16 @@ export const warzoneImages = {
 		{ src: '/images/warzone-aimbot-sniper.webp', alt: 'Warzone aimbot sniper scope' },
 		{ src: '/images/warzone-esp-radar.webp', alt: 'Warzone ESP radar overlay' },
 	],
+	/**
+	 * @deprecated Prefer brand.sitemap.images via brand-sitemap / page-sitemap.
+	 * Kept as path aliases for older imports; titles come from Brand Studio.
+	 */
 	sitemap: [
-		{
-			src: '/images/warzone-esp-player-tags.webp',
-			title: 'Warzone ESP player tags',
-			caption: 'Warzone ESP player tags hack',
-		},
-		{
-			src: '/images/warzone-wallhack-skeleton.webp',
-			title: 'Warzone wallhack skeleton',
-			caption: 'Warzone wallhack skeleton ESP',
-		},
-		{
-			src: '/images/warzone-aimbot-sniper.webp',
-			title: 'Warzone aimbot sniper',
-			caption: 'Warzone aimbot sniper kill',
-		},
-		{
-			src: '/images/warzone-aimbot-skeleton.webp',
-			title: 'Warzone aimbot skeleton',
-			caption: 'Warzone aimbot skeleton targeting',
-		},
-		{
-			src: '/images/warzone-esp-radar.webp',
-			title: 'Warzone ESP radar hack',
-			caption: 'Warzone ESP radar wireframe',
-		},
-		{
-			src: '/images/warzone-cheats-combat.webp',
-			title: 'Warzone cheats combat',
-			caption: 'Warzone cheats ADS aimbot',
-		},
+		{ src: '/images/warzone-esp-player-tags.webp', title: '', caption: '' },
+		{ src: '/images/warzone-wallhack-skeleton.webp', title: '', caption: '' },
+		{ src: '/images/warzone-aimbot-sniper.webp', title: '', caption: '' },
+		{ src: '/images/warzone-aimbot-skeleton.webp', title: '', caption: '' },
+		{ src: '/images/warzone-esp-radar.webp', title: '', caption: '' },
+		{ src: '/images/warzone-cheats-combat.webp', title: '', caption: '' },
 	],
 } as const;

@@ -1,495 +1,419 @@
 ---
-import { homeFaqs, productInfo, siteConfig } from '../data/site';
+import { homeFaqs } from '../data/site';
+import { getFaqPath } from '../data/faq';
 
-const shareUrl = encodeURIComponent(siteConfig.url + '/');
-const shareText = encodeURIComponent(
-	'Warzone Hacks 2026 — undetected warzone esp, warzone aimbot, wallhack and radar for Warzone on PC',
-);
+const categories = [
+	{
+		title: 'Features',
+		hint: 'What is included',
+		links: [
+			{ href: '/features/', label: 'All features' },
+			{ href: '/warzone-esp/', label: 'ESP' },
+			{ href: '/warzone-aimbot/', label: 'Aimbot' },
+			{ href: '/warzone-radar-hack/', label: 'Radar' },
+		],
+	},
+	{
+		title: 'Status',
+		hint: 'Before you play',
+		links: [
+			{ href: '/updates/', label: 'Live status' },
+			{ href: '/undetected-warzone-cheats/', label: 'Undetected' },
+			{ href: '/ricochet-bypass/', label: 'Ricochet' },
+			{ href: '/setup/', label: 'Setup' },
+		],
+	},
+	{
+		title: 'Store',
+		hint: 'Buy & plans',
+		links: [
+			{ href: '/pricing/', label: 'Plans' },
+			{ href: '/reviews/', label: 'Reviews' },
+			{ href: '/warzone-hacks/', label: 'Preview' },
+			{ href: '/faq/', label: 'FAQ' },
+		],
+	},
+	{
+		title: 'Help',
+		hint: 'Need a hand',
+		links: [
+			{ href: '/support/', label: 'Support' },
+			{ href: '/setup/', label: 'Setup guide' },
+			{ href: '/blog/', label: 'Blog' },
+			{ href: '/refund-policy/', label: 'Refunds' },
+		],
+	},
+];
 ---
 
 <section class="home-seo shell" aria-labelledby="home-seo-title">
-	<div class="home-seo__panel card-surface">
-		<h2 id="home-seo-title">Undetected Warzone Hacks — ESP, Aimbot & Wallhack (2026)</h2>
-		<p>
-			{productInfo.summary} Use this homepage to compare warzone esp wallhack overlays, 2D radar-style threat cues,
-			warzone aimbot controls, Ricochet maintenance notes, monthly vs lifetime licenses, and where to find updates after
-			Warzone patches.
-		</p>
-		<p>
-			Warzone drops you into massive battle royale maps with enemy squads, chests, loadout drops, and high-stakes gulag
-			fights. Information density matters: knowing where players, vehicles, and loot sit before a fight starts can change
-			how a match ends. Warzone Hacks is built around that pressure with readable warzone esp and configurable warzone
-			aimbot tools for Windows PC — also searched as warzone cheats and warzone hack.
-		</p>
-		<p>
-			Players shopping for warzone hacks or warzone cheats usually want three clear answers: which warzone esp overlays cover
-			players and loot, how warzone aimbot behaves in BR and Resurgence fights, and which license length fits their schedule.
-			Start with the <a href="/warzone-hacks/">warzone hacks pillar</a>, then explore
-			<a href="/warzone-esp/">warzone esp</a>, <a href="/warzone-aimbot/">warzone aimbot</a>, features, pricing, FAQ, and
-			support.
-		</p>
-		<p>
-			Official seasons and client updates ship through
-			<a href="https://www.callofduty.com/warzone" target="_blank" rel="noopener noreferrer">Call of Duty Warzone</a>
-			and
-			<a href="https://www.callofduty.com/ricochet" target="_blank" rel="noopener noreferrer">Ricochet Anti-Cheat</a>.
-			Check
-			<a href="https://support.activision.com/" target="_blank" rel="noopener noreferrer">Activision Support</a>
-			on patch mornings, then confirm our
-			<a href="/updates/">Updates log</a>
-			before you queue.
-		</p>
-
-		<div class="home-seo__grid">
-			<article>
-				<h3><a href="/warzone-hacks/">Warzone hacks — esp, aimbot & wallhack</a></h3>
-				<p>
-					Pillar guide for undetected warzone hacks: warzone esp wallhack, radar overlays, warzone aimbot controls,
-					Ricochet maintenance, and how warzone cheats searchers map to the same Windows PC package.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/undetected-warzone-cheats/">Undetected warzone hacks & cheats</a></h3>
-				<p>
-					Compare undetected warzone cheats with Ricochet maintenance, warzone esp wallhack, radar overlays, and
-					warzone aimbot in one license — plus where to check status after every Warzone patch.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-wallhack/">Warzone wallhack esp for players & loot</a></h3>
-				<p>
-					Wallhack-style warzone esp for enemy squads, vehicles, chests, and loadout drops with distance readouts
-					across Verdansk, Urzikstan, and Rebirth Island.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-radar-hack/">Warzone radar hack for flank awareness</a></h3>
-				<p>
-					2D radar overlays highlight nearby players outside your line of sight — useful for building fights and
-					final-circle rotations in BR and Resurgence.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-aimbot/">Warzone aimbot for BR & Resurgence combat</a></h3>
-				<p>
-					Warzone aimbot settings cover smoothness, bone priority, target selection, and hotkey toggles for
-					Warzone firefights on Windows PC.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/ricochet-bypass/">Ricochet bypass maintenance guide</a></h3>
-				<p>
-					Learn how Warzone Hacks handles Ricochet anti-cheat updates, when rebuilds ship, and what to check on the
-					Updates page before you queue.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-cheats-2026/">Warzone cheats 2026 buyer guide</a></h3>
-				<p>
-					One page to compare 2026 warzone cheats keywords: undetected status, wallhack, radar, warzone aimbot, pricing,
-					and setup for new buyers — cross-linked from the warzone hacks pillar.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-esp/">Warzone esp wallhack for players & loot</a></h3>
-				<p>
-					Warzone esp wallhack overlays for enemy squads, vehicles, chests, and loot with distance readouts across
-					Verdansk, Urzikstan, and Rebirth Island.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-soft-aim/">Warzone soft aim & smooth aimbot</a></h3>
-				<p>
-					Smooth soft aim settings with FOV, bone priority, and per-weapon profiles for natural-looking warzone aimbot
-					assist in BR and Resurgence firefights.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-aimbot-hack/">Warzone aimbot hack for undetected assist</a></h3>
-				<p>
-					Undetected warzone aimbot hack with hotkey toggles, smoothness controls, and Ricochet maintenance bundled with
-					warzone esp wallhack and radar in one license.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-esp-hack/">Warzone esp hack & player wallhack</a></h3>
-				<p>
-					Warzone esp hack overlays for enemy players, loot, chests, and vehicles with distance readouts across Verdansk
-					and Resurgence.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-unlock-all/">Warzone unlock all vs esp tools</a></h3>
-				<p>
-					What Warzone unlock all searches mean compared to the warzone esp wallhack, radar hack, and warzone aimbot
-					tools Warzone Hacks actually provides on Windows PC.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/best-warzone-cheats/">Best warzone cheats buyer guide</a></h3>
-				<p>
-					Compare the best warzone cheats for 2026: undetected status, feature checklist, pricing, and setup before
-					checkout.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/reviews/">Warzone Hacks customer reviews</a></h3>
-				<p>
-					Read real buyer feedback on soft aim, warzone esp boxes, cloud DMA, controllers, and Ricochet patch-day updates
-					— then open full review pages for each handle.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-cheat-download/">Warzone hack download & delivery</a></h3>
-				<p>
-					How warzone hack download works — instant digital license delivery after payment with setup and update
-					guidance.
-				</p>
-			</article>
-			<article>
-				<h3><a href="/warzone-mod-menu/">Warzone mod menu in-client toggles</a></h3>
-				<p>
-					In-match mod menu controls for warzone esp wallhack categories, radar range, and warzone aimbot profiles without
-					leaving your Warzone session.
-				</p>
-			</article>
+	<header class="home-seo__head">
+		<div>
+			<p class="home-seo__eyebrow">Guides</p>
+			<h2 id="home-seo-title">Browse by category</h2>
+			<p class="home-seo__lede">Short links for features, status, store, and help.</p>
 		</div>
-	</div>
+	</header>
 
-	<div class="home-seo__panel card-surface">
-		<h2>What Warzone Hacks includes</h2>
-		<p>
-			This warzone hacks package is sold for Warzone on Windows PC. Warzone esp helps you spot enemy players, vehicles,
-			loot, and distance. Warzone aimbot adds assisted targeting with smoothness, priority, and hotkeys. General options
-			include in-client toggles, monthly and lifetime plans, Warzone patch notices, and support.
-		</p>
-		<ul>
-			{productInfo.features.esp.map((item) => <li>{item}</li>)}
-			{productInfo.features.radar.map((item) => <li>{item}</li>)}
-			{productInfo.features.aimbot.map((item) => <li>{item}</li>)}
-			{productInfo.features.general.map((item) => <li>{item}</li>)}
-		</ul>
-		<p>
-			Compare durations on the
-			<a href="/pricing/">Warzone Hacks pricing page</a>.
-			Watch
-			<a href="/updates/">warzone hack update notices</a>
-			after game patches. Policy details live in the refund, privacy, and terms pages in the footer.
-		</p>
-	</div>
-
-	<div class="home-seo__panel card-surface">
-		<h2>How to evaluate warzone esp and warzone aimbot</h2>
-		<p>
-			Start with the Warzone loop you care about most. If rotation routes and threat awareness come first, open the
-			<a href="/warzone-esp/">warzone esp</a> page and confirm player, vehicle, and loot overlays. If close-quarters and
-			long-range fights matter more, review warzone aimbot smoothness, target priority, and hotkey behavior. Most players
-			check both, then use the feature list before choosing monthly or lifetime access.
-		</p>
-		<p>
-			Delivery is digital after payment confirmation. After purchase, watch the Updates page for maintenance notes tied to
-			Warzone patches, and contact support if license delivery or setup needs clarification. Platforms supported today:{' '}
-			{productInfo.platforms.join(', ')}. Market availability: {siteConfig.market}.
-		</p>
-		<p>
-			Every page on this site is scoped to warzone hacks and warzone cheats: warzone esp explains map visibility tools,
-			warzone aimbot explains aiming controls, Features summarizes the package, Pricing compares plan lengths, Setup walks
-			through install, FAQ answers purchase questions, and Support is the contact path when you need a human reply.
-		</p>
-	</div>
-
-	<div class="home-seo__panel card-surface">
-		<h2>Ready to buy undetected warzone hacks?</h2>
-		<p>
-			If warzone esp wallhack, radar awareness, and warzone aimbot in one maintained Windows PC license match what you
-			searched for, compare monthly ($35) and lifetime ($150) on the
-			<a href="/pricing/">pricing page</a>, skim
-			<a href="/features/">features</a>, then complete
-			<a href="/setup/">setup</a>
-			after delivery. For status after patches, keep
-			<a href="/undetected-warzone-cheats/">undetected warzone cheats</a>
-			and the
-			<a href="/ricochet-bypass/">Ricochet bypass guide</a>
-			bookmarked.
-		</p>
-		<p>
-			Want meta guides while you wait for a rebuild?
-			<a href="/blog/">Warzone Intel blog</a>
-			covers Resurgence aggression, loot routes, weapon tiers, and warmup routines that pair with better information tools
-			in-game.
-		</p>
+	<div class="home-seo__cats">
+		{
+			categories.map((cat) => (
+				<nav class="home-seo__cat" aria-label={cat.title}>
+					<header class="home-seo__cat-head">
+						<h3>{cat.title}</h3>
+						<p>{cat.hint}</p>
+					</header>
+					<ul>
+						{cat.links.map((link) => (
+							<li>
+								<a href={link.href}>
+									<span>{link.label}</span>
+									<span class="home-seo__cat-arrow" aria-hidden="true" />
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+			))
+		}
 	</div>
 
 	<section class="home-seo__faq" aria-labelledby="home-faq-title">
-		<h2 id="home-faq-title">Quick FAQ for warzone hacks</h2>
+		<header class="home-seo__faq-head">
+			<div>
+				<p class="home-seo__eyebrow">FAQ</p>
+				<h3 id="home-faq-title">Before you buy</h3>
+				<p class="home-seo__faq-lede">Delivery, detection status, and what is included.</p>
+			</div>
+			<a class="home-seo__faq-link" href="/faq/">All answers</a>
+		</header>
 		<div class="home-seo__faq-list">
 			{
 				homeFaqs.map((item) => (
-					<details class="home-seo__item">
-						<summary>{item.question}</summary>
-						<p>{item.answer}</p>
+					<details class="home-seo__item" id={item.slug}>
+						<summary>
+							<span>{item.question}</span>
+							<span class="home-seo__chev" aria-hidden="true" />
+						</summary>
+						<div class="home-seo__item-body">
+							<p>{item.answer}</p>
+							<a class="home-seo__item-link" href={getFaqPath(item.slug)}>
+								Open full page
+							</a>
+						</div>
 					</details>
 				))
 			}
-		</div>
-		<p class="home-seo__more">
-			More answers are on the <a href="/faq/">full warzone hacks FAQ</a>, plus the
-			<a href="/setup/">setup guide</a>. Policy details are in
-			<a href="/refund-policy/">refund policy</a>,
-			<a href="/privacy-policy/">privacy policy</a>, and
-			<a href="/terms/">terms of use</a>.
-		</p>
-	</section>
-
-	<section class="home-seo__share" aria-labelledby="share-title">
-		<h2 id="share-title">Share Warzone Hacks</h2>
-		<p>Pass this page along if someone else is comparing warzone esp and warzone aimbot options for Warzone.</p>
-		<div class="home-seo__share-row">
-			<a
-				class="share-link"
-				href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				Share Warzone Hacks on X
-			</a>
-			<a
-				class="share-link"
-				href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				Share Warzone Hacks on Facebook
-			</a>
-			<a
-				class="share-link"
-				href={`https://www.reddit.com/submit?url=${shareUrl}&title=${shareText}`}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				Share Warzone Hacks on Reddit
-			</a>
-			<a
-				class="share-link"
-				href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				Share Warzone Hacks on LinkedIn
-			</a>
 		</div>
 	</section>
 </section>
 
 <style>
 	.home-seo {
-		display: grid;
-		gap: 1.5rem;
-		padding-bottom: 1rem;
+		padding-block: clamp(2.75rem, 5vw, 4rem);
+		color: var(--ink-muted);
+		font-size: 0.9375rem;
+		line-height: 1.55;
 	}
 
-	.card-surface {
-		padding: clamp(1.25rem, 3vw, 1.75rem);
-		border-radius: var(--radius-card);
-		border: 1px solid rgba(168, 85, 247, 0.16);
-		background: rgba(26, 22, 38, 0.72);
+	.home-seo__head {
+		margin-bottom: 1.35rem;
+		padding-bottom: 1.2rem;
+		border-bottom: 1px solid var(--line-soft);
 	}
 
-	.home-seo h2 {
+	.home-seo__eyebrow {
+		margin: 0 0 0.4rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--magenta-soft);
+	}
+
+	.home-seo__head h2 {
 		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+		font-size: clamp(1.45rem, 2.8vw, 1.85rem);
 		font-weight: 800;
+		letter-spacing: -0.03em;
+		line-height: 1.15;
+		color: var(--ink);
 	}
 
-	.home-seo p {
-		margin: 0.85rem 0 0;
-		color: var(--color-muted);
-		line-height: 1.65;
+	.home-seo__lede {
+		margin: 0.45rem 0 0;
+		max-width: 32rem;
+		font-size: 0.9rem;
+		color: var(--ink-muted);
 	}
 
-	.home-seo ul {
-		margin: 1rem 0 0;
-		padding: 0;
+	.home-seo__cats {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.65rem;
+		align-items: stretch;
+	}
+
+	.home-seo__cat {
+		display: flex;
+		flex-direction: column;
+		min-height: 100%;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: var(--bg-panel);
+		overflow: hidden;
+		transition: border-color 0.2s ease;
+	}
+
+	.home-seo__cat:hover {
+		border-color: color-mix(in srgb, var(--magenta) 28%, var(--line));
+	}
+
+	.home-seo__cat-head {
+		padding: 0.9rem 1rem 0.75rem;
+		border-bottom: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-elevated) 80%, transparent);
+	}
+
+	.home-seo__cat-head h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 0.95rem;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--ink);
+	}
+
+	.home-seo__cat-head p {
+		margin: 0.25rem 0 0;
+		font-size: 0.75rem;
+		line-height: 1.35;
+		color: var(--ink-faint);
+	}
+
+	.home-seo__cat ul {
+		margin: 0;
+		padding: 0.25rem 0;
 		list-style: none;
 		display: grid;
-		gap: 0.45rem;
+		flex: 1;
 	}
 
-	.home-seo li {
-		position: relative;
-		padding: 0.55rem 0.75rem 0.55rem 1.85rem;
-		border-radius: 0.65rem;
-		border: 1px solid rgba(168, 85, 247, 0.1);
-		background: rgba(10, 6, 18, 0.35);
-		color: #d4cae6;
-		font-size: 0.94rem;
-		line-height: 1.5;
+	.home-seo__cat a {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding: 0.62rem 1rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--ink-muted);
+		transition:
+			background 0.15s ease,
+			color 0.15s ease;
 	}
 
-	.home-seo li::before {
-		content: '';
-		position: absolute;
-		left: 0.75rem;
-		top: 50%;
+	.home-seo__cat-arrow {
 		width: 0.35rem;
 		height: 0.35rem;
-		border-radius: 999px;
-		background: var(--color-orchid);
-		transform: translateY(-50%);
+		flex-shrink: 0;
+		border-right: 1.5px solid currentColor;
+		border-bottom: 1.5px solid currentColor;
+		transform: rotate(-45deg);
+		opacity: 0;
+		transition:
+			opacity 0.15s ease,
+			transform 0.15s ease;
 	}
 
-	.home-seo a {
-		color: var(--color-orchid);
+	.home-seo__cat a:hover {
+		background: color-mix(in srgb, var(--magenta) 8%, transparent);
+		color: var(--magenta-soft);
+	}
+
+	.home-seo__cat a:hover .home-seo__cat-arrow {
+		opacity: 0.9;
+		transform: rotate(-45deg) translate(1px, 1px);
+	}
+
+	.home-seo__faq {
+		margin-top: 2.25rem;
+		padding: clamp(1.35rem, 3vw, 1.85rem);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg, 1rem);
+		background:
+			radial-gradient(ellipse 70% 80% at 100% 0%, color-mix(in srgb, var(--magenta) 10%, transparent), transparent 50%),
+			var(--bg-panel);
+	}
+
+	.home-seo__faq-head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.15rem;
+		padding-bottom: 1.05rem;
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.home-seo__faq-head h3 {
+		margin: 0.15rem 0 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.45rem, 2.8vw, 1.85rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: var(--ink);
+	}
+
+	.home-seo__faq-lede {
+		margin: 0.45rem 0 0;
+		max-width: 36rem;
+		font-size: 0.875rem;
+		line-height: 1.5;
+		color: var(--ink-muted);
+	}
+
+	.home-seo__faq-link {
+		flex-shrink: 0;
+		margin-top: 0.35rem;
+		font-size: 0.875rem;
 		font-weight: 600;
+		color: var(--magenta-soft);
+		text-decoration: none;
+		white-space: nowrap;
 	}
 
-	.home-seo a:hover {
-		color: var(--color-ink);
-	}
-
-	.home-seo__grid {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 0.85rem;
-		margin-top: 1.25rem;
-	}
-
-	.home-seo__grid article {
-		padding: 1rem;
-		border-radius: 0.9rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(10, 6, 18, 0.35);
-	}
-
-	.home-seo__grid h3 {
-		margin: 0;
-		font-size: 1rem;
-		font-weight: 750;
-	}
-
-	.home-seo__grid p {
-		margin-top: 0.45rem;
-		font-size: 0.92rem;
+	.home-seo__faq-link:hover {
+		color: var(--ink);
 	}
 
 	.home-seo__faq-list {
 		display: grid;
-		gap: 0.65rem;
-		margin-top: 1rem;
+		gap: 0.45rem;
 	}
 
 	.home-seo__item {
-		border-radius: 0.85rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(26, 22, 38, 0.65);
-		padding: 0.85rem 1rem;
+		margin: 0;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md, 0.75rem);
+		background: color-mix(in srgb, var(--bg) 55%, var(--bg-elevated));
+		overflow: hidden;
+	}
+
+	.home-seo__item[open],
+	.home-seo__item:hover {
+		border-color: color-mix(in srgb, var(--magenta) 28%, var(--line));
 	}
 
 	.home-seo__item summary {
-		cursor: pointer;
-		font-weight: 700;
-		color: var(--color-ink);
-	}
-
-	.home-seo__item p {
-		margin-top: 0.65rem;
-	}
-
-	.home-seo__more {
-		font-size: 0.92rem;
-	}
-
-	.home-seo__share {
-		padding: clamp(1.1rem, 2.5vw, 1.5rem);
-		border-radius: var(--radius-card);
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(18, 16, 26, 0.55);
-	}
-
-	.home-seo__share-row {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.65rem;
-		margin-top: 1rem;
-	}
-
-	.share-link {
-		display: inline-flex;
 		align-items: center;
-		justify-content: center;
-		min-height: 2.5rem;
-		padding: 0.55rem 0.95rem;
-		border-radius: 0.7rem;
-		border: 1px solid rgba(192, 132, 252, 0.25);
-		background: rgba(34, 28, 48, 0.85);
-		color: var(--color-ink) !important;
-		font-size: 0.88rem;
-		font-weight: 700;
-		transition:
-			border-color 0.2s ease,
-			background 0.2s ease;
+		justify-content: space-between;
+		gap: 1rem;
+		cursor: pointer;
+		list-style: none;
+		padding: 0.95rem 1.05rem;
+		font-size: 0.9375rem;
+		font-weight: 600;
+		line-height: 1.35;
+		color: var(--ink);
 	}
 
-	.share-link:hover {
-		border-color: rgba(192, 132, 252, 0.5);
-		background: rgba(48, 36, 72, 0.9);
+	.home-seo__item summary::-webkit-details-marker {
+		display: none;
 	}
 
-	@media (max-width: 1024px) {
-		.home-seo__grid {
+	.home-seo__item[open] summary {
+		border-bottom: 1px solid var(--line-soft);
+		color: var(--magenta-soft);
+	}
+
+	.home-seo__chev {
+		position: relative;
+		width: 1.05rem;
+		height: 1.05rem;
+		flex-shrink: 0;
+		border-radius: 999px;
+		border: 1px solid var(--line-strong);
+	}
+
+	.home-seo__chev::before,
+	.home-seo__chev::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		background: var(--magenta-soft);
+		border-radius: 999px;
+	}
+
+	.home-seo__chev::before {
+		width: 0.45rem;
+		height: 1.5px;
+		transform: translate(-50%, -50%);
+	}
+
+	.home-seo__chev::after {
+		width: 1.5px;
+		height: 0.45rem;
+		transform: translate(-50%, -50%);
+	}
+
+	.home-seo__item[open] .home-seo__chev::after {
+		opacity: 0;
+	}
+
+	.home-seo__item-body {
+		display: grid;
+		gap: 0.65rem;
+		padding: 0.85rem 1.05rem 1.05rem;
+	}
+
+	.home-seo__item-body p {
+		margin: 0;
+		font-size: 0.875rem;
+		line-height: 1.6;
+		color: var(--ink-muted);
+	}
+
+	.home-seo__item-link {
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--magenta-soft);
+		text-decoration: none;
+	}
+
+	.home-seo__item-link:hover {
+		color: var(--ink);
+	}
+
+	@media (max-width: 900px) {
+		.home-seo__cats {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
+
+		.home-seo__faq-head {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.75rem;
+		}
+
+		.home-seo__faq-link {
+			margin-top: 0;
+			min-height: var(--touch-min, 2.75rem);
+			display: inline-flex;
+			align-items: center;
+		}
 	}
 
-	@media (max-width: 720px) {
-		.home-seo {
-			gap: 1.1rem;
-		}
-
-		.card-surface {
-			padding: 1rem;
-		}
-
-		.home-seo h2 {
-			font-size: clamp(1.2rem, 5.5vw, 1.5rem);
-		}
-
-		.home-seo p {
-			font-size: 0.92rem;
-		}
-
-		.home-seo__grid {
+	@media (max-width: 520px) {
+		.home-seo__cats {
 			grid-template-columns: 1fr;
-			gap: 0.65rem;
 		}
 
-		.home-seo__grid article {
-			padding: 0.85rem;
-		}
-
-		.home-seo__grid h3 {
-			font-size: 0.94rem;
-			line-height: 1.35;
-		}
-
-		.home-seo__grid p {
-			font-size: 0.88rem;
-		}
-
-		.home-seo__item summary {
-			font-size: 0.92rem;
-			line-height: 1.4;
-			padding-right: 0.5rem;
-		}
-
-		.home-seo__share-row {
-			flex-direction: column;
-		}
-
-		.share-link {
-			width: 100%;
-			min-height: var(--touch-min);
+		.home-seo__faq {
+			padding: 1.1rem 1rem 1.15rem;
 		}
 	}
 </style>

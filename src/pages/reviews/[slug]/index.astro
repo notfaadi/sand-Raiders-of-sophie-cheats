@@ -77,7 +77,7 @@ const extraGraph: Record<string, unknown>[] = [
 	canonicalPath={canonicalPath}
 	hreflangAlternates={hreflangAlternates}
 	ogImage={siteConfig.defaultOgImage}
-	ogImageAlt={`Warzone Hacks review by @${review.handle}`}
+	ogImageAlt={`${siteConfig.name} review by @${review.handle}`}
 	type="article"
 	locale="en"
 	breadcrumbs={[
@@ -89,7 +89,8 @@ const extraGraph: Record<string, unknown>[] = [
 >
 	<Navbar />
 	<main class="review-page">
-		<div class="shell review-page__wrap">
+		<div class="shell">
+			<div class="shell-content review-page__wrap">
 			<nav class="review-page__crumbs" aria-label="Breadcrumb">
 				<a href="/">Home</a>
 				<span aria-hidden="true">/</span>
@@ -102,7 +103,7 @@ const extraGraph: Record<string, unknown>[] = [
 				<header class="review-detail__head">
 					<span class="review-detail__avatar" aria-hidden="true">{review.handle.charAt(0).toUpperCase()}</span>
 					<div class="review-detail__meta">
-						<h1 class="review-detail__title">Warzone Hacks review by @{review.handle}</h1>
+						<h1 class="review-detail__title">{siteConfig.name} review by @{review.handle}</h1>
 						<p class="review-detail__stars" aria-label={`${review.rating} out of 5 stars`}>
 							<span aria-hidden="true">{stars(review.rating)}</span>
 							<span class="review-detail__rating">{review.rating}/5</span>
@@ -121,15 +122,15 @@ const extraGraph: Record<string, unknown>[] = [
 
 				<div class="review-detail__ctas">
 					<a href={siteConfig.checkoutUrl} class="review-detail__buy" rel="noopener noreferrer">
-						Buy Warzone Hacks — ${productInfo.plans[0].price}
+						Buy {siteConfig.name} — ${productInfo.plans[0].price}
 					</a>
 					<a href="/pricing/" class="review-detail__link-btn">Compare pricing</a>
-					<a href="/" class="review-detail__link-btn">Warzone Hacks home</a>
+					<a href="/" class="review-detail__link-btn">{siteConfig.name} home</a>
 				</div>
 			</article>
 
 			<section class="review-detail__more" aria-labelledby="more-reviews-title">
-				<h2 id="more-reviews-title">More Call of Duty: Warzone hacks reviews</h2>
+				<h2 id="more-reviews-title">More {productInfo.game} reviews</h2>
 				<div class="review-detail__more-grid">
 					{
 						moreReviews.map((other) => (
@@ -146,9 +147,10 @@ const extraGraph: Record<string, unknown>[] = [
 					}
 				</div>
 				<p class="review-detail__all-link">
-					<a href={reviewsBasePath}>All {customerReviewStats.totalCount} Warzone Hacks reviews</a>
+					<a href={reviewsBasePath}>All {customerReviewStats.totalCount} {siteConfig.name} reviews</a>
 				</p>
 			</section>
+			</div>
 		</div>
 	</main>
 	<SiteFooter />
@@ -163,8 +165,6 @@ const extraGraph: Record<string, unknown>[] = [
 	.review-page__wrap {
 		display: grid;
 		gap: 1.75rem;
-		max-width: 780px;
-		margin-inline: auto;
 	}
 
 	.review-page__crumbs {
@@ -173,25 +173,28 @@ const extraGraph: Record<string, unknown>[] = [
 		align-items: center;
 		gap: 0.45rem;
 		font-size: 0.8rem;
-		color: var(--color-faint);
+		color: var(--ink-faint);
 	}
 
 	.review-page__crumbs a {
-		color: var(--color-muted);
+		color: var(--ink-muted);
 		font-weight: 600;
+		text-decoration: none;
 	}
 
 	.review-page__crumbs a:hover {
-		color: var(--color-orchid);
+		color: var(--magenta-soft);
 	}
 
 	.review-detail {
 		display: grid;
 		gap: 1.25rem;
 		padding: clamp(1.25rem, 3vw, 1.85rem);
-		border-radius: var(--radius-card, 1.1rem);
-		border: 1px solid rgba(168, 85, 247, 0.18);
-		background: rgba(26, 22, 38, 0.72);
+		border-radius: var(--radius-lg, 1rem);
+		border: 1px solid var(--line);
+		background:
+			radial-gradient(ellipse 80% 60% at 0% 0%, color-mix(in srgb, var(--magenta) 12%, transparent), transparent 55%),
+			var(--bg-panel);
 	}
 
 	.review-detail__head {
@@ -208,9 +211,9 @@ const extraGraph: Record<string, unknown>[] = [
 		width: 3.25rem;
 		height: 3.25rem;
 		border-radius: 999px;
-		border: 1px solid rgba(192, 132, 252, 0.35);
-		background: rgba(48, 36, 72, 0.75);
-		color: var(--color-orchid);
+		border: 1px solid var(--line-strong);
+		background: var(--bg-elevated);
+		color: var(--magenta-soft);
 		font-family: var(--font-display);
 		font-size: 1.35rem;
 		font-weight: 800;
@@ -229,6 +232,7 @@ const extraGraph: Record<string, unknown>[] = [
 		font-weight: 800;
 		letter-spacing: -0.02em;
 		line-height: 1.2;
+		color: var(--ink);
 		overflow-wrap: anywhere;
 	}
 
@@ -239,13 +243,13 @@ const extraGraph: Record<string, unknown>[] = [
 		gap: 0.55rem;
 		font-size: 1.05rem;
 		letter-spacing: 0.06em;
-		color: #fbbf24;
+		color: var(--accent-amber);
 	}
 
 	.review-detail__rating {
 		font-size: 0.85rem;
 		font-weight: 700;
-		color: var(--color-ink);
+		color: var(--ink);
 		letter-spacing: 0;
 	}
 
@@ -256,7 +260,7 @@ const extraGraph: Record<string, unknown>[] = [
 		align-items: center;
 		gap: 0.55rem;
 		font-size: 0.82rem;
-		color: var(--color-faint);
+		color: var(--ink-faint);
 	}
 
 	.review-detail__tag,
@@ -271,28 +275,28 @@ const extraGraph: Record<string, unknown>[] = [
 	}
 
 	.review-detail__tag {
-		border: 1px solid rgba(192, 132, 252, 0.25);
-		background: rgba(10, 6, 18, 0.45);
-		color: var(--color-orchid);
+		border: 1px solid color-mix(in srgb, var(--magenta) 28%, var(--line));
+		background: var(--bg);
+		color: var(--magenta-soft);
 	}
 
 	.review-detail__verified {
-		border: 1px solid rgba(52, 211, 153, 0.3);
-		background: rgba(10, 6, 18, 0.45);
-		color: var(--color-mint, #34d399);
+		border: 1px solid color-mix(in srgb, var(--ok) 35%, var(--line));
+		background: var(--bg);
+		color: var(--ok);
 	}
 
 	.review-detail__body {
 		margin: 0;
 		padding: 1.15rem 1.25rem;
-		border-left: 3px solid var(--color-orchid);
-		border-radius: 0.65rem;
-		background: rgba(10, 6, 18, 0.4);
+		border-left: 2px solid color-mix(in srgb, var(--magenta) 55%, var(--line));
+		border-radius: 0 0.65rem 0.65rem 0;
+		background: var(--bg-elevated);
 	}
 
 	.review-detail__body p {
 		margin: 0;
-		color: #ddd2ef;
+		color: var(--ink-muted);
 		font-size: 1.02rem;
 		line-height: 1.75;
 	}
@@ -308,21 +312,21 @@ const extraGraph: Record<string, unknown>[] = [
 		align-items: center;
 		justify-content: center;
 		padding: 0.8rem 1.35rem;
-		border-radius: 0.85rem;
-		background: var(--gradient-brand);
-		color: white;
+		border-radius: 0.75rem;
+		background: var(--magenta);
+		color: #fff;
 		font-size: 0.95rem;
 		font-weight: 700;
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+		text-decoration: none;
 		transition:
 			transform 0.2s ease,
-			filter 0.2s ease;
+			background 0.2s ease;
 	}
 
 	.review-detail__buy:hover {
 		transform: translateY(-1px);
-		filter: brightness(1.05);
-		color: white;
+		background: var(--accent-hover);
+		color: #fff;
 	}
 
 	.review-detail__link-btn {
@@ -330,21 +334,21 @@ const extraGraph: Record<string, unknown>[] = [
 		align-items: center;
 		justify-content: center;
 		padding: 0.8rem 1.1rem;
-		border-radius: 0.85rem;
-		border: 1px solid rgba(192, 132, 252, 0.28);
-		background: rgba(18, 16, 26, 0.55);
-		color: var(--color-ink);
+		border-radius: 0.75rem;
+		border: 1px solid var(--line-strong);
+		background: var(--bg-elevated);
+		color: var(--ink);
 		font-size: 0.9rem;
 		font-weight: 700;
+		text-decoration: none;
 		transition:
 			border-color 0.2s ease,
-			background 0.2s ease;
+			color 0.2s ease;
 	}
 
 	.review-detail__link-btn:hover {
-		border-color: rgba(192, 132, 252, 0.5);
-		background: rgba(48, 36, 72, 0.85);
-		color: var(--color-ink);
+		border-color: color-mix(in srgb, var(--magenta) 40%, var(--line-strong));
+		color: var(--magenta-soft);
 	}
 
 	.review-detail__more {
@@ -357,6 +361,7 @@ const extraGraph: Record<string, unknown>[] = [
 		font-family: var(--font-display);
 		font-size: 1.2rem;
 		font-weight: 800;
+		color: var(--ink);
 	}
 
 	.review-detail__more-grid {
@@ -369,17 +374,18 @@ const extraGraph: Record<string, unknown>[] = [
 		display: grid;
 		gap: 0.45rem;
 		padding: 0.9rem 0.95rem;
-		border-radius: 0.85rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(26, 22, 38, 0.72);
+		border-radius: var(--radius-md, 0.75rem);
+		border: 1px solid var(--line);
+		background: var(--bg-panel);
 		color: inherit;
+		text-decoration: none;
 		transition:
 			border-color 0.2s ease,
 			transform 0.2s ease;
 	}
 
 	.review-detail__more-card:hover {
-		border-color: rgba(192, 132, 252, 0.4);
+		border-color: color-mix(in srgb, var(--magenta) 35%, var(--line));
 		transform: translateY(-2px);
 	}
 
@@ -393,20 +399,20 @@ const extraGraph: Record<string, unknown>[] = [
 	.review-detail__more-handle {
 		font-size: 0.8rem;
 		font-weight: 700;
-		color: var(--color-ink);
+		color: var(--ink);
 		overflow-wrap: anywhere;
 	}
 
 	.review-detail__more-stars {
 		font-size: 0.72rem;
-		color: #fbbf24;
+		color: var(--accent-amber);
 		white-space: nowrap;
 	}
 
 	.review-detail__more-text {
 		font-size: 0.82rem;
 		line-height: 1.55;
-		color: var(--color-muted);
+		color: var(--ink-muted);
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
@@ -419,12 +425,13 @@ const extraGraph: Record<string, unknown>[] = [
 	}
 
 	.review-detail__all-link a {
-		color: var(--color-orchid);
+		color: var(--magenta-soft);
 		font-weight: 700;
+		text-decoration: none;
 	}
 
 	.review-detail__all-link a:hover {
-		color: var(--color-ink);
+		color: var(--ink);
 	}
 
 	@media (max-width: 720px) {

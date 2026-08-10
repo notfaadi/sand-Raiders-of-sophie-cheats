@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
 import SiteFooter from './SiteFooter.astro';
-import { blogUi, type LocaleCode } from '../data/i18n/locales';
+import { blogUi, type LocaleCode, defaultLocale } from '../data/i18n/locales';
 import {
 	absoluteBlogUrl,
 	getAllPostsForLocale,
@@ -10,7 +10,9 @@ import {
 	getFeaturedPosts,
 	getBlogIndexHreflangAlternates,
 } from '../data/blog/helpers';
-import { siteConfig } from '../data/site';
+import { blogLabel, siteConfig } from '../data/site';
+import { brandSeo } from '../data/site-core';
+import { seoDescription, seoPageTitle } from '../data/brand';
 import { getLocalizedPath } from '../data/i18n/routing';
 
 interface Props {
@@ -26,11 +28,15 @@ const canonicalURL = absoluteBlogUrl(locale);
 const hreflangAlternates = getBlogIndexHreflangAlternates(locale);
 const homeHref = getLocalizedPath('home', locale);
 
+const pageTitle = locale === defaultLocale ? seoPageTitle(brandSeo.blogTitle) : ui.blogTitle;
+const pageDescription =
+	locale === defaultLocale ? seoDescription(brandSeo.blogDescription) : ui.blogDescription;
+
 const articleListSchema = {
 	'@type': 'CollectionPage',
 	'@id': `${canonicalURL}#collection`,
 	name: ui.blogH1,
-	description: ui.blogDescription,
+	description: pageDescription,
 	url: canonicalURL,
 	inLanguage: locale,
 	isPartOf: { '@id': `${siteConfig.url}/#website` },
@@ -47,8 +53,8 @@ const articleListSchema = {
 ---
 
 <Layout
-	title={ui.blogTitle}
-	description={ui.blogDescription}
+	title={pageTitle}
+	description={pageDescription}
 	canonicalPath={canonicalPath}
 	hreflangAlternates={hreflangAlternates}
 	locale={locale}
@@ -57,8 +63,9 @@ const articleListSchema = {
 >
 	<Navbar locale={locale} />
 	<main class="blog">
+		<div class="shell blog__inner">
 		<header class="blog__hero">
-			<p class="blog__eyebrow">Warzone Intel</p>
+			<p class="blog__eyebrow" data-edit="blogLabel">{blogLabel}</p>
 			<h1>{ui.blogH1}</h1>
 			<p class="blog__intro">{ui.blogIntro}</p>
 		</header>
@@ -115,22 +122,26 @@ const articleListSchema = {
 				))
 			}
 		</section>
+		</div>
 	</main>
 	<SiteFooter locale={locale} />
 </Layout>
 
 <style>
 	.blog {
-		width: min(1120px, calc(100% - 2rem));
-		margin: 0 auto;
 		padding: 2.5rem 0 4rem;
+	}
+
+	.blog__inner {
+		display: grid;
+		gap: 0;
 	}
 	.blog__hero {
 		margin-bottom: 2.5rem;
 	}
 	.blog__eyebrow {
 		margin: 0 0 0.5rem;
-		color: #c084fc;
+		color: var(--magenta-soft);
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
@@ -156,8 +167,9 @@ const articleListSchema = {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
 		gap: 1.25rem;
 		padding: 1rem;
-		border: 1px solid rgba(192, 132, 252, 0.22);
-		background: linear-gradient(135deg, rgba(40, 24, 64, 0.75), rgba(14, 10, 22, 0.9));
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md, 0.75rem);
+		background: var(--bg-panel);
 		text-decoration: none;
 		color: inherit;
 	}
@@ -173,15 +185,16 @@ const articleListSchema = {
 	}
 	.blog__list {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
 		gap: 1.25rem;
 	}
 	.blog__card a {
 		display: block;
 		height: 100%;
 		padding: 0.85rem;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		background: rgba(18, 14, 28, 0.85);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md, 0.75rem);
+		background: var(--bg-panel);
 		text-decoration: none;
 		color: inherit;
 	}
@@ -204,7 +217,7 @@ const articleListSchema = {
 	}
 	.blog__cat {
 		display: inline-block;
-		color: #c084fc;
+		color: var(--magenta-soft);
 		font-size: 0.72rem;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -219,11 +232,26 @@ const articleListSchema = {
 		font-weight: 600;
 	}
 	.blog__more {
-		color: #c084fc;
+		color: var(--magenta-soft);
 	}
 	@media (max-width: 760px) {
 		.blog__feature-card {
 			grid-template-columns: 1fr;
+		}
+
+		.blog__list {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.blog__card a {
+			padding: 0.75rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.blog__feature-card h2 {
+			font-size: 1.2rem;
 		}
 	}
 </style>

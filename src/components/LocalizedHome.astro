@@ -2,19 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import BreadcrumbBar from '../components/BreadcrumbBar.astro';
-import ProductCard from '../components/ProductCard.astro';
-import Gallery from '../components/Gallery.astro';
+import HomeReviews from '../components/HomeReviews.astro';
 import HomeSeo from '../components/HomeSeo.astro';
-import CustomerReviews from '../components/CustomerReviews.astro';
-import TrustBar from '../components/TrustBar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getLocaleContent, getPageContent } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import type { LocaleCode } from '../data/i18n/locales';
-import { homeFaqs, productInfo, siteConfig, seoKeywords, customerReviewStats, customerReviews } from '../data/site';
+import { homeFaqs, homeSeo, productInfo, siteConfig, seoKeywords, customerReviewStats, customerReviews } from '../data/site';
 import { warzoneImages } from '../data/warzone';
-import { heroPreloadSrc, heroSizes, heroSrcSet } from '../lib/responsive-images';
+import { heroPreloadSrc, heroSizes } from '../lib/responsive-images';
 
 interface Props {
 	locale: LocaleCode;
@@ -23,12 +19,13 @@ interface Props {
 const { locale } = Astro.props;
 const { ui } = getLocaleContent(locale);
 const home = getPageContent(locale, 'home');
+const enHome = homeSeo();
 
-const title = home.title;
-const description = home.description;
+const title = locale === 'en' ? enHome.title : home.title;
+const description = locale === 'en' ? enHome.description : home.description;
 const canonicalPath = getLocalizedPath('home', locale);
 const canonicalURL = new URL(canonicalPath, siteConfig.url).href;
-const heroImage = new URL(warzoneImages.hero, siteConfig.url).href;
+const heroImage = new URL(siteConfig.heroImage || warzoneImages.hero, siteConfig.url).href;
 const priceValidUntil = '2027-12-31';
 
 const extraGraph: Record<string, unknown>[] = [
@@ -95,6 +92,7 @@ const extraGraph: Record<string, unknown>[] = [
 		mainEntity: homeFaqs.map((item) => ({
 			'@type': 'Question',
 			name: item.question,
+			url: `${siteConfig.url}/faq/${item.slug}/`,
 			acceptedAnswer: {
 				'@type': 'Answer',
 				text: item.answer,
@@ -115,41 +113,23 @@ const extraGraph: Record<string, unknown>[] = [
 	breadcrumbs={[{ label: ui.nav.home }]}
 	extraGraph={locale === 'en' ? extraGraph : extraGraph.filter((n) => n['@type'] !== 'FAQPage')}
 	lcpImage={heroPreloadSrc}
-	lcpImageSrcSet={heroSrcSet}
 	lcpImageSizes={heroSizes}
 >
 	<Navbar locale={locale} pageId="home" />
-	<main class="site">
-		<Hero
-			locale={locale}
-			accent={ui.hero.accent}
-			subtitle={ui.hero.subtitle}
-			subtitleShort={ui.hero.subtitleShort}
-		/>
-		<TrustBar locale={locale} />
-		<BreadcrumbBar
-			locale={locale}
-			items={[
-				{ label: ui.nav.home, href: getLocalizedPath('home', locale) },
-				{ label: ui.product.title },
-			]}
-		/>
-		<section class="site__section site__section--store" id="store" aria-label={ui.product.title}>
-			<div class="shell">
-				<ProductCard locale={locale} />
-			</div>
-		</section>
-		<section class="site__section site__section--seo">
+	<main class="home">
+		<Hero locale={locale} />
+		<HomeReviews />
+		<div class="home__seo">
 			{
 				locale === 'en' ? (
 					<HomeSeo />
 				) : (
-					<div class="shell home-seo-intro">
+					<div class="shell home__prose">
 						<h2>{home.h1}</h2>
 						<p>{home.intro}</p>
 						{
 							home.sections.map((section) => (
-								<div class="home-seo-block">
+								<div>
 									<h3>{section.h2}</h3>
 									{section.paragraphs.map((p) => (
 										<p set:html={p} />
@@ -160,94 +140,40 @@ const extraGraph: Record<string, unknown>[] = [
 					</div>
 				)
 			}
-		</section>
-		<section class="site__section site__section--gallery">
-			<div class="shell">
-				<Gallery locale={locale} />
-			</div>
-		</section>
-		<section class="site__section site__section--reviews">
-			<CustomerReviews locale={locale} />
-		</section>
+		</div>
 		<SiteFooter locale={locale} />
 	</main>
 </Layout>
 
 <style>
-	.site {
+	.home {
+		width: 100%;
 		overflow-x: clip;
 	}
 
-	.site__section--reviews {
-		padding-top: 0.25rem;
-		padding-bottom: 1.25rem;
-		content-visibility: auto;
-		contain-intrinsic-size: 1px 640px;
+	.home__seo {
+		border-top: 1px solid var(--line-soft);
+		background: var(--bg-panel);
 	}
 
-	.site__section--store,
-	.site__section--reviews,
-	.site__section--seo,
-	.site__section--gallery {
-		content-visibility: auto;
-		contain-intrinsic-size: 1px 720px;
-	}
-
-	@media (max-width: 760px) {
-		.site__section--store {
-			contain-intrinsic-size: 1px 900px;
-		}
-	}
-
-	.site__section {
+	.home__prose {
 		padding-block: var(--section-space);
-	}
-
-	.site__section--seo {
-		padding-top: 0.15rem;
-	}
-
-	.site__section--gallery {
-		padding-top: 0.35rem;
-		padding-bottom: 1.25rem;
-	}
-
-	.home-seo-intro {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.home-seo-intro h2 {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.35rem, 3vw, 1.75rem);
-		font-weight: 800;
-	}
-
-	.home-seo-intro p {
-		margin: 0;
-		color: var(--color-muted);
+		color: var(--ink-muted);
 		line-height: 1.65;
+		font-size: 0.9375rem;
 	}
 
-	.home-seo-block {
-		padding: 1rem 1.1rem;
-		border-radius: 0.9rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(26, 22, 38, 0.72);
-		display: grid;
-		gap: 0.65rem;
+	.home__prose h2 {
+		margin: 0 0 0.75rem;
+		font-family: var(--font-display);
+		font-size: 1.5rem;
+		letter-spacing: -0.03em;
+		color: var(--ink);
 	}
 
-	.home-seo-block h3 {
-		margin: 0;
+	.home__prose h3 {
+		margin: 1.25rem 0 0.5rem;
 		font-size: 1rem;
-		font-weight: 750;
-	}
-
-	@media (max-width: 768px) {
-		.site__section--gallery {
-			padding-bottom: 1rem;
-		}
+		color: var(--ink);
 	}
 </style>

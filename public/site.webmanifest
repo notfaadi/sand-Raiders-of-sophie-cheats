@@ -1,11 +1,11 @@
 {
-  "name": "Warzone Hacks",
-  "short_name": "Warzone Hacks",
-  "description": "Undetected warzone hacks — ESP, aimbot, radar and cloud DMA for PC",
+  "name": "The Isle Cheats",
+  "short_name": "Valorant Cheats",
+  "description": "Undetected marathon hacks — ESP, aimbot, and radar for PC",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0612",
-  "theme_color": "#0a0612",
+  "background_color": "#050505",
+  "theme_color": "#050505",
   "icons": [
     {
       "src": "/favicon.png",

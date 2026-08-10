@@ -1,48 +1,7 @@
-# Host canonicalization — keep in sync with functions/_middleware.js (301 → https://warzonehacks.net).
-https://www.warzonehacks.net/* https://warzonehacks.net/:splat 301
-http://www.warzonehacks.net/* https://warzonehacks.net/:splat 301
-http://warzonehacks.net/* https://warzonehacks.net/:splat 301
-
-# Path redirects — keep in sync with PATH_REDIRECTS in functions/_middleware.js.
-
-/sitemap-0.xml /sitemap.xml 301
-/sitemap-index.xml /sitemap.xml 301
-/sitemap.xml/ /sitemap.xml 301
-/sitemap-en.xml/ /sitemap-en.xml 301
-/sitemap-i18n.xml/ /sitemap-i18n.xml 301
-/sitemap-images.xml/ /sitemap-images.xml 301
-/call-of-duty-warzone-cheats / 301
-/call-of-duty-warzone-cheats/ / 301
-/warzone-cheats-2026 /warzone-cheats-2026/ 301
-/warzone-cheats /warzone-cheats-2026/ 301
-/warzone-cheats/ /warzone-cheats-2026/ 301
-/reviews/warzone-esp-zero-build-review-buildsr4k /reviews/warzone-esp-resurgence-review-buildsr4k/ 301
-/reviews/warzone-esp-zero-build-review-buildsr4k/ /reviews/warzone-esp-resurgence-review-buildsr4k/ 301
-/reviews/warzone-radar-hack-review-vanlifefn /reviews/warzone-radar-hack-review-vanlifewz/ 301
-/reviews/warzone-radar-hack-review-vanlifefn/ /reviews/warzone-radar-hack-review-vanlifewz/ 301
-/fortnite-aimbot /warzone-aimbot/ 301
-/fortnite-aimbot/ /warzone-aimbot/ 301
-/fortnite-esp /warzone-esp/ 301
-/fortnite-esp/ /warzone-esp/ 301
-/fortnite-hacks /warzone-hacks/ 301
-/fortnite-hacks/ /warzone-hacks/ 301
-/eac-bypass /ricochet-bypass/ 301
-/eac-bypass/ /ricochet-bypass/ 301
-/eac-bypass-fortnite /ricochet-bypass/ 301
-/eac-bypass-fortnite/ /ricochet-bypass/ 301
-/blog/patch-notes-buffs-nerfs-vaults /blog/warzone-patch-notes-guide/ 301
-/blog/patch-notes-buffs-nerfs-vaults/ /blog/warzone-patch-notes-guide/ 301
-/blog/chapter-7-season-3-skin-leaks-vbucks /blog/warzone-skin-leaks-guide/ 301
-/blog/chapter-7-season-3-skin-leaks-vbucks/ /blog/warzone-skin-leaks-guide/ 301
-/blog/hammer-ar-s-tier-data-analysis /blog/warzone-weapon-tier-list/ 301
-/blog/hammer-ar-s-tier-data-analysis/ /blog/warzone-weapon-tier-list/ 301
-/blog/zero-build-meta-broken-aggressive-strategies /blog/warzone-resurgence-aggressive-strategies/ 301
-/blog/zero-build-meta-broken-aggressive-strategies/ /blog/warzone-resurgence-aggressive-strategies/ 301
-/blog/fncs-meta-watch-tournament-drops /blog/warzone-tournament-meta-guide/ 301
-/blog/fncs-meta-watch-tournament-drops/ /blog/warzone-tournament-meta-guide/ 301
-/blog/secret-loot-routes-full-gold /blog/warzone-loot-routes-guide/ 301
-/blog/secret-loot-routes-full-gold/ /blog/warzone-loot-routes-guide/ 301
-/blog/bugha-settings-pro-setup /blog/warzone-pro-settings-guide/ 301
-/blog/bugha-settings-pro-setup/ /blog/warzone-pro-settings-guide/ 301
-/blog/creative-warmup-maps-pros-use /blog/warzone-warmup-maps-ranked/ 301
-/blog/creative-warmup-maps-pros-use/ /blog/warzone-warmup-maps-ranked/ 301
+# Brand Studio — never publicly routable on Cloudflare Pages
+/brand-studio /404.html 404
+/brand-studio/ /404.html 404
+/brand-studio/* /404.html 404
+/__brand /404.html 404
+/__brand/ /404.html 404
+/__brand/* /404.html 404

@@ -3,11 +3,7 @@ import { warzoneImages } from '../data/warzone';
 import { getUi } from '../data/i18n';
 import { getGalleryUi } from '../data/i18n/gallery-ui';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import {
-	contentSrcSet,
-	galleryFeaturedSizes,
-	galleryTileSizes,
-} from '../lib/responsive-images';
+import { contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
 
 interface Props {
 	locale?: LocaleCode;
@@ -17,9 +13,6 @@ const locale = Astro.props.locale ?? defaultLocale;
 const ui = getUi(locale);
 const gallery = getGalleryUi(locale);
 
-// Only images NOT already shown in the hero or product card — the gallery must not
-// repeat visuals from earlier homepage sections. Never pair cheatsPackage with the
-// old island-map path (identical bytes); warzoneImages.gallery is the source list.
 const galleryAlts = [
 	ui.images.cheatsPackage,
 	ui.images.espWallhack,
@@ -28,293 +21,65 @@ const galleryAlts = [
 	ui.images.squadFight,
 ] as const;
 
-const galleryImages = warzoneImages.gallery.map((image, index) => ({
+const galleryImages = warzoneImages.gallery.slice(0, 4).map((image, index) => ({
 	src: image.src,
 	alt: galleryAlts[index] ?? image.alt,
-	featured: index === 0,
 }));
-
-const featured = galleryImages[0];
-const tiles = galleryImages.slice(1, 5);
 ---
 
 <section class="gallery" id="gallery" aria-labelledby="gallery-title">
-	<header class="gallery__head">
-		<p class="gallery__eyebrow">{gallery.eyebrow}</p>
-		<h2 id="gallery-title" class="gallery__title">{gallery.title}</h2>
-		<p class="gallery__sub">{gallery.subtitle}</p>
-	</header>
+	<h2 id="gallery-title" class="gallery__title">{gallery.title}</h2>
+	<p class="gallery__sub">{gallery.subtitle}</p>
 
-	<div class="gallery__layout">
-		<div class="gallery__content">
-			<div class="gallery__summary">
-				<p class="gallery__lead">{gallery.lead}</p>
-
-				<div class="gallery__highlights">
-					{
-						gallery.highlights.map((item) => (
-							<article class="gallery__info-card">
-								<h3>{item.title}</h3>
-								<p>{item.copy}</p>
-							</article>
-						))
-					}
-				</div>
-			</div>
-
-			<div class="gallery__media">
-				<figure class="gallery__featured media-frame">
+	<div class="gallery__grid">
+		{
+			galleryImages.map((image) => (
+				<figure class="gallery__item media-frame">
 					<img
-						src={featured.src}
-						srcset={contentSrcSet(featured.src)}
-						sizes={galleryFeaturedSizes}
-						alt={featured.alt}
-						width="1400"
-						height="788"
+						src={image.src}
+						srcset={contentSrcSet(image.src)}
+						sizes={galleryTileSizes}
+						alt={image.alt}
+						width="640"
+						height="400"
 						loading="lazy"
 						decoding="async"
 					/>
-					<figcaption>{featured.alt}</figcaption>
 				</figure>
-
-				<div class="gallery__grid">
-					{
-						tiles.map((image) => (
-							<figure class="gallery__item media-frame">
-								<img
-									src={image.src}
-									srcset={contentSrcSet(image.src)}
-									sizes={galleryTileSizes}
-									alt={image.alt}
-									width="1280"
-									height="720"
-									loading="lazy"
-									decoding="async"
-								/>
-								<figcaption>{image.alt}</figcaption>
-							</figure>
-						))
-					}
-				</div>
-			</div>
-		</div>
+			))
+		}
 	</div>
 </section>
 
 <style>
-	.gallery {
-		width: 100%;
-		content-visibility: auto;
-		contain-intrinsic-size: 1px 900px;
-	}
-
-	.gallery__head {
-		margin-bottom: 1.25rem;
-	}
-
-	.gallery__eyebrow {
-		margin: 0 0 0.4rem;
-		font-size: 0.75rem;
-		font-weight: 700;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--color-orchid);
-	}
-
 	.gallery__title {
 		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.6rem, 3vw, 2.2rem);
-		font-weight: 800;
-		letter-spacing: -0.03em;
+		font-size: 1.25rem;
+		font-weight: 700;
 	}
 
 	.gallery__sub {
-		margin: 0.55rem 0 0;
+		margin: 0.5rem 0 1.25rem;
 		color: var(--color-muted);
+		font-size: 0.9375rem;
+		line-height: 1.5;
 		max-width: 36rem;
-		line-height: 1.55;
-	}
-
-	.gallery__layout {
-		border: 1px solid rgba(168, 85, 247, 0.12);
-		border-radius: 1.1rem;
-		background: rgba(18, 16, 26, 0.46);
-		overflow: hidden;
-	}
-
-	.gallery__content {
-		display: grid;
-		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr);
-		align-items: start;
-		gap: 1rem;
-		padding: 1rem;
-	}
-
-	.gallery__summary {
-		display: grid;
-		gap: 1rem;
-		align-content: start;
-	}
-
-	.gallery__lead {
-		margin: 0;
-		padding: 1rem 1.05rem;
-		border-radius: 0.95rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(26, 22, 38, 0.72);
-		color: #e2d9ef;
-		line-height: 1.7;
-	}
-
-	.gallery__highlights {
-		display: grid;
-		gap: 0.75rem;
-	}
-
-	.gallery__info-card {
-		padding: 0.95rem 1rem;
-		border-radius: 0.9rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(10, 6, 18, 0.34);
-	}
-
-	.gallery__info-card h3 {
-		margin: 0;
-		font-size: 0.98rem;
-		font-weight: 750;
-		color: var(--color-ink);
-	}
-
-	.gallery__info-card p {
-		margin: 0.45rem 0 0;
-		color: var(--color-muted);
-		font-size: 0.92rem;
-		line-height: 1.6;
-	}
-
-	.gallery__media {
-		display: grid;
-		gap: 0.85rem;
-	}
-
-	.gallery__featured,
-	.gallery__item {
-		margin: 0;
-	}
-
-	.gallery__featured {
-		aspect-ratio: 16 / 9;
-		border: 1px solid rgba(192, 132, 252, 0.22);
-		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
 	}
 
 	.gallery__grid {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.85rem;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.75rem;
 	}
 
 	.gallery__item {
-		aspect-ratio: 16 / 11;
-	}
-
-	.gallery__featured img,
-	.gallery__item img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		transition: transform 0.45s ease;
-	}
-
-	.gallery__featured:hover img,
-	.gallery__item:hover img {
-		transform: scale(1.03);
-	}
-
-	.gallery__featured figcaption,
-	.gallery__item figcaption {
-		position: absolute;
-		inset: auto 0 0;
-		z-index: 2;
-		padding: 1.6rem 0.95rem 0.8rem;
-		background: linear-gradient(transparent, rgba(10, 6, 18, 0.92));
-		color: #ddd4ec;
-		font-size: 0.75rem;
-		font-weight: 600;
-		opacity: 0;
-		transform: translateY(6px);
-		transition:
-			opacity 0.25s ease,
-			transform 0.25s ease;
-	}
-
-	.gallery__featured:hover figcaption,
-	.gallery__item:hover figcaption {
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	@media (max-width: 900px) {
-		.gallery__content {
-			grid-template-columns: 1fr;
-		}
-
-		.gallery__grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
+		margin: 0;
+		aspect-ratio: 16 / 10;
 	}
 
 	@media (max-width: 560px) {
-		.gallery__head {
-			margin-bottom: 0.85rem;
-		}
-
-		.gallery__title {
-			font-size: clamp(1.35rem, 5.5vw, 1.65rem);
-		}
-
-		.gallery__sub {
-			font-size: 0.9rem;
-		}
-
-		.gallery__content {
-			padding: 0.75rem;
-		}
-
-		.gallery__lead {
-			padding: 0.85rem;
-			font-size: 0.92rem;
-			line-height: 1.6;
-		}
-
-		.gallery__info-card {
-			padding: 0.8rem 0.85rem;
-		}
-
-		.gallery__info-card h3 {
-			font-size: 0.92rem;
-		}
-
-		.gallery__info-card p {
-			font-size: 0.86rem;
-		}
-
 		.gallery__grid {
 			grid-template-columns: 1fr;
-			gap: 0.65rem;
-		}
-
-		.gallery__featured {
-			aspect-ratio: 4 / 3;
-		}
-
-		.gallery__featured figcaption,
-		.gallery__item figcaption {
-			opacity: 1;
-			transform: none;
-			font-size: 0.7rem;
-			padding: 1.2rem 0.75rem 0.65rem;
 		}
 	}
 </style>

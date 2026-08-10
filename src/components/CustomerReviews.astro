@@ -16,7 +16,6 @@ function stars(rating: number): string {
 	return '★'.repeat(rating) + '☆'.repeat(5 - rating);
 }
 
-// Review dates are stored as ISO (for schema.org) — render a friendly "Jul 2026" style label.
 const reviewDateFormatter = new Intl.DateTimeFormat(locale, {
 	month: 'short',
 	year: 'numeric',
@@ -26,60 +25,41 @@ const reviewDateFormatter = new Intl.DateTimeFormat(locale, {
 function formatReviewDate(isoDate: string): string {
 	return reviewDateFormatter.format(new Date(`${isoDate}T00:00:00Z`));
 }
+
+const previewReviews = customerReviews.slice(0, 4);
 ---
 
 <section class="reviews shell" aria-labelledby="reviews-title">
-	<header class="reviews__header">
-		<div>
-			<h2 id="reviews-title">{reviewsUi.title}</h2>
-			<p class="reviews__subtitle">{reviewsUi.subtitle}</p>
-		</div>
-		<div class="reviews__summary" aria-label={`${customerReviewStats.averageRating} out of 5 average rating`}>
-			<p class="reviews__avg">{customerReviewStats.averageRating.toFixed(1)}</p>
-			<p class="reviews__avg-stars" aria-hidden="true">{stars(Math.round(customerReviewStats.averageRating))}</p>
-			<p class="reviews__count">{customerReviewStats.totalCount} {reviewsUi.countLabel} · {reviewsUi.outOf}</p>
-		</div>
-	</header>
+	<div class="reviews__header">
+		<h2 id="reviews-title">{reviewsUi.title}</h2>
+		<p class="reviews__rating">
+			{customerReviewStats.averageRating.toFixed(1)} {reviewsUi.outOf}
+			· {customerReviewStats.totalCount} {reviewsUi.countLabel}
+		</p>
+	</div>
 
-	<div class="reviews__grid">
+	<div class="reviews__list">
 		{
-			customerReviews.map((review) => (
+			previewReviews.map((review) => (
 				<article class="reviews__card">
-					<div class="reviews__card-top">
-						<div class="reviews__who">
-							<span class="reviews__avatar" aria-hidden="true">{review.handle.charAt(0).toUpperCase()}</span>
-							<div>
-								<p class="reviews__handle">@{review.handle}</p>
-								<p class="reviews__date"><time datetime={review.date}>{formatReviewDate(review.date)}</time></p>
-							</div>
-						</div>
-						<p class="reviews__stars" aria-label={`${review.rating} out of 5 stars`}>
+					<div class="reviews__top">
+						<span class="reviews__handle">@{review.handle}</span>
+						<span class="reviews__stars" aria-label={`${review.rating} out of 5`}>
 							{stars(review.rating)}
-						</p>
+						</span>
 					</div>
 					<p class="reviews__text">{review.short}</p>
-					<div class="reviews__card-foot">
-						{review.tag ? <p class="reviews__tag">{review.tag}</p> : <span />}
-						<a class="reviews__more" href={getReviewPath(review.slug)}>
-							Read full review
-							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-								<path d="M5 12h14m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-							</svg>
-						</a>
-					</div>
+					<time class="reviews__date" datetime={review.date}>{formatReviewDate(review.date)}</time>
 				</article>
 			))
 		}
 	</div>
 
-	<div class="reviews__all-row">
-		<a class="reviews__all" href={reviewsBasePath}>
-			{customerReviewStats.totalCount} {reviewsUi.countLabel} · {customerReviewStats.averageRating.toFixed(1)} {reviewsUi.outOf}
-			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-				<path d="M5 12h14m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-			</svg>
+	<p class="reviews__more">
+		<a href={reviewsBasePath}>
+			{reviewsUi.title} →
 		</a>
-	</div>
+	</p>
 </section>
 
 <style>
@@ -88,233 +68,84 @@ function formatReviewDate(isoDate: string): string {
 	}
 
 	.reviews__header {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: 1rem 1.5rem;
-		margin-bottom: 1.35rem;
+		margin-bottom: 1.25rem;
 	}
 
 	.reviews h2 {
 		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-		font-weight: 800;
+		font-size: 1.25rem;
+		font-weight: 700;
 	}
 
-	.reviews__subtitle {
-		margin: 0.45rem 0 0;
+	.reviews__rating {
+		margin: 0.35rem 0 0;
+		font-size: 0.875rem;
 		color: var(--color-muted);
-		font-size: 0.94rem;
-		line-height: 1.55;
-		max-width: 38rem;
 	}
 
-	.reviews__summary {
+	.reviews__list {
 		display: grid;
-		gap: 0.15rem;
-		justify-items: end;
-		text-align: right;
-		padding: 0.85rem 1.1rem;
-		border-radius: 0.9rem;
-		border: 1px solid rgba(168, 85, 247, 0.2);
-		background: rgba(26, 22, 38, 0.72);
-	}
-
-	.reviews__avg {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: 1.85rem;
-		font-weight: 800;
-		line-height: 1;
-		color: var(--color-orchid);
-	}
-
-	.reviews__avg-stars {
-		margin: 0;
-		font-size: 0.85rem;
-		letter-spacing: 0.08em;
-		color: #fbbf24;
-	}
-
-	.reviews__count {
-		margin: 0;
-		font-size: 0.78rem;
-		color: var(--color-faint);
-	}
-
-	.reviews__grid {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.85rem;
-	}
-
-	.reviews__card {
-		display: flex;
-		flex-direction: column;
-		gap: 0.6rem;
-		padding: 1.05rem 1.1rem;
-		border-radius: 0.95rem;
-		border: 1px solid rgba(168, 85, 247, 0.14);
-		background: rgba(26, 22, 38, 0.72);
-		transition:
-			border-color 0.2s ease,
-			transform 0.2s ease,
-			box-shadow 0.2s ease;
-	}
-
-	.reviews__card:hover {
-		border-color: rgba(192, 132, 252, 0.38);
-		transform: translateY(-2px);
-		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
-	}
-
-	.reviews__card-top {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		grid-template-columns: repeat(2, 1fr);
 		gap: 0.75rem;
 	}
 
-	.reviews__who {
-		display: flex;
-		align-items: center;
-		gap: 0.6rem;
-		min-width: 0;
+	.reviews__card {
+		padding: 1rem;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-card);
+		background: var(--color-surface-raised);
 	}
 
-	.reviews__avatar {
-		display: inline-flex;
+	.reviews__top {
+		display: flex;
+		justify-content: space-between;
 		align-items: center;
-		justify-content: center;
-		flex: 0 0 auto;
-		width: 2.15rem;
-		height: 2.15rem;
-		border-radius: 999px;
-		border: 1px solid rgba(192, 132, 252, 0.3);
-		background: rgba(48, 36, 72, 0.7);
-		color: var(--color-orchid);
-		font-size: 0.9rem;
-		font-weight: 800;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.reviews__handle {
-		margin: 0;
-		font-size: 0.88rem;
-		font-weight: 700;
-		color: var(--color-ink);
-		overflow-wrap: anywhere;
-	}
-
-	.reviews__date {
-		margin: 0.1rem 0 0;
-		font-size: 0.72rem;
-		color: var(--color-faint);
+		font-size: 0.8125rem;
+		font-weight: 600;
 	}
 
 	.reviews__stars {
-		margin: 0;
-		font-size: 0.82rem;
-		letter-spacing: 0.04em;
+		font-size: 0.75rem;
 		color: #fbbf24;
-		white-space: nowrap;
 	}
 
 	.reviews__text {
 		margin: 0;
-		color: #d4cae6;
-		font-size: 0.92rem;
-		line-height: 1.6;
-		flex-grow: 1;
+		font-size: 0.875rem;
+		line-height: 1.55;
+		color: var(--color-muted);
 	}
 
-	.reviews__card-foot {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 0.75rem;
-		margin-top: 0.1rem;
-	}
-
-	.reviews__tag {
-		margin: 0;
-		display: inline-flex;
-		padding: 0.2rem 0.55rem;
-		border-radius: 999px;
-		border: 1px solid rgba(192, 132, 252, 0.22);
-		background: rgba(10, 6, 18, 0.45);
-		color: var(--color-orchid);
-		font-size: 0.68rem;
-		font-weight: 700;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
+	.reviews__date {
+		display: block;
+		margin-top: 0.5rem;
+		font-size: 0.75rem;
+		color: var(--color-faint);
 	}
 
 	.reviews__more {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		font-size: 0.8rem;
-		font-weight: 700;
+		margin: 1.25rem 0 0;
+		text-align: center;
+	}
+
+	.reviews__more a {
+		font-size: 0.875rem;
+		font-weight: 600;
 		color: var(--color-orchid);
-		white-space: nowrap;
-		transition: color 0.2s ease;
 	}
 
-	.reviews__more:hover {
+	.reviews__more a:hover {
 		color: var(--color-ink);
 	}
 
-	.reviews__all-row {
-		display: flex;
-		justify-content: center;
-		margin-top: 1.25rem;
-	}
-
-	.reviews__all {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.7rem 1.15rem;
-		border-radius: 0.8rem;
-		border: 1px solid rgba(192, 132, 252, 0.28);
-		background: rgba(26, 22, 38, 0.72);
-		color: var(--color-ink);
-		font-size: 0.9rem;
-		font-weight: 700;
-		transition:
-			border-color 0.2s ease,
-			background 0.2s ease;
-	}
-
-	.reviews__all:hover {
-		border-color: rgba(192, 132, 252, 0.5);
-		background: rgba(48, 36, 72, 0.85);
-		color: var(--color-ink);
-	}
-
-	@media (min-width: 1024px) {
-		.reviews__grid {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-	}
-
-	@media (max-width: 680px) {
-		.reviews__grid {
+	@media (max-width: 640px) {
+		.reviews__list {
 			grid-template-columns: 1fr;
-		}
-
-		.reviews__summary {
-			justify-items: start;
-			text-align: left;
-			width: 100%;
-		}
-
-		.reviews__all {
-			width: 100%;
-			justify-content: center;
-			min-height: var(--touch-min);
 		}
 	}
 </style>

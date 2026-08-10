@@ -1,4 +1,5 @@
 import { customerReviews, siteConfig } from './site';
+import { reviewsSitemapImageMeta } from './brand-sitemap';
 
 export const reviewsBasePath = '/reviews/';
 
@@ -12,8 +13,7 @@ export function absoluteReviewUrl(slug?: string): string {
 
 const reviewOgImage = {
 	url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-	title: 'Warzone Hacks customer reviews',
-	caption: 'Warzone Hacks buyer reviews for ESP soft aim, radar, and cloud DMA',
+	...reviewsSitemapImageMeta(),
 };
 
 /** English review routes for sitemap-en.xml — /reviews/ index + one URL per review. */

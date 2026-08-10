@@ -1,4 +1,5 @@
 import type { PageId } from './i18n/routing';
+import { brandSitemap, sitemapLastmod } from './brand-sitemap';
 
 export type SitemapFreq = 'daily' | 'weekly' | 'monthly' | 'yearly';
 
@@ -38,7 +39,7 @@ export const pageSitemapMeta: Record<PageId, PageSitemapMeta> = {
 	features: { priority: 0.9, changefreq: 'weekly', i18nPriority: 0.84, lastmod: '2026-07-22' },
 	setup: { priority: 0.9, changefreq: 'weekly', i18nPriority: 0.84, lastmod: '2026-07-18' },
 	updates: { priority: 0.9, changefreq: 'daily', i18nPriority: 0.84, lastmod: '2026-08-01' },
-	faq: { priority: 0.8, changefreq: 'monthly', i18nPriority: 0.82, lastmod: '2026-07-15' },
+	faq: { priority: 0.8, changefreq: 'monthly', i18nPriority: 0.82, lastmod: '2026-08-10' },
 	support: { priority: 0.8, changefreq: 'monthly', i18nPriority: 0.82, lastmod: '2026-07-10' },
 	privacy: { priority: 0.4, changefreq: 'yearly', i18nPriority: 0.35, lastmod: '2026-06-08' },
 	refund: { priority: 0.4, changefreq: 'yearly', i18nPriority: 0.35, lastmod: '2026-06-14' },
@@ -47,10 +48,11 @@ export const pageSitemapMeta: Record<PageId, PageSitemapMeta> = {
 
 /** Most recent page lastmod — used as the sitemap index <lastmod> for page sitemaps. */
 export function latestPageLastmod(): string {
-	return Object.values(pageSitemapMeta).reduce(
+	const fromPages = Object.values(pageSitemapMeta).reduce(
 		(max, meta) => (meta.lastmod > max ? meta.lastmod : max),
 		'0000-00-00',
 	);
+	return sitemapLastmod(fromPages) || brandSitemap.contentLastmod || fromPages;
 }
 
 /** Expected URL counts for sitemap validation. */
