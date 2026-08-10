@@ -5,7 +5,7 @@
  */
 export const brand = {
 	/** Public brand name (nav, footer, H1 hero, schema Organization) */
-	name: 'Warzone Cheats',
+	name: 'Warzone Hacks',
 	/** Short product label if needed */
 	shortName: 'Warzone',
 	/** Canonical origin — no trailing slash */
@@ -24,7 +24,7 @@ export const brand = {
 	logoRaster: '/images/warzone-hacks-logo.png',
 	logoRasterWidth: 512,
 	logoRasterHeight: 512,
-	logoAlt: 'Scorpio Hacks logo',
+	logoAlt: 'Warzone hacks logo',
 	defaultOgImage: '/images/hero-banner.webp',
 	heroImage: '/images/hero-banner.webp',
 
@@ -53,15 +53,15 @@ export const brand = {
 	 * Keep 5–8 terms.
 	 */
 	keywords: {
-		primary: 'Warzone hacks',
+		primary: 'warzone hacks',
 		list: [
-			'Warzone hacks',
-			'Best marathon hacks',
-			'Marathon Hacks guides',
-			'marathon cheats',
-			'marathon hack',
-			'marathon esp',
-			'marathon aimbot',
+			'warzone hacks',
+			'warzone esp',
+			'warzone aimbot',
+			'warzone wallhack',
+			'warzone radar',
+			'undetected warzone hacks',
+			'best warzone hacks',
 		] as const,
 	},
 
@@ -94,9 +94,9 @@ export const brand = {
 
 	/** On-page marketing copy (tokens allowed) */
 	copy: {
-		tagline: 'Undetected {primaryKeyword} -- ESP, aimbot, and radar for PC',
-		summary: '{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
-		heroLede: 'Hacks and cheats available -- 0% detection.',
+		tagline: 'Undetected {primaryKeyword} -- ESP, aimbot, and ESP for PC',
+		summary: '{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and ESP, with {antiCheat} maintenance after patches.',
+		heroLede: 'Hacks and cheats available - 0% detection.',
 		blogLabel: '{game} Intel',
 		ctaBuy: 'Buy now',
 		ctaBuyShort: 'Buy',
@@ -110,7 +110,7 @@ export const brand = {
 		reviewsIntro: 'Real feedback from {brand} buyers — ESP, soft aim, radar, and support.',
 		chipEsp: 'ESP / wallhack',
 		chipAim: 'Soft aim',
-		chipRadar: '2D radar',
+		chipRadar: '2D ESP',
 		chipUpdates: 'Patch updates',
 		navPreview: 'Preview',
 		navFeatures: 'Features',
@@ -127,40 +127,40 @@ export const brand = {
 	sitemap: {
 		/** YYYY-MM-DD — Brand Studio can bump this on save to refresh crawl dates */
 		contentLastmod: '2026-08-10',
-		blogImageTitle: '{brand} Intel blog',
-		blogImageCaption: '{game} tips, meta guides, and {antiCheat} notes',
-		reviewsImageTitle: '{brand} customer reviews',
-		reviewsImageCaption: 'Buyer reviews for {primaryKeyword}',
+		blogImageTitle: '{brand} blog',
+		blogImageCaption: 'Tips and updates for {primaryKeyword}',
+		reviewsImageTitle: '{brand} reviews',
+		reviewsImageCaption: 'What buyers say about {primaryKeyword}',
 		images: [
 			{
 				src: '/images/warzone-esp-player-tags.webp',
-				title: '{game} ESP player tags',
-				caption: '{game} ESP player tags hack',
+				title: '{primaryKeyword} ESP',
+				caption: 'See players with {primaryKeyword}',
 			},
 			{
 				src: '/images/warzone-wallhack-skeleton.webp',
-				title: '{game} wallhack skeleton',
-				caption: '{game} wallhack skeleton ESP',
+				title: '{primaryKeyword} wallhack',
+				caption: 'See through walls with {primaryKeyword}',
 			},
 			{
 				src: '/images/warzone-aimbot-sniper.webp',
-				title: '{game} aimbot sniper',
-				caption: '{game} aimbot sniper kill',
+				title: '{primaryKeyword} aimbot',
+				caption: 'Aimbot in {primaryKeyword}',
 			},
 			{
 				src: '/images/warzone-aimbot-skeleton.webp',
-				title: '{game} aimbot skeleton',
-				caption: '{game} aimbot skeleton targeting',
+				title: '{primaryKeyword} aimbot view',
+				caption: 'Aimbot bone view in {primaryKeyword}',
 			},
 			{
 				src: '/images/warzone-esp-radar.webp',
-				title: '{game} ESP radar hack',
-				caption: '{game} ESP radar wireframe',
+				title: '{primaryKeyword} radar',
+				caption: 'Radar map in {primaryKeyword}',
 			},
 			{
 				src: '/images/warzone-cheats-combat.webp',
-				title: '{game} cheats combat',
-				caption: '{game} cheats ADS aimbot',
+				title: '{primaryKeyword} in a fight',
+				caption: 'Fight view with {primaryKeyword}',
 			},
 		],
 	},

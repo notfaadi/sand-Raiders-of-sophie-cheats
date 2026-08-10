@@ -72,42 +72,42 @@ const SITEMAP_TEXT_KEYS = [
 const DEFAULT_SITEMAP_IMAGES = [
 	{
 		src: '/images/warzone-esp-player-tags.webp',
-		title: '{game} ESP player tags',
-		caption: '{game} ESP player tags hack',
+		title: '{primaryKeyword} ESP',
+		caption: 'See players with {primaryKeyword}',
 	},
 	{
 		src: '/images/warzone-wallhack-skeleton.webp',
-		title: '{game} wallhack skeleton',
-		caption: '{game} wallhack skeleton ESP',
+		title: '{primaryKeyword} wallhack',
+		caption: 'See through walls with {primaryKeyword}',
 	},
 	{
 		src: '/images/warzone-aimbot-sniper.webp',
-		title: '{game} aimbot sniper',
-		caption: '{game} aimbot sniper kill',
+		title: '{primaryKeyword} aimbot',
+		caption: 'Aimbot in {primaryKeyword}',
 	},
 	{
 		src: '/images/warzone-aimbot-skeleton.webp',
-		title: '{game} aimbot skeleton',
-		caption: '{game} aimbot skeleton targeting',
+		title: '{primaryKeyword} aimbot view',
+		caption: 'Aimbot bone view in {primaryKeyword}',
 	},
 	{
 		src: '/images/warzone-esp-radar.webp',
-		title: '{game} ESP radar hack',
-		caption: '{game} ESP radar wireframe',
+		title: '{primaryKeyword} radar',
+		caption: 'Radar map in {primaryKeyword}',
 	},
 	{
 		src: '/images/warzone-cheats-combat.webp',
-		title: '{game} cheats combat',
-		caption: '{game} cheats ADS aimbot',
+		title: '{primaryKeyword} in a fight',
+		caption: 'Fight view with {primaryKeyword}',
 	},
 ];
 
 const sitemapDefaults = {
 	contentLastmod: new Date().toISOString().slice(0, 10),
-	blogImageTitle: '{brand} Intel blog',
-	blogImageCaption: '{game} tips, meta guides, and {antiCheat} notes',
-	reviewsImageTitle: '{brand} customer reviews',
-	reviewsImageCaption: 'Buyer reviews for {primaryKeyword}',
+	blogImageTitle: '{brand} blog',
+	blogImageCaption: 'Tips and updates for {primaryKeyword}',
+	reviewsImageTitle: '{brand} reviews',
+	reviewsImageCaption: 'What buyers say about {primaryKeyword}',
 	images: DEFAULT_SITEMAP_IMAGES,
 };
 

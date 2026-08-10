@@ -123,7 +123,11 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 		align-items: center;
 		overflow: hidden;
 		background: #050506;
-		min-height: clamp(26rem, 42vw, 34rem);
+		/* Match banner ratio so cover doesn't crop/zoom the art */
+		aspect-ratio: 1024 / 358;
+		width: 100%;
+		min-height: clamp(14rem, 30vw, 22rem);
+		max-height: min(28rem, 62vh);
 		height: auto;
 	}
 
@@ -142,7 +146,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 	.hero__media img {
 		object-fit: cover;
-		object-position: right center;
+		object-position: center center;
 		image-rendering: -webkit-optimize-contrast;
 		transform: translateZ(0);
 		animation: hero-in 0.9s ease-out both;
@@ -357,20 +361,25 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 	@media (max-width: 900px) {
 		.hero {
-			min-height: clamp(26rem, 58vw, 32rem);
+			min-height: clamp(13rem, 34vw, 20rem);
+			max-height: none;
 		}
 	}
 
 	@media (max-width: 760px) {
 		.hero {
-			min-height: min(32rem, 88dvh);
+			aspect-ratio: auto;
+			min-height: clamp(20rem, 68vw, 26rem);
+			max-height: none;
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-end;
 		}
 
 		.hero__media img {
-			object-position: 78% center;
+			/* Show the full banner instead of cropping/zooming */
+			object-fit: contain;
+			object-position: center center;
 		}
 
 		.hero__veil {
@@ -406,7 +415,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 	@media (max-width: 480px) {
 		.hero {
-			min-height: min(30rem, 86dvh);
+			min-height: clamp(19rem, 78vw, 24rem);
 		}
 
 		.hero__brand {

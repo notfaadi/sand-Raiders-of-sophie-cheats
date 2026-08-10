@@ -43,7 +43,7 @@ export const heroPreloadSrc = heroResponsive[0].src;
 
 /** Intrinsic dimensions for hero LCP (matches hero-banner.webp). */
 export const heroWidth = 1024;
-export const heroHeight = 357;
+export const heroHeight = 358;
 
 /** Responsive widths for below-fold content images. */
 export const contentWidths = [480, 960] as const;

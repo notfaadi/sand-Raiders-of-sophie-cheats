@@ -1,6 +1,6 @@
 import { siteConfig } from './site';
 
-/** User-provided Warzone cheat/ESP screenshots — six unique keyword SEO filenames. */
+/** Screenshots used across product pages — alts use plain Warzone hacks wording. */
 export const warzoneImages = {
 	hero: '/images/hero-banner.webp',
 	espWallhack: '/images/warzone-wallhack-skeleton.webp',
@@ -22,19 +22,19 @@ export const warzoneImages = {
 	resurgenceMode: '/images/warzone-esp-player-tags.webp',
 	battleRoyaleIsland: '/images/warzone-esp-player-tags.webp',
 	product: [
-		{ src: '/images/warzone-esp-player-tags.webp', alt: 'Warzone ESP player tags hack' },
-		{ src: '/images/warzone-wallhack-skeleton.webp', alt: 'Warzone wallhack skeleton ESP' },
-		{ src: '/images/warzone-aimbot-sniper.webp', alt: 'Warzone aimbot sniper kill' },
-		{ src: '/images/warzone-aimbot-skeleton.webp', alt: 'Warzone aimbot skeleton targeting' },
-		{ src: '/images/warzone-esp-radar.webp', alt: 'Warzone ESP radar hack' },
-		{ src: '/images/warzone-cheats-combat.webp', alt: 'Warzone cheats ADS combat' },
+		{ src: '/images/warzone-esp-player-tags.webp', alt: 'Warzone hacks ESP with player names' },
+		{ src: '/images/warzone-wallhack-skeleton.webp', alt: 'Warzone hacks wallhack through walls' },
+		{ src: '/images/warzone-aimbot-sniper.webp', alt: 'Warzone hacks aimbot on a sniper' },
+		{ src: '/images/warzone-aimbot-skeleton.webp', alt: 'Warzone hacks aimbot with bone view' },
+		{ src: '/images/warzone-esp-radar.webp', alt: 'Warzone hacks ESP and radar' },
+		{ src: '/images/warzone-cheats-combat.webp', alt: 'Warzone hacks in a real fight' },
 	],
 	gallery: [
-		{ src: '/images/warzone-cheats-combat.webp', alt: 'Warzone cheats combat aimbot', featured: true },
-		{ src: '/images/warzone-esp-player-tags.webp', alt: 'Warzone ESP player tags' },
-		{ src: '/images/warzone-wallhack-skeleton.webp', alt: 'Warzone wallhack skeleton' },
-		{ src: '/images/warzone-aimbot-sniper.webp', alt: 'Warzone aimbot sniper scope' },
-		{ src: '/images/warzone-esp-radar.webp', alt: 'Warzone ESP radar overlay' },
+		{ src: '/images/warzone-cheats-combat.webp', alt: 'Warzone hacks in a real fight', featured: true },
+		{ src: '/images/warzone-esp-player-tags.webp', alt: 'Warzone hacks ESP with player names' },
+		{ src: '/images/warzone-wallhack-skeleton.webp', alt: 'Warzone hacks wallhack through walls' },
+		{ src: '/images/warzone-aimbot-sniper.webp', alt: 'Warzone hacks aimbot on a sniper' },
+		{ src: '/images/warzone-esp-radar.webp', alt: 'Warzone hacks radar on the map' },
 	],
 	/**
 	 * @deprecated Prefer brand.sitemap.images via brand-sitemap / page-sitemap.

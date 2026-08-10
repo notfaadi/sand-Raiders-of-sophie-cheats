@@ -728,7 +728,7 @@ const sitemapMetaFields: Field[] = [
 	{
 		name: 'blogImageTitle',
 		label: 'Blog sitemap image title',
-		tip: 'What: Title for the blog index image in sitemaps. | Why: Image sitemap / urlset labels. Tokens work. | Example: {brand} Intel blog',
+		tip: 'What: Title for the blog index image in sitemaps. | Why: Image sitemap / urlset labels. Tokens work. | Example: {brand} blog',
 		value: sitemap.blogImageTitle,
 		maxlength: 160,
 	},
@@ -743,14 +743,14 @@ const sitemapMetaFields: Field[] = [
 	{
 		name: 'reviewsImageTitle',
 		label: 'Reviews sitemap image title',
-		tip: 'What: Title for the reviews index image. | Why: EN reviews urlset image label. | Example: {brand} customer reviews',
+		tip: 'What: Title for the reviews index image. | Why: EN reviews urlset image label. | Example: {brand} reviews',
 		value: sitemap.reviewsImageTitle,
 		maxlength: 160,
 	},
 	{
 		name: 'reviewsImageCaption',
 		label: 'Reviews sitemap image caption',
-		tip: 'What: Caption for reviews image. | Why: EN reviews urlset. | Example: Buyer reviews for {primaryKeyword}',
+		tip: 'What: Caption for reviews image. | Why: EN reviews urlset. | Example: What buyers say about {primaryKeyword}',
 		value: sitemap.reviewsImageCaption,
 		maxlength: 220,
 		span: true,
@@ -2171,30 +2171,30 @@ const sections = [
 
 				document.getElementById('autofill-sitemap-btn')?.addEventListener('click', () => {
 					const defaults = {
-						blogImageTitle: '{brand} Intel blog',
-						blogImageCaption: '{game} tips, meta guides, and {antiCheat} notes',
-						reviewsImageTitle: '{brand} customer reviews',
-						reviewsImageCaption: 'Buyer reviews for {primaryKeyword}',
+						blogImageTitle: '{brand} blog',
+						blogImageCaption: 'Tips and updates for {primaryKeyword}',
+						reviewsImageTitle: '{brand} reviews',
+						reviewsImageCaption: 'What buyers say about {primaryKeyword}',
 					};
 					Object.entries(defaults).forEach(([key, tpl]) => {
 						const el = form.elements.namedItem(key);
 						if (el && 'value' in el) el.value = tpl;
 					});
 					const titleTpls = [
-						'{game} ESP player tags',
-						'{game} wallhack skeleton',
-						'{game} aimbot sniper',
-						'{game} aimbot skeleton',
-						'{game} ESP radar hack',
-						'{game} cheats combat',
+						'{primaryKeyword} ESP',
+						'{primaryKeyword} wallhack',
+						'{primaryKeyword} aimbot',
+						'{primaryKeyword} aimbot view',
+						'{primaryKeyword} radar',
+						'{primaryKeyword} in a fight',
 					];
 					const capTpls = [
-						'{game} ESP player tags hack',
-						'{game} wallhack skeleton ESP',
-						'{game} aimbot sniper kill',
-						'{game} aimbot skeleton targeting',
-						'{game} ESP radar wireframe',
-						'{game} cheats ADS aimbot',
+						'See players with {primaryKeyword}',
+						'See through walls with {primaryKeyword}',
+						'Aimbot in {primaryKeyword}',
+						'Aimbot bone view in {primaryKeyword}',
+						'Radar map in {primaryKeyword}',
+						'Fight view with {primaryKeyword}',
 					];
 					for (let i = 1; i <= 6; i++) {
 						const t = form.elements.namedItem('sitemapImage' + i + 'Title');
