@@ -51,9 +51,20 @@ async function resolveDistRoot() {
 const SITE = readBrandUrl();
 const IMAGE_SITEMAP_ENTRIES = countBrandSitemapImages();
 
+function countSeoFaqs() {
+	const src = readFileSync(path.join(ROOT, 'src/data/site.ts'), 'utf8');
+	const block = src.match(/export const seoFaqs[\s\S]*?(?=export const customerReviews)/);
+	if (!block) throw new Error('Could not locate seoFaqs in site.ts');
+	return [...block[0].matchAll(/slug:\s*'/g)].length;
+}
+
 const BLOG_PAGES = 18; // /blog/ index + 17 posts
 const REVIEW_PAGES = 11; // /reviews/ index + 10 review detail pages
-const ENGLISH_PAGES = 25 + BLOG_PAGES + REVIEW_PAGES;
+const CLOUD_DMA_PAGES = 5; // EN-only Cloud DMA cluster
+const FAQ_DETAIL_PAGES = countSeoFaqs(); // /faq/{slug}/ answer pages
+const CORE_ENGLISH_PAGES = 25; // PageId englishPaths
+const ENGLISH_PAGES =
+	CORE_ENGLISH_PAGES + CLOUD_DMA_PAGES + FAQ_DETAIL_PAGES + BLOG_PAGES + REVIEW_PAGES;
 const I18N_LOCALES = 21;
 const PRODUCT_PAGES_PER_LOCALE = 25;
 const BLOG_PAGES_PER_LOCALE = 18;
@@ -62,6 +73,14 @@ const I18N_URLS = I18N_LOCALES * PAGES_PER_LOCALE;
 const TOTAL_PAGES = ENGLISH_PAGES + I18N_URLS;
 const HREFLANG_PER_URL = 23;
 const SITEMAP_INDEX_ENTRIES = 1 + I18N_LOCALES + 1; // EN + locales + images
+
+const CLOUD_DMA_PATHS = [
+	'/cloud-dma/',
+	'/cloud-dma-setup/',
+	'/cloud-dma-hardware/',
+	'/cloud-dma-status/',
+	'/cloud-dma-plans/',
+];
 
 const ENGLISH_PATHS = [
 	'/',
@@ -89,6 +108,7 @@ const ENGLISH_PATHS = [
 	'/privacy-policy/',
 	'/refund-policy/',
 	'/terms/',
+	...CLOUD_DMA_PATHS,
 	'/blog/',
 	'/blog/warzone-resurgence-aggressive-strategies/',
 	'/blog/warzone-loot-routes-guide/',
@@ -245,7 +265,7 @@ async function main() {
 		bump();
 	} else ok(`sitemap-images.xml has ${IMAGE_SITEMAP_ENTRIES} image entries`);
 
-	// English path coverage
+	// English path coverage (core + Cloud DMA + blog/reviews samples)
 	for (const p of ENGLISH_PATHS) {
 		const full = `${SITE}${p === '/' ? '/' : p}`;
 		if (!enLocs.includes(full)) {
@@ -253,7 +273,16 @@ async function main() {
 			bump();
 		}
 	}
-	if (errors === 0) ok(`All ${ENGLISH_PAGES} English canonical paths present in sitemap-en.xml`);
+	const faqDetailLocs = enLocs.filter((u) => u.includes('/faq/') && u !== `${SITE}/faq/`);
+	if (faqDetailLocs.length !== FAQ_DETAIL_PAGES) {
+		fail(`FAQ detail URLs in sitemap-en.xml: expected ${FAQ_DETAIL_PAGES}, got ${faqDetailLocs.length}`);
+		bump();
+	} else ok(`${FAQ_DETAIL_PAGES} FAQ detail URLs present in sitemap-en.xml`);
+	if (errors === 0) {
+		ok(
+			`Core English paths + Cloud DMA + blog/reviews present (${ENGLISH_PAGES} total EN URLs expected)`,
+		);
+	}
 
 	// No overlap between EN and i18n sitemaps
 	const overlap = enLocs.filter((u) => i18nLocs.includes(u));
