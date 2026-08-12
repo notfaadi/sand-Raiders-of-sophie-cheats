@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generates src/data/blog/posts.generated.ts with Warzone Intel posts.
+ * Generates src/data/blog/posts.generated.ts with Sand Raiders Intel posts.
  * English content is the SEO source of truth for /blog/ routes.
  */
 import { writeFileSync } from 'node:fs';
@@ -34,7 +34,7 @@ const sources = [
 		slug: 'warzone-patch-notes-guide',
 		title: 'Warzone Patch Notes: Buffs, Nerfs & Vaults',
 		metaDescription:
-			'Warzone patch notes guide — buffs, nerfs, and vaults that reshape ranked loadouts. After Ricochet patches, check warzone hacks and warzone cheats updates.',
+			'Warzone patch notes guide — buffs, nerfs, and vaults that reshape ranked loadouts. After Easy Anti-Cheat patches, check sand raiders cheats and sand raiders cheats updates.',
 		h1: 'Warzone Patch Notes: Buffs, Nerfs, and Vaults',
 		intro:
 			'Stop skimming patch notes. Here is how buffs, nerfs, and vaults actually reshuffle the loot pool and your ranked loadout priorities.',
@@ -67,7 +67,7 @@ const sources = [
 				h2: 'Late-season checklist and next steps',
 				paragraphs: [
 					'Post-patch checklist: skim official notes for vaults first, update your shotgun/AR/mobility/heals spine, play 10 intentional test games, revisit tier-list assumptions, and adjust drop routes if mobility or loot changed.',
-					`On big update mornings, confirm ${EXT.status} is healthy before blaming your settings. If you also use warzone hacks in-match, check <a href="/updates/">Warzone Hacks Updates</a> after Ricochet anti-cheat patches.`,
+					`On big update mornings, confirm ${EXT.status} is healthy before blaming your settings. If you also use sand raiders cheats in-match, check <a href="/updates/">Sand Raiders Cheats Updates</a> after Easy Anti-Cheat patches.`,
 					'Try This Today: Open the latest official patch notes and highlight vaults. Rewrite your 5-slot priority on paper. Queue a focused 5-game test block and note which fights felt different at 30–60m vs 0–15m.',
 				],
 			},
@@ -83,11 +83,11 @@ const sources = [
 		slug: 'warzone-skin-leaks-guide',
 		title: 'Warzone Skin Leaks: Season Cosmetics Guide',
 		metaDescription:
-			'Warzone skin leaks and shop advice — which season cosmetics are worth CP before the next reset. Save smart and skip FOMO bundles on warzonehacks.net.',
+			'Warzone skin leaks and shop advice — which season cosmetics are worth CP before the next reset. Save smart and skip FOMO bundles on sandraiderscheats.net.',
 		h1: 'Warzone Skin Leaks Worth Your CP',
 		intro:
 			'The next season is coming. Here is which leaked and rotating cosmetics are actually worth buying before the shop resets hard.',
-		keywords: ['warzone skin leaks', 'cosmetics', 'item shop', 'warzone intel', 'warzone cheats'],
+		keywords: ['warzone skin leaks', 'cosmetics', 'item shop', 'warzone intel', 'sand raiders cheats'],
 		imageAlt: 'Warzone season skin leaks and cosmetics shopping guide',
 		sections: [
 			{
@@ -125,7 +125,7 @@ const sources = [
 		slug: 'warzone-weapon-tier-list',
 		title: 'Warzone Weapon Tier List: Best Guns Ranked',
 		metaDescription:
-			'Warzone weapon tier list with data-backed TTK analysis — best ARs, SMGs, and loadout pairings for ranked and Resurgence. Pair with warzone hacks ESP reads.',
+			'Warzone weapon tier list with data-backed TTK analysis — best ARs, SMGs, and loadout pairings for ranked and Resurgence. Pair with sand raiders cheats ESP reads.',
 		h1: 'Warzone Weapon Tier List: Best Guns Ranked',
 		intro:
 			'Community tier lists underrate meta ARs. The damage-per-mag and mid-range TTK numbers say otherwise.',
@@ -155,7 +155,7 @@ const sources = [
 					'Core: meta AR + high-burst shotgun + mobility + heals. In Resurgence, this supports the laddering strategies in our <a href="/blog/warzone-resurgence-aggressive-strategies/">aggression guide</a>.',
 					'Common mistakes: full-spraying from 80m+, re-peeking the same pixel, swapping to SMG at 40m out of habit, never practicing crouch-spray in Creative.',
 					'Try This Today: Prioritize Hammer for 10 games. Count your first four bullets in every mid fight. If you die inside 15m without shotgun out, fix loadout timing — not the AR.',
-					'Players who also use aim-assist tooling can review <a href="/warzone-aimbot/">Warzone Aimbot</a> profiles after they lock a sens — mechanics first, tools second.',
+					'Players who also use aim-assist tooling can review <a href="/sand-raiders-aimbot/">Warzone Aimbot</a> profiles after they lock a sens — mechanics first, tools second.',
 				],
 			},
 		],
@@ -181,7 +181,7 @@ const sources = [
 				h2: 'Why the Resurgence meta feels soft',
 				paragraphs: [
 					'Most Resurgence players wait behind a rock for the last two teams to trade, then spray into a mess. That soft meta is why ranks stall. Strong fighters manufacture first-shot advantage and leave before the third party arrives.',
-					'A clean first-shot AR spray at 40–55 meters can delete 80–120 HP before the opponent ads. That window is the game. Information tools like <a href="/warzone-esp/">Warzone ESP</a> help — but aggression still needs cover discipline.',
+					'A clean first-shot AR spray at 40–55 meters can delete 80–120 HP before the opponent ads. That window is the game. Information tools like <a href="/sand-raiders-esp/">Warzone ESP</a> help — but aggression still needs cover discipline.',
 					'Pro Tip — Decide your exit before you swing. Take a 150+ damage window, then hard disengage with mobility before the usual 4–7 second third-party clock.',
 				],
 			},
@@ -213,11 +213,11 @@ const sources = [
 		slug: 'warzone-tournament-meta-guide',
 		title: 'Warzone Tournament Meta: What Winners Drop',
 		metaDescription:
-			'Warzone tournament meta guide — what pro winners drop, how they loot, and which mid-game habits translate to your ranked climb in 2026. Pair with warzone hacks.',
+			'Warzone tournament meta guide — what pro winners drop, how they loot, and which mid-game habits translate to your ranked climb in 2026. Pair with sand raiders cheats.',
 		h1: 'Warzone Tournament Meta: What Winners Drop and Why',
 		intro:
 			'Tournament winners are not lucky drop gods. Here is what their POIs, loadouts, and mid-game habits actually optimize for.',
-		keywords: ['warzone esports', 'tournament drops', 'warzone meta', 'warzone intel', 'warzone cheats'],
+		keywords: ['warzone esports', 'tournament drops', 'warzone meta', 'warzone intel', 'sand raiders cheats'],
 		imageAlt: 'Warzone tournament meta watch drop spots and loadout patterns',
 		sections: [
 			{
@@ -281,7 +281,7 @@ const sources = [
 				h2: 'Convert gold guns into wins',
 				paragraphs: [
 					'Pair these routes with <a href="/blog/warzone-resurgence-aggressive-strategies/">Resurgence aggression</a> and <a href="/blog/warzone-weapon-tier-list/">weapon tiers</a>. Leave spawn rich so mid-game becomes a skill check.',
-					'If you use loot ESP markers in practice, read <a href="/warzone-esp/">Warzone ESP</a> for category toggles — then still run the timer so habits stay sharp without overlays.',
+					'If you use loot ESP markers in practice, read <a href="/sand-raiders-esp/">Warzone ESP</a> for category toggles — then still run the timer so habits stay sharp without overlays.',
 					'Try This Today: Run one uncontested chain for 8 games. Screenshot inventory at 2:30 and compare rarities before adding a contested edge day.',
 				],
 			},
@@ -301,7 +301,7 @@ const sources = [
 		h1: 'Warzone Pro Settings: Champion-Inspired Setup',
 		intro:
 			'You do not need exact pro digits — you need champion settings philosophy. Here is a setup you can adapt today.',
-		keywords: ['warzone settings', 'warzone sensitivity', 'pro setup', 'warzone ranked', 'warzone hacks'],
+		keywords: ['warzone settings', 'warzone sensitivity', 'pro setup', 'warzone ranked', 'sand raiders cheats'],
 		imageAlt: 'Warzone pro player sensitivity settings and setup guide',
 		sections: [
 			{
@@ -323,7 +323,7 @@ const sources = [
 				h2: 'Champion-style practice routine',
 				paragraphs: [
 					'0–10 minutes aim tracker, 10–20 peek or movement drills, 20–30 realistic fights, then ranked. Pair with our <a href="/blog/warzone-warmup-maps-ranked/">warmup map categories</a>.',
-					'If you later configure Aimbot smoothness for practice tooling, start from <a href="/warzone-soft-aim/">soft aim</a> after your raw sens is locked — never chase both variables at once.',
+					'If you later configure Aimbot smoothness for practice tooling, start from <a href="/sand-raiders-soft-aim/">soft aim</a> after your raw sens is locked — never chase both variables at once.',
 					'Try This Today: Write dpi + sens, adjust at most once by a small percent, then play 5 games without touching settings again.',
 				],
 			},
@@ -343,7 +343,7 @@ const sources = [
 		h1: 'Warzone Warmup Maps Pros Use Before Ranked',
 		intro:
 			'Stop freezing in first fight. These warmup categories get your mechanics hot before you touch ranked.',
-		keywords: ['warzone warmup', 'aim trainers', 'warzone ranked', 'warzone meta', 'warzone hacks'],
+		keywords: ['warzone warmup', 'aim trainers', 'warzone ranked', 'warzone meta', 'sand raiders cheats'],
 		imageAlt: 'Warzone warmup maps and routine pros use before ranked',
 		sections: [
 			{
@@ -366,56 +366,56 @@ const sources = [
 				h2: 'Mistakes that waste warmup time',
 				paragraphs: [
 					'Only melting easy bots, ignoring mid-range, warming up 90 minutes then playing two tilted games, and changing binds mid-warmup all waste Elo.',
-					'After mechanics are hot, information tools like <a href="/warzone-radar-hack/">radar hack</a> or <a href="/warzone-esp/">ESP</a> are optional overlays — they do not replace a cold shotgun timing. For the full stack overview, see <a href="/warzone-hacks/">Warzone hacks</a>.',
+					'After mechanics are hot, information tools like <a href="/sand-raiders-radar-hack/">radar hack</a> or <a href="/sand-raiders-esp/">ESP</a> are optional overlays — they do not replace a cold shotgun timing. For the full stack overview, see <a href="/sand-raiders-hacks/">Warzone hacks</a>.',
 					'Try This Today: Favorite four maps across aim, peeks, fights, and endgame. Run the 25-minute block, then play only six ranked games.',
 				],
 			},
 		],
 	},
 	{
-		id: 'warzone-hacks-complete-guide',
+		id: 'sand-raiders-hacks-complete-guide',
 		imageKey: 'battleRoyaleCombat',
 		published: '2026-07-31',
 		updated: '2026-08-01',
-		category: 'Warzone Hacks',
+		category: 'Sand Raiders Cheats',
 		featured: true,
-		slug: 'warzone-hacks-complete-guide-2026',
-		title: 'Warzone Hacks 2026: Complete Undetected Guide',
+		slug: 'sand-raiders-hacks-complete-guide-2026',
+		title: 'Sand Raiders Cheats 2026: Complete Undetected Guide',
 		metaDescription:
-			'Complete warzone hacks guide for PC and controllers — ESP boxes, soft aim, cloud DMA, and Ricochet maintenance in 2026. Compare the full package and buy.',
-		h1: 'Warzone Hacks 2026: The Complete Undetected Guide',
+			'Complete sand raiders cheats guide for PC and controllers — ESP boxes, soft aim, cloud DMA, and Easy Anti-Cheat maintenance in 2026. Compare the full package and buy.',
+		h1: 'Sand Raiders Cheats 2026: The Complete Undetected Guide',
 		intro:
-			'Searching for Warzone hacks in 2026? This guide covers ESP wallhack, Aimbot, radar, undetected maintenance, and how warzone cheats searchers map to the same Windows PC package.',
-		keywords: ['warzone hacks', 'undetected warzone hacks', 'warzone cheats', 'esp', 'aimbot', 'ricochet'],
+			'Searching for Warzone hacks in 2026? This guide covers ESP wallhack, Aimbot, radar, undetected maintenance, and how sand raiders cheats searchers map to the same Windows PC package.',
+		keywords: ['sand raiders cheats', 'undetected sand raiders cheats', 'sand raiders cheats', 'esp', 'aimbot', 'eac-bypass'],
 		imageAlt: 'Warzone hacks complete guide showing ESP wallhack and Aimbot for 2026',
 		sections: [
 			{
 				h2: 'What Warzone hacks actually include',
 				paragraphs: [
-					'Warzone hacks usually mean visibility plus combat assist: player ESP wallhack, loot markers, 2D radar threat cues, and configurable Aimbot. Buyers who type warzone cheats are looking for the same stack — different wording, same BR loop.',
-					`Official seasons and client updates publish through ${EXT.activision} and ${EXT.warzone}. Anti-cheat context lives on Ricochet anti-cheat. Our <a href="/warzone-hacks/">Warzone hacks pillar</a> is the commercial landing; this post is the long-form explainer.`,
+					'Warzone hacks usually mean visibility plus combat assist: player ESP wallhack, loot markers, 2D radar threat cues, and configurable Aimbot. Buyers who type sand raiders cheats are looking for the same stack — different wording, same BR loop.',
+					`Official seasons and client updates publish through ${EXT.activision} and ${EXT.warzone}. Anti-cheat context lives on Easy Anti-Cheat. Our <a href="/sand-raiders-hacks/">Warzone hacks pillar</a> is the commercial landing; this post is the long-form explainer.`,
 					'Pro Tip — One license, full loop: Prefer a maintained package over stacking single-feature downloads that break on every patch.',
 				],
 			},
 			{
 				h2: 'ESP, wallhack, Aimbot, and radar roles',
 				paragraphs: [
-					'ESP/wallhack answers where squads and loot sit. Radar covers flanks outside FOV. Aimbot covers firefight consistency once you commit. Soft aim profiles help when you want smoother tracking — see <a href="/warzone-soft-aim/">soft aim</a> and <a href="/warzone-aimbot/">Aimbot controls</a>.',
-					'Deep pages: <a href="/warzone-esp/">Warzone ESP</a>, <a href="/warzone-wallhack/">wallhack</a>, <a href="/warzone-radar-hack/">radar hack</a>, <a href="/warzone-aimbot-hack/">aimbot hack</a>, and <a href="/warzone-esp-hack/">ESP hack</a>.',
+					'ESP/wallhack answers where squads and loot sit. Radar covers flanks outside FOV. Aimbot covers firefight consistency once you commit. Soft aim profiles help when you want smoother tracking — see <a href="/sand-raiders-soft-aim/">soft aim</a> and <a href="/sand-raiders-aimbot/">Aimbot controls</a>.',
+					'Deep pages: <a href="/sand-raiders-esp/">Warzone ESP</a>, <a href="/sand-raiders-wallhack/">wallhack</a>, <a href="/sand-raiders-radar-hack/">radar hack</a>, <a href="/sand-raiders-aimbot-hack/">aimbot hack</a>, and <a href="/sand-raiders-esp-hack/">ESP hack</a>.',
 				],
 			},
 			{
-				h2: 'Undetected Warzone hacks and Ricochet patches',
+				h2: 'Undetected Warzone hacks and Easy Anti-Cheat patches',
 				paragraphs: [
-					'Undetected Warzone hacks require rebuilds after Ricochet anti-cheat and major Warzone updates. No vendor can promise permanent undetected status — check <a href="/updates/">Updates</a> before you queue.',
-					`On patch mornings confirm ${EXT.status}, then read our <a href="/ricochet-bypass/">Ricochet bypass guide</a> and <a href="/blog/undetected-warzone-hacks-ricochet/">undetected EAC notes</a>.`,
+					'Undetected Warzone hacks require rebuilds after Easy Anti-Cheat and major Warzone updates. No vendor can promise permanent undetected status — check <a href="/updates/">Updates</a> before you queue.',
+					`On patch mornings confirm ${EXT.status}, then read our <a href="/eac-bypass/">EAC bypass guide</a> and <a href="/blog/undetected-sand-raiders-hacks-ricochet/">undetected EAC notes</a>.`,
 					'Try This Today: Open the hacks pillar, skim Features, compare Pricing ($35 monthly / $150 lifetime), and bookmark Updates for the next Epic patch.',
 				],
 			},
 			{
 				h2: 'Next steps — pricing, setup, and cheats pages',
 				paragraphs: [
-					'Ready to buy? Start at the <a href="/warzone-hacks/">Warzone hacks pillar page</a>, then <a href="/pricing/">Pricing</a> and <a href="/setup/">Setup</a>. Prefer cheats wording? Read <a href="/warzone-cheats-2026/">warzone cheats 2026</a> and <a href="/blog/call-of-duty-warzone-cheats-buyers-guide/">cheats buyers guide</a>.',
+					'Ready to buy? Start at the <a href="/sand-raiders-hacks/">Warzone hacks pillar page</a>, then <a href="/pricing/">Pricing</a> and <a href="/setup/">Setup</a>. Prefer cheats wording? Read <a href="/sand-raiders-cheats-2026/">sand raiders cheats 2026</a> and <a href="/blog/call-of-duty-warzone-cheats-buyers-guide/">cheats buyers guide</a>.',
 					'Support: include your order ID on the <a href="/support/">Support</a> page after checkout.',
 				],
 			},
@@ -426,71 +426,71 @@ const sources = [
 		imageKey: 'cheatsPackage',
 		published: '2026-07-30',
 		updated: '2026-08-01',
-		category: 'Warzone Cheats',
+		category: 'Sand Raiders Cheats',
 		featured: true,
 		slug: 'call-of-duty-warzone-cheats-buyers-guide',
-		title: 'Warzone Cheats Buyers Guide: What to Check',
+		title: 'Sand Raiders Cheats Buyers Guide: What to Check',
 		metaDescription:
-			'Warzone cheats buyers guide for PC and controllers — ESP boxes, soft aim, cloud DMA, pricing, and Ricochet status. Compare warzone hacks before checkout.',
-		h1: 'Warzone Cheats Buyers Guide: What Matters in 2026',
+			'Sand Raiders cheats buyers guide for PC and controllers — ESP boxes, soft aim, cloud DMA, pricing, and Easy Anti-Cheat status. Compare sand raiders cheats before checkout.',
+		h1: 'Sand Raiders Cheats Buyers Guide: What Matters in 2026',
 		intro:
-			'Shopping for warzone cheats? Use this checklist for ESP wallhack, Aimbot, radar, Ricochet maintenance, and license length — then cross-check the Warzone hacks pillar before checkout.',
-		keywords: ['warzone cheats', 'best warzone cheats', 'warzone hacks', 'buyers guide', 'undetected'],
-		imageAlt: 'Warzone cheats buyers guide checklist for ESP Aimbot and pricing',
+			'Shopping for sand raiders cheats? Use this checklist for ESP wallhack, Aimbot, radar, Easy Anti-Cheat maintenance, and license length — then cross-check the Warzone hacks pillar before checkout.',
+		keywords: ['sand raiders cheats', 'best sand raiders cheats', 'sand raiders cheats', 'buyers guide', 'undetected'],
+		imageAlt: 'Sand Raiders cheats buyers guide checklist for ESP Aimbot and pricing',
 		sections: [
 			{
 				h2: 'Buyer checklist before you pay',
 				paragraphs: [
-					'Confirm Windows PC support, Ricochet maintenance cadence, ESP + Aimbot + radar in one license, clear pricing, and a live Updates log. Skip tools that only ship a wallhack with no rebuild notes.',
-					'Primary commercial pages: <a href="/best-warzone-cheats/">best Warzone cheats</a>, <a href="/warzone-cheats-2026/">cheats 2026</a>, and <a href="/warzone-hacks/">Warzone hacks</a> (hacks is the main brand keyword).',
+					'Confirm Windows PC support, Easy Anti-Cheat maintenance cadence, ESP + Aimbot + radar in one license, clear pricing, and a live Updates log. Skip tools that only ship a wallhack with no rebuild notes.',
+					'Primary commercial pages: <a href="/best-sand-raiders-cheats/">best Sand Raiders cheats</a>, <a href="/sand-raiders-cheats-2026/">cheats 2026</a>, and <a href="/sand-raiders-hacks/">Warzone hacks</a> (hacks is the main brand keyword).',
 				],
 			},
 			{
 				h2: 'Hacks vs cheats wording',
 				paragraphs: [
-					'Warzone hacks and warzone cheats describe the same product category for most searchers. We lead with hacks on warzonehacks.net while keeping cheats pages for buyers who use that query.',
+					'Warzone hacks and sand raiders cheats describe the same product category for most searchers. We lead with hacks on sandraiderscheats.net while keeping cheats pages for buyers who use that query.',
 					`Balance and anti-cheat reality still come from ${EXT.activision}. Product rebuild timing is on our <a href="/updates/">Updates</a> page.`,
 				],
 			},
 			{
 				h2: 'Feature pages worth opening',
 				paragraphs: [
-					'Open <a href="/warzone-esp/">ESP</a>, <a href="/warzone-aimbot/">Aimbot</a>, <a href="/features/">Features</a>, and <a href="/pricing/">Pricing</a> before you buy. Delivery and activation steps live on <a href="/setup/">Setup</a>.',
-					'Related reading: <a href="/blog/warzone-hacks-complete-guide-2026/">hacks complete guide</a> and <a href="/blog/warzone-cheats-2026-whats-new/">cheats 2026 what\'s new</a>.',
+					'Open <a href="/sand-raiders-esp/">ESP</a>, <a href="/sand-raiders-aimbot/">Aimbot</a>, <a href="/features/">Features</a>, and <a href="/pricing/">Pricing</a> before you buy. Delivery and activation steps live on <a href="/setup/">Setup</a>.',
+					'Related reading: <a href="/blog/sand-raiders-hacks-complete-guide-2026/">hacks complete guide</a> and <a href="/blog/sand-raiders-cheats-2026-whats-new/">cheats 2026 what\'s new</a>.',
 					'Try This Today: Write your must-have list (ESP categories, Aimbot smoothness, lifetime vs monthly), then compare against Features once.',
 				],
 			},
 		],
 	},
 	{
-		id: 'warzone-cheats-2026-whats-new',
+		id: 'sand-raiders-cheats-2026-whats-new',
 		imageKey: 'hero',
 		published: '2026-07-28',
 		updated: '2026-08-01',
-		category: 'Warzone Cheats',
+		category: 'Sand Raiders Cheats',
 		featured: false,
-		slug: 'warzone-cheats-2026-whats-new',
-		title: 'Warzone Cheats 2026: What Changed This Year',
+		slug: 'sand-raiders-cheats-2026-whats-new',
+		title: 'Sand Raiders Cheats 2026: What Changed This Year',
 		metaDescription:
-			'Warzone cheats 2026 overview — ESP boxes, soft aim, and cloud DMA for PC and controllers with Ricochet maintenance. Pair with the hacks pillar before buying.',
-		h1: 'Warzone Cheats 2026: What Buyers Need Now',
+			'Sand Raiders cheats 2026 overview — ESP boxes, soft aim, and cloud DMA for PC and controllers with Easy Anti-Cheat maintenance. Pair with the hacks pillar before buying.',
+		h1: 'Sand Raiders Cheats 2026: What Buyers Need Now',
 		intro:
-			'Warzone cheats 2026 searches spike every season. Here is what still matters: maintained ESP wallhack, Aimbot profiles, radar awareness, and rebuilds after Ricochet anti-cheat patches.',
-		keywords: ['warzone cheats 2026', 'warzone hacks', 'ricochet', 'esp', 'aimbot'],
-		imageAlt: 'Warzone cheats 2026 overview for undetected ESP and Aimbot buyers',
+			'Sand Raiders cheats 2026 searches spike every season. Here is what still matters: maintained ESP wallhack, Aimbot profiles, radar awareness, and rebuilds after Easy Anti-Cheat patches.',
+		keywords: ['sand raiders cheats 2026', 'sand raiders cheats', 'eac-bypass', 'esp', 'aimbot'],
+		imageAlt: 'Sand Raiders cheats 2026 overview for undetected ESP and Aimbot buyers',
 		sections: [
 			{
 				h2: 'Why 2026 buyers still need maintenance',
 				paragraphs: [
-					'Season maps, weapons, and Ricochet updates still break stale tools. A 2026-ready package publishes rebuild notes — not a frozen prior-year build.',
-					`Track official messaging on ${EXT.warzone}, then confirm product status on <a href="/updates/">Updates</a> and <a href="/warzone-cheats-2026/">the cheats 2026 landing</a>.`,
+					'Season maps, weapons, and Easy Anti-Cheat updates still break stale tools. A 2026-ready package publishes rebuild notes — not a frozen prior-year build.',
+					`Track official messaging on ${EXT.warzone}, then confirm product status on <a href="/updates/">Updates</a> and <a href="/sand-raiders-cheats-2026/">the cheats 2026 landing</a>.`,
 				],
 			},
 			{
 				h2: 'Keyword map: cheats 2026 ↔ hacks',
 				paragraphs: [
-					'Use the <a href="/warzone-cheats-2026/">Warzone cheats 2026 guide</a> for cheats-year intent and the <a href="/warzone-hacks/">Warzone hacks pillar page</a> for the primary hacks intent. Both point to the same ESP + Aimbot + radar stack.',
-					'Also see <a href="/blog/warzone-hacks-complete-guide-2026/">hacks guide</a> and <a href="/undetected-warzone-cheats/">undetected status</a>.',
+					'Use the <a href="/sand-raiders-cheats-2026/">Sand Raiders cheats 2026 guide</a> for cheats-year intent and the <a href="/sand-raiders-hacks/">Warzone hacks pillar page</a> for the primary hacks intent. Both point to the same ESP + Aimbot + radar stack.',
+					'Also see <a href="/blog/sand-raiders-hacks-complete-guide-2026/">hacks guide</a> and <a href="/undetected-sand-raiders-cheats/">undetected status</a>.',
 				],
 			},
 			{
@@ -503,114 +503,114 @@ const sources = [
 		],
 	},
 	{
-		id: 'warzone-aimbot-settings-guide',
+		id: 'sand-raiders-aimbot-settings-guide',
 		imageKey: 'aimbotCombat',
 		published: '2026-07-26',
 		updated: '2026-08-01',
 		category: 'Aimbot',
 		featured: false,
-		slug: 'warzone-aimbot-settings-guide',
+		slug: 'sand-raiders-aimbot-settings-guide',
 		title: 'Warzone Aimbot Settings: Smooth FOV Guide',
 		metaDescription:
 			'Warzone aimbot settings for PC and controllers — soft aim, FOV, bone priority, and per-weapon profiles. Tune assist, then review the hacks pages.',
 		h1: 'Warzone Aimbot Settings: Smoothness, FOV & Soft Aim',
 		intro:
 			'Configure Warzone Aimbot without snapping every fight. This guide covers smoothness, FOV, bone priority, per-weapon profiles, and how Aimbot fits into Warzone hacks packages.',
-		keywords: ['warzone aimbot', 'aimbot settings', 'soft aim', 'warzone hacks', 'fov'],
+		keywords: ['warzone aimbot', 'aimbot settings', 'soft aim', 'sand raiders cheats', 'fov'],
 		imageAlt: 'Warzone Aimbot settings guide for smoothness FOV and bone priority',
 		sections: [
 			{
 				h2: 'Start conservative, then tune',
 				paragraphs: [
 					'Begin with moderate FOV and higher smoothness. Instant-snap configs look unnatural and are harder to control in Resurgence peeks. Hotkeys let you disable Aimbot mid-match.',
-					'Full control list: <a href="/warzone-aimbot/">Warzone Aimbot</a>, <a href="/warzone-aimbot-hack/">aimbot hack</a>, and <a href="/warzone-soft-aim/">soft aim</a>.',
+					'Full control list: <a href="/sand-raiders-aimbot/">Warzone Aimbot</a>, <a href="/sand-raiders-aimbot-hack/">aimbot hack</a>, and <a href="/sand-raiders-soft-aim/">soft aim</a>.',
 				],
 			},
 			{
 				h2: 'Pair Aimbot with ESP and radar',
 				paragraphs: [
-					'Aimbot alone does not solve rotations. Pair with <a href="/warzone-esp/">ESP</a> and <a href="/warzone-radar-hack/">radar</a> inside the <a href="/warzone-hacks/">Warzone hacks</a> package.',
+					'Aimbot alone does not solve rotations. Pair with <a href="/sand-raiders-esp/">ESP</a> and <a href="/sand-raiders-radar-hack/">radar</a> inside the <a href="/sand-raiders-hacks/">Warzone hacks</a> package.',
 					`Weapon balance shifts on ${EXT.warzone} — revisit FOV after combat patches.`,
 				],
 			},
 			{
 				h2: 'EAC notes and next steps',
 				paragraphs: [
-					'After Ricochet anti-cheat patches, confirm Aimbot modules on <a href="/updates/">Updates</a>. Background: <a href="/ricochet-bypass/">EAC guide</a>.',
+					'After Easy Anti-Cheat patches, confirm Aimbot modules on <a href="/updates/">Updates</a>. Background: <a href="/eac-bypass/">EAC guide</a>.',
 					'Try This Today: Create separate AR and SMG profiles, play five games, then adjust only one slider per session.',
 				],
 			},
 		],
 	},
 	{
-		id: 'warzone-esp-wallhack-explained',
+		id: 'sand-raiders-esp-wallhack-explained',
 		imageKey: 'espWallhack',
 		published: '2026-07-24',
 		updated: '2026-08-01',
 		category: 'ESP & Wallhack',
 		featured: false,
-		slug: 'warzone-esp-wallhack-explained',
+		slug: 'sand-raiders-esp-wallhack-explained',
 		title: 'Warzone ESP & Wallhack Explained Clearly',
 		metaDescription:
 			'Warzone ESP and wallhack explained — player boxes, loot markers, and distance readouts for PC and controllers. Learn overlays on the hacks pages.',
 		h1: 'Warzone ESP and Wallhack Explained',
 		intro:
-			'Warzone ESP (wallhack) shows players, loot, and threats through terrain. Here is how overlays work, what to toggle, and how ESP fits into Warzone hacks and warzone cheats packages.',
-		keywords: ['warzone esp', 'warzone wallhack', 'esp hack', 'warzone hacks', 'loot esp'],
+			'Warzone ESP (wallhack) shows players, loot, and threats through terrain. Here is how overlays work, what to toggle, and how ESP fits into Warzone hacks and sand raiders cheats packages.',
+		keywords: ['warzone esp', 'warzone wallhack', 'esp hack', 'sand raiders cheats', 'loot esp'],
 		imageAlt: 'Warzone ESP wallhack explained with player and loot overlays',
 		sections: [
 			{
 				h2: 'ESP categories that matter in BR',
 				paragraphs: [
 					'Toggle enemy outlines, loot/chest pins, vehicle cues, and distance readouts. Too many overlays create noise — keep BR-critical categories on during rotations.',
-					'Landings: <a href="/warzone-esp/">Warzone ESP</a>, <a href="/warzone-wallhack/">wallhack</a>, <a href="/warzone-esp-hack/">ESP hack</a>.',
+					'Landings: <a href="/sand-raiders-esp/">Warzone ESP</a>, <a href="/sand-raiders-wallhack/">wallhack</a>, <a href="/sand-raiders-esp-hack/">ESP hack</a>.',
 				],
 			},
 			{
 				h2: 'Wallhack vs radar vs Aimbot',
 				paragraphs: [
-					'Wallhack/ESP is line-of-sight information through walls. Radar covers off-screen flanks. Aimbot is combat assist. The <a href="/warzone-hacks/">hacks pillar</a> bundles all three.',
+					'Wallhack/ESP is line-of-sight information through walls. Radar covers off-screen flanks. Aimbot is combat assist. The <a href="/sand-raiders-hacks/">hacks pillar</a> bundles all three.',
 					`Map and loot systems evolve with ${EXT.activision} seasons — toggleable categories stay useful when POIs rotate.`,
 				],
 			},
 			{
 				h2: 'Undetected ESP maintenance',
 				paragraphs: [
-					'ESP modules rebuild with the package after Ricochet patches. Check <a href="/updates/">Updates</a> and <a href="/undetected-warzone-cheats/">undetected status</a> before ranked blocks.',
+					'ESP modules rebuild with the package after Easy Anti-Cheat patches. Check <a href="/updates/">Updates</a> and <a href="/undetected-sand-raiders-cheats/">undetected status</a> before ranked blocks.',
 					'Try This Today: Enable player + loot ESP only for ten games, then add radar range once your eyes adjust.',
 				],
 			},
 		],
 	},
 	{
-		id: 'undetected-warzone-hacks-ricochet',
+		id: 'undetected-sand-raiders-hacks-ricochet',
 		imageKey: 'rebootFight',
 		published: '2026-07-22',
 		updated: '2026-08-01',
 		category: 'Undetected & EAC',
 		featured: true,
-		slug: 'undetected-warzone-hacks-ricochet',
-		title: 'Undetected Warzone Hacks & EAC Reality',
+		slug: 'undetected-sand-raiders-hacks-ricochet',
+		title: 'Undetected Sand Raiders Cheats & EAC Reality',
 		metaDescription:
-			'Undetected warzone hacks and EAC reality — ESP boxes, soft aim, and cloud DMA rebuilds for PC and controllers. Check Updates before queueing post-patch.',
-		h1: 'Undetected Warzone Hacks and Ricochet anti-cheat Reality',
+			'Undetected sand raiders cheats and EAC reality — ESP boxes, soft aim, and cloud DMA rebuilds for PC and controllers. Check Updates before queueing post-patch.',
+		h1: 'Undetected Sand Raiders Cheats and Easy Anti-Cheat Reality',
 		intro:
-			'Undetected Warzone hacks mean active Ricochet maintenance — not a forever guarantee. Learn the patch-day workflow, where to check status, and how hacks/cheats pages fit together.',
-		keywords: ['undetected warzone hacks', 'ricochet', 'warzone hacks', 'warzone cheats', 'maintenance'],
-		imageAlt: 'Undetected Warzone hacks and Ricochet anti-cheat maintenance workflow',
+			'Undetected Warzone hacks mean active Easy Anti-Cheat maintenance — not a forever guarantee. Learn the patch-day workflow, where to check status, and how hacks/cheats pages fit together.',
+		keywords: ['undetected sand raiders cheats', 'eac-bypass', 'sand raiders cheats', 'sand raiders cheats', 'maintenance'],
+		imageAlt: 'Undetected Warzone hacks and Easy Anti-Cheat maintenance workflow',
 		sections: [
 			{
 				h2: 'What undetected really means',
 				paragraphs: [
-					'Undetected Warzone hacks are rebuilt when Ricochet anti-cheat or Warzone client patches change detection surface. Permanent undetected claims are marketing fiction.',
-					'Status pages: <a href="/updates/">Updates</a>, <a href="/undetected-warzone-cheats/">undetected guide</a>, <a href="/ricochet-bypass/">Ricochet bypass</a>.',
+					'Undetected Warzone hacks are rebuilt when Easy Anti-Cheat or Warzone client patches change detection surface. Permanent undetected claims are marketing fiction.',
+					'Status pages: <a href="/updates/">Updates</a>, <a href="/undetected-sand-raiders-cheats/">undetected guide</a>, <a href="/eac-bypass/">EAC bypass</a>.',
 				],
 			},
 			{
 				h2: 'Patch-day workflow',
 				paragraphs: [
 					`Check ${EXT.status} for Epic health, wait for our Updates note, then launch. If services are degraded, do not assume the hack failed.`,
-					'Commercial entry points: <a href="/warzone-hacks/">Warzone hacks</a> and <a href="/warzone-cheats-2026/">warzone cheats 2026</a>.',
+					'Commercial entry points: <a href="/sand-raiders-hacks/">Warzone hacks</a> and <a href="/sand-raiders-cheats-2026/">sand raiders cheats 2026</a>.',
 				],
 			},
 			{
@@ -623,58 +623,58 @@ const sources = [
 		],
 	},
 	{
-		id: 'warzone-hacks-vs-cheatvault',
+		id: 'sand-raiders-hacks-vs-cheatvault',
 		imageKey: 'cheatsPackage',
 		published: '2026-07-15',
 		updated: '2026-08-01',
 		category: 'Comparisons',
 		featured: true,
-		slug: 'warzone-hacks-vs-cheatvault-comparison',
-		title: 'Warzone Hacks vs CheatVault: Honest 2026 Comparison',
+		slug: 'sand-raiders-hacks-vs-cheatvault-comparison',
+		title: 'Sand Raiders Cheats vs CheatVault: Honest 2026 Comparison',
 		metaDescription:
-			'Warzone Hacks vs CheatVault compared — pricing, ESP boxes, soft aim, cloud DMA, EAC detection history, and which package fits BR players in 2026.',
-		h1: 'Warzone Hacks vs CheatVault: Honest Comparison',
+			'Sand Raiders Cheats vs CheatVault compared — pricing, ESP boxes, soft aim, cloud DMA, EAC detection history, and which package fits BR players in 2026.',
+		h1: 'Sand Raiders Cheats vs CheatVault: Honest Comparison',
 		intro:
-			'I ran both CheatVault and Warzone Hacks through the same ranked block last season. Here is the straight comparison — price, features, patch-day behavior, and where ricocheth one actually wins.',
-		keywords: ['warzone hacks vs cheatvault', 'cheatvault comparison', 'warzone cheats', 'esp', 'ricochet', 'pricing'],
-		imageAlt: 'Warzone Hacks vs CheatVault feature and pricing comparison for 2026',
+			'I ran both CheatVault and Sand Raiders Cheats through the same ranked block last season. Here is the straight comparison — price, features, patch-day behavior, and where ricocheth one actually wins.',
+		keywords: ['sand raiders cheats vs cheatvault', 'cheatvault comparison', 'sand raiders cheats', 'esp', 'eac-bypass', 'pricing'],
+		imageAlt: 'Sand Raiders Cheats vs CheatVault feature and pricing comparison for 2026',
 		sections: [
 			{
 				h2: 'Why I compared these two in the first place',
 				paragraphs: [
-					'CheatVault shows up in almost every Warzone cheat thread alongside Warzone Hacks. Both promise ESP, aim assist, and undetected status. Both list monthly and lifetime tiers. On paper they look identical — which is exactly why buyers get burned picking the wrong one.',
-					'I kept CheatVault for about six weeks in Chapter 7 Season 2, then switched to Warzone Hacks for the back half of the season. Same PC, same sens, mostly Resurgence and some ranked squads. This is not a sponsored post — just what I noticed when I stopped reading feature bullets and started tracking patch days.',
-					'Fair warning: neither tool makes you invincible. Epic\'s Ricochet anti-cheat still updates. Your account still carries ban risk. This comparison is about which package maintained better and which features I actually used in BR — not which one guarantees wins.',
+					'CheatVault shows up in almost every Sand Raiders cheat thread alongside Sand Raiders Cheats. Both promise ESP, aim assist, and undetected status. Both list monthly and lifetime tiers. On paper they look identical — which is exactly why buyers get burned picking the wrong one.',
+					'I kept CheatVault for about six weeks in Chapter 7 Season 2, then switched to Sand Raiders Cheats for the back half of the season. Same PC, same sens, mostly Resurgence and some ranked squads. This is not a sponsored post — just what I noticed when I stopped reading feature bullets and started tracking patch days.',
+					'Fair warning: neither tool makes you invincible. Epic\'s Easy Anti-Cheat still updates. Your account still carries ban risk. This comparison is about which package maintained better and which features I actually used in BR — not which one guarantees wins.',
 				],
 			},
 			{
 				h2: 'Price breakdown — monthly, lifetime, and hidden costs',
 				paragraphs: [
-					'Warzone Hacks lists $35/month and $150 lifetime on the <a href="/pricing/">pricing page</a>. CheatVault was $42/month and $189 lifetime when I subscribed — prices shift, but CheatVault has consistently sat 15–20% higher in the tiers I saw.',
-					'CheatVault\'s lifetime looks cheaper than three years of monthly until you factor downtime. I lost nine days total waiting on CheatVault rebuilds after two Ricochet patches. Warzone Hacks had two patch windows where I waited roughly 24–36 hours ricocheth. If you play daily, downtime has a real cost even if the sub fee is lower.',
-					'Both deliver digitally. Neither includes hardware. If you want cloud DMA on Warzone Hacks, you already own or plan to buy compatible hardware — same story for CheatVault\'s DMA tier, which is a separate upsell above their standard sub.',
+					'Sand Raiders Cheats lists $35/month and $150 lifetime on the <a href="/pricing/">pricing page</a>. CheatVault was $42/month and $189 lifetime when I subscribed — prices shift, but CheatVault has consistently sat 15–20% higher in the tiers I saw.',
+					'CheatVault\'s lifetime looks cheaper than three years of monthly until you factor downtime. I lost nine days total waiting on CheatVault rebuilds after two Easy Anti-Cheat patches. Sand Raiders Cheats had two patch windows where I waited roughly 24–36 hours ricocheth. If you play daily, downtime has a real cost even if the sub fee is lower.',
+					'Both deliver digitally. Neither includes hardware. If you want cloud DMA on Sand Raiders Cheats, you already own or plan to buy compatible hardware — same story for CheatVault\'s DMA tier, which is a separate upsell above their standard sub.',
 				],
 			},
 			{
 				h2: 'Feature table — ESP, soft aim, radar, and cloud DMA',
 				paragraphs: [
-					'<table><thead><tr><th>Feature</th><th>Warzone Hacks</th><th>CheatVault</th></tr></thead><tbody><tr><td>Player ESP boxes</td><td>Yes, toggleable categories</td><td>Yes, fewer colour options</td></tr><tr><td>Loot / chest markers</td><td>Yes + distance readouts</td><td>Yes, no distance on loot</td></tr><tr><td>2D radar</td><td>Yes, configurable range</td><td>Yes, fixed size</td></tr><tr><td>Soft aim / Aimbot profiles</td><td>Per-weapon slots</td><td>Global + one profile</td></tr><tr><td>Controller support</td><td>Supported</td><td>Listed, awkward menu UX</td></tr><tr><td>Cloud DMA option</td><td>Included path in package</td><td>Premium tier add-on</td></tr><tr><td>In-client mod menu</td><td>Yes</td><td>Yes, heavier overlay</td></tr></tbody></table>',
-					'Warzone Hacks wins on toggles and profile flexibility. I run ESP boxes + loot markers in early game, then drop loot categories after first AR. CheatVault\'s overlay felt busier — fine if you want everything on, noisy if you play ranked and need clean screen space.',
-					'Soft aim mattered more than I expected in Resurgence. Warzone Hacks let me run a low-FOV Hammer AR profile and a separate SMG profile for box fights. CheatVault\'s single-profile setup worked, but I was constantly retuning mid-session.',
+					'<table><thead><tr><th>Feature</th><th>Sand Raiders Cheats</th><th>CheatVault</th></tr></thead><tbody><tr><td>Player ESP boxes</td><td>Yes, toggleable categories</td><td>Yes, fewer colour options</td></tr><tr><td>Loot / chest markers</td><td>Yes + distance readouts</td><td>Yes, no distance on loot</td></tr><tr><td>2D radar</td><td>Yes, configurable range</td><td>Yes, fixed size</td></tr><tr><td>Soft aim / Aimbot profiles</td><td>Per-weapon slots</td><td>Global + one profile</td></tr><tr><td>Controller support</td><td>Supported</td><td>Listed, awkward menu UX</td></tr><tr><td>Cloud DMA option</td><td>Included path in package</td><td>Premium tier add-on</td></tr><tr><td>In-client mod menu</td><td>Yes</td><td>Yes, heavier overlay</td></tr></tbody></table>',
+					'Sand Raiders Cheats wins on toggles and profile flexibility. I run ESP boxes + loot markers in early game, then drop loot categories after first AR. CheatVault\'s overlay felt busier — fine if you want everything on, noisy if you play ranked and need clean screen space.',
+					'Soft aim mattered more than I expected in Resurgence. Sand Raiders Cheats let me run a low-FOV Hammer AR profile and a separate SMG profile for box fights. CheatVault\'s single-profile setup worked, but I was constantly retuning mid-session.',
 				],
 			},
 			{
 				h2: 'Detection history and patch-day behavior',
 				paragraphs: [
-					'Both brands had public downtime after major Ricochet updates in 2026 — anyone claiming zero detection events is lying. The difference is communication and rebuild speed.',
+					'Both brands had public downtime after major Easy Anti-Cheat updates in 2026 — anyone claiming zero detection events is lying. The difference is communication and rebuild speed.',
 					'CheatVault\'s Discord would go quiet for 48–72 hours after big patches. No ETA, just "working on it." I know two players in my stack who got flagged during a CheatVault lag window between patch and rebuild — could\'ve been coincidence, but it shook my confidence.',
-					'Warzone Hacks posts on the <a href="/updates/">Updates page</a> within hours on patch mornings. Last major Ricochet update I tracked: status note same day, rebuild live roughly 30 hours later. Still annoying, but predictable. See also our <a href="/blog/undetected-warzone-hacks-ricochet/">EAC reality guide</a> for the workflow I use before queueing.',
+					'Sand Raiders Cheats posts on the <a href="/updates/">Updates page</a> within hours on patch mornings. Last major Easy Anti-Cheat update I tracked: status note same day, rebuild live roughly 30 hours later. Still annoying, but predictable. See also our <a href="/blog/undetected-sand-raiders-hacks-ricochet/">EAC reality guide</a> for the workflow I use before queueing.',
 				],
 			},
 			{
 				h2: 'Where CheatVault still wins',
 				paragraphs: [
-					'Credit where it\'s due: CheatVault\'s Discord community is larger. More clip sharing, more config screenshots. If you learn best from crowd-sourced settings, that social layer helps — Warzone Hacks support answered faster for me, but the community volume is smaller.',
+					'Credit where it\'s due: CheatVault\'s Discord community is larger. More clip sharing, more config screenshots. If you learn best from crowd-sourced settings, that social layer helps — Sand Raiders Cheats support answered faster for me, but the community volume is smaller.',
 					'CheatVault also bundles a standalone replay-style overlay tool in their premium tier. I did not use it much, but content creators might value the extra capture layer.',
 					'If you only play once or twice a week and just want basic ESP without caring about patch ETAs, CheatVault\'s feature floor is fine. Casual cadence hides downtime pain.',
 				],
@@ -682,9 +682,9 @@ const sources = [
 			{
 				h2: 'Verdict — who should pick which',
 				paragraphs: [
-					'Pick Warzone Hacks if you play ranked or Resurgence multiple times a week, want per-weapon soft aim profiles, care about cloud DMA without a second upsell, and want a public Updates log before you launch after patches.',
+					'Pick Sand Raiders Cheats if you play ranked or Resurgence multiple times a week, want per-weapon soft aim profiles, care about cloud DMA without a second upsell, and want a public Updates log before you launch after patches.',
 					'Pick CheatVault if community size matters more than rebuild transparency, you want the premium capture extras, and you do not mind paying slightly more for a similar core stack.',
-					'Try This Today: Write down your must-haves (ESP categories, radar size, controller, DMA). Open <a href="/features/">Features</a> and CheatVault\'s list side by side, then check both Updates channels before the next Epic patch. For the full Warzone Hacks stack overview, start at <a href="/warzone-hacks/">Warzone hacks</a>.',
+					'Try This Today: Write down your must-haves (ESP categories, radar size, controller, DMA). Open <a href="/features/">Features</a> and CheatVault\'s list side by side, then check both Updates channels before the next Epic patch. For the full Sand Raiders Cheats stack overview, start at <a href="/sand-raiders-hacks/">Warzone hacks</a>.',
 				],
 			},
 		],
@@ -696,20 +696,20 @@ const sources = [
 		updated: '2026-08-01',
 		category: 'Comparisons',
 		featured: false,
-		slug: 'elitefn-vs-warzone-hacks-two-week-test',
+		slug: 'elitefn-vs-sand-raiders-hacks-two-week-test',
 		title: 'I Tried EliteFN for 2 Weeks Before Switching',
 		metaDescription:
-			'EliteFN vs Warzone Hacks — a two-week test of ESP, soft aim, controller support, EAC downtime, and pricing before switching packages in 2026.',
-		h1: 'I Tried EliteFN for 2 Weeks Before Switching to Warzone Hacks',
+			'EliteFN vs Sand Raiders Cheats — a two-week test of ESP, soft aim, controller support, EAC downtime, and pricing before switching packages in 2026.',
+		h1: 'I Tried EliteFN for 2 Weeks Before Switching to Sand Raiders Cheats',
 		intro:
-			'EliteFN was the popular pick in my squad\'s Discord. I gave it fourteen days — same hardware, same playlists — then moved to Warzone Hacks. This is what actually differed.',
-		keywords: ['elitefn vs warzone hacks', 'elitefn review', 'warzone cheats comparison', 'soft aim', 'esp boxes'],
-		imageAlt: 'EliteFN vs Warzone Hacks two week comparison test for Warzone cheats',
+			'EliteFN was the popular pick in my squad\'s Discord. I gave it fourteen days — same hardware, same playlists — then moved to Sand Raiders Cheats. This is what actually differed.',
+		keywords: ['elitefn vs sand raiders cheats', 'elitefn review', 'sand raiders cheats comparison', 'soft aim', 'esp boxes'],
+		imageAlt: 'EliteFN vs Sand Raiders Cheats two week comparison test for Sand Raiders cheats',
 		sections: [
 			{
 				h2: 'Week one — setup, first impressions, and the menu learning curve',
 				paragraphs: [
-					'EliteFN delivery was fast — key in email within twenty minutes. Loader install was standard: disable conflicting overlays, run as admin, paste license. Took about twenty-five minutes my first time, same ballpark as Warzone Hacks later.',
+					'EliteFN delivery was fast — key in email within twenty minutes. Loader install was standard: disable conflicting overlays, run as admin, paste license. Took about twenty-five minutes my first time, same ballpark as Sand Raiders Cheats later.',
 					'EliteFN\'s menu looked cleaner on screenshots. In game, I spent two evenings just mapping toggles. ESP categories are nested one level deeper than I liked. Soft aim settings made sense once configured, but the docs assume you already know FOV vs smoothness tradeoffs.',
 					'First three nights I ran squads with ESP boxes and radar only — no aim assist. EliteFN visibility was good. Player outlines readable at mid range. Loot ESP existed but felt an afterthought compared to player ESP. I died plenty; the tool did its info job fine.',
 				],
@@ -718,107 +718,107 @@ const sources = [
 				h2: 'Soft aim, weapons, and controller testing',
 				paragraphs: [
 					'Week one weekend I enabled soft aim with a conservative FOV. Worked on AR and SMG in Resurgence. Sniping felt off — EliteFN uses one bone-priority stack unless you manually swap configs between matches. Doable, not great for my play style.',
-					'I play controller two nights a week. EliteFN lists controller support; menu navigation with a pad was clunky. Warzone Hacks later felt similar on pad menus honestly — neither is perfect — but EliteFN had no suggested controller baseline in docs. I wasted time guessing.',
+					'I play controller two nights a week. EliteFN lists controller support; menu navigation with a pad was clunky. Sand Raiders Cheats later felt similar on pad menus honestly — neither is perfect — but EliteFN had no suggested controller baseline in docs. I wasted time guessing.',
 					'Hammer AR tracking at 40–50m was the benchmark test. EliteFN smooth aim was slightly snappier out of box. Snappier sounds good until you watch replay clips and notice the robotic corrections. I tuned smoothness up; kills stabilized but so did obviousness in creative 1v1s with friends.',
 				],
 			},
 			{
 				h2: 'The patch that ended my EliteFN trial',
 				paragraphs: [
-					'Day eleven hit a Warzone + Ricochet patch. Standard for any cheat user. EliteFN status channel said "investigating." No ETA. I skipped ranked for two days waiting — squad moved on without me.',
+					'Day eleven hit a Warzone + Easy Anti-Cheat patch. Standard for any cheat user. EliteFN status channel said "investigating." No ETA. I skipped ranked for two days waiting — squad moved on without me.',
 					'Day thirteen a rebuild dropped. Loaded in, played two pubs, crashed once, relaunched fine. Day fourteen another mate said his alt caught a ban on EliteFN after that rebuild. Unverified story, but combined with downtime it was my cue to bail.',
-					'I switched to Warzone Hacks lifetime partly because of the <a href="/updates/">Updates</a> cadence — I wanted patch notes in writing, not Discord rumor. Not saying EliteFN is a scam; plenty of players still run it. It just did not match my tolerance for silent patch windows.',
+					'I switched to Sand Raiders Cheats lifetime partly because of the <a href="/updates/">Updates</a> cadence — I wanted patch notes in writing, not Discord rumor. Not saying EliteFN is a scam; plenty of players still run it. It just did not match my tolerance for silent patch windows.',
 				],
 			},
 			{
 				h2: 'Side-by-side after switching — what improved',
 				paragraphs: [
-					'Warzone Hacks ESP let me toggle loot and chest markers independently — huge for off-spawn routes without cluttering endgame. Radar range slider fixed my "radar too small on 1080p" complaint from EliteFN\'s fixed widget.',
+					'Sand Raiders Cheats ESP let me toggle loot and chest markers independently — huge for off-spawn routes without cluttering endgame. Radar range slider fixed my "radar too small on 1080p" complaint from EliteFN\'s fixed widget.',
 					'Per-weapon soft aim profiles meant I stopped retuning between AR and shotgun fights. Cloud DMA path was optional for my setup; I stayed on standard loader, but having DMA documented in one package beat EliteFN\'s "ask sales" flow.',
-					'Support reply time: EliteFN ticket answered in ~5 hours once. Warzone Hacks support replied in ~2 hours when I asked about controller baseline settings. Small sample, but matched what I needed during setup week.',
+					'Support reply time: EliteFN ticket answered in ~5 hours once. Sand Raiders Cheats support replied in ~2 hours when I asked about controller baseline settings. Small sample, but matched what I needed during setup week.',
 				],
 			},
 			{
 				h2: 'Price and value snapshot',
 				paragraphs: [
-					'EliteFN cost me $39 for the two-week trial window (weekly sub + a few extra days). Warzone Hacks monthly is $35; lifetime $150. If you hop tools every month, weekly pricing adds up fast.',
-					'Feature-per-dollar favors Warzone Hacks for my use: combined ESP + radar + soft aim + rebuild notes in one license. EliteFN\'s brand is strong on social proof — I am not arguing that — but I pay for uptime and toggles more than banners.',
-					'Compare plans yourself on <a href="/pricing/">Pricing</a> and read the <a href="/blog/warzone-hacks-vs-cheatvault-comparison/">CheatVault comparison</a> if you are still shopping three-wide.',
+					'EliteFN cost me $39 for the two-week trial window (weekly sub + a few extra days). Sand Raiders Cheats monthly is $35; lifetime $150. If you hop tools every month, weekly pricing adds up fast.',
+					'Feature-per-dollar favors Sand Raiders Cheats for my use: combined ESP + radar + soft aim + rebuild notes in one license. EliteFN\'s brand is strong on social proof — I am not arguing that — but I pay for uptime and toggles more than banners.',
+					'Compare plans yourself on <a href="/pricing/">Pricing</a> and read the <a href="/blog/sand-raiders-hacks-vs-cheatvault-comparison/">CheatVault comparison</a> if you are still shopping three-wide.',
 				],
 			},
 			{
 				h2: 'Would I recommend EliteFN to anyone?',
 				paragraphs: [
 					'Yes, with caveats. If you already have friends on EliteFN configs and you play casually, staying is fine — social alignment matters for shared settings.',
-					'If you are patch-sensitive, play ranked daily, or want granular ESP and weapon profiles, Warzone Hacks fit me better after the two-week test. Your mileage varies; run your own patch-day checklist.',
-					'Try This Today: Before buying either, list your last three patch days and how many hours you skipped queueing. If downtime frustrates you, prioritize vendors with public Updates pages — then open <a href="/warzone-hacks/">Warzone hacks</a> and <a href="/setup/">Setup</a> before checkout.',
+					'If you are patch-sensitive, play ranked daily, or want granular ESP and weapon profiles, Sand Raiders Cheats fit me better after the two-week test. Your mileage varies; run your own patch-day checklist.',
+					'Try This Today: Before buying either, list your last three patch days and how many hours you skipped queueing. If downtime frustrates you, prioritize vendors with public Updates pages — then open <a href="/sand-raiders-hacks/">Warzone hacks</a> and <a href="/setup/">Setup</a> before checkout.',
 				],
 			},
 		],
 	},
 	{
-		id: 'warzone-hacks-vs-ghostware',
+		id: 'sand-raiders-hacks-vs-ghostware',
 		imageKey: 'espWallhack',
 		published: '2026-07-05',
 		updated: '2026-08-01',
 		category: 'Comparisons',
 		featured: false,
-		slug: 'warzone-hacks-vs-ghostware-features-pricing',
-		title: 'Warzone Hacks vs GhostWare: Features & Pricing',
+		slug: 'sand-raiders-hacks-vs-ghostware-features-pricing',
+		title: 'Sand Raiders Cheats vs GhostWare: Features & Pricing',
 		metaDescription:
-			'Warzone Hacks vs GhostWare — feature tables, soft aim, ESP boxes, cloud DMA, controller support, EAC history, and honest pros/cons for 2026 buyers.',
-		h1: 'Warzone Hacks vs GhostWare: Features, Pricing, and Detection Notes',
+			'Sand Raiders Cheats vs GhostWare — feature tables, soft aim, ESP boxes, cloud DMA, controller support, EAC history, and honest pros/cons for 2026 buyers.',
+		h1: 'Sand Raiders Cheats vs GhostWare: Features, Pricing, and Detection Notes',
 		intro:
-			'GhostWare markets hard on "stealth" branding. Warzone Hacks markets on the full BR stack. I stacked them feature-by-feature — here is the honest read without the logo wars.',
-		keywords: ['ghostware vs warzone hacks', 'ghostware warzone', 'cheat comparison', 'esp boxes', 'cloud dma'],
-		imageAlt: 'Warzone Hacks vs GhostWare features pricing and EAC comparison',
+			'GhostWare markets hard on "stealth" branding. Sand Raiders Cheats markets on the full BR stack. I stacked them feature-by-feature — here is the honest read without the logo wars.',
+		keywords: ['ghostware vs sand raiders cheats', 'ghostware warzone', 'cheat comparison', 'esp boxes', 'cloud dma'],
+		imageAlt: 'Sand Raiders Cheats vs GhostWare features pricing and EAC comparison',
 		sections: [
 			{
 				h2: 'Two different philosophies — minimal vs full-stack',
 				paragraphs: [
-					'GhostWare sells a slimmer Warzone module: ESP-focused with light aim assist, fewer toggles, lower price entry. Warzone Hacks bundles ESP wallhack, radar, soft aim profiles, controller paths, and cloud DMA documentation in one undetected license.',
+					'GhostWare sells a slimmer Warzone module: ESP-focused with light aim assist, fewer toggles, lower price entry. Sand Raiders Cheats bundles ESP wallhack, radar, soft aim profiles, controller paths, and cloud DMA documentation in one undetected license.',
 					'Neither approach is wrong. Minimal tools break less surface area in theory. Full-stack tools win when you want one menu for ranked nights — visibility, flanks, and firefight assist without swapping executables.',
-					'I used GhostWare for ten days on an alt account while keeping Warzone Hacks on main. Same monitor, same sens, different playlists to spread risk. Take ban risk seriously on any tool.',
+					'I used GhostWare for ten days on an alt account while keeping Sand Raiders Cheats on main. Same monitor, same sens, different playlists to spread risk. Take ban risk seriously on any tool.',
 				],
 			},
 			{
 				h2: 'Feature and pricing comparison table',
 				paragraphs: [
-					'<table><thead><tr><th></th><th>Warzone Hacks</th><th>GhostWare</th></tr></thead><tbody><tr><td>Monthly price</td><td>$35</td><td>$28</td></tr><tr><td>Lifetime price</td><td>$150</td><td>$120</td></tr><tr><td>Player ESP boxes</td><td>Yes</td><td>Yes</td></tr><tr><td>Loot / chest ESP</td><td>Yes</td><td>Limited</td></tr><tr><td>2D radar</td><td>Yes</td><td>No</td></tr><tr><td>Soft aim profiles</td><td>Multiple weapon slots</td><td>Basic assist</td></tr><tr><td>Controller support</td><td>Yes</td><td>Partial</td></tr><tr><td>Cloud DMA path</td><td>Documented</td><td>Not offered</td></tr><tr><td>Public Updates log</td><td><a href="/updates/">Yes — public updates log</a></td><td>Discord only</td></tr></tbody></table>',
-					'GhostWare is cheaper on sticker price. Warzone Hacks includes radar and richer loot ESP — features I use every session. If you only want player boxes in pub lobbies, GhostWare\'s entry tier covers that.',
-					'Lifetime math: GhostWare $120 vs Warzone Hacks $150. The $30 gap closes if you value radar and rebuild transparency. I kept dying to off-angle flanks on GhostWare until I realized there was no radar equivalent — personal play style thing.',
+					'<table><thead><tr><th></th><th>Sand Raiders Cheats</th><th>GhostWare</th></tr></thead><tbody><tr><td>Monthly price</td><td>$35</td><td>$28</td></tr><tr><td>Lifetime price</td><td>$150</td><td>$120</td></tr><tr><td>Player ESP boxes</td><td>Yes</td><td>Yes</td></tr><tr><td>Loot / chest ESP</td><td>Yes</td><td>Limited</td></tr><tr><td>2D radar</td><td>Yes</td><td>No</td></tr><tr><td>Soft aim profiles</td><td>Multiple weapon slots</td><td>Basic assist</td></tr><tr><td>Controller support</td><td>Yes</td><td>Partial</td></tr><tr><td>Cloud DMA path</td><td>Documented</td><td>Not offered</td></tr><tr><td>Public Updates log</td><td><a href="/updates/">Yes — public updates log</a></td><td>Discord only</td></tr></tbody></table>',
+					'GhostWare is cheaper on sticker price. Sand Raiders Cheats includes radar and richer loot ESP — features I use every session. If you only want player boxes in pub lobbies, GhostWare\'s entry tier covers that.',
+					'Lifetime math: GhostWare $120 vs Sand Raiders Cheats $150. The $30 gap closes if you value radar and rebuild transparency. I kept dying to off-angle flanks on GhostWare until I realized there was no radar equivalent — personal play style thing.',
 				],
 			},
 			{
 				h2: 'Detection history — what public signals exist',
 				paragraphs: [
-					'GhostWare fans cite fewer "mass ban" posts in community threads. That is anecdotal — smaller user bases generate fewer posts by default. Warzone Hacks had a visible rebuild cycle after the last major EAC push; GhostWare\'s Discord announced an update two days later.',
-					'No vendor publishes audited detection rates. Treat claims as marketing. My rule: if Updates or Discord status is silent 24h after an Ricochet patch, I do not queue on that tool.',
-					'Warzone Hacks documents maintenance on <a href="/ricochet-bypass/">Ricochet bypass workflow</a> and the <a href="/undetected-warzone-cheats/">undetected guide</a>. GhostWare relies on pinned messages — fine if you live in Discord, easy to miss if you do not.',
+					'GhostWare fans cite fewer "mass ban" posts in community threads. That is anecdotal — smaller user bases generate fewer posts by default. Sand Raiders Cheats had a visible rebuild cycle after the last major EAC push; GhostWare\'s Discord announced an update two days later.',
+					'No vendor publishes audited detection rates. Treat claims as marketing. My rule: if Updates or Discord status is silent 24h after an Easy Anti-Cheat patch, I do not queue on that tool.',
+					'Sand Raiders Cheats documents maintenance on <a href="/eac-bypass/">EAC bypass workflow</a> and the <a href="/undetected-sand-raiders-cheats/">undetected guide</a>. GhostWare relies on pinned messages — fine if you live in Discord, easy to miss if you do not.',
 				],
 			},
 			{
 				h2: 'Gameplay feel — Resurgence and ranked squads',
 				paragraphs: [
-					'GhostWare ESP boxes were crisp — arguably cleaner outline rendering on low settings PCs. Warzone Hacks boxes offer more colour and distance data; busier but more informative in squad comms ("220m west" calls).',
-					'Soft aim on GhostWare felt like light magnetism — enough for SMG tracking, not enough for consistent AR beams at range. Warzone Hacks soft aim took tuning time but held Hammer AR fights better once profiles were set.',
-					'Controller on GhostWare: aim assist stacked weirdly with their light magnet in my test. Warzone Hacks suggested baseline FOV values in support docs; less guesswork.',
+					'GhostWare ESP boxes were crisp — arguably cleaner outline rendering on low settings PCs. Sand Raiders Cheats boxes offer more colour and distance data; busier but more informative in squad comms ("220m west" calls).',
+					'Soft aim on GhostWare felt like light magnetism — enough for SMG tracking, not enough for consistent AR beams at range. Sand Raiders Cheats soft aim took tuning time but held Hammer AR fights better once profiles were set.',
+					'Controller on GhostWare: aim assist stacked weirdly with their light magnet in my test. Sand Raiders Cheats suggested baseline FOV values in support docs; less guesswork.',
 				],
 			},
 			{
 				h2: 'Pros and cons summary',
 				paragraphs: [
-					'<strong>Warzone Hacks pros:</strong> full ESP + radar + soft aim stack, per-weapon profiles, cloud DMA path, public Updates page, controller docs. <strong>Cons:</strong> higher price, menu takes ~20 minutes to learn, radar size could use more presets.',
+					'<strong>Sand Raiders Cheats pros:</strong> full ESP + radar + soft aim stack, per-weapon profiles, cloud DMA path, public Updates page, controller docs. <strong>Cons:</strong> higher price, menu takes ~20 minutes to learn, radar size could use more presets.',
 					'<strong>GhostWare pros:</strong> lower entry price, clean minimal ESP, quick to launch, smaller feature surface. <strong>Cons:</strong> no radar, limited loot ESP, patch status mostly in Discord, no DMA option, lighter aim tools.',
-					'Neither replaces game sense. Pair either with fundamentals — see our <a href="/blog/warzone-resurgence-aggressive-strategies/">Resurgence aggression guide</a> and <a href="/blog/warzone-hacks-complete-guide-2026/">complete hacks guide</a>.',
+					'Neither replaces game sense. Pair either with fundamentals — see our <a href="/blog/warzone-resurgence-aggressive-strategies/">Resurgence aggression guide</a> and <a href="/blog/sand-raiders-hacks-complete-guide-2026/">complete hacks guide</a>.',
 				],
 			},
 			{
 				h2: 'Which one should you buy?',
 				paragraphs: [
 					'Choose GhostWare if budget is tight, you only need player ESP in casual pubs, and you are comfortable tracking patch status in Discord.',
-					'Choose Warzone Hacks if you want radar for flanks, loot markers for faster spawns, configurable soft aim, optional cloud DMA, and a single Updates URL to check after every Epic patch.',
-					'Try This Today: Decide whether radar and loot ESP are must-haves or nice-to-haves. If must-have, open <a href="/warzone-esp/">ESP</a>, <a href="/warzone-radar-hack/">radar</a>, and <a href="/pricing/">Pricing</a>. If skipping radar saves you money and matches your style, GhostWare stays in the conversation — just do not skip patch-day checks on either tool.',
+					'Choose Sand Raiders Cheats if you want radar for flanks, loot markers for faster spawns, configurable soft aim, optional cloud DMA, and a single Updates URL to check after every Epic patch.',
+					'Try This Today: Decide whether radar and loot ESP are must-haves or nice-to-haves. If must-have, open <a href="/sand-raiders-esp/">ESP</a>, <a href="/sand-raiders-radar-hack/">radar</a>, and <a href="/pricing/">Pricing</a>. If skipping radar saves you money and matches your style, GhostWare stays in the conversation — just do not skip patch-day checks on either tool.',
 				],
 			},
 		],

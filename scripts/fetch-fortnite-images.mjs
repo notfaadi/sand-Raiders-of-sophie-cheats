@@ -39,7 +39,7 @@ const LEGACY_PATTERNS = [
 
 async function fetchWebp(url) {
 	const res = await fetch(url, {
-		headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WarzoneCheatsSite/1.0)' },
+		headers: { 'User-Agent': 'Mozilla/5.0 (compatible; SandRaidersCheatsSite/1.0)' },
 	});
 	if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
 	const input = Buffer.from(await res.arrayBuffer());

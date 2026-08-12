@@ -5,28 +5,28 @@
  */
 export const brand = {
 	/** Public brand name (nav, footer, H1 hero, schema Organization) */
-	name: 'Warzone Hacks',
+	name: 'Sand Raiders Cheats',
 	/** Short product label if needed */
-	shortName: 'Warzone',
+	shortName: 'Sand Raiders',
 	/** Canonical origin — no trailing slash */
-	url: 'https://warzonehacks.net',
+	url: 'https://sandraiderscheats.net',
 	locale: 'en',
 	market: 'Worldwide',
-	supportEmail: 'support@warzonehacks.net',
-	checkoutUrl: 'https://zadeyo.com/go/AMAN?to=%2Fproducts%2Fwarzone',
+	supportEmail: 'support@sandraiderscheats.net',
+	checkoutUrl: 'https://zadeyo.com/go/AMAN?to=%2Fproducts%2Fsand-raiders',
 
 	/** Game this template instance targets */
-	game: 'Warzone',
+	game: 'Sand Raiders',
 	/** Anti-cheat name used in Status / FAQ copy */
-	antiCheat: 'RICOCHET',
+	antiCheat: 'Easy Anti-Cheat',
 
-	logo: '/images/warzone-hacks-logo.webp',
-	logoRaster: '/images/warzone-hacks-logo.png',
+	logo: '/img/sand-raiders-logo.webp',
+	logoRaster: '/img/sand-raiders-logo.png',
 	logoRasterWidth: 512,
 	logoRasterHeight: 512,
-	logoAlt: 'Warzone hacks logo',
-	defaultOgImage: '/images/hero-banner.webp',
-	heroImage: '/images/hero-banner.webp',
+	logoAlt: 'Sand Raiders Cheats logo',
+	defaultOgImage: '/img/hero-banner.webp',
+	heroImage: '/img/hero-banner.webp',
 
 	plans: [
 		{ id: 'monthly', label: 'Monthly', price: 35, duration: 'P30D' },
@@ -36,16 +36,16 @@ export const brand = {
 	platforms: ['Windows PC', 'Controllers'] as const,
 
 	/**
-	 * Site color tones — accent + canvas + soft/deep/hover/panel.
+	 * Site color tones — desert gold on deep dune canvas.
 	 * Edit in Brand Studio → Colors (tones are fully customizable).
 	 */
 	theme: {
-		accent: '#8b5cf6',
-		bg: '#0d0d0d',
-		soft: '#a78bfa',
-		deep: '#5b21b6',
-		hover: '#9f7aea',
-		panel: '#09080c',
+		accent: '#e8a838',
+		bg: '#0c0906',
+		soft: '#f0c56d',
+		deep: '#b45309',
+		hover: '#fbbf24',
+		panel: '#120e0a',
 	},
 
 	/**
@@ -53,15 +53,15 @@ export const brand = {
 	 * Keep 5–8 terms.
 	 */
 	keywords: {
-		primary: 'warzone hacks',
+		primary: 'sand raiders cheats',
 		list: [
-			'warzone hacks',
-			'warzone esp',
-			'warzone aimbot',
-			'warzone wallhack',
-			'warzone radar',
-			'undetected warzone hacks',
-			'best warzone hacks',
+			'sand raiders cheats',
+			'sand raiders esp',
+			'sand raiders aimbot',
+			'sand raiders wallhack',
+			'sand raiders radar',
+			'undetected sand raiders cheats',
+			'best sand raiders cheats',
 		] as const,
 	},
 
@@ -71,7 +71,7 @@ export const brand = {
 	 */
 	seo: {
 		homeTitle: '{brand} | Undetected {primaryKeyword}',
-		homeDescription: '{primaryKeyword} for Windows PC - ESP, aimbot, and ESP with {antiCheat} maintenance. Compare plans and buy.',
+		homeDescription: '{primaryKeyword} for Windows PC - ESP, aimbot, and radar with {antiCheat} maintenance. Compare plans and buy.',
 		featuresTitle: '{game} Features | {brand}',
 		featuresDescription: 'Everything in one {game} license for Windows PC -- ESP, aimbot, radar, and patch updates.',
 		storeTitle: '{game} Store | {brand}',
@@ -79,7 +79,7 @@ export const brand = {
 		statusTitle: '{game} Status | {brand}',
 		statusDescription: 'Live status for {brand} after {game} or {antiCheat} patches. Check before you queue.',
 		previewTitle: '{game} Preview | {brand}',
-		previewDescription: 'Quick preview of {brand} -- ESP, aimbot, ESP, and updates after {game} patches.',
+		previewDescription: 'Quick preview of {brand} -- ESP, aimbot, radar, and updates after {game} patches.',
 		setupTitle: '{game} Setup | {brand}',
 		setupDescription: 'Install and launch {brand} on Windows PC. Short setup steps after you buy.',
 		supportTitle: '{game} Support | {brand}',
@@ -94,9 +94,9 @@ export const brand = {
 
 	/** On-page marketing copy (tokens allowed) */
 	copy: {
-		tagline: 'Undetected {primaryKeyword} -- ESP, aimbot, and ESP for PC',
-		summary: '{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and ESP, with {antiCheat} maintenance after patches.',
-		heroLede: 'Hacks and cheats available - 0% detection.',
+		tagline: 'Undetected {primaryKeyword} -- ESP, aimbot, and radar for PC',
+		summary: '{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
+		heroLede: 'Dominate the dunes — undetected ESP, aimbot & radar.',
 		blogLabel: '{game} Intel',
 		ctaBuy: 'Buy now',
 		ctaBuyShort: 'Buy',
@@ -110,7 +110,7 @@ export const brand = {
 		reviewsIntro: 'Real feedback from {brand} buyers — ESP, soft aim, radar, and support.',
 		chipEsp: 'ESP / wallhack',
 		chipAim: 'Soft aim',
-		chipRadar: '2D ESP',
+		chipRadar: '2D radar',
 		chipUpdates: 'Patch updates',
 		navPreview: 'Preview',
 		navFeatures: 'Features',
@@ -126,39 +126,39 @@ export const brand = {
 	 */
 	sitemap: {
 		/** YYYY-MM-DD — Brand Studio can bump this on save to refresh crawl dates */
-		contentLastmod: '2026-08-10',
+		contentLastmod: '2026-08-12',
 		blogImageTitle: '{brand} blog',
 		blogImageCaption: 'Tips and updates for {primaryKeyword}',
 		reviewsImageTitle: '{brand} reviews',
 		reviewsImageCaption: 'What buyers say about {primaryKeyword}',
 		images: [
 			{
-				src: '/images/warzone-esp-player-tags.webp',
+				src: '/img/sand-raiders-trampler.webp',
 				title: '{primaryKeyword} ESP',
 				caption: 'See players with {primaryKeyword}',
 			},
 			{
-				src: '/images/warzone-wallhack-skeleton.webp',
+				src: '/img/sand-raiders-combat.webp',
 				title: '{primaryKeyword} wallhack',
 				caption: 'See through walls with {primaryKeyword}',
 			},
 			{
-				src: '/images/warzone-aimbot-sniper.webp',
+				src: '/img/sand-raiders-desert.webp',
 				title: '{primaryKeyword} aimbot',
 				caption: 'Aimbot in {primaryKeyword}',
 			},
 			{
-				src: '/images/warzone-aimbot-skeleton.webp',
+				src: '/img/sand-raiders-storm.webp',
 				title: '{primaryKeyword} aimbot view',
 				caption: 'Aimbot bone view in {primaryKeyword}',
 			},
 			{
-				src: '/images/warzone-esp-radar.webp',
+				src: '/img/sand-raiders-loot.webp',
 				title: '{primaryKeyword} radar',
 				caption: 'Radar map in {primaryKeyword}',
 			},
 			{
-				src: '/images/warzone-cheats-combat.webp',
+				src: '/img/sand-raiders-extract.webp',
 				title: '{primaryKeyword} in a fight',
 				caption: 'Fight view with {primaryKeyword}',
 			},

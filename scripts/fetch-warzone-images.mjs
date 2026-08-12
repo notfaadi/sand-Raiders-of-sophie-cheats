@@ -16,21 +16,21 @@ const PK = 'https://sm.ign.com/t/ign_pk/screenshot/default';
 /**
  * Warzone hacks image pipeline:
  * 1. Download real Call of Duty: Warzone gameplay from IGN
- * 2. Composite ESP / aimbot / radar / mod-menu overlays for warzone hacks marketing
+ * 2. Composite ESP / aimbot / radar / mod-menu overlays for sand raiders cheats marketing
  */
 const KEYWORD_ASSETS = [
 	{
-		file: 'warzone-hacks-hero.webp',
+		file: 'sand-raiders-hacks-hero.webp',
 		url: `${ME_G}/call-of-duty-warzone-screenshots_wjkx.1400.jpg`,
 		overlay: 'hero',
 	},
 	{
-		file: 'warzone-hacks-aimbot.webp',
+		file: 'sand-raiders-hacks-aimbot.webp',
 		url: `${ME}/call-of-duty-warzone-screenshots_wjb1.1400.jpg`,
 		overlay: 'aimbot',
 	},
 	{
-		file: 'warzone-hacks-esp-wallhack.webp',
+		file: 'sand-raiders-hacks-esp-wallhack.webp',
 		url: `${ME}/call-of-duty-warzone-screenshots_55fp.1400.jpg`,
 		overlay: 'wallhack',
 	},
@@ -40,12 +40,12 @@ const KEYWORD_ASSETS = [
 		overlay: 'esp',
 	},
 	{
-		file: 'warzone-hacks-package.webp',
+		file: 'sand-raiders-hacks-package.webp',
 		url: `${ME}/call-of-duty-warzone-screenshots_anf4.1400.jpg`,
 		overlay: 'menu',
 	},
 	{
-		file: 'warzone-hacks-cover.webp',
+		file: 'sand-raiders-hacks-cover.webp',
 		url: `${ME}/call-of-duty-warzone-screenshots_7pr8.1400.jpg`,
 		overlay: 'esp',
 	},
@@ -94,7 +94,7 @@ const KEYWORD_ASSETS = [
 const REMOVE_PATTERNS = [
 	/^fortnite-/,
 	/-\d+w\.webp$/i,
-	/^warzone-hacks-logo/,
+	/^sand-raiders-hacks-logo/,
 ];
 
 async function fetchBase(url) {
@@ -123,7 +123,7 @@ async function composeHackImage(baseBuffer, overlayPreset) {
 async function cleanImagesDir() {
 	const files = await readdir(imagesDir).catch(() => []);
 	for (const file of files) {
-		if (file.includes('warzone-hacks-logo')) continue;
+		if (file.includes('sand-raiders-hacks-logo')) continue;
 		if (REMOVE_PATTERNS.some((pattern) => pattern.test(file))) {
 			await unlink(path.join(imagesDir, file));
 			console.log(`Removed ${file}`);
@@ -138,7 +138,7 @@ async function generateBrandAssets(heroBuffer) {
 		.webp({ quality: 88 })
 		.toBuffer();
 
-	await writeFile(path.join(imagesDir, 'warzone-hacks-logo.webp'), logoBuffer);
+	await writeFile(path.join(imagesDir, 'sand-raiders-hacks-logo.webp'), logoBuffer);
 
 	for (const { name, size } of [
 		{ name: 'favicon-16x16.png', size: 16 },
@@ -165,7 +165,7 @@ for (const asset of KEYWORD_ASSETS) {
 		await writeFile(path.join(imagesDir, asset.file), webp);
 		console.log(`  ✓ ${asset.file} (${webp.length} bytes)`);
 		saved++;
-		if (asset.file === 'warzone-hacks-hero.webp') heroBuffer = webp;
+		if (asset.file === 'sand-raiders-hacks-hero.webp') heroBuffer = webp;
 	} catch (err) {
 		console.warn(`  ✗ Skip ${asset.file}: ${err.message}`);
 	}

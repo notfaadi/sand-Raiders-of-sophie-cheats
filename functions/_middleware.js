@@ -1,6 +1,6 @@
-﻿const CANONICAL_ORIGIN = 'https://warzonehacks.net';
-const APEX_HOST = 'warzonehacks.net';
-const WWW_HOST = 'www.warzonehacks.net';
+﻿const CANONICAL_ORIGIN = 'https://sandraiderscheats.net';
+const APEX_HOST = 'sandraiderscheats.net';
+const WWW_HOST = 'www.sandraiderscheats.net';
 
 /** Legacy domains → canonical apex (301). */
 const LEGACY_HOSTS = new Set([
@@ -30,19 +30,19 @@ const PATH_REDIRECTS = {
 	'/sitemap-images.xml/': '/sitemap-images.xml',
 	'/call-of-duty-warzone-cheats': '/',
 	'/call-of-duty-warzone-cheats/': '/',
-	'/warzone-cheats-2026': '/warzone-cheats-2026/',
-	'/warzone-cheats': '/warzone-cheats-2026/',
-	'/warzone-cheats/': '/warzone-cheats-2026/',
-	'/fortnite-aimbot': '/warzone-aimbot/',
-	'/fortnite-aimbot/': '/warzone-aimbot/',
-	'/fortnite-esp': '/warzone-esp/',
-	'/fortnite-esp/': '/warzone-esp/',
-	'/fortnite-hacks': '/warzone-hacks/',
-	'/fortnite-hacks/': '/warzone-hacks/',
-	'/eac-bypass': '/ricochet-bypass/',
-	'/eac-bypass/': '/ricochet-bypass/',
-	'/eac-bypass-fortnite': '/ricochet-bypass/',
-	'/eac-bypass-fortnite/': '/ricochet-bypass/',
+	'/sand-raiders-cheats-2026': '/sand-raiders-cheats-2026/',
+	'/warzone-cheats': '/sand-raiders-cheats-2026/',
+	'/warzone-cheats/': '/sand-raiders-cheats-2026/',
+	'/fortnite-aimbot': '/sand-raiders-aimbot/',
+	'/fortnite-aimbot/': '/sand-raiders-aimbot/',
+	'/fortnite-esp': '/sand-raiders-esp/',
+	'/fortnite-esp/': '/sand-raiders-esp/',
+	'/fortnite-hacks': '/sand-raiders-hacks/',
+	'/fortnite-hacks/': '/sand-raiders-hacks/',
+	'/eac-bypass': '/eac-bypass/',
+	'/eac-bypass/': '/eac-bypass/',
+	'/eac-bypass-fortnite': '/eac-bypass/',
+	'/eac-bypass-fortnite/': '/eac-bypass/',
 	'/blog/patch-notes-buffs-nerfs-vaults': '/blog/warzone-patch-notes-guide/',
 	'/blog/patch-notes-buffs-nerfs-vaults/': '/blog/warzone-patch-notes-guide/',
 	'/blog/chapter-7-season-3-skin-leaks-vbucks': '/blog/warzone-skin-leaks-guide/',
@@ -59,10 +59,10 @@ const PATH_REDIRECTS = {
 	'/blog/bugha-settings-pro-setup/': '/blog/warzone-pro-settings-guide/',
 	'/blog/creative-warmup-maps-pros-use': '/blog/warzone-warmup-maps-ranked/',
 	'/blog/creative-warmup-maps-pros-use/': '/blog/warzone-warmup-maps-ranked/',
-	'/reviews/warzone-esp-zero-build-review-buildsr4k': '/reviews/warzone-esp-resurgence-review-buildsr4k/',
-	'/reviews/warzone-esp-zero-build-review-buildsr4k/': '/reviews/warzone-esp-resurgence-review-buildsr4k/',
-	'/reviews/warzone-radar-hack-review-vanlifefn': '/reviews/warzone-radar-hack-review-vanlifewz/',
-	'/reviews/warzone-radar-hack-review-vanlifefn/': '/reviews/warzone-radar-hack-review-vanlifewz/',
+	'/reviews/sand-raiders-esp-zero-build-review-buildsr4k': '/reviews/sand-raiders-esp-resurgence-review-buildsr4k/',
+	'/reviews/sand-raiders-esp-zero-build-review-buildsr4k/': '/reviews/sand-raiders-esp-resurgence-review-buildsr4k/',
+	'/reviews/sand-raiders-radar-hack-review-vanlifefn': '/reviews/sand-raiders-radar-hack-review-vanlifewz/',
+	'/reviews/sand-raiders-radar-hack-review-vanlifefn/': '/reviews/sand-raiders-radar-hack-review-vanlifewz/',
 };
 
 const SECURITY_HEADERS = {

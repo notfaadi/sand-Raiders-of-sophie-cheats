@@ -35,8 +35,8 @@ const img = (path: string, title: string, caption: string): SitemapImage => ({
  */
 const pageImageSrcById: Record<PageId, string> = {
 	home: warzoneImages.hero,
-	'warzone-esp': warzoneImages.playerEsp,
-	'warzone-aimbot': warzoneImages.aimbotCombat,
+	'sand-raiders-esp': warzoneImages.playerEsp,
+	'sand-raiders-aimbot': warzoneImages.aimbotCombat,
 	features: warzoneImages.aimbotSkeleton,
 	pricing: warzoneImages.cheatsCombat,
 	setup: warzoneImages.playerEsp,
@@ -46,7 +46,7 @@ const pageImageSrcById: Record<PageId, string> = {
 	undetected: warzoneImages.espWallhack,
 	wallhack: warzoneImages.espWallhack,
 	radar: warzoneImages.playerEsp,
-	ricochet: warzoneImages.aimbotCombat,
+	'eac-bypass': warzoneImages.aimbotCombat,
 	'cheats-2026': warzoneImages.hero,
 	hacks: warzoneImages.cheatsCombat,
 	'cheat-download': warzoneImages.cheatsCombat,

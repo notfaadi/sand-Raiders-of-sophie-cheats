@@ -19,12 +19,12 @@ async function squareLogoBuffer(size) {
 
 async function generateSiteLogo() {
 	const logoPng = await squareLogoBuffer(512);
-	await writeFile(path.join(imagesDir, 'warzone-hacks-logo.png'), logoPng);
-	console.log('Wrote public/images/warzone-hacks-logo.png (512×512)');
+	await writeFile(path.join(imagesDir, 'sand-raiders-hacks-logo.png'), logoPng);
+	console.log('Wrote public/img/sand-raiders-hacks-logo.png (512×512)');
 
 	const logoWebp = await sharp(logoPng).webp({ quality: 90, effort: 6 }).toBuffer();
-	await writeFile(path.join(imagesDir, 'warzone-hacks-logo.webp'), logoWebp);
-	console.log('Wrote public/images/warzone-hacks-logo.webp');
+	await writeFile(path.join(imagesDir, 'sand-raiders-hacks-logo.webp'), logoWebp);
+	console.log('Wrote public/img/sand-raiders-hacks-logo.webp');
 }
 
 async function generateFavicons(logoBuffer) {
@@ -57,9 +57,9 @@ async function generateFavicons(logoBuffer) {
 
 async function generateWebManifest() {
 	const manifest = {
-		name: 'Warzone Hacks',
-		short_name: 'Warzone Hacks',
-		description: 'Undetected warzone hacks — ESP, aimbot, radar and cloud DMA for PC',
+		name: 'Sand Raiders Cheats',
+		short_name: 'Sand Raiders Cheats',
+		description: 'Undetected sand raiders cheats — ESP, aimbot, radar and cloud DMA for PC',
 		start_url: '/',
 		display: 'standalone',
 		background_color: '#0a0612',

@@ -102,7 +102,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 		intro: brandCopy.statusIntro,
 		ctaPrimary: brandCopy.ctaBuy,
 		ctaSecondary: 'Undetected guide',
-		ctaSecondaryHref: '/undetected-warzone-cheats/',
+		ctaSecondaryHref: '/undetected-sand-raiders-cheats/',
 		galleryTitle: 'In-game look',
 		sections: [
 			{

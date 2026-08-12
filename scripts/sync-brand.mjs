@@ -51,7 +51,7 @@ writeFileSync(
 	path.join(ROOT, 'public/robots.txt'),
 	`User-agent: *
 Allow: /
-Allow: /images/
+Allow: /img/
 Disallow: /brand-studio/
 Disallow: /brand-studio
 Disallow: /__brand/

@@ -1,5 +1,5 @@
 {
-	"name": "warzone-hacks",
+	"name": "sandraiderscheats",
 	"type": "module",
 	"version": "1.0.0",
 	"engines": {
@@ -18,8 +18,8 @@
 		"preview": "astro preview",
 		"validate:sitemaps": "node scripts/validate-sitemaps.mjs",
 		"generate:i18n": "node scripts/generate-i18n-content.mjs",
-		"deploy": "npm run build && wrangler pages deploy dist --project-name=warzonehacks",
-		"pages:deploy": "wrangler pages deploy dist --project-name=warzonehacks",
+		"deploy": "npm run build && wrangler pages deploy dist --project-name=sandraiderscheats",
+		"pages:deploy": "wrangler pages deploy dist --project-name=sandraiderscheats",
 		"astro": "astro"
 	},
 	"dependencies": {

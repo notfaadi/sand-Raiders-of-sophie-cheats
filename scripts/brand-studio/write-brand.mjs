@@ -71,32 +71,32 @@ const SITEMAP_TEXT_KEYS = [
 
 const DEFAULT_SITEMAP_IMAGES = [
 	{
-		src: '/images/warzone-esp-player-tags.webp',
+		src: '/img/sand-raiders-esp-player-tags.webp',
 		title: '{primaryKeyword} ESP',
 		caption: 'See players with {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-wallhack-skeleton.webp',
+		src: '/img/sand-raiders-wallhack-skeleton.webp',
 		title: '{primaryKeyword} wallhack',
 		caption: 'See through walls with {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-aimbot-sniper.webp',
+		src: '/img/sand-raiders-aimbot-sniper.webp',
 		title: '{primaryKeyword} aimbot',
 		caption: 'Aimbot in {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-aimbot-skeleton.webp',
+		src: '/img/sand-raiders-aimbot-skeleton.webp',
 		title: '{primaryKeyword} aimbot view',
 		caption: 'Aimbot bone view in {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-esp-radar.webp',
+		src: '/img/sand-raiders-esp-radar.webp',
 		title: '{primaryKeyword} radar',
 		caption: 'Radar map in {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-cheats-combat.webp',
+		src: '/img/warzone-cheats-combat.webp',
 		title: '{primaryKeyword} in a fight',
 		caption: 'Fight view with {primaryKeyword}',
 	},
@@ -314,7 +314,7 @@ function price(value) {
 
 function assetPath(value) {
 	const t = str(value, 300);
-	if (!t || !t.startsWith('/images/') || t.includes('..') || t.includes('\\')) return null;
+	if (!t || !t.startsWith('/img/') || t.includes('..') || t.includes('\\')) return null;
 	return t;
 }
 
@@ -364,10 +364,10 @@ export function validateBrandPayload(body) {
 	const lifetime = price(b.lifetimePrice ?? b.lifetime);
 	const monthlyLabel = soft(b.monthlyLabel, 'Monthly', 40);
 	const lifetimeLabel = soft(b.lifetimeLabel, 'Lifetime', 40);
-	const logo = assetPath(b.logo ?? '/images/warzone-hacks-logo.webp');
-	const logoRaster = assetPath(b.logoRaster ?? '/images/warzone-hacks-logo.png');
-	const defaultOgImage = assetPath(b.defaultOgImage ?? '/images/warzone-cheats-combat.webp');
-	const heroImage = assetPath(b.heroImage ?? '/images/warzone-hero-banner.webp');
+	const logo = assetPath(b.logo ?? '/img/sand-raiders-hacks-logo.webp');
+	const logoRaster = assetPath(b.logoRaster ?? '/img/sand-raiders-hacks-logo.png');
+	const defaultOgImage = assetPath(b.defaultOgImage ?? '/img/warzone-cheats-combat.webp');
+	const heroImage = assetPath(b.heroImage ?? '/img/warzone-hero-banner.webp');
 	const logoAlt = soft(b.logoAlt, `${name || 'Brand'} logo`, 120);
 	const logoW = price(b.logoRasterWidth ?? 512) ?? 512;
 	const logoH = price(b.logoRasterHeight ?? 512) ?? 512;
@@ -394,7 +394,7 @@ export function validateBrandPayload(body) {
 	if (monthly == null) return { ok: false, error: 'Monthly price must be a whole number' };
 	if (lifetime == null) return { ok: false, error: 'Lifetime price must be a whole number' };
 	if (!logo || !logoRaster || !defaultOgImage || !heroImage) {
-		return { ok: false, error: 'Image paths must start with /images/' };
+		return { ok: false, error: 'Image paths must start with /img/' };
 	}
 
 	try {

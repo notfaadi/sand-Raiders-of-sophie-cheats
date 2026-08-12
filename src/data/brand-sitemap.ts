@@ -13,32 +13,32 @@ export type BrandSitemapImage = {
 
 const defaultImages: BrandSitemapImage[] = [
 	{
-		src: '/images/warzone-esp-player-tags.webp',
+		src: '/img/sand-raiders-esp-player-tags.webp',
 		title: '{primaryKeyword} ESP',
 		caption: 'See players with {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-wallhack-skeleton.webp',
+		src: '/img/sand-raiders-wallhack-skeleton.webp',
 		title: '{primaryKeyword} wallhack',
 		caption: 'See through walls with {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-aimbot-sniper.webp',
+		src: '/img/sand-raiders-aimbot-sniper.webp',
 		title: '{primaryKeyword} aimbot',
 		caption: 'Aimbot in {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-aimbot-skeleton.webp',
+		src: '/img/sand-raiders-aimbot-skeleton.webp',
 		title: '{primaryKeyword} aimbot view',
 		caption: 'Aimbot bone view in {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-esp-radar.webp',
+		src: '/img/sand-raiders-esp-radar.webp',
 		title: '{primaryKeyword} radar',
 		caption: 'Radar map in {primaryKeyword}',
 	},
 	{
-		src: '/images/warzone-cheats-combat.webp',
+		src: '/img/warzone-cheats-combat.webp',
 		title: '{primaryKeyword} in a fight',
 		caption: 'Fight view with {primaryKeyword}',
 	},
@@ -47,8 +47,8 @@ const defaultImages: BrandSitemapImage[] = [
 /** Per-page image title/caption templates for the English urlset. */
 const pageImageTemplates: Record<PageId, { title: string; caption: string }> = {
 	home: { title: '{primaryKeyword}', caption: 'ESP, aimbot, and radar for Warzone on PC' },
-	'warzone-esp': { title: '{primaryKeyword} ESP', caption: 'See players through walls with {primaryKeyword}' },
-	'warzone-aimbot': { title: '{primaryKeyword} aimbot', caption: 'Aimbot view in {primaryKeyword}' },
+	'sand-raiders-esp': { title: '{primaryKeyword} ESP', caption: 'See players through walls with {primaryKeyword}' },
+	'sand-raiders-aimbot': { title: '{primaryKeyword} aimbot', caption: 'Aimbot view in {primaryKeyword}' },
 	features: { title: '{primaryKeyword} features', caption: 'What you get with {primaryKeyword}' },
 	pricing: { title: '{primaryKeyword} plans', caption: 'Monthly and lifetime {primaryKeyword} plans' },
 	setup: { title: '{primaryKeyword} setup', caption: 'How to set up {primaryKeyword} on PC' },
@@ -58,7 +58,7 @@ const pageImageTemplates: Record<PageId, { title: string; caption: string }> = {
 	undetected: { title: 'Undetected {primaryKeyword}', caption: 'Safe status notes for {primaryKeyword}' },
 	wallhack: { title: '{primaryKeyword} wallhack', caption: 'See through walls with {primaryKeyword}' },
 	radar: { title: '{primaryKeyword} radar', caption: 'Radar map in {primaryKeyword}' },
-	ricochet: { title: '{antiCheat} and {primaryKeyword}', caption: '{primaryKeyword} after a Ricochet update' },
+	'eac-bypass': { title: '{antiCheat} and {primaryKeyword}', caption: '{primaryKeyword} after an Easy Anti-Cheat update' },
 	'cheats-2026': { title: '{primaryKeyword} 2026', caption: '{primaryKeyword} buyer guide for 2026' },
 	hacks: { title: '{primaryKeyword}', caption: '{primaryKeyword} ESP, aimbot, and radar' },
 	'cheat-download': { title: '{primaryKeyword} download', caption: 'Get {primaryKeyword} after you buy' },
@@ -102,7 +102,7 @@ function normalizeImages(input: unknown): BrandSitemapImage[] {
 		const src = typeof row.src === 'string' ? row.src.trim() : '';
 		const title = typeof row.title === 'string' ? row.title.trim() : '';
 		const caption = typeof row.caption === 'string' ? row.caption.trim() : '';
-		if (!src.startsWith('/images/') || !title || !caption) continue;
+		if (!src.startsWith('/img/') || !title || !caption) continue;
 		out.push({ src, title, caption });
 	}
 	return out.length ? out : defaultImages.map((i) => ({ ...i }));

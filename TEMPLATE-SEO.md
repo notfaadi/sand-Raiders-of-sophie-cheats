@@ -69,7 +69,7 @@ This updates `astro.config.mjs` `site`, `public/robots.txt`, and `public/site.we
 | Sitemap XML (auto) | `src/pages/sitemap*.xml.ts` + `brand.sitemap` | Do not hand-edit XML — change brand URL / labels, then rebuild |
 | FAQs / reviews / landing link labels | `src/data/site.ts` | Use `{brand}` `{game}` tokens in copy |
 | Simple EN pages (Preview, Features, Store, Status) | `src/data/i18n/simple-pages.ts` | Keep structure; swap game wording / tokens |
-| Images | `public/images/` + `src/data/warzone.ts` | Own licensed / provided assets only |
+| Images | `public/img/` + `src/data/warzone.ts` | Own licensed / provided assets only |
 | Nav labels | `src/components/Navbar.astro` | Keep meanings (Preview / Features / Store / Status) |
 | Dense i18n landings (optional) | `src/data/i18n/content.generated.ts` | Regenerate or rewrite after brand swap |
 

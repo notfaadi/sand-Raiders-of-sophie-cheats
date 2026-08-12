@@ -21,7 +21,7 @@ const reps = [
 	["Epic's", "Activision's"],
 	['Call of Duty: Warzone', 'Warzone'],
 	['KW.eac', 'KW.ricochet'],
-	['Easy Anti-Cheat (EAC)', 'Ricochet anti-cheat'],
+	['Easy Anti-Cheat (EAC)', 'Easy Anti-Cheat'],
 ];
 
 for (const file of files) {

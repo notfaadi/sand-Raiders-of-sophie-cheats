@@ -1,10 +1,10 @@
 User-agent: *
 Allow: /
-Allow: /images/
+Allow: /img/
 Disallow: /brand-studio/
 Disallow: /brand-studio
 Disallow: /__brand/
 Disallow: /__brand
 
 # Primary sitemap for Google Search Console — index covers EN, locale, and image sitemaps.
-Sitemap: https://warzonehacks.net/sitemap.xml
+Sitemap: https://sandraiderscheats.net/sitemap.xml

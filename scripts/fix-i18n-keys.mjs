@@ -8,9 +8,9 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.resolve(ROOT, '..', 'amansand');
 
 const UI_REPLACEMENTS = [
-	['Warzone Cheats', 'Warzone Cheats'],
-	['Warzone cheats', 'Warzone cheats'],
-	['Warzone Cheats', 'Warzone Cheats'],
+	['Sand Raiders Cheats', 'Sand Raiders Cheats'],
+	['Sand Raiders cheats', 'Sand Raiders cheats'],
+	['Sand Raiders Cheats', 'Sand Raiders Cheats'],
 	['Call of Duty: Warzone', 'Call of Duty: Warzone'],
 	['Call of Duty Warzone', 'Call of Duty: Warzone'],
 	['Call of Duty', 'Call of Duty: Warzone'],
@@ -18,9 +18,9 @@ const UI_REPLACEMENTS = [
 	['for Warzone', 'for Call of Duty: Warzone'],
 	['Warzone ', 'Call of Duty: Warzone '],
 	['warzone ', 'warzone '],
-	['Ricochet maintenance', 'Ricochet maintenance'],
-	['Ricochet anti-cheat', 'Ricochet anti-cheat'],
-	['Ricochet', 'Ricochet anti-cheat'],
+	['Easy Anti-Cheat maintenance', 'Easy Anti-Cheat maintenance'],
+	['Easy Anti-Cheat', 'Easy Anti-Cheat'],
+	['Easy Anti-Cheat', 'Easy Anti-Cheat'],
 	['operatorEsp', 'playerEsp'],
 	['gulagFight', 'rebootFight'],
 	['alMazrah', 'battleRoyaleIsland'],
@@ -54,7 +54,7 @@ for (const file of ['ui-strings-part1.mjs', 'ui-strings-part2.mjs']) {
 
 // Fix pages-en ricochet key
 let pagesEn = await readFile(path.join(ROOT, 'scripts/i18n-data/pages-en.mjs'), 'utf8');
-pagesEn = pagesEn.replace(/\tricochet: \{/, "\t'ricochet': {");
+pagesEn = pagesEn.replace(/\tricochet: \{/, "\t'eac-bypass': {");
 pagesEn = pagesEn.replace(/Call of Duty: Warzone Warzone/g, 'Call of Duty: Warzone');
 pagesEn = pagesEn.replace(/for Call of Duty: Warzone Warzone/g, 'for Call of Duty: Warzone');
 await writeFile(path.join(ROOT, 'scripts/i18n-data/pages-en.mjs'), pagesEn);
@@ -62,8 +62,8 @@ await writeFile(path.join(ROOT, 'scripts/i18n-data/pages-en.mjs'), pagesEn);
 // Fix pages-i18n
 let pagesI18n = await readFile(path.join(ROOT, 'scripts/i18n-data/pages-i18n.mjs'), 'utf8');
 pagesI18n = apply(pagesI18n);
-pagesI18n = pagesI18n.replace(/'ricochet'/g, "'ricochet'");
-pagesI18n = pagesI18n.replace(/ricochet:/g, "'ricochet':");
+pagesI18n = pagesI18n.replace(/'eac-bypass'/g, "'eac-bypass'");
+pagesI18n = pagesI18n.replace(/ricochet:/g, "'eac-bypass':");
 await writeFile(path.join(ROOT, 'scripts/i18n-data/pages-i18n.mjs'), pagesI18n);
 
 // Fix generate-i18n pages count

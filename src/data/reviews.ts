@@ -48,7 +48,7 @@ export function getReviewSitemapEntries() {
 			images: [
 				{
 					url: reviewOgImage.url,
-					title: `Warzone Hacks review by @${review.handle}`,
+					title: `Sand Raiders Cheats review by @${review.handle}`,
 					caption: review.seoDescription,
 				},
 			],

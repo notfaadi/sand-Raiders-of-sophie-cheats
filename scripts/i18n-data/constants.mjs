@@ -6,39 +6,39 @@ export const LOCALES = [
 ];
 
 export const PAGE_IDS = [
-	'home', 'warzone-esp', 'warzone-aimbot', 'features', 'pricing', 'setup',
-	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'ricochet',
+	'home', 'sand-raiders-esp', 'sand-raiders-aimbot', 'features', 'pricing', 'setup',
+	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac-bypass',
 	'cheats-2026', 'hacks', 'cheat-download', 'mod-menu', 'soft-aim', 'best-cheats',
 	'aimbot-hack', 'esp-hack', 'unlock-all', 'privacy', 'refund', 'terms',
 ];
 
-/** Hero image per page — six unique Warzone cheat screenshots (primary pages each get a distinct file). */
+/** Hero image per page — six unique Sand Raiders cheat screenshots (primary pages each get a distinct file). */
 export const HERO_IMAGES = {
-	home: '/images/warzone-esp-player-tags.webp',
-	'warzone-esp': '/images/warzone-esp-radar.webp',
-	'warzone-aimbot': '/images/warzone-aimbot-sniper.webp',
-	features: '/images/warzone-aimbot-skeleton.webp',
-	pricing: '/images/warzone-cheats-combat.webp',
-	setup: '/images/warzone-esp-radar.webp',
-	updates: '/images/warzone-esp-player-tags.webp',
-	faq: '/images/warzone-aimbot-skeleton.webp',
-	support: '/images/warzone-cheats-combat.webp',
-	undetected: '/images/warzone-wallhack-skeleton.webp',
-	wallhack: '/images/warzone-wallhack-skeleton.webp',
-	radar: '/images/warzone-esp-radar.webp',
-	ricochet: '/images/warzone-aimbot-sniper.webp',
-	'cheats-2026': '/images/warzone-esp-player-tags.webp',
-	hacks: '/images/warzone-cheats-combat.webp',
-	'cheat-download': '/images/warzone-cheats-combat.webp',
-	'mod-menu': '/images/warzone-esp-radar.webp',
-	'soft-aim': '/images/warzone-aimbot-skeleton.webp',
-	'best-cheats': '/images/warzone-esp-player-tags.webp',
-	'aimbot-hack': '/images/warzone-aimbot-skeleton.webp',
-	'esp-hack': '/images/warzone-wallhack-skeleton.webp',
-	'unlock-all': '/images/warzone-esp-radar.webp',
-	privacy: '/images/warzone-aimbot-sniper.webp',
-	refund: '/images/warzone-cheats-combat.webp',
-	terms: '/images/warzone-aimbot-skeleton.webp',
+	home: '/img/sand-raiders-esp-player-tags.webp',
+	'sand-raiders-esp': '/img/sand-raiders-esp-radar.webp',
+	'sand-raiders-aimbot': '/img/sand-raiders-aimbot-sniper.webp',
+	features: '/img/sand-raiders-aimbot-skeleton.webp',
+	pricing: '/img/warzone-cheats-combat.webp',
+	setup: '/img/sand-raiders-esp-radar.webp',
+	updates: '/img/sand-raiders-esp-player-tags.webp',
+	faq: '/img/sand-raiders-aimbot-skeleton.webp',
+	support: '/img/warzone-cheats-combat.webp',
+	undetected: '/img/sand-raiders-wallhack-skeleton.webp',
+	wallhack: '/img/sand-raiders-wallhack-skeleton.webp',
+	radar: '/img/sand-raiders-esp-radar.webp',
+	ricochet: '/img/sand-raiders-aimbot-sniper.webp',
+	'cheats-2026': '/img/sand-raiders-esp-player-tags.webp',
+	hacks: '/img/warzone-cheats-combat.webp',
+	'cheat-download': '/img/warzone-cheats-combat.webp',
+	'mod-menu': '/img/sand-raiders-esp-radar.webp',
+	'soft-aim': '/img/sand-raiders-aimbot-skeleton.webp',
+	'best-cheats': '/img/sand-raiders-esp-player-tags.webp',
+	'aimbot-hack': '/img/sand-raiders-aimbot-skeleton.webp',
+	'esp-hack': '/img/sand-raiders-wallhack-skeleton.webp',
+	'unlock-all': '/img/sand-raiders-esp-radar.webp',
+	privacy: '/img/sand-raiders-aimbot-sniper.webp',
+	refund: '/img/warzone-cheats-combat.webp',
+	terms: '/img/sand-raiders-aimbot-skeleton.webp',
 };
 
 export const TS_HEADER = `import type { LocaleCode } from './locales';
@@ -70,7 +70,7 @@ export type LocaleUi = {
 \t\theaderArt: string; cheatsPackage: string; rebootFight: string; battleRoyale: string; battleRoyaleIsland: string;
 \t};
 };
-export type PageId = 'home' | 'warzone-esp' | 'warzone-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'ricochet' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
+export type PageId = 'home' | 'sand-raiders-esp' | 'sand-raiders-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
 `;
 
 /** Clamp meta strings to SEO limits without ugly ellipsis. */
@@ -101,7 +101,7 @@ export function stripZadeyoFromMeta(text) {
 		.replace(/\s*Zadeyo delivery\.?/gi, ' instant digital delivery.')
 		.replace(/\s*and Zadeyo delivery\.?/gi, ' and instant digital delivery.')
 		.replace(/\|\s*Instant Zadeyo Delivery/g, '| Instant Digital Delivery')
-		.replace(/Buy on Zadeyo/g, 'Buy Warzone Hacks')
+		.replace(/Buy on Zadeyo/g, 'Buy Sand Raiders Cheats')
 		.replace(/\s{2,}/g, ' ')
 		.trim();
 }
@@ -126,5 +126,5 @@ export const EXT = {
 	activision: '<a href="https://www.callofduty.com/warzone" target="_blank" rel="noopener noreferrer">Call of Duty Warzone</a>',
 	warzone: '<a href="https://www.callofduty.com/warzone" target="_blank" rel="noopener noreferrer">Call of Duty Warzone</a>',
 	status: '<a href="https://support.activision.com/" target="_blank" rel="noopener noreferrer">Activision Support</a>',
-	ricochet: '<a href="https://www.callofduty.com/ricochet" target="_blank" rel="noopener noreferrer">Ricochet Anti-Cheat</a>',
+	ricochet: '<a href="https://www.callofduty.com/ricochet" target="_blank" rel="noopener noreferrer">Easy Anti-Cheat Anti-Cheat</a>',
 };

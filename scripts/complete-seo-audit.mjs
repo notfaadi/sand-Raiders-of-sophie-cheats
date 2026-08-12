@@ -11,19 +11,19 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const NODE = 'C:\\Program Files\\nodejs\\node.exe';
 
 const EXTRA_PAGES = [
-	{ id: 'hacks', dir: 'warzone-hacks', pageId: 'hacks' },
-	{ id: 'cheat-download', dir: 'warzone-cheat-download', pageId: 'cheat-download' },
-	{ id: 'mod-menu', dir: 'warzone-mod-menu', pageId: 'mod-menu' },
-	{ id: 'soft-aim', dir: 'warzone-soft-aim', pageId: 'soft-aim' },
-	{ id: 'best-cheats', dir: 'best-warzone-cheats', pageId: 'best-cheats' },
-	{ id: 'aimbot-hack', dir: 'warzone-aimbot-hack', pageId: 'aimbot-hack' },
-	{ id: 'esp-hack', dir: 'warzone-esp-hack', pageId: 'esp-hack' },
-	{ id: 'unlock-all', dir: 'warzone-unlock-all', pageId: 'unlock-all' },
+	{ id: 'hacks', dir: 'sand-raiders-hacks', pageId: 'hacks' },
+	{ id: 'cheat-download', dir: 'sand-raiders-cheat-download', pageId: 'cheat-download' },
+	{ id: 'mod-menu', dir: 'sand-raiders-mod-menu', pageId: 'mod-menu' },
+	{ id: 'soft-aim', dir: 'sand-raiders-soft-aim', pageId: 'soft-aim' },
+	{ id: 'best-cheats', dir: 'best-sand-raiders-cheats', pageId: 'best-cheats' },
+	{ id: 'aimbot-hack', dir: 'sand-raiders-aimbot-hack', pageId: 'aimbot-hack' },
+	{ id: 'esp-hack', dir: 'sand-raiders-esp-hack', pageId: 'esp-hack' },
+	{ id: 'unlock-all', dir: 'sand-raiders-unlock-all', pageId: 'unlock-all' },
 ];
 
 const GLOBAL_REPLACEMENTS = [
 	[/warzone-warzone/g, 'warzone'],
-	[/ricochet-bypass-warzone/g, 'ricochet-bypass'],
+	[/eac-bypass-warzone/g, 'eac-bypass'],
 	[/Call of Duty: Warzone/g, 'Call of Duty: Warzone'],
 	[/Call of Duty Warzone/g, 'Call of Duty: Warzone'],
 	[/Call of Duty/g, 'Call of Duty: Warzone'],
@@ -40,7 +40,7 @@ const GLOBAL_REPLACEMENTS = [
 	[/Warzone wasteland combat/g, 'Call of Duty: Warzone battle royale combat'],
 	[/Warzone loadout builder/g, 'Call of Duty: Warzone loadout builder'],
 	[/Warzone pricing/g, 'Call of Duty: Warzone pricing'],
-	[/Warzone Ricochet anti-cheat/g, 'Call of Duty: Warzone Ricochet anti-cheat'],
+	[/Warzone Easy Anti-Cheat/g, 'Call of Duty: Warzone Easy Anti-Cheat'],
 	[/on Warzone/g, 'on Call of Duty: Warzone'],
 	[/for Warzone/g, 'for Call of Duty: Warzone'],
 	[/Warzone guides/g, 'Call of Duty: Warzone guides'],
@@ -68,8 +68,8 @@ const GLOBAL_REPLACEMENTS = [
 	[/Activision security/g, 'Epic Games security'],
 	[/Activision bans/g, 'Epic Games bans'],
 	[/Activision/g, 'Epic Games'],
-	[/ricochet/gi, 'ricochet'],
-	[/Ricochet/g, 'Ricochet anti-cheat'],
+	[/ricochet/gi, 'eac-bypass'],
+	[/Easy Anti-Cheat/g, 'Easy Anti-Cheat'],
 	[/call-of-duty-warzone-cheats/g, 'call-of-duty-warzone-cheats'],
 	[/call-of-duty-warzone/g, 'warzone'],
 	[/Undetected Wallhack for Call of Duty/g, 'Undetected Wallhack for Call of Duty: Warzone'],
@@ -90,7 +90,7 @@ function stripZadeyoFromMeta(text) {
 		.replace(/\s*Zadeyo delivery\.?/gi, 'instant digital delivery.')
 		.replace(/\s*and Zadeyo delivery\.?/gi, ' and instant digital delivery.')
 		.replace(/\|\s*Instant Zadeyo Delivery/g, '| Instant Digital Delivery')
-		.replace(/Buy on Zadeyo/g, 'Buy Warzone Cheats')
+		.replace(/Buy on Zadeyo/g, 'Buy Sand Raiders Cheats')
 		.replace(/\s{2,}/g, ' ')
 		.trim();
 }
@@ -200,7 +200,7 @@ async function fixLocalesBlogUi() {
 	console.log('Fixed locales.ts blogUi');
 }
 
-console.log('=== Warzone Cheats SEO completion ===\n');
+console.log('=== Sand Raiders Cheats SEO completion ===\n');
 await applyGlobalFixes();
 await createExtraPages();
 await fixLocalesBlogUi();

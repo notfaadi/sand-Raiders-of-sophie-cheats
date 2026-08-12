@@ -13,14 +13,14 @@ const REMOVE_IDS = [
 ];
 
 const REPLACEMENTS = [
-	['warzone-esp', 'warzone-esp'],
-	['warzone-aimbot', 'warzone-aimbot'],
-	['ricochet', 'ricochet'],
-	['undetected-warzone-cheats', 'undetected-warzone-cheats'],
-	['warzone-wallhack', 'warzone-wallhack'],
-	['warzone-radar-hack', 'warzone-radar-hack'],
-	['warzone-cheats-2026', 'warzone-cheats-2026'],
-	['ricochet-bypass', 'ricochet-bypass'],
+	['sand-raiders-esp', 'sand-raiders-esp'],
+	['sand-raiders-aimbot', 'sand-raiders-aimbot'],
+	['eac-bypass', 'eac-bypass'],
+	['undetected-sand-raiders-cheats', 'undetected-sand-raiders-cheats'],
+	['sand-raiders-wallhack', 'sand-raiders-wallhack'],
+	['sand-raiders-radar-hack', 'sand-raiders-radar-hack'],
+	['sand-raiders-cheats-2026', 'sand-raiders-cheats-2026'],
+	['eac-bypass', 'eac-bypass'],
 	['warzonescheats.net', 'warzonescheats.net'],
 	['trucos-warzone', 'trucos-warzone'],
 	['triche-warzone', 'triche-warzone'],
@@ -34,8 +34,8 @@ const REPLACEMENTS = [
 	['cheatow-warzone', 'cheatow-warzone'],
 	['hile-warzone', 'hile-warzone'],
 	['warzone-hile', 'warzone-hile'],
-	['warzone-esp-chity', 'warzone-esp-chity'],
-	['warzone-aimbot-chity', 'warzone-aimbot-chity'],
+	['sand-raiders-esp-chity', 'sand-raiders-esp-chity'],
+	['sand-raiders-aimbot-chity', 'sand-raiders-aimbot-chity'],
 	['unentdeckte-warzone-cheats', 'unentdeckte-call-of-duty-warzone-cheats'],
 	['cheats-warzone-indetectaveis', 'cheats-warzone-indetectaveis'],
 	['trucchi-warzone-indetectabili', 'trucchi-warzone-indetectabili'],
@@ -45,11 +45,11 @@ const REPLACEMENTS = [
 	['nedecektovani-chity-warzone', 'nedecektovani-chity-warzone'],
 	['cheats-warzone-nedetectabile', 'cheats-warzone-nedetectabile'],
 	['basta-warzone-cheats', 'basta-call-of-duty-warzone-cheats'],
-	['ricochet-bypass-trucos-warzone', 'ricochet-bypass-trucos-warzone'],
-	['ricochet-bypass-triche-warzone', 'ricochet-bypass-triche-warzone'],
-	['ricochet-bypass-cheats-warzone', 'ricochet-bypass-cheats-warzone'],
-	['ricochet-bypass-chity-warzone', 'ricochet-bypass-chity-warzone'],
-	['ricochet-bypass-warzone', 'ricochet-bypass'],
+	['eac-bypass-trucos-warzone', 'eac-bypass-trucos-warzone'],
+	['eac-bypass-triche-warzone', 'eac-bypass-triche-warzone'],
+	['eac-bypass-cheats-warzone', 'eac-bypass-cheats-warzone'],
+	['eac-bypass-chity-warzone', 'eac-bypass-chity-warzone'],
+	['eac-bypass-warzone', 'eac-bypass'],
 ];
 
 function apply(content) {
@@ -78,7 +78,7 @@ async function fixRouting() {
 	content = apply(content);
 	for (const id of REMOVE_IDS) content = removePageBlocks(content, id);
 	// Fix ricochet key in englishPaths
-	content = content.replace(/\tricochet: '/, "\t'ricochet': '");
+	content = content.replace(/\tricochet: '/, "\t'eac-bypass': '");
 	await writeFile(path.join(ROOT, 'src/data/i18n/routing.ts'), content);
 	console.log('Fixed routing.ts');
 }
@@ -86,23 +86,23 @@ async function fixRouting() {
 async function fixConstants() {
 	const heroImages = `/** Hero image per page topic — keyword-rich call-of-duty-warzone-cheats paths. */
 export const HERO_IMAGES = {
-	home: '/images/call-of-duty-warzone-cheats-hero.webp',
-	'warzone-esp': '/images/call-of-duty-warzone-cheats-esp-wallhack.webp',
-	'warzone-aimbot': '/images/call-of-duty-warzone-cheats-aimbot-combat.webp',
-	features: '/images/call-of-duty-warzone-cheats-package.webp',
-	pricing: '/images/call-of-duty-warzone-cheats-cover.webp',
-	setup: '/images/warzone-loadout-builder.webp',
-	updates: '/images/warzone-header-art.webp',
-	faq: '/images/warzone-squad-fight.webp',
-	support: '/images/call-of-duty-warzone-cheats-package.webp',
-	undetected: '/images/warzone-battle-royale-combat.webp',
-	wallhack: '/images/call-of-duty-warzone-cheats-esp-wallhack.webp',
-	radar: '/images/warzone-player-esp.webp',
-	'ricochet': '/images/warzone-reboot-van-fight.webp',
-	'cheats-2026': '/images/call-of-duty-warzone-cheats-hero.webp',
-	privacy: '/images/call-of-duty-warzone-cheats-aimbot-combat.webp',
-	refund: '/images/call-of-duty-warzone-cheats-cover.webp',
-	terms: '/images/call-of-duty-warzone-cheats-package.webp',
+	home: '/img/call-of-duty-warzone-cheats-hero.webp',
+	'sand-raiders-esp': '/img/call-of-duty-warzone-cheats-esp-wallhack.webp',
+	'sand-raiders-aimbot': '/img/call-of-duty-warzone-cheats-aimbot-combat.webp',
+	features: '/img/call-of-duty-warzone-cheats-package.webp',
+	pricing: '/img/call-of-duty-warzone-cheats-cover.webp',
+	setup: '/img/warzone-loadout-builder.webp',
+	updates: '/img/warzone-header-art.webp',
+	faq: '/img/warzone-squad-fight.webp',
+	support: '/img/call-of-duty-warzone-cheats-package.webp',
+	undetected: '/img/warzone-battle-royale-combat.webp',
+	wallhack: '/img/call-of-duty-warzone-cheats-esp-wallhack.webp',
+	radar: '/img/warzone-player-esp.webp',
+	'eac-bypass': '/img/warzone-reboot-van-fight.webp',
+	'cheats-2026': '/img/call-of-duty-warzone-cheats-hero.webp',
+	privacy: '/img/call-of-duty-warzone-cheats-aimbot-combat.webp',
+	refund: '/img/call-of-duty-warzone-cheats-cover.webp',
+	terms: '/img/call-of-duty-warzone-cheats-package.webp',
 };`;
 
 	let content = await readFile(path.join(SRC, 'scripts/i18n-data/constants.mjs'), 'utf8');
@@ -112,12 +112,12 @@ export const HERO_IMAGES = {
 	}
 	content = content.replace(
 		/export const PAGE_IDS = \[[\s\S]*?\];/,
-		`export const PAGE_IDS = [\n\t'home', 'warzone-esp', 'warzone-aimbot', 'features', 'pricing', 'setup',\n\t'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'ricochet',\n\t'cheats-2026', 'privacy', 'refund', 'terms',\n];`,
+		`export const PAGE_IDS = [\n\t'home', 'sand-raiders-esp', 'sand-raiders-aimbot', 'features', 'pricing', 'setup',\n\t'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac-bypass',\n\t'cheats-2026', 'privacy', 'refund', 'terms',\n];`,
 	);
 	content = content.replace(/\/\*\* Hero image[\s\S]*?};/, heroImages);
 	content = content.replace(
 		/export type PageId = [^;]+;/,
-		"export type PageId = 'home' | 'warzone-esp' | 'warzone-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'ricochet' | 'cheats-2026' | 'privacy' | 'refund' | 'terms';",
+		"export type PageId = 'home' | 'sand-raiders-esp' | 'sand-raiders-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'privacy' | 'refund' | 'terms';",
 	);
 	content = content.replace(/operatorEsp/g, 'playerEsp');
 	content = content.replace(/gulagFight/g, 'rebootFight');

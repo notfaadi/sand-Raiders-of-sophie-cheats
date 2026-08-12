@@ -184,7 +184,7 @@ const product: Field[] = [
 	{
 		name: 'antiCheat',
 		label: 'Anti-cheat',
-		tip: 'What: The game anti-cheat system name. | Why: Status / FAQ text mentions rebuilds after this anti-cheat patches. Use {antiCheat} token. | Example: Easy Anti-Cheat, Ricochet, BattlEye',
+		tip: 'What: The game anti-cheat system name. | Why: Status / FAQ text mentions rebuilds after this anti-cheat patches. Use {antiCheat} token. | Example: Easy Anti-Cheat, Easy Anti-Cheat, BattlEye',
 		value: brand.antiCheat,
 		required: true,
 		maxlength: 80,
@@ -319,7 +319,7 @@ const seoFields: Field[] = [
 	{
 		name: 'statusDescription',
 		label: 'Status description',
-		tip: 'What: Meta description for Status. | Why: Mention {antiCheat} and patch checks. | Example: Live status for Marathon Hacks after Marathon or Ricochet patches...',
+		tip: 'What: Meta description for Status. | Why: Mention {antiCheat} and patch checks. | Example: Live status for Marathon Hacks after Marathon or Easy Anti-Cheat patches...',
 		value: seo.statusDescription,
 		textarea: true,
 		rows: 2,
@@ -495,7 +495,7 @@ const copyFields: Field[] = [
 	{
 		name: 'blogLabel',
 		label: 'Blog / intel label',
-		tip: 'What: Nav label for blog or intel section. | Why: Shown in navigation when blog is enabled. | Example: Marathon Intel, Warzone Intel',
+		tip: 'What: Nav label for blog or intel section. | Why: Shown in navigation when blog is enabled. | Example: Marathon Intel, Sand Raiders Intel',
 		value: copy.blogLabel,
 		required: true,
 		maxlength: 80,
@@ -664,14 +664,14 @@ const images: Field[] = [
 	{
 		name: 'logo',
 		label: 'Logo (webp)',
-		tip: 'What: Path to the webp logo in /public. | Why: Site logo asset. Must live under /images/. | Example: /images/my-brand-logo.webp',
+		tip: 'What: Path to the webp logo in /public. | Why: Site logo asset. Must live under /img/. | Example: /img/my-brand-logo.webp',
 		value: brand.logo,
 		maxlength: 300,
 	},
 	{
 		name: 'logoRaster',
 		label: 'Logo (png)',
-		tip: 'What: PNG version of the logo. | Why: Used for schema / favicon-style raster needs. | Example: /images/my-brand-logo.png',
+		tip: 'What: PNG version of the logo. | Why: Used for schema / favicon-style raster needs. | Example: /img/my-brand-logo.png',
 		value: brand.logoRaster,
 		maxlength: 300,
 	},
@@ -703,14 +703,14 @@ const images: Field[] = [
 	{
 		name: 'defaultOgImage',
 		label: 'Default OG image',
-		tip: 'What: Default image when the site is shared on Discord / Twitter / Facebook. | Why: Open Graph preview. Put a real in-game or brand shot under /images/. | Example: /images/fortnite-combat.webp',
+		tip: 'What: Default image when the site is shared on Discord / Twitter / Facebook. | Why: Open Graph preview. Put a real in-game or brand shot under /img/. | Example: /img/fortnite-combat.webp',
 		value: brand.defaultOgImage,
 		maxlength: 300,
 	},
 	{
 		name: 'heroImage',
 		label: 'Hero image',
-		tip: 'What: Big homepage banner image path. | Why: First thing visitors see. Keep file in /public/images/. | Example: /images/fortnite-hero-banner.webp',
+		tip: 'What: Big homepage banner image path. | Why: First thing visitors see. Keep file in /public/img/. | Example: /img/fortnite-hero-banner.webp',
 		value: brand.heroImage,
 		maxlength: 300,
 	},
@@ -769,13 +769,13 @@ const seoAuditRows = [
 	{ page: 'Features', path: '/features/', fields: 'featuresTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Store', path: '/pricing/', fields: 'storeTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Status', path: '/updates/', fields: 'statusTitle / Description + intro', status: 'Live · permanent' },
-	{ page: 'Preview', path: '/warzone-hacks/', fields: 'previewTitle / Description + intro', status: 'Live · permanent' },
+	{ page: 'Preview', path: '/sand-raiders-hacks/', fields: 'previewTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Setup', path: '/setup/', fields: 'setupTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Support', path: '/support/', fields: 'supportTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'FAQ index', path: '/faq/', fields: 'faqTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Reviews index', path: '/reviews/', fields: 'reviewsTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Blog index', path: '/blog/', fields: 'blogTitle / blogDescription', status: 'Live · EN permanent' },
-	{ page: 'Keyword landings', path: '/warzone-esp/ …', fields: 'content.generated.ts', status: 'Manual file' },
+	{ page: 'Keyword landings', path: '/sand-raiders-esp/ …', fields: 'content.generated.ts', status: 'Manual file' },
 	{ page: 'FAQ answers', path: '/faq/[slug]/', fields: 'site.ts faqs', status: 'Manual file' },
 	{ page: 'Review posts', path: '/reviews/[slug]/', fields: 'site.ts reviews', status: 'Manual file' },
 ] as const;
@@ -1253,7 +1253,7 @@ const sections = [
 
 								<section class="studio__block" id="section-images">
 									<h2>Images</h2>
-									<p class="studio__block-desc">Logo, OG, and hero asset paths in /public/images/.</p>
+									<p class="studio__block-desc">Logo, OG, and hero asset paths in /public/img/.</p>
 									<div class="studio__grid">
 										{images.map((f) => (
 											<label class:list={['studio__field', f.span && 'is-span']}>
@@ -1376,7 +1376,7 @@ const sections = [
 									<details class="studio__details" open>
 										<summary>Image sitemap entries (6)</summary>
 										<p class="studio__details-lede">
-											Paths stay relative (<code>/images/…</code>). Full image URLs = Site URL + path,
+											Paths stay relative (<code>/img/…</code>). Full image URLs = Site URL + path,
 											updated when the domain changes.
 										</p>
 										<div class="studio__sitemap-images">
@@ -1392,7 +1392,7 @@ const sections = [
 																type="text"
 																maxlength={300}
 																value={img.src}
-																placeholder="/images/example.webp"
+																placeholder="/img/example.webp"
 															/>
 														</label>
 														<p class="studio__sitemap-abs" data-sitemap-abs-for={`sitemapImage${n}Src`}>
@@ -1709,7 +1709,7 @@ const sections = [
 
 					root.querySelectorAll('[data-sitemap-abs-for]').forEach((el) => {
 						const name = el.getAttribute('data-sitemap-abs-for');
-						const path = val(name) || '/images/…';
+						const path = val(name) || '/img/…';
 						const clean = path.startsWith('/') ? path : '/' + path;
 						el.textContent = origin + clean;
 					});
@@ -1753,7 +1753,7 @@ const sections = [
 							features: '/features/',
 							store: '/pricing/',
 							status: '/updates/',
-							preview: '/warzone-hacks/',
+							preview: '/sand-raiders-hacks/',
 							setup: '/setup/',
 							support: '/support/',
 							faq: '/faq/',

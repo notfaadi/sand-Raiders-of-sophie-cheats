@@ -1,6 +1,6 @@
 # Deploy warzonescheats.net
 
-Step-by-step guide to deploy the Warzone Hacks static site to **warzonescheats.net** on Cloudflare Pages, configure DNS, and submit to Google Search Console.
+Step-by-step guide to deploy the Sand Raiders Cheats static site to **warzonescheats.net** on Cloudflare Pages, configure DNS, and submit to Google Search Console.
 
 ## Prerequisites
 
@@ -80,35 +80,35 @@ The deployed `functions/_middleware.js` also enforces apex canonical host, legac
 
 Verify these URLs return **200** with correct content:
 
-- `https://warzonehacks.net/`
-- `https://warzonehacks.net/es/`
-- `https://warzonehacks.net/warzone-hacks/`
-- `https://warzonehacks.net/warzone-aimbot/`
-- `https://warzonehacks.net/sitemap.xml`
-- `https://warzonehacks.net/robots.txt`
+- `https://sandraiderscheats.net/`
+- `https://sandraiderscheats.net/es/`
+- `https://sandraiderscheats.net/sand-raiders-hacks/`
+- `https://sandraiderscheats.net/sand-raiders-aimbot/`
+- `https://sandraiderscheats.net/sitemap.xml`
+- `https://sandraiderscheats.net/robots.txt`
 
 Verify redirects:
 
-- `http://warzonehacks.net` → `https://warzonehacks.net` (301)
-- `https://www.warzonehacks.net` → `https://warzonehacks.net` (301)
-- Legacy domains (e.g. `warzonescheats.net`) → `https://warzonehacks.net` (301)
+- `http://sandraiderscheats.net` → `https://sandraiderscheats.net` (301)
+- `https://www.sandraiderscheats.net` → `https://sandraiderscheats.net` (301)
+- Legacy domains (e.g. `warzonescheats.net`) → `https://sandraiderscheats.net` (301)
 - `/sitemap-index.xml` → `/sitemap.xml` (301)
 - Legacy paths (e.g. `/fortnite-hacks/`) → Warzone equivalents (301)
 
 ## 5. Google Search Console
 
 1. Go to [Google Search Console](https://search.google.com/search-console).
-2. **Add property** → choose **Domain** → enter `warzonehacks.net`.
+2. **Add property** → choose **Domain** → enter `sandraiderscheats.net`.
 3. Verify ownership via the **DNS TXT record** Cloudflare provides (add in Cloudflare DNS, wait for propagation, then confirm in GSC).
 4. After verification, open **Sitemaps** and submit:
    ```
-   https://warzonehacks.net/sitemap.xml
+   https://sandraiderscheats.net/sitemap.xml
    ```
    Remove any legacy submissions (`sitemap-index.xml`, old `warzonescheats.net` URLs).
 5. Use **URL Inspection** to request indexing for:
    - Homepage (`/`)
-   - Pillar page (`/warzone-hacks/`)
-   - Key landing pages (`/warzone-aimbot/`, `/warzone-esp/`, `/warzone-cheats-2026/`, etc.)
+   - Pillar page (`/sand-raiders-hacks/`)
+   - Key landing pages (`/sand-raiders-aimbot/`, `/sand-raiders-esp/`, `/sand-raiders-cheats-2026/`, etc.)
    - A sample of locale homepages (`/es/`, `/de/`, `/fr/`)
 6. Monitor **Pages** (Coverage), **Core Web Vitals**, and **International targeting** (hreflang) over the following weeks.
 
@@ -126,11 +126,11 @@ Verify redirects:
 
 - [ ] `npm run build:validate` passes locally
 - [ ] Cloudflare Pages project attached to this repo
-- [ ] Custom domain `warzonehacks.net` attached and active
+- [ ] Custom domain `sandraiderscheats.net` attached and active
 - [ ] `www` redirects to apex
-- [ ] Legacy domains 301 to `warzonehacks.net`
+- [ ] Legacy domains 301 to `sandraiderscheats.net`
 - [ ] Always Use HTTPS enabled
-- [ ] `robots.txt` and sitemaps serve from `https://warzonehacks.net`
+- [ ] `robots.txt` and sitemaps serve from `https://sandraiderscheats.net`
 - [ ] Google Search Console domain verified
 - [ ] `sitemap.xml` submitted in GSC
-- [ ] Homepage and `/warzone-hacks/` requested for indexing
+- [ ] Homepage and `/sand-raiders-hacks/` requested for indexing

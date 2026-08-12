@@ -1,6 +1,6 @@
-# Warzone Hacks — Marketing Site
+# Sand Raiders Cheats — Marketing Site
 
-Static Astro 7 site for [warzonehacks.net](https://warzonehacks.net). Primary SEO keyword: **warzone hacks** (secondary: warzone cheats, aimbot, ESP).
+Static Astro 7 site for [sandraiderscheats.net](https://sandraiderscheats.net). Primary SEO keyword: **sand raiders cheats** (secondary: sand raiders cheats, aimbot, ESP).
 
 ## Stack
 
@@ -36,7 +36,7 @@ npm run optimize:images
 2. Connect this repo or upload `dist/` after `npm run build`
 3. Build command: `npm run build`
 4. Output directory: `dist`
-5. Add custom domain **warzonehacks.net** (apex) and redirect **www** → apex
+5. Add custom domain **sandraiderscheats.net** (apex) and redirect **www** → apex
 6. Enable SSL **Always Use HTTPS**
 7. Legacy Fortnite domains 301 via `functions/_middleware.js`
 
@@ -53,4 +53,4 @@ npm run pages:deploy
 
 ## License
 
-Private — for warzonehacks.net deployment only.
+Private — for sandraiderscheats.net deployment only.

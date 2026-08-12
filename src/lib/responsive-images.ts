@@ -27,7 +27,7 @@ export function contentSrcSet(baseSrc: string): string | undefined {
 }
 
 export const heroResponsive: ResponsiveWidth[] = [
-	{ src: '/images/hero-banner.webp', width: 1024 },
+	{ src: '/img/hero-banner.webp', width: 1024 },
 ];
 
 /** Desktop srcset (mobile uses a dedicated `<picture>` source — see Hero.astro). */
