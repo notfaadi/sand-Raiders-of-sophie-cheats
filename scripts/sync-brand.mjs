@@ -94,4 +94,24 @@ if (nextAstro === astro && !astro.includes(`site: '${brand.url}'`)) {
 }
 writeFileSync(astroPath, nextAstro, 'utf8');
 
-console.log(`sync-brand: ${brand.name} → ${brand.url} (robots Sitemap + Astro site)`);
+/** Keep Cloudflare Pages middleware apex + HTTPS redirects aligned with brand.url. */
+const middlewarePath = path.join(ROOT, 'functions/_middleware.js');
+let middleware = readFileSync(middlewarePath, 'utf8');
+try {
+	const brandHost = new URL(brand.url).hostname;
+	const nextMiddleware = middleware
+		.replace(/const CANONICAL_ORIGIN = '[^']*';/, `const CANONICAL_ORIGIN = '${brand.url}';`)
+		.replace(/const APEX_HOST = '[^']*';/, `const APEX_HOST = '${brandHost}';`)
+		.replace(/const WWW_HOST = '[^']*';/, `const WWW_HOST = 'www.${brandHost}';`);
+	if (
+		!nextMiddleware.includes(`CANONICAL_ORIGIN = '${brand.url}'`) ||
+		!nextMiddleware.includes(`APEX_HOST = '${brandHost}'`)
+	) {
+		throw new Error('Could not update canonical hosts in functions/_middleware.js');
+	}
+	writeFileSync(middlewarePath, nextMiddleware, 'utf8');
+} catch (err) {
+	throw new Error(`sync-brand middleware update failed: ${err instanceof Error ? err.message : err}`);
+}
+
+console.log(`sync-brand: ${brand.name} → ${brand.url} (robots Sitemap + Astro site + HTTPS middleware)`);
