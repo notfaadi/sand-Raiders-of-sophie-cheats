@@ -5,3 +5,14 @@
 /__brand /404.html 404
 /__brand/ /404.html 404
 /__brand/* /404.html 404
+
+# Legacy sitemap URLs → primary index (also enforced in functions/_middleware.js)
+/sitemap-index.xml /sitemap.xml 301
+/sitemap-0.xml /sitemap.xml 301
+/sitemap.xml/ /sitemap.xml 301
+/sitemap-en.xml/ /sitemap-en.xml 301
+/sitemap-i18n.xml/ /sitemap-i18n.xml 301
+/sitemap-images.xml/ /sitemap-images.xml 301
+
+# HTTPS + www → apex are enforced in functions/_middleware.js (Cloudflare Pages).
+# Dashboard: attach custom domain sandraiderscheats.net, enable "Always Use HTTPS".
