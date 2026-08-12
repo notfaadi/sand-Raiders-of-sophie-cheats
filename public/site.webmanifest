@@ -1,11 +1,11 @@
 {
   "name": "Sand Raiders Cheats",
-  "short_name": "Warzone",
-  "description": "Undetected sand raiders cheats — ESP, aimbot, and radar for PC",
+  "short_name": "Sand Raiders",
+  "description": "Undetected sandraiders cheats — ESP, aimbot, and radar for PC",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d0d0d",
-  "theme_color": "#0d0d0d",
+  "background_color": "#050a12",
+  "theme_color": "#050a12",
   "icons": [
     {
       "src": "/favicon.png",

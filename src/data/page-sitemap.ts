@@ -7,6 +7,8 @@ import {
 	resolvedSitemapImages,
 	sitemapLastmod,
 } from './brand-sitemap';
+import { cloudDmaPaths, type CloudDmaPageId } from './cloud-dma';
+import { fillBrandTokens } from './brand';
 
 export type SitemapImage = {
 	url: string;
@@ -67,21 +69,78 @@ for (const pageId of pageIds) {
 	}
 }
 
+const cloudDmaSitemapMeta: Record<
+	CloudDmaPageId,
+	{ priority: number; changefreq: PageSitemapEntry['changefreq']; lastmod: string; title: string; caption: string }
+> = {
+	about: {
+		priority: 0.96,
+		changefreq: 'weekly',
+		lastmod: '2026-08-12',
+		title: 'Cloud DMA',
+		caption: fillBrandTokens('Cloud DMA for {primaryKeyword} on Windows PC'),
+	},
+	setup: {
+		priority: 0.9,
+		changefreq: 'weekly',
+		lastmod: '2026-08-12',
+		title: 'Cloud DMA setup',
+		caption: fillBrandTokens('Cloud DMA setup help for {primaryKeyword}'),
+	},
+	hardware: {
+		priority: 0.88,
+		changefreq: 'monthly',
+		lastmod: '2026-08-12',
+		title: 'Cloud DMA hardware',
+		caption: fillBrandTokens('Cloud DMA hardware guidance for {primaryKeyword}'),
+	},
+	status: {
+		priority: 0.94,
+		changefreq: 'daily',
+		lastmod: '2026-08-12',
+		title: 'Cloud DMA status',
+		caption: fillBrandTokens('Cloud DMA status after {antiCheat} patches'),
+	},
+	plans: {
+		priority: 0.9,
+		changefreq: 'weekly',
+		lastmod: '2026-08-12',
+		title: 'Cloud DMA plans',
+		caption: fillBrandTokens('Cloud DMA monthly and lifetime plans'),
+	},
+};
+
+const cloudDmaSitemapEntries: PageSitemapEntry[] = (Object.keys(cloudDmaPaths) as CloudDmaPageId[]).map(
+	(id) => {
+		const meta = cloudDmaSitemapMeta[id];
+		return {
+			path: cloudDmaPaths[id],
+			priority: meta.priority,
+			changefreq: meta.changefreq,
+			lastmod: sitemapLastmod(meta.lastmod),
+			images: [img(warzoneImages.aimbotCombat, meta.title, meta.caption)],
+		};
+	},
+);
+
 /**
  * Canonical English sitemap entries — always includes every pageId from routing.
  * Absolute locs use siteConfig.url (from brand.url).
  */
-export const pageSitemapEntries: PageSitemapEntry[] = pageIds.map((pageId) => {
-	const meta = pageSitemapMeta[pageId];
-	const labels = pageSitemapImageLabels(pageId);
-	return {
-		path: englishPaths[pageId],
-		priority: meta.priority,
-		changefreq: meta.changefreq,
-		lastmod: sitemapLastmod(meta.lastmod),
-		images: [img(pageImageSrcById[pageId], labels.title, labels.caption)],
-	};
-});
+export const pageSitemapEntries: PageSitemapEntry[] = [
+	...pageIds.map((pageId) => {
+		const meta = pageSitemapMeta[pageId];
+		const labels = pageSitemapImageLabels(pageId);
+		return {
+			path: englishPaths[pageId],
+			priority: meta.priority,
+			changefreq: meta.changefreq,
+			lastmod: sitemapLastmod(meta.lastmod),
+			images: [img(pageImageSrcById[pageId], labels.title, labels.caption)],
+		};
+	}),
+	...cloudDmaSitemapEntries,
+];
 
 /** Unique keyword images for the dedicated image sitemap (editable in Brand Studio). */
 export const imageSitemapEntries: SitemapImage[] = resolvedSitemapImages().map((entry) =>

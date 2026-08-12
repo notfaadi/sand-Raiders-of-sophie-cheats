@@ -25,7 +25,7 @@ const copyDefaults = {
 	previewIntro: 'A quick look at {brand} — ESP, aimbot, radar, and updates after patches.',
 	setupIntro: 'Install {brand} on Windows PC after you buy. Follow these short steps.',
 	supportIntro: 'Need help with {brand}? Email {email} with your order ID.',
-	faqIntro: 'Short answers about delivery, setup, updates, and refunds.',
+	faqIntro: 'Short answers on safety, setup, patches, refunds, and package differences.',
 	reviewsIntro: 'Real feedback from {brand} buyers — ESP, soft aim, radar, and support.',
 	chipEsp: 'ESP / wallhack',
 	chipAim: 'Soft aim',
@@ -58,7 +58,8 @@ const seoDefaults = {
 	supportTitle: '{game} Support | {brand}',
 	supportDescription: 'Get help with {brand}. Email {email} with your order ID.',
 	faqTitle: '{game} FAQ | {brand}',
-	faqDescription: 'Short answers about {brand} — delivery, setup, updates, and refunds.',
+	faqDescription:
+		'FAQ for {primaryKeyword}: safety, detection, Windows setup, Tarkov patches, refunds, monthly vs lifetime, and Cloud DMA on PC.',
 	reviewsTitle: '{brand} Reviews | Buyer Feedback',
 	reviewsDescription:
 		'Real buyer reviews for {brand} — ESP, soft aim, radar, and patch updates on Windows PC.',
@@ -74,11 +75,11 @@ const brandExtra = brand as typeof brand & { seo?: Partial<SeoShape>; copy?: Par
 export const brandSeo: SeoShape = { ...seoDefaults, ...brandExtra.seo };
 export const brandCopy: CopyShape = { ...copyDefaults, ...brandExtra.copy };
 
-/** Resolved EN home meta */
+/** Resolved EN home meta — description not length-clamped so brand.seo.homeDescription can render in full. */
 export function homeSeo() {
 	return {
 		title: seoPageTitle(brandSeo.homeTitle),
-		description: seoDescription(brandSeo.homeDescription),
+		description: fillBrandTokens(brandSeo.homeDescription).trim(),
 	};
 }
 

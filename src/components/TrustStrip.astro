@@ -68,6 +68,14 @@ const items = [
 		color: var(--g2a-gray-600);
 		text-align: center;
 		min-width: 0;
+		transition:
+			color 0.2s ease,
+			text-shadow 0.22s ease;
+	}
+
+	.g2a-trust__item:hover {
+		color: var(--magenta-soft);
+		text-shadow: 0 0 10px color-mix(in srgb, var(--magenta) 40%, transparent);
 	}
 
 	.g2a-trust__icon {
@@ -79,30 +87,37 @@ const items = [
 		background: var(--tone-raised);
 		border: 1px solid var(--tone-border-soft);
 		flex-shrink: 0;
+		transition:
+			box-shadow 0.22s ease,
+			border-color 0.2s ease;
+	}
+
+	.g2a-trust__item:hover .g2a-trust__icon {
+		box-shadow: 0 0 14px color-mix(in srgb, var(--magenta) 35%, transparent);
 	}
 
 	.g2a-trust__icon--teal {
 		color: var(--accent-teal);
-		background: rgba(45, 212, 191, 0.1);
-		border-color: rgba(45, 212, 191, 0.22);
+		background: color-mix(in srgb, var(--accent-teal) 12%, transparent);
+		border-color: color-mix(in srgb, var(--accent-teal) 28%, transparent);
 	}
 
 	.g2a-trust__icon--amber {
 		color: var(--accent-amber);
-		background: rgba(251, 191, 36, 0.1);
-		border-color: rgba(251, 191, 36, 0.22);
+		background: color-mix(in srgb, var(--accent-amber) 12%, transparent);
+		border-color: color-mix(in srgb, var(--accent-amber) 28%, transparent);
 	}
 
 	.g2a-trust__icon--indigo {
 		color: var(--accent-indigo);
-		background: rgba(99, 102, 241, 0.1);
-		border-color: rgba(99, 102, 241, 0.22);
+		background: color-mix(in srgb, var(--accent-indigo) 12%, transparent);
+		border-color: color-mix(in srgb, var(--accent-indigo) 28%, transparent);
 	}
 
 	.g2a-trust__icon--coral {
 		color: var(--accent-coral);
-		background: rgba(249, 115, 22, 0.1);
-		border-color: rgba(249, 115, 22, 0.22);
+		background: color-mix(in srgb, var(--accent-coral) 12%, transparent);
+		border-color: color-mix(in srgb, var(--accent-coral) 28%, transparent);
 	}
 
 	@media (max-width: 900px) {

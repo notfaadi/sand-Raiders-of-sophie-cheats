@@ -25,8 +25,8 @@ export const brand = {
 	logoRasterWidth: 512,
 	logoRasterHeight: 512,
 	logoAlt: 'Sand Raiders Cheats logo',
-	defaultOgImage: '/img/hero-banner.webp',
-	heroImage: '/img/hero-banner.webp',
+	defaultOgImage: '/img/sand-raiders-desert.webp',
+	heroImage: '/img/sand-raiders-desert.webp',
 
 	plans: [
 		{ id: 'monthly', label: 'Monthly', price: 35, duration: 'P30D' },
@@ -36,32 +36,44 @@ export const brand = {
 	platforms: ['Windows PC', 'Controllers'] as const,
 
 	/**
-	 * Site color tones — desert gold on deep dune canvas.
+	 * Site color tones — neon cyan on deep blue-black canvas.
 	 * Edit in Brand Studio → Colors (tones are fully customizable).
 	 */
 	theme: {
-		accent: '#e8a838',
-		bg: '#0c0906',
-		soft: '#f0c56d',
-		deep: '#b45309',
-		hover: '#fbbf24',
-		panel: '#120e0a',
+		accent: '#00e5ff',
+		bg: '#050a12',
+		soft: '#67e8f9',
+		deep: '#0284c7',
+		hover: '#22d3ee',
+		panel: '#0a1220',
 	},
 
 	/**
-	 * Keyword system — primary drives titles; list feeds schema / light targeting.
-	 * Keep 5–8 terms.
+	 * Keyword system — primary drives titles; list feeds <meta name="keywords">.
 	 */
 	keywords: {
-		primary: 'sand raiders cheats',
+		primary: 'sandraiders cheats',
 		list: [
-			'sand raiders cheats',
-			'sand raiders esp',
-			'sand raiders aimbot',
-			'sand raiders wallhack',
-			'sand raiders radar',
-			'undetected sand raiders cheats',
-			'best sand raiders cheats',
+			'sandraiderscheats.net',
+			'sandraiders cheats',
+			'escape from tarkov hacks',
+			'tarkov cheats',
+			'eft hacks',
+			'sandraiders aimbot',
+			'sandraiders esp',
+			'escape from tarkov anti-cheat bypass',
+			'tarkov undetected hacks',
+			'sandraiders review',
+			'best escape from tarkov hack provider',
+			'sandraiders wallhack',
+			'sandraiders radar',
+			'tarkov arena hacks',
+			'eft exploits',
+			'sandraiders undetected',
+			'sandraiders safe',
+			'sandraiders tutorial',
+			'sandraiders price',
+			'buy sandraiders',
 		] as const,
 	},
 
@@ -70,44 +82,56 @@ export const brand = {
 	 * Aim ~50–60 chars titles, ~140–160 chars descriptions.
 	 */
 	seo: {
-		homeTitle: '{brand} | Undetected {primaryKeyword}',
-		homeDescription: '{primaryKeyword} for Windows PC - ESP, aimbot, and radar with {antiCheat} maintenance. Compare plans and buy.',
+		homeTitle: 'Undetected {primaryKeyword} | {brand}',
+		homeDescription:
+			'SandraidersCheats.net - Premium undetected Escape from Tarkov cheats with aimbot, ESP, wallhack and radar. 24/7 support, instant delivery and regular updates. Join thousands of satisfied users worldwide.',
 		featuresTitle: '{game} Features | {brand}',
-		featuresDescription: 'Everything in one {game} license for Windows PC -- ESP, aimbot, radar, and patch updates.',
+		featuresDescription:
+			'Everything in {primaryKeyword} for Windows PC. ESP, aimbot, radar, Cloud DMA, and rebuilds after {antiCheat} patches.',
 		storeTitle: '{game} Store | {brand}',
-		storeDescription: 'Monthly and lifetime {game} plans. Same features. Instant delivery after payment.',
+		storeDescription:
+			'Buy {primaryKeyword} for Windows PC. Monthly and lifetime plans include ESP, aimbot, radar, and Cloud DMA. Instant delivery after payment.',
 		statusTitle: '{game} Status | {brand}',
-		statusDescription: 'Live status for {brand} after {game} or {antiCheat} patches. Check before you queue.',
+		statusDescription:
+			'Live status for {primaryKeyword} after {game} or {antiCheat} patches. Check before you queue so you stay on a current build.',
 		previewTitle: '{game} Preview | {brand}',
-		previewDescription: 'Quick preview of {brand} -- ESP, aimbot, radar, and updates after {game} patches.',
+		previewDescription:
+			'The #1 Escape from Tarkov hack provider - SandraidersCheats.net offers advanced EFT cheats with aimbot, ESP, no recoil and more. Undetected, secure and updated for the latest Tarkov patches.',
 		setupTitle: '{game} Setup | {brand}',
-		setupDescription: 'Install and launch {brand} on Windows PC. Short setup steps after you buy.',
+		setupDescription:
+			'Install and launch {primaryKeyword} on Windows PC after you buy. Short setup steps help you start ESP, aimbot, and radar the right way.',
 		supportTitle: '{game} Support | {brand}',
-		supportDescription: 'Get help with {brand}. Email {email} with your order ID.',
+		supportDescription:
+			'Need help with {primaryKeyword}? Email {email} with your order ID for setup, license, delivery, or update questions.',
 		faqTitle: '{game} FAQ | {brand}',
-		faqDescription: 'Short answers about {brand} — delivery, setup, updates, and refunds.',
+		faqDescription:
+			'FAQ for {primaryKeyword}: safety, detection, Windows setup, Tarkov patches, refunds, monthly vs lifetime, and Cloud DMA on PC.',
 		reviewsTitle: '{brand} Reviews | Buyer Feedback',
-		reviewsDescription: 'Real buyer reviews for {brand} — ESP, soft aim, radar, and patch updates on Windows PC.',
+		reviewsDescription:
+			'Real buyer reviews for {primaryKeyword}. Read honest feedback on ESP, soft aim, radar, support quality, and patch updates on Windows PC.',
 		blogTitle: '{game} Intel | {brand}',
-		blogDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
+		blogDescription:
+			'Read guides and tips for {primaryKeyword}: meta play, ESP and aimbot settings, and {antiCheat} update notes for Windows PC players.',
 	},
 
 	/** On-page marketing copy (tokens allowed) */
 	copy: {
-		tagline: 'Undetected {primaryKeyword} -- ESP, aimbot, and radar for PC',
-		summary: '{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
-		heroLede: 'Dominate the dunes — undetected ESP, aimbot & radar.',
+		tagline: 'Undetected {primaryKeyword} with 24/7 support — ESP, aimbot, and radar for PC',
+		summary:
+			'{brand} delivers undetected sandraiders cheats and escape from tarkov hacks for Windows PC. ESP, soft aim, and radar with {antiCheat} maintenance and 24/7 support.',
+		heroLede:
+			'Undetected sandraiders cheats for Escape from Tarkov — ESP, aimbot & radar, plus 24/7 support.',
 		blogLabel: '{game} Intel',
 		ctaBuy: 'Buy now',
 		ctaBuyShort: 'Buy',
-		featuresIntro: 'Everything included in one license for {game} on Windows PC.',
+		featuresIntro: 'Everything included in one {primaryKeyword} license for Windows PC.',
 		storeIntro: 'Pick a plan. Same features on both. Instant delivery after payment.',
-		statusIntro: 'Check here after a {game} or {antiCheat} patch before you play.',
-		previewIntro: 'A quick look at {brand} — ESP, aimbot, radar, and updates after patches.',
+		statusIntro: 'Check here after a Tarkov or {antiCheat} patch before you raid.',
+		previewIntro: 'A quick look at {primaryKeyword} — ESP, aimbot, radar, and updates after patches.',
 		setupIntro: 'Install {brand} on Windows PC after you buy. Follow these short steps.',
-		supportIntro: 'Need help with {brand}? Email {email} with your order ID.',
-		faqIntro: 'Short answers about delivery, setup, updates, and refunds.',
-		reviewsIntro: 'Real feedback from {brand} buyers — ESP, soft aim, radar, and support.',
+		supportIntro: 'Need help with {brand}? Email {email} with your order ID — 24/7 support.',
+		faqIntro: 'Short answers on safety, setup, patches, refunds, and package differences.',
+		reviewsIntro: 'Real feedback from {brand} buyers — security, updates, support, and Tarkov raids.',
 		chipEsp: 'ESP / wallhack',
 		chipAim: 'Soft aim',
 		chipRadar: '2D radar',
@@ -195,6 +219,7 @@ export function seoDescription(template: string): string {
 export function homeSeo() {
 	return {
 		title: fillBrandTokens(brand.seo.homeTitle),
-		description: seoDescription(brand.seo.homeDescription),
+		/** Home description is not length-clamped so explicit brand.seo.homeDescription can render in full. */
+		description: fillBrandTokens(brand.seo.homeDescription).trim(),
 	};
 }

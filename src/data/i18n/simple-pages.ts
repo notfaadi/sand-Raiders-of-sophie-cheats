@@ -20,11 +20,13 @@ export type SimplePageCopy = {
 	sections: SimpleSection[];
 };
 
-function page(copy: SimplePageCopy): SimplePageCopy {
+function page(copy: SimplePageCopy, opts?: { fullMetaDescription?: boolean }): SimplePageCopy {
 	return {
 		...copy,
 		title: seoPageTitle(copy.title),
-		description: seoDescription(copy.description),
+		description: opts?.fullMetaDescription
+			? fillBrandTokens(copy.description).trim()
+			: seoDescription(copy.description),
 		intro: fillBrandTokens(copy.intro),
 		sections: copy.sections.map((section) => ({
 			...section,
@@ -50,7 +52,12 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'ESP & wallhack',
 				paragraphs: ['See players, loot, and vehicles through walls.'],
-				list: ['Player boxes & distance', 'Loot and contract markers', 'Team colours on / off'],
+				list: [
+					'Player boxes & distance',
+					'Loot and contract markers',
+					'2D radar cues',
+					'Team colours on / off',
+				],
 			},
 			{
 				h2: 'Aimbot & soft aim',
@@ -58,9 +65,16 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 				list: ['Smooth aim strength', 'FOV and bone priority', 'Hotkeys mid-match'],
 			},
 			{
-				h2: 'Radar',
-				paragraphs: ['A simple 2D radar for threats outside your view.'],
-				list: ['Nearby enemy cues', 'Adjustable range', 'Works in BR & Resurgence'],
+				h2: 'Cloud DMA',
+				paragraphs: [
+					'Run {brand} with Cloud DMA on Windows PC — a remote path instead of kernel-only tools alone.',
+				],
+				list: [
+					'<a href="/cloud-dma/">About Cloud DMA</a>',
+					'<a href="/cloud-dma-setup/">Setup help</a>',
+					'<a href="/cloud-dma-status/">Status after patches</a>',
+					'<a href="/cloud-dma-plans/">Lifetime vs monthly</a>',
+				],
 			},
 			{
 				h2: 'Updates & support',
@@ -122,32 +136,36 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			},
 		],
 	}),
-	hacks: page({
-		title: brandSeo.previewTitle,
-		description: brandSeo.previewDescription,
-		h1: 'Preview',
-		intro: brandCopy.previewIntro,
-		ctaPrimary: brandCopy.ctaBuy,
-		ctaSecondary: 'View features',
-		ctaSecondaryHref: '/features/',
-		galleryTitle: 'In-game look',
-		sections: [
-			{
-				h2: 'What it is',
-				paragraphs: ['One package for {game} on Windows PC.'],
-				list: ['ESP / wallhack', 'Soft aim & aimbot', '2D radar', 'Patch updates'],
-			},
-			{
-				h2: 'How to start',
-				paragraphs: ['Buy a plan, get your license by email, then follow setup.'],
-				list: [
-					'<a href="/pricing/">Open store</a>',
-					'<a href="/setup/">Setup guide</a>',
-					'<a href="/updates/">Check status</a>',
-				],
-			},
-		],
-	}),
+	hacks: page(
+		{
+			title: brandSeo.previewTitle,
+			description: brandSeo.previewDescription,
+			h1: 'Preview',
+			intro: brandCopy.previewIntro,
+			ctaPrimary: brandCopy.ctaBuy,
+			ctaSecondary: 'View features',
+			ctaSecondaryHref: '/features/',
+			galleryTitle: 'In-game look',
+			sections: [
+				{
+					h2: 'What it is',
+					paragraphs: ['One package for {game} on Windows PC.'],
+					list: ['ESP / wallhack', 'Soft aim & aimbot', '2D radar', 'Cloud DMA', 'Patch updates'],
+				},
+				{
+					h2: 'How to start',
+					paragraphs: ['Buy a plan, get your license by email, then follow setup.'],
+					list: [
+						'<a href="/pricing/">Open store</a>',
+						'<a href="/setup/">Setup guide</a>',
+						'<a href="/cloud-dma/">About Cloud DMA</a>',
+						'<a href="/updates/">Check status</a>',
+					],
+				},
+			],
+		},
+		{ fullMetaDescription: true },
+	),
 	setup: page({
 		title: brandSeo.setupTitle,
 		description: brandSeo.setupDescription,
@@ -171,7 +189,12 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'If something fails',
 				paragraphs: ['Check Status after a patch. Email {email} with your order ID.'],
-				list: ['<a href="/updates/">Status page</a>', '<a href="/support/">Support</a>', '<a href="/faq/">FAQ</a>'],
+				list: [
+					'<a href="/updates/">Status page</a>',
+					'<a href="/cloud-dma-setup/">Cloud DMA setup</a>',
+					'<a href="/support/">Support</a>',
+					'<a href="/faq/">FAQ</a>',
+				],
 			},
 		],
 	}),
@@ -215,7 +238,11 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Setup & updates',
 				paragraphs: ['Follow Setup after you buy. Check Status after big {game} or {antiCheat} patches.'],
-				list: ['<a href="/setup/">Setup guide</a>', '<a href="/updates/">Status</a>'],
+				list: [
+					'<a href="/setup/">Setup guide</a>',
+					'<a href="/cloud-dma/">Cloud DMA</a>',
+					'<a href="/updates/">Status</a>',
+				],
 			},
 			{
 				h2: 'Refunds',

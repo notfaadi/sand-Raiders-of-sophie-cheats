@@ -263,12 +263,17 @@ const extraGraph: Record<string, unknown>[] = [
 		background: var(--bg-panel);
 		transition:
 			border-color 0.2s ease,
-			transform 0.2s ease;
+			transform 0.2s ease,
+			box-shadow 0.22s ease;
 	}
 
 	.reviews-index__card:hover {
-		border-color: color-mix(in srgb, var(--magenta) 35%, var(--line));
+		border-color: color-mix(in srgb, var(--magenta) 45%, var(--line));
 		transform: translateY(-2px);
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--magenta) 28%, transparent),
+			0 0 16px color-mix(in srgb, var(--magenta) 35%, transparent),
+			0 0 32px color-mix(in srgb, var(--magenta) 18%, transparent);
 	}
 
 	.reviews-index__card-top {

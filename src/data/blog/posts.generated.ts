@@ -380,7 +380,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		metaDescription: "Complete sand raiders cheats guide for PC and controllers — ESP boxes, soft aim, cloud DMA, and Easy Anti-Cheat maintenance in 2026. Compare the full package and buy.",
 		h1: "Sand Raiders Cheats 2026: The Complete Undetected Guide",
 		intro: "Searching for Warzone hacks in 2026? This guide covers ESP wallhack, Aimbot, radar, undetected maintenance, and how sand raiders cheats searchers map to the same Windows PC package.",
-		keywords: ["sand raiders cheats","undetected sand raiders cheats","sand raiders cheats","esp","aimbot","ricochet"],
+		keywords: ["sand raiders cheats","undetected sand raiders cheats","sand raiders cheats","esp","aimbot","eac-bypass"],
 		imageAlt: "Warzone hacks complete guide showing ESP wallhack and Aimbot for 2026",
 		sections: [
 			{
@@ -474,7 +474,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		metaDescription: "Sand Raiders cheats 2026 overview — ESP boxes, soft aim, and cloud DMA for PC and controllers with Easy Anti-Cheat maintenance. Pair with the hacks pillar before buying.",
 		h1: "Sand Raiders Cheats 2026: What Buyers Need Now",
 		intro: "Sand Raiders cheats 2026 searches spike every season. Here is what still matters: maintained ESP wallhack, Aimbot profiles, radar awareness, and rebuilds after Easy Anti-Cheat patches.",
-		keywords: ["sand raiders cheats 2026","sand raiders cheats","ricochet","esp","aimbot"],
+		keywords: ["sand raiders cheats 2026","sand raiders cheats","eac-bypass","esp","aimbot"],
 		imageAlt: "Sand Raiders cheats 2026 overview for undetected ESP and Aimbot buyers",
 		sections: [
 			{
@@ -600,7 +600,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		metaDescription: "Undetected sand raiders cheats and EAC reality — ESP boxes, soft aim, and cloud DMA rebuilds for PC and controllers. Check Updates before queueing post-patch.",
 		h1: "Undetected Sand Raiders Cheats and Easy Anti-Cheat Reality",
 		intro: "Undetected Warzone hacks mean active Easy Anti-Cheat maintenance — not a forever guarantee. Learn the patch-day workflow, where to check status, and how hacks/cheats pages fit together.",
-		keywords: ["undetected sand raiders cheats","ricochet","sand raiders cheats","sand raiders cheats","maintenance"],
+		keywords: ["undetected sand raiders cheats","eac-bypass","sand raiders cheats","sand raiders cheats","maintenance"],
 		imageAlt: "Undetected Warzone hacks and Easy Anti-Cheat maintenance workflow",
 		sections: [
 			{
@@ -642,7 +642,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		metaDescription: "Sand Raiders Cheats vs CheatVault compared — pricing, ESP boxes, soft aim, cloud DMA, EAC detection history, and which package fits BR players in 2026.",
 		h1: "Sand Raiders Cheats vs CheatVault: Honest Comparison",
 		intro: "I ran both CheatVault and Sand Raiders Cheats through the same ranked block last season. Here is the straight comparison — price, features, patch-day behavior, and where ricocheth one actually wins.",
-		keywords: ["sand raiders cheats vs cheatvault","cheatvault comparison","sand raiders cheats","esp","ricochet","pricing"],
+		keywords: ["sand raiders cheats vs cheatvault","cheatvault comparison","sand raiders cheats","esp","eac-bypass","pricing"],
 		imageAlt: "Sand Raiders Cheats vs CheatVault feature and pricing comparison for 2026",
 		sections: [
 			{
@@ -829,6 +829,90 @@ export const blogPosts: BlogPostDefinition[] = [
 					"Choose GhostWare if budget is tight, you only need player ESP in casual pubs, and you are comfortable tracking patch status in Discord.",
 					"Choose Sand Raiders Cheats if you want radar for flanks, loot markers for faster spawns, configurable soft aim, optional cloud DMA, and a single Updates URL to check after every Epic patch.",
 					"Try This Today: Decide whether radar and loot ESP are must-haves or nice-to-haves. If must-have, open <a href=\"/sand-raiders-esp/\">ESP</a>, <a href=\"/sand-raiders-radar-hack/\">radar</a>, and <a href=\"/pricing/\">Pricing</a>. If skipping radar saves you money and matches your style, GhostWare stays in the conversation — just do not skip patch-day checks on either tool.",
+				],
+			}
+		],
+	},
+		},
+	},
+	{
+		id: "tarkov-patch-impact-sand-raiders",
+		imageKey: "squadFight",
+		published: "2026-08-18",
+		updated: "2026-08-18",
+		category: "Patch Notes Breakdown",
+		featured: false,
+		translations: {
+		en: {
+		slug: "tarkov-patch-notes-sand-raiders",
+		title: "Tarkov Patch Notes: Impact on Sand Raiders",
+		metaDescription: "Tarkov patch notes for Sand Raiders users — what changed, when to wait on Easy Anti-Cheat, and how to check Status before you queue on Windows PC.",
+		h1: "Tarkov Patch Notes: Impact on Sand Raiders",
+		intro: "New Escape from Tarkov patches can change what is safe to run. Here is a short read on impact for Sand Raiders Cheats, then where to check before you queue.",
+		keywords: ["escape from tarkov patch notes","tarkov cheats update","sandraiders cheats","easy anti-cheat"],
+		imageAlt: "Escape from Tarkov patch notes and Sand Raiders Cheats status checklist",
+		sections: [
+			{
+				h2: "Read the patch, then check Status",
+				paragraphs: [
+					"Skim official Escape from Tarkov notes for client, launcher, and anti-cheat lines first. Loud weapon buffs matter less for cheat users than Easy Anti-Cheat or binary changes.",
+					"Before you load a raid, open <a href=\"/status/\">Status</a>. Green means the current Sand Raiders build is cleared for play. Yellow or red means wait for a rebuild.",
+				],
+			},
+			{
+				h2: "What usually affects Sand Raiders",
+				paragraphs: [
+					"Major EFT updates and Easy Anti-Cheat bumps are the usual rebuild triggers. Small balance tweaks often do not. When in doubt, trust Status over Discord rumors.",
+					"Keep one license path: ESP, soft aim, radar, and Cloud DMA in the same maintained package. Stacking random tools after a patch is how accounts get into trouble.",
+				],
+			},
+			{
+				h2: "Next steps",
+				paragraphs: [
+					"Bookmark <a href=\"/status/\">Status</a> for patch mornings. If you still need a license, buy on the <a href=\"/store/\">Store</a>, then follow <a href=\"/setup/\">Setup</a>.",
+					"Need help after an update? Email support with your order ID from the <a href=\"/support/\">Support</a> page.",
+				],
+			}
+		],
+	},
+		},
+	},
+	{
+		id: "sand-raiders-esp-setup-eft",
+		imageKey: "espWallhack",
+		published: "2026-08-25",
+		updated: "2026-08-25",
+		category: "ESP & Wallhack",
+		featured: false,
+		translations: {
+		en: {
+		slug: "sand-raiders-esp-setup-tarkov",
+		title: "Sand Raiders ESP Setup for Escape from Tarkov",
+		metaDescription: "Sand Raiders ESP setup for Escape from Tarkov — starter toggles, cleaner loot filters, and Status checks after Easy Anti-Cheat patches on Windows PC.",
+		h1: "Sand Raiders ESP Setup for Escape from Tarkov",
+		intro: "ESP is the first tool most Sand Raiders buyers turn on. Use these short setup tips so Tarkov raids stay readable instead of cluttered.",
+		keywords: ["sandraiders esp","tarkov esp","escape from tarkov wallhack","sandraiders cheats"],
+		imageAlt: "Sand Raiders ESP setup guide for Escape from Tarkov raids",
+		sections: [
+			{
+				h2: "Start simple",
+				paragraphs: [
+					"Enable player ESP first. Add loot or container markers only after you know your map. Too many labels on Customs or Interchange hide the threats that matter.",
+					"Open <a href=\"/features/\">Features</a> for what the current Sand Raiders license includes, then follow <a href=\"/setup/\">Setup</a> after purchase.",
+				],
+			},
+			{
+				h2: "Filters that keep fights clear",
+				paragraphs: [
+					"Use distance limits so far PMCs do not flood your screen. Prioritize players over low-value loot when you are learning a map.",
+					"Pair ESP with radar when you need flank awareness outside your FOV. See the radar notes on Features if that module is part of your plan.",
+				],
+			},
+			{
+				h2: "Patch days and next steps",
+				paragraphs: [
+					"After an Escape from Tarkov or Easy Anti-Cheat update, check <a href=\"/status/\">Status</a> before you trust any ESP overlay in a live raid.",
+					"Ready to buy? Go to the <a href=\"/store/\">Store</a> for monthly or lifetime, then come back to this guide once Setup is done.",
 				],
 			}
 		],

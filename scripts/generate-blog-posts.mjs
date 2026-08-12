@@ -823,6 +823,86 @@ const sources = [
 			},
 		],
 	},
+	{
+		id: 'tarkov-patch-impact-sand-raiders',
+		imageKey: 'squadFight',
+		published: '2026-08-18',
+		updated: '2026-08-18',
+		category: 'Patch Notes Breakdown',
+		featured: false,
+		slug: 'tarkov-patch-notes-sand-raiders',
+		title: 'Tarkov Patch Notes: Impact on Sand Raiders',
+		metaDescription:
+			'Tarkov patch notes for Sand Raiders users — what changed, when to wait on Easy Anti-Cheat, and how to check Status before you queue on Windows PC.',
+		h1: 'Tarkov Patch Notes: Impact on Sand Raiders',
+		intro:
+			'New Escape from Tarkov patches can change what is safe to run. Here is a short read on impact for Sand Raiders Cheats, then where to check before you queue.',
+		keywords: ['escape from tarkov patch notes', 'tarkov cheats update', 'sandraiders cheats', 'easy anti-cheat'],
+		imageAlt: 'Escape from Tarkov patch notes and Sand Raiders Cheats status checklist',
+		sections: [
+			{
+				h2: 'Read the patch, then check Status',
+				paragraphs: [
+					'Skim official Escape from Tarkov notes for client, launcher, and anti-cheat lines first. Loud weapon buffs matter less for cheat users than Easy Anti-Cheat or binary changes.',
+					'Before you load a raid, open <a href="/status/">Status</a>. Green means the current Sand Raiders build is cleared for play. Yellow or red means wait for a rebuild.',
+				],
+			},
+			{
+				h2: 'What usually affects Sand Raiders',
+				paragraphs: [
+					'Major EFT updates and Easy Anti-Cheat bumps are the usual rebuild triggers. Small balance tweaks often do not. When in doubt, trust Status over Discord rumors.',
+					'Keep one license path: ESP, soft aim, radar, and Cloud DMA in the same maintained package. Stacking random tools after a patch is how accounts get into trouble.',
+				],
+			},
+			{
+				h2: 'Next steps',
+				paragraphs: [
+					'Bookmark <a href="/status/">Status</a> for patch mornings. If you still need a license, buy on the <a href="/store/">Store</a>, then follow <a href="/setup/">Setup</a>.',
+					'Need help after an update? Email support with your order ID from the <a href="/support/">Support</a> page.',
+				],
+			},
+		],
+	},
+	{
+		id: 'sand-raiders-esp-setup-eft',
+		imageKey: 'espWallhack',
+		published: '2026-08-25',
+		updated: '2026-08-25',
+		category: 'ESP & Wallhack',
+		featured: false,
+		slug: 'sand-raiders-esp-setup-tarkov',
+		title: 'Sand Raiders ESP Setup for Escape from Tarkov',
+		metaDescription:
+			'Sand Raiders ESP setup for Escape from Tarkov — starter toggles, cleaner loot filters, and Status checks after Easy Anti-Cheat patches on Windows PC.',
+		h1: 'Sand Raiders ESP Setup for Escape from Tarkov',
+		intro:
+			'ESP is the first tool most Sand Raiders buyers turn on. Use these short setup tips so Tarkov raids stay readable instead of cluttered.',
+		keywords: ['sandraiders esp', 'tarkov esp', 'escape from tarkov wallhack', 'sandraiders cheats'],
+		imageAlt: 'Sand Raiders ESP setup guide for Escape from Tarkov raids',
+		sections: [
+			{
+				h2: 'Start simple',
+				paragraphs: [
+					'Enable player ESP first. Add loot or container markers only after you know your map. Too many labels on Customs or Interchange hide the threats that matter.',
+					'Open <a href="/features/">Features</a> for what the current Sand Raiders license includes, then follow <a href="/setup/">Setup</a> after purchase.',
+				],
+			},
+			{
+				h2: 'Filters that keep fights clear',
+				paragraphs: [
+					'Use distance limits so far PMCs do not flood your screen. Prioritize players over low-value loot when you are learning a map.',
+					'Pair ESP with radar when you need flank awareness outside your FOV. See the radar notes on Features if that module is part of your plan.',
+				],
+			},
+			{
+				h2: 'Patch days and next steps',
+				paragraphs: [
+					'After an Escape from Tarkov or Easy Anti-Cheat update, check <a href="/status/">Status</a> before you trust any ESP overlay in a live raid.',
+					'Ready to buy? Go to the <a href="/store/">Store</a> for monthly or lifetime, then come back to this guide once Setup is done.',
+				],
+			},
+		],
+	},
 ];
 
 function translationBlock(src) {

@@ -27,7 +27,7 @@ export function contentSrcSet(baseSrc: string): string | undefined {
 }
 
 export const heroResponsive: ResponsiveWidth[] = [
-	{ src: '/img/hero-banner.webp', width: 1024 },
+	{ src: '/img/sand-raiders-desert.webp', width: 1280 },
 ];
 
 /** Desktop srcset (mobile uses a dedicated `<picture>` source — see Hero.astro). */
@@ -41,9 +41,9 @@ export const heroSizes = '100vw';
 /** LCP preload for homepage hero. */
 export const heroPreloadSrc = heroResponsive[0].src;
 
-/** Intrinsic dimensions for hero LCP (matches hero-banner.webp). */
-export const heroWidth = 1024;
-export const heroHeight = 358;
+/** Intrinsic dimensions for hero LCP (matches sand-raiders-desert.webp). */
+export const heroWidth = 1280;
+export const heroHeight = 720;
 
 /** Responsive widths for below-fold content images. */
 export const contentWidths = [480, 960] as const;

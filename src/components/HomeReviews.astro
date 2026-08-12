@@ -3,6 +3,7 @@ import { customerReviews, customerReviewStats } from '../data/site';
 import { getReviewPath, reviewsBasePath } from '../data/reviews';
 
 const reviews = [...customerReviews];
+const [ratingWhole, ratingFrac] = customerReviewStats.averageRating.toFixed(1).split('.');
 
 function formatDate(iso: string) {
 	return new Date(`${iso}T12:00:00`).toLocaleDateString('en-US', {
@@ -21,10 +22,14 @@ function initial(handle: string) {
 		<header class="reviews__head">
 			<div class="reviews__head-copy">
 				<p class="reviews__eyebrow">Reviews</p>
-				<h2 id="reviews-title">What players say after the first week</h2>
+				<h2 id="reviews-title">What Tarkov players say after the first week</h2>
 			</div>
 			<div class="reviews__score" aria-label={`${customerReviewStats.averageRating.toFixed(1)} average from ${customerReviewStats.totalCount} reviews`}>
-				<strong>{customerReviewStats.averageRating.toFixed(1)}</strong>
+				<strong class="reviews__score-num">
+					<span>{ratingWhole}</span>
+					<span class="reviews__score-dot" aria-hidden="true">.</span>
+					<span>{ratingFrac}</span>
+				</strong>
 				<div>
 					<span class="reviews__stars" aria-hidden="true">
 						{[0, 1, 2, 3, 4].map(() => (
@@ -138,13 +143,33 @@ function initial(handle: string) {
 		background: var(--bg-panel);
 	}
 
-	.reviews__score strong {
-		font-family: var(--font-display);
+	.reviews__score-num {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.06em;
+		font-family: var(--font-sans);
 		font-size: 2rem;
-		font-weight: 800;
-		letter-spacing: -0.04em;
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+		letter-spacing: -0.01em;
 		line-height: 1;
 		color: var(--ink);
+		text-shadow: 0 0 14px var(--glow-soft);
+	}
+
+	.reviews__score-dot {
+		display: inline-block;
+		width: 0.18em;
+		height: 0.18em;
+		margin-inline: 0.02em;
+		border-radius: 50%;
+		background: currentColor;
+		color: var(--magenta-soft);
+		box-shadow: 0 0 10px var(--glow-soft);
+		/* Hide the glyph; keep a real period for copy/accessibility via aria on parent */
+		font-size: 0;
+		line-height: 0;
+		transform: translateY(-0.12em);
 	}
 
 	.reviews__stars {
@@ -272,13 +297,21 @@ function initial(handle: string) {
 		border: 1px solid var(--line);
 		border-radius: var(--radius-md);
 		background: var(--bg-panel);
-		transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.22s ease;
 	}
 
 	.review-card:hover {
-		border-color: color-mix(in srgb, var(--magenta) 35%, var(--line));
+		border-color: color-mix(in srgb, var(--magenta) 45%, var(--line));
 		background: var(--bg-elevated);
 		transform: translateY(-2px);
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--magenta) 30%, transparent),
+			0 0 16px color-mix(in srgb, var(--magenta) 35%, transparent),
+			0 0 32px color-mix(in srgb, var(--magenta) 20%, transparent);
 	}
 
 	.review-card__text {

@@ -362,7 +362,9 @@ const isActive = (href: string) => {
 		white-space: nowrap;
 		transition:
 			color 0.15s ease,
-			background 0.15s ease;
+			background 0.15s ease,
+			box-shadow 0.22s ease,
+			text-shadow 0.22s ease;
 	}
 
 	.site-nav a svg {
@@ -373,8 +375,10 @@ const isActive = (href: string) => {
 	}
 
 	.site-nav a:hover {
-		color: var(--ink);
-		background: color-mix(in srgb, #fff 5%, transparent);
+		color: var(--magenta-soft);
+		background: color-mix(in srgb, var(--magenta) 12%, transparent);
+		box-shadow: 0 0 14px color-mix(in srgb, var(--magenta) 30%, transparent);
+		text-shadow: 0 0 10px color-mix(in srgb, var(--magenta) 40%, transparent);
 	}
 
 	.site-nav a:hover svg,
@@ -408,14 +412,15 @@ const isActive = (href: string) => {
 		height: auto;
 		padding: 0 1rem;
 		border-radius: 999px;
-		background: #fff;
-		color: #09090b;
+		background: var(--magenta);
+		color: #050a12;
 		font-size: 0.8125rem;
 		font-weight: 600;
 		letter-spacing: -0.01em;
 		transition:
 			background 0.15s ease,
-			transform 0.15s ease;
+			transform 0.15s ease,
+			box-shadow 0.22s ease;
 	}
 
 	.site-tools__buy svg {
@@ -424,9 +429,12 @@ const isActive = (href: string) => {
 	}
 
 	.site-tools__buy:hover {
-		background: #ececef;
-		color: #09090b;
+		background: var(--accent-hover);
+		color: #050a12;
 		transform: translateY(-1px);
+		box-shadow:
+			0 0 12px color-mix(in srgb, var(--magenta) 55%, transparent),
+			0 0 28px color-mix(in srgb, var(--magenta) 35%, transparent);
 	}
 
 	.site-menu {
@@ -539,14 +547,20 @@ const isActive = (href: string) => {
 		justify-content: center;
 		min-height: 2.85rem;
 		border-radius: 999px;
-		background: #fff;
-		color: #09090b;
+		background: var(--magenta);
+		color: #050a12;
 		font-weight: 600;
+		transition:
+			background 0.15s ease,
+			box-shadow 0.22s ease;
 	}
 
 	.site-panel__buy:hover {
-		background: #e4e4e7;
-		color: #09090b;
+		background: var(--accent-hover);
+		color: #050a12;
+		box-shadow:
+			0 0 12px color-mix(in srgb, var(--magenta) 55%, transparent),
+			0 0 28px color-mix(in srgb, var(--magenta) 35%, transparent);
 	}
 
 	@media (max-width: 1024px) {

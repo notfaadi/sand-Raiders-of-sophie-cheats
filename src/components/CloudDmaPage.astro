@@ -1,0 +1,62 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { cloudDmaPages, cloudDmaPaths, type CloudDmaPageId } from '../data/cloud-dma';
+import { siteConfig } from '../data/site';
+import { warzoneImages } from '../data/warzone';
+import { defaultLocale } from '../data/i18n/locales';
+
+interface Props {
+	pageId: CloudDmaPageId;
+}
+
+const { pageId } = Astro.props;
+const page = cloudDmaPages[pageId];
+const canonicalPath = cloudDmaPaths[pageId];
+
+const gallery = warzoneImages.product.slice(0, 3).map((img) => ({
+	src: img.src,
+	alt: img.alt,
+}));
+
+function withCheckout(html: string): string {
+	return html.replace(/\{checkout\}/g, siteConfig.checkoutUrl);
+}
+---
+
+<PageLayout
+	title={page.title}
+	description={page.description}
+	canonicalPath={canonicalPath}
+	heading={page.h1}
+	intro={page.intro}
+	eyebrow="Cloud DMA"
+	heroImage={siteConfig.heroImage || warzoneImages.hero}
+	heroAlt={siteConfig.name}
+	gallery={gallery}
+	galleryTitle={page.galleryTitle}
+	locale={defaultLocale}
+	ctaPrimary={{ href: siteConfig.checkoutUrl, label: page.ctaPrimary, edit: 'ctaBuy' }}
+	ctaSecondary={
+		page.ctaSecondary && page.ctaSecondaryHref
+			? { href: page.ctaSecondaryHref, label: page.ctaSecondary }
+			: undefined
+	}
+>
+	{
+		page.sections.map((section) => (
+			<section class="card-panel">
+				<h2>{section.h2}</h2>
+				{section.paragraphs.map((p) => (
+					<p set:html={withCheckout(p)} />
+				))}
+				{section.list && (
+					<ul>
+						{section.list.map((item) => (
+							<li set:html={withCheckout(item)} />
+						))}
+					</ul>
+				)}
+			</section>
+		))
+	}
+</PageLayout>

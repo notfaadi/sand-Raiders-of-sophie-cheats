@@ -212,7 +212,8 @@ export function brandThemeInlineStyle(theme: BrandThemeResolved = brandTheme): s
 
 /** JS-friendly map for Brand Studio live preview + Layout injection. */
 export function brandThemeCssMap(theme: BrandThemeResolved = brandTheme): Record<string, string> {
-	const amber = mixHex(theme.accent, '#fbbf24', 0.45);
+	/** Keep “amber” slots on-brand (stars, trust chips) instead of gold mix */
+	const amber = theme.accentSoft;
 	return {
 		'--bg': theme.bg,
 		'--bg-panel': theme.bgPanel,
@@ -231,6 +232,9 @@ export function brandThemeCssMap(theme: BrandThemeResolved = brandTheme): Record
 		'--accent-hover': theme.accentHover,
 		'--ok': theme.ok,
 		'--warn': theme.warn,
+		'--glow-soft': `color-mix(in srgb, ${theme.accent} 35%, transparent)`,
+		'--glow-mid': `color-mix(in srgb, ${theme.accent} 55%, transparent)`,
+		'--glow-strong': `color-mix(in srgb, ${theme.accent} 75%, transparent)`,
 		'--tone-void': theme.toneVoid,
 		'--tone-night': theme.bg,
 		'--tone-body': theme.bg,
