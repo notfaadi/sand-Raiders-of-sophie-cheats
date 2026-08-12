@@ -15,7 +15,7 @@ export type PageSitemapMeta = {
 /**
  * SEO priority and crawl hints per page — keyed by PageId (single source of truth).
  * English URLs use `priority`; localized URLs use `i18nPriority`.
- * `lastmod` reflects when ricocheth page's content actually changed — do NOT reset all
+ * `lastmod` reflects when each page's content actually changed — do NOT reset all
  * pages to the same date on deploy, only bump pages whose content was edited.
  */
 export const pageSitemapMeta: Record<PageId, PageSitemapMeta> = {
@@ -57,11 +57,14 @@ export function latestPageLastmod(): string {
 
 /** Expected URL counts for sitemap validation. */
 export const SITEMAP_COUNTS = {
+	/** Core PageId routes (englishPaths) */
 	englishPages: 25,
+	/** EN-only Cloud DMA cluster */
+	cloudDmaPages: 5,
 	i18nLocales: 21,
 	pagesPerLocale: 25,
 	i18nUrls: 21 * 25,
-	totalIndexablePages: 25 + 21 * 25,
+	totalIndexablePages: 25 + 5 + 21 * 25,
 	hreflangLinksPerUrl: 23,
 	/** sitemap.xml (index): EN + 21 locale sitemaps + images */
 	sitemapIndexEntries: 1 + 21 + 1,

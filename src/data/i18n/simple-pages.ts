@@ -127,7 +127,12 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'After a patch',
 				paragraphs: ['Wait for our rebuild note, then launch. Do not play on an old build after a big update.'],
-				list: ['Read the latest status note', 'Follow setup if something fails', 'Email support with your order ID'],
+				list: [
+					'Read the latest status note',
+					'<a href="/cloud-dma-status/">Cloud DMA status</a>',
+					'Follow setup if something fails',
+					'Email support with your order ID',
+				],
 			},
 			{
 				h2: 'Important',
