@@ -7,6 +7,7 @@ import { productInfo, seoFaqs, siteConfig } from '../data/site';
 import { absoluteFaqUrl, getFaqPath } from '../data/faq';
 import { warzoneImages } from '../data/warzone';
 import { simplePageCopy } from '../data/i18n/simple-pages';
+import { productSoftwareGraph } from '../data/schema-product';
 
 interface Props {
 	locale: LocaleCode;
@@ -46,12 +47,14 @@ const gallery = warzoneImages.product.slice(0, 3).map((img) => ({
 	alt: img.alt,
 }));
 
+const canonicalPath = getLocalizedPath(pageId, locale);
+const canonicalURL = new URL(canonicalPath, siteConfig.url).href;
+
 const faqSchema =
 	pageId === 'faq' && locale === 'en'
 		? {
-				'@context': 'https://schema.org',
 				'@type': 'FAQPage',
-				'@id': `${new URL(getLocalizedPath('faq', locale), siteConfig.url).href}#faq`,
+				'@id': `${canonicalURL}#faq`,
 				mainEntity: seoFaqs.map((item) => ({
 					'@type': 'Question',
 					name: item.question,
@@ -60,6 +63,20 @@ const faqSchema =
 				})),
 			}
 		: null;
+
+const productPages = new Set<PageId>(['features', 'pricing', 'hacks', 'setup']);
+const extraGraph: Record<string, unknown>[] = [
+	...(locale === 'en' && productPages.has(pageId)
+		? productSoftwareGraph({
+				pageUrl: canonicalURL,
+				description: simple?.description ?? page.description,
+				image: siteConfig.heroImage || warzoneImages.hero,
+				includeReviews: pageId === 'pricing' || pageId === 'features',
+				includeOffers: pageId === 'pricing' || pageId === 'features' || pageId === 'hacks',
+			})
+		: []),
+	...(faqSchema ? [faqSchema] : []),
+];
 
 const ctaSecondaryHref = ctaSecondaryPath
 	? localizeInternalHref(ctaSecondaryPath, locale)
@@ -82,17 +99,18 @@ const eyebrowByPage: Partial<Record<PageId, string>> = {
 <PageLayout
 	title={simple?.title ?? page.title}
 	description={simple?.description ?? page.description}
-	canonicalPath={getLocalizedPath(pageId, locale)}
+	canonicalPath={canonicalPath}
 	heading={heading}
 	intro={intro}
 	introEdit={introEdit}
 	eyebrow={eyebrowByPage[pageId]}
 	heroImage={siteConfig.heroImage || warzoneImages.hero}
-	heroAlt={siteConfig.name}
+	heroAlt={`${siteConfig.name} — ${heading} for Windows PC`}
 	gallery={gallery}
 	galleryTitle={galleryTitle}
 	locale={locale}
 	pageId={pageId}
+	extraGraph={extraGraph}
 	ctaPrimary={{ href: siteConfig.checkoutUrl, label: ctaPrimaryLabel, edit: 'ctaBuy' }}
 	ctaSecondary={
 		ctaSecondaryLabel
@@ -100,8 +118,6 @@ const eyebrowByPage: Partial<Record<PageId, string>> = {
 			: undefined
 	}
 >
-	{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
-
 	{
 		showStorePlans && (
 			<section class="card-panel">

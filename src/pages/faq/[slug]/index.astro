@@ -20,6 +20,60 @@ const canonicalURL = absoluteFaqUrl(faq.slug);
 const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 const related = getRelatedFaqs(faq.slug, 4);
 
+/** Hub-and-spoke product links — pick by FAQ topic without keyword spam. */
+function hubLinksForFaq(slug: string): { href: string; label: string }[] {
+	const links: { href: string; label: string }[] = [
+		{ href: '/features/', label: 'Features' },
+		{ href: '/pricing/', label: 'Store' },
+		{ href: '/faq/', label: 'All FAQ' },
+	];
+
+	if (/cloud-dma|dma/i.test(slug)) {
+		return [
+			{ href: '/cloud-dma/', label: 'Cloud DMA' },
+			{ href: '/cloud-dma-setup/', label: 'Cloud DMA setup' },
+			{ href: '/cloud-dma-status/', label: 'Cloud DMA status' },
+			{ href: '/pricing/', label: 'Store' },
+		];
+	}
+	if (/esp|wallhack|radar|aimbot|soft-aim|package/i.test(slug)) {
+		return [
+			{ href: '/features/', label: 'Features' },
+			{ href: '/sand-raiders-esp/', label: 'ESP' },
+			{ href: '/sand-raiders-aimbot/', label: 'Aimbot' },
+			{ href: '/cloud-dma/', label: 'Cloud DMA' },
+		];
+	}
+	if (/undetect|ricochet|eac|patch|detection|safe|status/i.test(slug)) {
+		return [
+			{ href: '/updates/', label: 'Status' },
+			{ href: '/cloud-dma-status/', label: 'Cloud DMA status' },
+			{ href: '/eac-bypass/', label: 'Easy Anti-Cheat' },
+			{ href: '/undetected-sand-raiders-cheats/', label: 'Undetected guide' },
+		];
+	}
+	if (/setup|install|loader|start|windows|use|delivery|payment|refund|support|contact|legit/i.test(slug)) {
+		return [
+			{ href: '/setup/', label: 'Setup' },
+			{ href: '/support/', label: 'Support' },
+			{ href: '/cloud-dma-setup/', label: 'Cloud DMA setup' },
+			{ href: '/pricing/', label: 'Store' },
+		];
+	}
+	if (/monthly|lifetime|buy|price/i.test(slug)) {
+		return [
+			{ href: '/pricing/', label: 'Store' },
+			{ href: '/cloud-dma-plans/', label: 'Cloud DMA plans' },
+			{ href: '/reviews/', label: 'Reviews' },
+			{ href: '/features/', label: 'Features' },
+		];
+	}
+
+	return links;
+}
+
+const hubLinks = hubLinksForFaq(faq.slug);
+
 const extraGraph: Record<string, unknown>[] = [
 	{
 		'@type': 'FAQPage',
@@ -83,6 +137,14 @@ const extraGraph: Record<string, unknown>[] = [
 					<a href="/pricing/" class="faq-detail__link">Compare pricing</a>
 					<a href="/support/" class="faq-detail__link">Contact support</a>
 				</div>
+
+				<nav class="faq-detail__hubs" aria-label="Related guides">
+					{
+						hubLinks.map((link) => (
+							<a href={link.href}>{link.label}</a>
+						))
+					}
+				</nav>
 			</article>
 
 			<section class="faq-detail__more" aria-labelledby="more-faq-title">
@@ -189,6 +251,31 @@ const extraGraph: Record<string, unknown>[] = [
 		flex-wrap: wrap;
 		gap: 0.65rem;
 		padding-top: 0.25rem;
+	}
+
+	.faq-detail__hubs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+	}
+
+	.faq-detail__hubs a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.5rem;
+		padding: 0.45rem 0.85rem;
+		border: 1px solid var(--line);
+		border-radius: 0.65rem;
+		background: var(--bg-elevated);
+		color: var(--ink-muted);
+		font-size: 0.8rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.faq-detail__hubs a:hover {
+		border-color: color-mix(in srgb, var(--magenta) 40%, var(--line));
+		color: var(--magenta-soft);
 	}
 
 	.faq-detail__buy {

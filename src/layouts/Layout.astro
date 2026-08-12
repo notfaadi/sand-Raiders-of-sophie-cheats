@@ -116,6 +116,12 @@ const graph: Record<string, unknown>[] = [
 			areaServed: worldwidePlace,
 			availableLanguage: locales.map((l) => l.name),
 		},
+		knowsAbout: [
+			productInfo.game,
+			seoKeywords[0] ?? productInfo.name,
+			'Cloud DMA',
+			'GameApplication',
+		],
 	},
 ];
 

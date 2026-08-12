@@ -1,9 +1,10 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import { cloudDmaPages, cloudDmaPaths, type CloudDmaPageId } from '../data/cloud-dma';
-import { siteConfig } from '../data/site';
+import { cloudDmaNavLinks, cloudDmaPages, cloudDmaPaths, type CloudDmaPageId } from '../data/cloud-dma';
+import { productInfo, siteConfig } from '../data/site';
 import { warzoneImages } from '../data/warzone';
 import { defaultLocale } from '../data/i18n/locales';
+import { productSoftwareGraph } from '../data/schema-product';
 
 interface Props {
 	pageId: CloudDmaPageId;
@@ -12,11 +13,23 @@ interface Props {
 const { pageId } = Astro.props;
 const page = cloudDmaPages[pageId];
 const canonicalPath = cloudDmaPaths[pageId];
+const pageUrl = new URL(canonicalPath, siteConfig.url).href;
 
 const gallery = warzoneImages.product.slice(0, 3).map((img) => ({
 	src: img.src,
 	alt: img.alt,
 }));
+
+const relatedLinks = cloudDmaNavLinks.filter((link) => link.href !== canonicalPath);
+
+const extraGraph = productSoftwareGraph({
+	pageUrl,
+	name: `${productInfo.name} — Cloud DMA`,
+	description: page.description,
+	image: siteConfig.heroImage || warzoneImages.hero,
+	includeReviews: pageId === 'about' || pageId === 'plans',
+	includeOffers: pageId === 'about' || pageId === 'plans',
+});
 
 function withCheckout(html: string): string {
 	return html.replace(/\{checkout\}/g, siteConfig.checkoutUrl);
@@ -31,10 +44,11 @@ function withCheckout(html: string): string {
 	intro={page.intro}
 	eyebrow="Cloud DMA"
 	heroImage={siteConfig.heroImage || warzoneImages.hero}
-	heroAlt={siteConfig.name}
+	heroAlt={`${siteConfig.name} Cloud DMA for ${productInfo.game} on Windows PC`}
 	gallery={gallery}
 	galleryTitle={page.galleryTitle}
 	locale={defaultLocale}
+	extraGraph={extraGraph}
 	ctaPrimary={{ href: siteConfig.checkoutUrl, label: page.ctaPrimary, edit: 'ctaBuy' }}
 	ctaSecondary={
 		page.ctaSecondary && page.ctaSecondaryHref
@@ -59,4 +73,44 @@ function withCheckout(html: string): string {
 			</section>
 		))
 	}
+
+	<section class="card-panel cloud-dma-hub" aria-labelledby="cloud-dma-hub-title">
+		<h2 id="cloud-dma-hub-title">Cloud DMA guides</h2>
+		<p>Short links across the Cloud DMA cluster — setup, hardware, status, and plans.</p>
+		<ul class="cloud-dma-hub__list">
+			{
+				relatedLinks.map((link) => (
+					<li>
+						<a href={link.href}>{link.label}</a>
+					</li>
+				))
+			}
+			<li><a href="/features/">All features</a></li>
+			<li><a href="/faq/">FAQ</a></li>
+			<li><a href="/updates/">Product status</a></li>
+		</ul>
+	</section>
 </PageLayout>
+
+<style>
+	.cloud-dma-hub__list {
+		margin: 0.75rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.cloud-dma-hub__list a {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--touch-min, 2.75rem);
+		color: var(--magenta-soft);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.cloud-dma-hub__list a:hover {
+		color: var(--ink);
+	}
+</style>
