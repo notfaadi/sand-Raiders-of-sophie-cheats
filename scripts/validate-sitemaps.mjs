@@ -58,7 +58,13 @@ function countSeoFaqs() {
 	return [...block[0].matchAll(/slug:\s*'/g)].length;
 }
 
-const BLOG_PAGES = 18; // /blog/ index + 17 posts
+function countBlogPosts() {
+	const src = readFileSync(path.join(ROOT, 'src/data/blog/posts.generated.ts'), 'utf8');
+	return [...src.matchAll(/^\s*slug:\s*"/gm)].length;
+}
+
+const BLOG_POSTS = countBlogPosts();
+const BLOG_PAGES = 1 + BLOG_POSTS; // /blog/ index + posts
 const REVIEW_PAGES = 11; // /reviews/ index + 10 review detail pages
 const CLOUD_DMA_PAGES = 5; // EN-only Cloud DMA cluster
 const FAQ_DETAIL_PAGES = countSeoFaqs(); // /faq/{slug}/ answer pages
@@ -67,7 +73,7 @@ const ENGLISH_PAGES =
 	CORE_ENGLISH_PAGES + CLOUD_DMA_PAGES + FAQ_DETAIL_PAGES + BLOG_PAGES + REVIEW_PAGES;
 const I18N_LOCALES = 21;
 const PRODUCT_PAGES_PER_LOCALE = 25;
-const BLOG_PAGES_PER_LOCALE = 18;
+const BLOG_PAGES_PER_LOCALE = BLOG_PAGES;
 const PAGES_PER_LOCALE = PRODUCT_PAGES_PER_LOCALE + BLOG_PAGES_PER_LOCALE;
 const I18N_URLS = I18N_LOCALES * PAGES_PER_LOCALE;
 const TOTAL_PAGES = ENGLISH_PAGES + I18N_URLS;
@@ -110,23 +116,6 @@ const ENGLISH_PATHS = [
 	'/terms/',
 	...CLOUD_DMA_PATHS,
 	'/blog/',
-	'/blog/warzone-resurgence-aggressive-strategies/',
-	'/blog/warzone-loot-routes-guide/',
-	'/blog/warzone-weapon-tier-list/',
-	'/blog/warzone-skin-leaks-guide/',
-	'/blog/warzone-tournament-meta-guide/',
-	'/blog/warzone-pro-settings-guide/',
-	'/blog/warzone-warmup-maps-ranked/',
-	'/blog/warzone-patch-notes-guide/',
-	'/blog/sand-raiders-hacks-complete-guide-2026/',
-	'/blog/call-of-duty-warzone-cheats-buyers-guide/',
-	'/blog/sand-raiders-cheats-2026-whats-new/',
-	'/blog/sand-raiders-aimbot-settings-guide/',
-	'/blog/sand-raiders-esp-wallhack-explained/',
-	'/blog/undetected-sand-raiders-hacks-ricochet/',
-	'/blog/sand-raiders-hacks-vs-cheatvault-comparison/',
-	'/blog/elitefn-vs-sand-raiders-hacks-two-week-test/',
-	'/blog/sand-raiders-hacks-vs-ghostware-features-pricing/',
 	'/reviews/',
 	'/reviews/sand-raiders-soft-aim-review-xkrypt0/',
 	'/reviews/sand-raiders-esp-resurgence-review-buildsr4k/',
