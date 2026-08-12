@@ -2,7 +2,7 @@ import { siteConfig } from './site';
 
 /** Screenshots used across product pages — Sand Raiders gameplay from /img. */
 export const warzoneImages = {
-	hero: '/img/sand-raiders-desert.webp',
+	hero: '/img/sand-raiders-combat.webp',
 	espWallhack: '/img/sand-raiders-combat.webp',
 	aimbotCombat: '/img/sand-raiders-desert.webp',
 	aimbotSkeleton: '/img/sand-raiders-storm.webp',

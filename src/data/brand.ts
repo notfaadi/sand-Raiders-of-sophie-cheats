@@ -25,8 +25,8 @@ export const brand = {
 	logoRasterWidth: 512,
 	logoRasterHeight: 512,
 	logoAlt: 'Sand Raiders Cheats logo',
-	defaultOgImage: '/img/sand-raiders-desert.webp',
-	heroImage: '/img/sand-raiders-desert.webp',
+	defaultOgImage: '/img/sand-raiders-combat.webp',
+	heroImage: '/img/sand-raiders-combat.webp',
 
 	plans: [
 		{ id: 'monthly', label: 'Monthly', price: 35, duration: 'P30D' },

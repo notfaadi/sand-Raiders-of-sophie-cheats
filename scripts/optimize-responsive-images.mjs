@@ -2,28 +2,33 @@ import { readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
-const imagesDir = path.resolve('public/images');
+/** Current brand assets live under public/img/ (webp + responsive -480w/-960w). */
+const imagesDir = path.resolve('public/img');
 
-/** Hero LCP asset — responsive widths for srcset */
-const HERO_WIDTHS = [480, 640, 960, 1400];
+/** Hero LCP asset — keep in sync with src/lib/responsive-images.ts */
+const HERO_SOURCE = 'sand-raiders-desert.webp';
+const HERO_WIDTHS = [480, 640, 960, 1280];
 
 /** Below-fold content images — smaller variants for gallery/product cards */
 const CONTENT_WIDTHS = [480, 960];
 
 const SKIP_PATTERNS = [
 	/-\d+w\.webp$/i,
-	/sand-raiders-hacks-logo/i,
+	/logo/i,
 	/favicon/i,
+	/hero-banner/i,
+	/reviews-banner/i,
 ];
 
 async function optimizeHero() {
-	const source = path.join(imagesDir, 'sand-raiders-esp-player-tags.webp');
+	const source = path.join(imagesDir, HERO_SOURCE);
 	const meta = await sharp(source).metadata();
 	const results = [];
+	const base = HERO_SOURCE.replace(/\.webp$/i, '');
 
 	for (const width of HERO_WIDTHS) {
 		if (meta.width && width > meta.width) continue;
-		const file = `sand-raiders-esp-player-tags-${width}w.webp`;
+		const file = `${base}-${width}w.webp`;
 		const dest = path.join(imagesDir, file);
 		const quality = width <= 480 ? 56 : width <= 640 ? 70 : 78;
 		const buffer = await sharp(source)
@@ -44,7 +49,7 @@ async function optimizeContentImages() {
 		(file) =>
 			file.endsWith('.webp') &&
 			!SKIP_PATTERNS.some((pattern) => pattern.test(file)) &&
-			file !== 'sand-raiders-esp-player-tags.webp',
+			file !== HERO_SOURCE,
 	);
 
 	const results = [];
