@@ -676,9 +676,9 @@ export const pageIds = Object.keys(englishPaths) as PageId[];
 
 export function getLocalizedPath(pageId: PageId, locale: LocaleCode): string {
 	if (locale === defaultLocale) {
-		return englishPaths[pageId];
+		return englishPaths[pageId] ?? '/';
 	}
-	const slug = localizedSlugs[pageId][locale];
+	const slug = localizedSlugs[pageId]?.[locale];
 	return slug ? `/${locale}/${slug}/` : `/${locale}/`;
 }
 

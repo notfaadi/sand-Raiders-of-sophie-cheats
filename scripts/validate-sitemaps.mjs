@@ -53,8 +53,9 @@ const IMAGE_SITEMAP_ENTRIES = countBrandSitemapImages();
 
 function countSeoFaqs() {
 	const src = readFileSync(path.join(ROOT, 'src/data/site.ts'), 'utf8');
-	const block = src.match(/export const seoFaqs[\s\S]*?(?=export const customerReviews)/);
-	if (!block) throw new Error('Could not locate seoFaqs in site.ts');
+	// homeFaqs is spread into seoFaqs — count every FAQ slug through customerReviews.
+	const block = src.match(/export const homeFaqs[\s\S]*?(?=export const customerReviews)/);
+	if (!block) throw new Error('Could not locate FAQ blocks in site.ts');
 	return [...block[0].matchAll(/slug:\s*'/g)].length;
 }
 

@@ -9,7 +9,12 @@ export function getLocaleContent(locale: LocaleCode) {
 }
 
 export function getPageContent(locale: LocaleCode, pageId: PageId) {
-	return i18nContent[locale].pages[pageId];
+	const pages = i18nContent[locale].pages as Record<string, (typeof i18nContent)[LocaleCode]['pages'][PageId]>;
+	// Content may still use legacy `ricochet` key until the next generate:i18n pass.
+	if (pageId === 'eac-bypass' && !pages[pageId] && pages.ricochet) {
+		return pages.ricochet;
+	}
+	return pages[pageId];
 }
 
 export function getUi(locale: LocaleCode) {
