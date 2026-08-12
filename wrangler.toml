@@ -1,6 +1,6 @@
-name = "warzonehacks"
+# Cloudflare Pages — not Workers.
+# Git-connected builds: dashboard Build command = npm run build, Output = dist.
+# Do NOT use `npx wrangler deploy` (Workers). Use `wrangler pages deploy` or npm run deploy.
+name = "sand-raiders-of-sophie-cheats"
 compatibility_date = "2026-01-01"
 pages_build_output_dir = "dist"
-
-[assets]
-directory = "./dist"

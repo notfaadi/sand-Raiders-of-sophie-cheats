@@ -18,8 +18,8 @@
 		"preview": "astro preview",
 		"validate:sitemaps": "node scripts/validate-sitemaps.mjs",
 		"generate:i18n": "node scripts/generate-i18n-content.mjs",
-		"deploy": "npm run build && wrangler pages deploy dist --project-name=sandraiderscheats",
-		"pages:deploy": "wrangler pages deploy dist --project-name=sandraiderscheats",
+		"deploy": "npm run build && wrangler pages deploy dist --project-name=sand-raiders-of-sophie-cheats",
+		"pages:deploy": "npm run build && wrangler pages deploy dist --project-name=sand-raiders-of-sophie-cheats",
 		"astro": "astro"
 	},
 	"dependencies": {

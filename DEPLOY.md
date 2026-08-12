@@ -1,11 +1,24 @@
-# Deploy warzonescheats.net
+# Deploy sandraiderscheats.net
 
-Step-by-step guide to deploy the Sand Raiders Cheats static site to **warzonescheats.net** on Cloudflare Pages, configure DNS, and submit to Google Search Console.
+Step-by-step guide to deploy the Sand Raiders Cheats static site to **sandraiderscheats.net** on Cloudflare Pages, configure DNS, and submit to Google Search Console.
+
+## Cloudflare Pages settings (required)
+
+| Setting | Value |
+|---------|--------|
+| **Build command** | `npm run build` |
+| **Build output directory** | `dist` |
+| **Deploy command** | *(leave empty)* — Pages deploys `dist` after the build |
+| **Node.js version** | `22` (`NODE_VERSION=22`) |
+
+`npm run build` runs `prebuild` (`sync:brand`) → `astro build` → `postbuild` (strip Brand Studio).
+
+**Do not** set the deploy/build command to `npx wrangler deploy` alone. That is a Workers command; it skips the Astro build and fails when `dist/` is missing. For CLI uploads use `npm run deploy` (build + `wrangler pages deploy`).
 
 ## Prerequisites
 
 - Node.js **≥ 22.12.0**
-- Cloudflare account with access to **warzonescheats.net** DNS
+- Cloudflare account with access to **sandraiderscheats.net** DNS
 - Wrangler CLI (included as dev dependency): `npx wrangler login`
 
 ## 1. Build and validate locally
@@ -19,33 +32,31 @@ node scripts/generate-blog-posts.mjs
 npm run build:validate
 ```
 
-`build:validate` runs `astro build` then `scripts/validate-sitemaps.mjs`. All sitemap checks must pass before deploying.
-
-Expected output: **556** indexable HTML pages (25 English marketing + 15 blog URLs + 21 locales × 25 pages ricocheth).
+`build:validate` runs brand sync, `astro build`, strip Brand Studio, then `scripts/validate-sitemaps.mjs`. All sitemap checks must pass before deploying.
 
 ## 2. Cloudflare Pages project
 
 ### Option A — Git-connected (recommended)
 
 1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
-2. Select this repository.
+2. Select this repository (`sand-Raiders-of-sophie-cheats`).
 3. Configure build settings:
-   - **Project name:** `warzonescheats` (existing) or create a new project
-   - **Production branch:** `main` (or `master`)
+   - **Project name:** `sand-raiders-of-sophie-cheats`
+   - **Production branch:** `main`
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
+   - **Deploy command:** leave empty (do **not** use `npx wrangler deploy`)
    - **Node.js version:** 22 (set via environment variable `NODE_VERSION=22` if needed)
-4. Save and deploy. Cloudflare runs the build on ricocheth push.
+4. Save and deploy. Cloudflare runs `npm run build` on each push, then publishes `dist`.
 
 ### Option B — Direct upload / Wrangler CLI
 
 ```bash
 npm run build:validate
-npm run pages:deploy
+npm run deploy
 ```
 
-This runs `wrangler pages deploy dist --project-name=warzonescheats` (see `wrangler.toml`).
-
+This runs `npm run build` then `wrangler pages deploy dist --project-name=sand-raiders-of-sophie-cheats` (see `wrangler.toml` / `package.json`).
 ## 3. Custom domain and DNS
 
 Add **warzonescheats.net** as the primary custom domain on the Pages project.
@@ -120,7 +131,7 @@ Verify redirects:
 | Regenerate blog posts | `node scripts/generate-blog-posts.mjs` |
 | Full build + SEO validation | `npm run build:validate` |
 | Refresh gallery images | `npm run fetch:images` then `npm run optimize:images` |
-| Redeploy | Push to Git (auto) or `npm run pages:deploy` |
+| Redeploy | Push to Git (auto) or `npm run deploy` |
 
 ## Checklist
 
