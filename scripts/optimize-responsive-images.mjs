@@ -6,8 +6,8 @@ import sharp from 'sharp';
 const imagesDir = path.resolve('public/img');
 
 /** Hero LCP asset — keep in sync with brand.heroImage / src/lib/responsive-images.ts */
-const HERO_SOURCE = 'sand-raiders-combat.webp';
-const HERO_WIDTHS = [480, 640, 960, 1280];
+const HERO_SOURCE = 'sand-raiders-hero.webp';
+const HERO_WIDTHS = [480, 640, 960, 1920];
 
 /** Below-fold content images — smaller variants for gallery/product cards */
 const CONTENT_WIDTHS = [480, 960];

@@ -13,10 +13,10 @@ export const brand = {
 	locale: 'en',
 	market: 'Worldwide',
 	supportEmail: 'support@sandraiderscheats.net',
-	checkoutUrl: 'https://zadeyo.com/go/AMAN?to=%2Fproducts%2Fsand-raiders',
+	checkoutUrl: 'https://zadeyo.com/go/AMAN?to=%2Fproducts%2Fsand-raiders-of-sophie-cheats',
 
 	/** Game this template instance targets */
-	game: 'Sand Raiders',
+	game: 'SAND: Raiders of Sophie',
 	/** Anti-cheat name used in Status / FAQ copy */
 	antiCheat: 'Easy Anti-Cheat',
 
@@ -25,8 +25,8 @@ export const brand = {
 	logoRasterWidth: 512,
 	logoRasterHeight: 512,
 	logoAlt: 'Sand Raiders Cheats logo',
-	defaultOgImage: '/img/sand-raiders-combat.webp',
-	heroImage: '/img/sand-raiders-combat.webp',
+	defaultOgImage: '/img/sand-raiders-hero.webp',
+	heroImage: '/img/sand-raiders-hero.webp',
 
 	plans: [
 		{ id: 'monthly', label: 'Monthly', price: 35, duration: 'P30D' },
@@ -36,44 +36,37 @@ export const brand = {
 	platforms: ['Windows PC', 'Controllers'] as const,
 
 	/**
-	 * Site color tones — neon cyan on deep blue-black canvas.
+	 * Site color tones — accent + canvas + soft/deep/hover/panel.
 	 * Edit in Brand Studio → Colors (tones are fully customizable).
 	 */
 	theme: {
-		accent: '#00e5ff',
-		bg: '#050a12',
-		soft: '#67e8f9',
-		deep: '#0284c7',
-		hover: '#22d3ee',
-		panel: '#0a1220',
+		accent: '#c026d3',
+		bg: '#000000',
+		soft: '#d789e1',
+		deep: '#7b1588',
+		hover: '#cc51db',
+		panel: '#0f0f10',
 	},
 
 	/**
-	 * Keyword system — primary drives titles; list feeds <meta name="keywords">.
+	 * Keyword system — primary drives titles; list feeds meta keywords / schema.
+	 * Keep terms unique; no on-page keyword spam (not baked into hero art).
 	 */
 	keywords: {
-		primary: 'sandraiders cheats',
+		primary: 'sand raiders of sophie cheats',
 		list: [
-			'sandraiderscheats.net',
-			'sandraiders cheats',
-			'escape from tarkov hacks',
-			'tarkov cheats',
-			'eft hacks',
-			'sandraiders aimbot',
-			'sandraiders esp',
-			'escape from tarkov anti-cheat bypass',
-			'tarkov undetected hacks',
-			'sandraiders review',
-			'best escape from tarkov hack provider',
-			'sandraiders wallhack',
-			'sandraiders radar',
-			'tarkov arena hacks',
-			'eft exploits',
-			'sandraiders undetected',
-			'sandraiders safe',
-			'sandraiders tutorial',
-			'sandraiders price',
-			'buy sandraiders',
+			'sand sophie cheats',
+			'sophie cheats',
+			'cheats of sand raiders',
+			'cheats for sand raiders',
+			'sand raiders hacks',
+			'sand raiders of sophie cheats',
+			'undetected sand raiders cheats',
+			'buy sand raiders cheats',
+			'sand raiders aimbot',
+			'sand raiders esp',
+			'sand raiders wallhack',
+			'sand raiders cloud dma',
 		] as const,
 	},
 
@@ -83,44 +76,32 @@ export const brand = {
 	 */
 	seo: {
 		homeTitle: 'Undetected {primaryKeyword} | {brand}',
-		homeDescription:
-			'SandraidersCheats.net - Premium undetected Escape from Tarkov cheats with aimbot, ESP, wallhack and radar. 24/7 support, instant delivery and regular updates. Join thousands of satisfied users worldwide.',
+		homeDescription: 'SandraidersCheats.net - Premium undetected Escape from Tarkov cheats with aimbot, ESP, wallhack and radar. 24/7 support, instant delivery and regular updates. J',
 		featuresTitle: '{game} Features | {brand}',
-		featuresDescription:
-			'Everything in {primaryKeyword} for Windows PC. ESP, aimbot, radar, Cloud DMA, and rebuilds after {antiCheat} patches.',
+		featuresDescription: 'Everything in {primaryKeyword} for Windows PC. ESP, aimbot, radar, Cloud DMA, and rebuilds after {antiCheat} patches.',
 		storeTitle: '{game} Store | {brand}',
-		storeDescription:
-			'Buy {primaryKeyword} for Windows PC. Monthly and lifetime plans include ESP, aimbot, radar, and Cloud DMA. Instant delivery after payment.',
+		storeDescription: 'Buy {primaryKeyword} for Windows PC. Monthly and lifetime plans include ESP, aimbot, radar, and Cloud DMA. Instant delivery after payment.',
 		statusTitle: '{game} Status | {brand}',
-		statusDescription:
-			'Live status for {primaryKeyword} after {game} or {antiCheat} patches. Check before you queue so you stay on a current build.',
+		statusDescription: 'Live status for {primaryKeyword} after {game} or {antiCheat} patches. Check before you queue so you stay on a current build.',
 		previewTitle: '{game} Preview | {brand}',
-		previewDescription:
-			'The #1 Escape from Tarkov hack provider - SandraidersCheats.net offers advanced EFT cheats with aimbot, ESP, no recoil and more. Undetected, secure and updated for the latest Tarkov patches.',
+		previewDescription: 'The #1 Escape from Tarkov hack provider - SandraidersCheats.net offers advanced EFT cheats with aimbot, ESP, no recoil and more. Undetected, secure and updated',
 		setupTitle: '{game} Setup | {brand}',
-		setupDescription:
-			'Install and launch {primaryKeyword} on Windows PC after you buy. Short setup steps help you start ESP, aimbot, and radar the right way.',
+		setupDescription: 'Install and launch {primaryKeyword} on Windows PC after you buy. Short setup steps help you start ESP, aimbot, and radar the right way.',
 		supportTitle: '{game} Support | {brand}',
-		supportDescription:
-			'Need help with {primaryKeyword}? Email {email} with your order ID for setup, license, delivery, or update questions.',
+		supportDescription: 'Need help with {primaryKeyword}? Email {email} with your order ID for setup, license, delivery, or update questions.',
 		faqTitle: '{game} FAQ | {brand}',
-		faqDescription:
-			'FAQ for {primaryKeyword}: safety, detection, Windows setup, Tarkov patches, refunds, monthly vs lifetime, and Cloud DMA on PC.',
+		faqDescription: 'FAQ for {primaryKeyword}: safety, detection, Windows setup, Tarkov patches, refunds, monthly vs lifetime, and Cloud DMA on PC.',
 		reviewsTitle: '{brand} Reviews | Buyer Feedback',
-		reviewsDescription:
-			'Real buyer reviews for {primaryKeyword}. Read honest feedback on ESP, soft aim, radar, support quality, and patch updates on Windows PC.',
+		reviewsDescription: 'Real buyer reviews for {primaryKeyword}. Read honest feedback on ESP, soft aim, radar, support quality, and patch updates on Windows PC.',
 		blogTitle: '{game} Intel | {brand}',
-		blogDescription:
-			'Read guides and tips for {primaryKeyword}: meta play, ESP and aimbot settings, and {antiCheat} update notes for Windows PC players.',
+		blogDescription: 'Read guides and tips for {primaryKeyword}: meta play, ESP and aimbot settings, and {antiCheat} update notes for Windows PC players.',
 	},
 
 	/** On-page marketing copy (tokens allowed) */
 	copy: {
 		tagline: 'Undetected {primaryKeyword} with 24/7 support — ESP, aimbot, and radar for PC',
-		summary:
-			'{brand} delivers undetected sandraiders cheats and escape from tarkov hacks for Windows PC. ESP, soft aim, and radar with {antiCheat} maintenance and 24/7 support.',
-		heroLede:
-			'Undetected sandraiders cheats for Escape from Tarkov — ESP, aimbot & radar, plus 24/7 support.',
+		summary: '{brand} delivers undetected sandraiders cheats and escape from tarkov hacks for Windows PC. ESP, soft aim, and radar with {antiCheat} maintenance and 24/7 support.',
+		heroLede: 'Aimbot, wallhack ESP, and 2D radar for SAND: Raiders of Sophie — Cloud DMA option available.',
 		blogLabel: '{game} Intel',
 		ctaBuy: 'Buy now',
 		ctaBuyShort: 'Buy',
@@ -219,7 +200,6 @@ export function seoDescription(template: string): string {
 export function homeSeo() {
 	return {
 		title: fillBrandTokens(brand.seo.homeTitle),
-		/** Home description is not length-clamped so explicit brand.seo.homeDescription can render in full. */
-		description: fillBrandTokens(brand.seo.homeDescription).trim(),
+		description: seoDescription(brand.seo.homeDescription),
 	};
 }

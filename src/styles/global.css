@@ -6,24 +6,24 @@
 	--font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
 	--font-display: "Syne Variable", "Syne", ui-sans-serif, sans-serif;
 
-	/* Deep blue-black canvas — neon gaming surface ladder */
-	--bg: #050a12;
-	--bg-panel: #0a1220;
-	--bg-elevated: #0f1a2c;
-	--bg-hover: #142238;
-	--line: #1a2a40;
-	--line-soft: #121c2c;
-	--line-strong: #243550;
+	/* Green-tinted charcoal canvas — emerald gaming surface ladder */
+	--bg: #0c1511;
+	--bg-panel: #151d19;
+	--bg-elevated: #1d2522;
+	--bg-hover: #242c29;
+	--line: #29312e;
+	--line-soft: #1f2824;
+	--line-strong: #383f3c;
 	--ink: #f5f5f7;
 	--ink-muted: #a1a1aa;
 	--ink-faint: #8b8b93;
 
-	/* Brand accent: neon cyan (overridden by brand.theme via Layout) */
-	--magenta: #00e5ff;
-	--magenta-soft: #67e8f9;
-	--magenta-deep: #0284c7;
+	/* Brand accent: emerald (overridden by brand.theme via Layout) */
+	--magenta: #10b981;
+	--magenta-soft: #56e3b4;
+	--magenta-deep: #076a49;
 	--accent: var(--magenta);
-	--accent-hover: #22d3ee;
+	--accent-hover: #19e3a0;
 	--ok: #34d399;
 	--warn: #f43f5e;
 
@@ -33,7 +33,7 @@
 	--glow-strong: color-mix(in srgb, var(--magenta) 75%, transparent);
 
 	/* Legacy aliases */
-	--tone-void: #03060c;
+	--tone-void: #080e0b;
 	--tone-night: var(--bg);
 	--tone-body: var(--bg);
 	--tone-surface: var(--bg-panel);
@@ -437,7 +437,7 @@
 
 	.g2a-badge--new {
 		background: color-mix(in srgb, var(--ok) 16%, transparent);
-		color: #6ee7b7;
+		color: var(--ok);
 		border: 1px solid color-mix(in srgb, var(--ok) 30%, transparent);
 	}
 
@@ -456,7 +456,7 @@
 		border: none;
 		border-radius: var(--radius-sm);
 		background: var(--magenta);
-		color: #050a12;
+		color: var(--bg);
 		font-size: 0.9375rem;
 		font-weight: 600;
 		transition:
@@ -468,7 +468,7 @@
 
 	.btn-buy:hover {
 		background: var(--accent-hover);
-		color: #050a12;
+		color: var(--bg);
 		box-shadow:
 			0 0 12px var(--glow-mid),
 			0 0 28px var(--glow-soft);

@@ -28,25 +28,26 @@ export function contentSrcSet(baseSrc: string): string | undefined {
 
 /** Desktop/full hero srcset — keep filenames in sync with `npm run optimize:images`. */
 export const heroResponsive: ResponsiveWidth[] = [
-	{ src: '/img/sand-raiders-combat-480w.webp', width: 480 },
-	{ src: '/img/sand-raiders-combat-960w.webp', width: 960 },
-	{ src: '/img/sand-raiders-combat.webp', width: 1280 },
+	{ src: '/img/sand-raiders-hero-480w.webp', width: 480 },
+	{ src: '/img/sand-raiders-hero-640w.webp', width: 640 },
+	{ src: '/img/sand-raiders-hero-960w.webp', width: 960 },
+	{ src: '/img/sand-raiders-hero.webp', width: 1920 },
 ];
 
 /** Desktop srcset (mobile uses a dedicated `<picture>` source — see Hero / PageLayout). */
 export const heroDesktopResponsive: ResponsiveWidth[] = heroResponsive;
 
 /** Full-bleed homepage hero banner (fallback src). */
-export const heroSrc = '/img/sand-raiders-combat.webp';
+export const heroSrc = '/img/sand-raiders-hero.webp';
 export const heroSrcSet = buildSrcSet(heroResponsive);
 export const heroSizes = '100vw';
 
 /** LCP preload for homepage / page banners (mobile-first). */
-export const heroPreloadSrc = '/img/sand-raiders-combat-480w.webp';
+export const heroPreloadSrc = '/img/sand-raiders-hero-480w.webp';
 
-/** Intrinsic dimensions for hero LCP (matches sand-raiders-combat.webp). */
-export const heroWidth = 1280;
-export const heroHeight = 720;
+/** Intrinsic dimensions for hero LCP (matches sand-raiders-hero.webp). */
+export const heroWidth = 1920;
+export const heroHeight = 767;
 
 /** Responsive widths for below-fold content images. */
 export const contentWidths = [480, 960] as const;

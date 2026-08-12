@@ -18,17 +18,20 @@ const chips = [
 	{ key: 'chipUpdates', label: fillBrandTokens(brandCopy.chipUpdates) },
 ] as const;
 
-const heroSrc = siteConfig.heroImage || '/img/sand-raiders-combat.webp';
+const heroSrc = siteConfig.heroImage || '/img/sand-raiders-hero.webp';
 const heroPng = heroSrc.replace(/\.webp$/i, '.png');
+/** Hero brand line — game title in ALL CAPS (nav/SEO keep siteConfig.name) */
+const heroTitle = productInfo.game.toUpperCase();
+const heroAlt = 'Sand Raiders cheats — soldier gameplay preview';
 ---
 
 <section class="hero" aria-label={siteConfig.name}>
-	<div class="hero__media" aria-hidden="true">
+	<div class="hero__media">
 		<picture>
 			<source srcset={heroSrc} type="image/webp" />
 			<img
 				src={heroPng}
-				alt=""
+				alt={heroAlt}
 				width={heroWidth}
 				height={heroHeight}
 				fetchpriority="high"
@@ -41,7 +44,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 	<div class="shell hero__content">
 		<div class="hero__copy">
-			<h1 class="hero__brand" data-edit="name">{siteConfig.name}</h1>
+			<h1 class="hero__brand" data-edit="game">{heroTitle}</h1>
 			<p class="hero__lede" data-edit="heroLede">{productInfo.heroLede}</p>
 			<div class="hero__actions">
 				<a class="hero__buy" href={siteConfig.checkoutUrl} rel="noopener noreferrer">
@@ -115,19 +118,17 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 <style>
 	.hero {
-		--hero-pad-y: clamp(2rem, 4vw, 3rem);
+		--hero-pad-y: clamp(2.75rem, 5.5vw, 4.25rem);
 		--hero-stack: clamp(0.7rem, 1.6vw, 0.9rem);
 		position: relative;
 		isolation: isolate;
 		display: grid;
 		align-items: center;
 		overflow: hidden;
-		background: #050506;
-		/* Match banner ratio so cover doesn't crop/zoom the art */
-		aspect-ratio: 1024 / 358;
+		background: #050806;
 		width: 100%;
-		min-height: clamp(14rem, 30vw, 22rem);
-		max-height: min(28rem, 62vh);
+		/* Tall full-bleed band: under nav → above trust strip */
+		min-height: clamp(32rem, 82vh, 56rem);
 		height: auto;
 	}
 
@@ -146,7 +147,8 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 	.hero__media img {
 		object-fit: cover;
-		object-position: center center;
+		/* Soldier on right; left dark area for H1/CTA */
+		object-position: right center;
 		image-rendering: -webkit-optimize-contrast;
 		transform: translateZ(0);
 		animation: hero-in 0.9s ease-out both;
@@ -157,14 +159,24 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 		inset: 0;
 		z-index: 1;
 		pointer-events: none;
-		/* Lighter left scrim — keeps copy readable without muddying the art */
-		background: linear-gradient(
-			90deg,
-			rgba(5, 10, 18, 0.62) 0%,
-			rgba(5, 10, 18, 0.38) 32%,
-			rgba(5, 10, 18, 0.12) 55%,
-			transparent 72%
-		);
+		/* Strong dark veil for white copy + emerald accents */
+		background:
+			linear-gradient(
+				90deg,
+				rgba(4, 10, 8, 0.88) 0%,
+				rgba(4, 10, 8, 0.72) 28%,
+				rgba(4, 10, 8, 0.42) 52%,
+				rgba(4, 10, 8, 0.22) 72%,
+				rgba(4, 10, 8, 0.3) 100%
+			),
+			linear-gradient(
+				180deg,
+				rgba(4, 10, 8, 0.55) 0%,
+				rgba(4, 10, 8, 0.18) 35%,
+				rgba(4, 10, 8, 0.35) 68%,
+				rgba(4, 10, 8, 0.82) 100%
+			),
+			rgba(4, 10, 8, 0.28);
 	}
 
 	.hero__content {
@@ -234,7 +246,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 		padding: 0.55rem 0.55rem 0.55rem 1.05rem;
 		border-radius: 999px;
 		background: var(--magenta);
-		color: #050a12;
+		color: var(--bg);
 		font-size: 0.9375rem;
 		font-weight: 700;
 		letter-spacing: -0.015em;
@@ -266,7 +278,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 		margin-left: auto;
 		padding: 0 0.85rem;
 		border-radius: 999px;
-		background: #050a12;
+		background: var(--bg);
 		color: var(--magenta-soft);
 		font-size: 0.8125rem;
 		font-weight: 700;
@@ -275,7 +287,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 	.hero__buy:hover {
 		background: var(--accent-hover);
-		color: #050a12;
+		color: var(--bg);
 		transform: translateY(-2px);
 		box-shadow:
 			0 1px 0 color-mix(in srgb, #fff 40%, transparent) inset,
@@ -285,7 +297,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 	}
 
 	.hero__buy:hover .hero__buy-price {
-		background: color-mix(in srgb, var(--magenta-deep) 55%, #050a12);
+		background: color-mix(in srgb, var(--magenta-deep) 55%, var(--bg));
 		color: #fff;
 	}
 
@@ -366,16 +378,13 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 	@media (max-width: 900px) {
 		.hero {
-			min-height: clamp(13rem, 34vw, 20rem);
-			max-height: none;
+			min-height: clamp(30rem, 78vh, 48rem);
 		}
 	}
 
 	@media (max-width: 760px) {
 		.hero {
-			aspect-ratio: auto;
-			min-height: min(68svh, 28rem);
-			max-height: none;
+			min-height: min(82svh, 42rem);
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-end;
@@ -383,17 +392,19 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 		.hero__media img {
 			object-fit: cover;
-			object-position: 72% 28%;
+			object-position: center 38%;
 		}
 
 		.hero__veil {
-			background: linear-gradient(
-				180deg,
-				rgba(5, 10, 18, 0.05) 0%,
-				rgba(5, 10, 18, 0.18) 28%,
-				rgba(5, 10, 18, 0.58) 62%,
-				rgba(5, 10, 18, 0.88) 100%
-			);
+			background:
+				linear-gradient(
+					180deg,
+					rgba(4, 10, 8, 0.45) 0%,
+					rgba(4, 10, 8, 0.28) 32%,
+					rgba(4, 10, 8, 0.62) 62%,
+					rgba(4, 10, 8, 0.92) 100%
+				),
+				rgba(4, 10, 8, 0.22);
 		}
 
 		.hero__content {
@@ -437,7 +448,7 @@ const heroPng = heroSrc.replace(/\.webp$/i, '.png');
 
 	@media (max-width: 480px) {
 		.hero {
-			min-height: min(62svh, 24rem);
+			min-height: min(78svh, 36rem);
 		}
 
 		.hero__brand {

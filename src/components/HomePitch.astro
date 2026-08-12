@@ -16,6 +16,11 @@ const featurePoints = [
 	{ label: 'Aimbot', text: 'Soft aim you can tune for natural fights.' },
 	{ label: 'Wallhack', text: 'Clear reads before you push a room or extract.' },
 	{ label: 'Radar', text: '2D map cues so flanks and third parties show early.' },
+	{
+		label: 'Cloud DMA',
+		text: 'Remote path for a safer setup than kernel-only alone.',
+		href: '/cloud-dma/',
+	},
 ];
 
 const securityPoints = [
@@ -57,8 +62,17 @@ const updatePoints = [
 				{
 					featurePoints.map((item) => (
 						<li>
-							<strong>{item.label}</strong>
-							<span>{item.text}</span>
+							{'href' in item && item.href ? (
+								<a href={item.href}>
+									<strong>{item.label}</strong>
+									<span>{item.text}</span>
+								</a>
+							) : (
+								<>
+									<strong>{item.label}</strong>
+									<span>{item.text}</span>
+								</>
+							)}
 						</li>
 					))
 				}
@@ -200,6 +214,29 @@ const updatePoints = [
 		border: 1px solid var(--line);
 		border-radius: var(--radius-md);
 		background: var(--bg-panel);
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.pitch__features li:hover,
+	.pitch__features li:focus-within {
+		border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent),
+			0 0 18px var(--glow-soft),
+			0 0 36px color-mix(in srgb, var(--magenta) 22%, transparent);
+	}
+
+	.pitch__features a {
+		display: grid;
+		gap: 0.25rem;
+		margin: -0.85rem -0.95rem;
+		padding: 0.85rem 0.95rem;
+		border-radius: inherit;
+		text-decoration: none;
+		color: inherit;
+		outline: none;
 	}
 
 	.pitch__features strong {
@@ -259,7 +296,7 @@ const updatePoints = [
 		padding: 0.55rem 0.55rem 0.55rem 1.05rem;
 		border-radius: 999px;
 		background: var(--magenta);
-		color: #050a12;
+		color: var(--bg);
 		font-size: 0.9375rem;
 		font-weight: 700;
 		letter-spacing: -0.015em;
@@ -280,7 +317,7 @@ const updatePoints = [
 		min-height: 2rem;
 		padding: 0 0.85rem;
 		border-radius: 999px;
-		background: #050a12;
+		background: var(--bg);
 		color: var(--magenta-soft);
 		font-size: 0.8125rem;
 		font-weight: 700;
@@ -296,15 +333,17 @@ const updatePoints = [
 	}
 
 	.pitch__buy:hover .pitch__buy-price {
-		background: color-mix(in srgb, var(--magenta-deep) 55%, #050a12);
+		background: color-mix(in srgb, var(--magenta-deep) 55%, var(--bg));
 		color: #fff;
 	}
 
-	@media (max-width: 760px) {
+	@media (min-width: 761px) {
 		.pitch__features {
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
+	}
 
+	@media (max-width: 760px) {
 		.pitch__cta {
 			flex-direction: column;
 			align-items: stretch;
@@ -318,6 +357,10 @@ const updatePoints = [
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.pitch__features li {
+			transition: none;
+		}
+
 		.pitch__buy,
 		.pitch__buy:hover {
 			transition: none;

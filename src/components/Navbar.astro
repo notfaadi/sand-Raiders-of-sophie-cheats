@@ -52,9 +52,9 @@ const links = [
 
 const buyShort = fillBrandTokens(brandCopy.ctaBuyShort);
 
-const icons: Record<(typeof links)[number]['id'], string> = {
-	hacks:
-		'M12 3.5l7.5 4.2v8.6L12 20.5l-7.5-4.2V7.7L12 3.5zm0 2.2L6.8 8.5v6.9L12 18.3l5.2-2.9V8.5L12 5.7z',
+const zLogoSrc = '/img/z-logo.webp';
+
+const icons: Partial<Record<(typeof links)[number]['id'], string>> = {
 	esp: 'M12 5a7 7 0 100 14 7 7 0 000-14zm0 2.2a4.8 4.8 0 110 9.6 4.8 4.8 0 010-9.6zM12 10.2v2.4l1.8 1.1',
 	pricing:
 		'M7.5 7.2h9M7.5 12h9M7.5 16.8H14M5 4.8h14a1.2 1.2 0 011.2 1.2v12a1.2 1.2 0 01-1.2 1.2H5A1.2 1.2 0 013.8 18V6A1.2 1.2 0 015 4.8z',
@@ -80,15 +80,19 @@ const isActive = (href: string) => {
 			{
 				links.map((item) => (
 					<a href={item.href} class:list={[{ 'is-active': isActive(item.href) }]}>
-						<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-							<path
-								d={icons[item.id]}
-								stroke="currentColor"
-								stroke-width="1.6"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							/>
-						</svg>
+						{item.id === 'hacks' ? (
+							<img class="site-nav__z" src={zLogoSrc} alt="" width="16" height="16" decoding="async" />
+						) : (
+							<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+								<path
+									d={icons[item.id]}
+									stroke="currentColor"
+									stroke-width="1.6"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						)}
 						<span data-edit={item.edit}>{item.label}</span>
 					</a>
 				))
@@ -137,15 +141,19 @@ const isActive = (href: string) => {
 				{
 					links.map((item) => (
 						<a href={item.href} class:list={[{ 'is-active': isActive(item.href) }]}>
-							<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-								<path
-									d={icons[item.id]}
-									stroke="currentColor"
-									stroke-width="1.6"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-								/>
-							</svg>
+							{item.id === 'hacks' ? (
+								<img class="site-nav__z" src={zLogoSrc} alt="" width="18" height="18" decoding="async" />
+							) : (
+								<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+									<path
+										d={icons[item.id]}
+										stroke="currentColor"
+										stroke-width="1.6"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							)}
 							<span data-edit={item.edit}>{item.label}</span>
 						</a>
 					))
@@ -367,11 +375,18 @@ const isActive = (href: string) => {
 			text-shadow 0.22s ease;
 	}
 
-	.site-nav a svg {
+	.site-nav a svg,
+	.site-nav a .site-nav__z {
 		width: 0.88rem;
 		height: 0.88rem;
 		flex-shrink: 0;
 		opacity: 0.72;
+	}
+
+	.site-nav a .site-nav__z {
+		display: block;
+		object-fit: contain;
+		opacity: 1;
 	}
 
 	.site-nav a:hover {
@@ -385,6 +400,12 @@ const isActive = (href: string) => {
 	.site-nav a.is-active svg {
 		opacity: 1;
 		color: var(--magenta-soft);
+	}
+
+	.site-nav a:hover .site-nav__z,
+	.site-nav a.is-active .site-nav__z {
+		opacity: 1;
+		filter: drop-shadow(0 0 6px color-mix(in srgb, var(--magenta) 45%, transparent));
 	}
 
 	.site-nav a.is-active {
@@ -413,7 +434,7 @@ const isActive = (href: string) => {
 		padding: 0 1rem;
 		border-radius: 999px;
 		background: var(--magenta);
-		color: #050a12;
+		color: var(--bg);
 		font-size: 0.8125rem;
 		font-weight: 600;
 		letter-spacing: -0.01em;
@@ -430,7 +451,7 @@ const isActive = (href: string) => {
 
 	.site-tools__buy:hover {
 		background: var(--accent-hover);
-		color: #050a12;
+		color: var(--bg);
 		transform: translateY(-1px);
 		box-shadow:
 			0 0 12px color-mix(in srgb, var(--magenta) 55%, transparent),
@@ -519,11 +540,18 @@ const isActive = (href: string) => {
 		border-bottom: 1px solid var(--line-soft);
 	}
 
-	.site-panel__nav a svg {
+	.site-panel__nav a svg,
+	.site-panel__nav a .site-nav__z {
 		width: 1.1rem;
 		height: 1.1rem;
 		color: var(--magenta-soft);
 		opacity: 0.9;
+	}
+
+	.site-panel__nav a .site-nav__z {
+		display: block;
+		object-fit: contain;
+		opacity: 1;
 	}
 
 	.site-panel__nav a:hover,
@@ -548,7 +576,7 @@ const isActive = (href: string) => {
 		min-height: 2.85rem;
 		border-radius: 999px;
 		background: var(--magenta);
-		color: #050a12;
+		color: var(--bg);
 		font-weight: 600;
 		transition:
 			background 0.15s ease,
@@ -557,7 +585,7 @@ const isActive = (href: string) => {
 
 	.site-panel__buy:hover {
 		background: var(--accent-hover);
-		color: #050a12;
+		color: var(--bg);
 		box-shadow:
 			0 0 12px color-mix(in srgb, var(--magenta) 55%, transparent),
 			0 0 28px color-mix(in srgb, var(--magenta) 35%, transparent);

@@ -1,11 +1,11 @@
 {
   "name": "Sand Raiders Cheats",
   "short_name": "Sand Raiders",
-  "description": "Undetected sandraiders cheats — ESP, aimbot, and radar for PC",
+  "description": "Undetected sand raiders of sophie cheats — ESP, aimbot, and radar for PC",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#050a12",
-  "theme_color": "#050a12",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "/favicon.png",
