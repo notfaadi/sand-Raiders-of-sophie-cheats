@@ -1,4 +1,8 @@
-﻿// Keep redirect/header rules in sync with workers/site.js (Workers deploy path).
+/**
+ * Workers static-assets entry (used by `npx wrangler deploy`).
+ * Mirrors functions/_middleware.js: redirects + security headers, then ASSETS.
+ * Keep in sync with functions/_middleware.js when changing redirect/header rules.
+ */
 const CANONICAL_ORIGIN = 'https://sandraiderscheats.net';
 const APEX_HOST = 'sandraiderscheats.net';
 const WWW_HOST = 'www.sandraiderscheats.net';
@@ -143,52 +147,54 @@ function trailingSlashRedirect(pathname) {
 	return `${pathname}/`;
 }
 
-export async function onRequest(context) {
-	const url = new URL(context.request.url);
-	const host = url.hostname.toLowerCase();
-	const proto = getClientProtocol(context.request);
+export default {
+	async fetch(request, env) {
+		const url = new URL(request.url);
+		const host = url.hostname.toLowerCase();
+		const proto = getClientProtocol(request);
 
-	const isLegacyHost = LEGACY_HOSTS.has(host);
-	const isProductionHost = host === APEX_HOST || host === WWW_HOST || isLegacyHost;
-	const needsHostRedirect = host === WWW_HOST || isLegacyHost;
-	const needsHttpsRedirect = isProductionHost && proto === 'http';
+		const isLegacyHost = LEGACY_HOSTS.has(host);
+		const isProductionHost = host === APEX_HOST || host === WWW_HOST || isLegacyHost;
+		const needsHostRedirect = host === WWW_HOST || isLegacyHost;
+		const needsHttpsRedirect = isProductionHost && proto === 'http';
 
-	if (needsHostRedirect || needsHttpsRedirect) {
-		const mappedPath = PATH_REDIRECTS[url.pathname] ?? url.pathname;
-		const target = new URL(mappedPath + url.search, CANONICAL_ORIGIN);
-		const headers = new Headers({
-			Location: target.toString(),
-			'Cache-Control': 'no-store',
-			'CDN-Cache-Control': 'no-store',
-			'Cloudflare-CDN-Cache-Control': 'no-store',
+		if (needsHostRedirect || needsHttpsRedirect) {
+			const mappedPath = PATH_REDIRECTS[url.pathname] ?? url.pathname;
+			const target = new URL(mappedPath + url.search, CANONICAL_ORIGIN);
+			const headers = new Headers({
+				Location: target.toString(),
+				'Cache-Control': 'no-store',
+				'CDN-Cache-Control': 'no-store',
+				'Cloudflare-CDN-Cache-Control': 'no-store',
+			});
+			applySecurityHeaders(headers);
+			return new Response(null, { status: 301, headers });
+		}
+
+		const pathRedirect =
+			PATH_REDIRECTS[url.pathname] ??
+			xmlTrailingSlashRedirect(url.pathname) ??
+			trailingSlashRedirect(url.pathname);
+		if (pathRedirect) {
+			const headers = new Headers({
+				Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),
+				'Cache-Control': 'no-store',
+			});
+			applySecurityHeaders(headers);
+			return new Response(null, { status: 301, headers });
+		}
+
+		const response = await env.ASSETS.fetch(request);
+		const headers = new Headers(response.headers);
+		const contentType = headers.get('Content-Type') || '';
+		const isHtml = contentType.includes('text/html');
+
+		applySecurityHeaders(headers, { html: isHtml });
+
+		return new Response(response.body, {
+			status: response.status,
+			statusText: response.statusText,
+			headers,
 		});
-		applySecurityHeaders(headers);
-		return new Response(null, { status: 301, headers });
-	}
-
-	const pathRedirect =
-		PATH_REDIRECTS[url.pathname] ??
-		xmlTrailingSlashRedirect(url.pathname) ??
-		trailingSlashRedirect(url.pathname);
-	if (pathRedirect) {
-		const headers = new Headers({
-			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),
-			'Cache-Control': 'no-store',
-		});
-		applySecurityHeaders(headers);
-		return new Response(null, { status: 301, headers });
-	}
-
-	const response = await context.next();
-	const headers = new Headers(response.headers);
-	const contentType = headers.get('Content-Type') || '';
-	const isHtml = contentType.includes('text/html');
-
-	applySecurityHeaders(headers, { html: isHtml });
-
-	return new Response(response.body, {
-		status: response.status,
-		statusText: response.statusText,
-		headers,
-	});
-}
+	},
+};

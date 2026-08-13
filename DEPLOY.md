@@ -1,19 +1,36 @@
 # Deploy sandraiderscheats.net
 
-Step-by-step guide to deploy the Sand Raiders Cheats static site to **sandraiderscheats.net** on Cloudflare Pages, configure DNS, and submit to Google Search Console.
+Step-by-step guide to deploy the Sand Raiders Cheats static site to **sandraiderscheats.net** on Cloudflare, configure DNS, and submit to Google Search Console.
 
-## Cloudflare Pages settings (required)
+## Cloudflare dashboard (Workers Builds — current setup)
+
+Your project currently runs **Deploy command:** `npx wrangler deploy`. That path is supported by `wrangler.toml`:
+
+| Setting | Value |
+|---------|--------|
+| **Build command** | `npm run build` *(or leave empty — wrangler `[build]` also runs it)* |
+| **Deploy command** | `npx wrangler deploy` *(works as-is)* |
+| **Node.js version** | `22` (`NODE_VERSION=22`) |
+
+`wrangler.toml` sets:
+
+- `[build] command = "npm run build"` — Astro build before upload
+- `[assets] directory = "./dist"` — static output for Workers assets
+- `main = "./workers/site.js"` — redirects + security headers (same rules as `functions/_middleware.js`)
+
+### Recommended if you can edit Deploy command (Pages Functions)
+
+`functions/_middleware.js` only runs on **Pages** deploy. For that path:
 
 | Setting | Value |
 |---------|--------|
 | **Build command** | `npm run build` |
-| **Build output directory** | `dist` |
-| **Deploy command** | *(leave empty)* — Pages deploys `dist` after the build |
-| **Node.js version** | `22` (`NODE_VERSION=22`) |
+| **Deploy command** | `npx wrangler pages deploy ./dist --project-name=sand-raiders-of-sophie-cheats` |
+| **Build output directory** | `dist` *(Pages UI)* |
+
+Or leave **Deploy command** empty on classic Pages Git builds (Pages publishes `dist` after the build).
 
 `npm run build` runs `prebuild` (`sync:brand`) → `astro build` → `postbuild` (strip Brand Studio).
-
-**Do not** set the deploy/build command to `npx wrangler deploy` alone. That is a Workers command; it skips the Astro build and fails when `dist/` is missing. For CLI uploads use `npm run deploy` (build + `wrangler pages deploy`).
 
 ## Prerequisites
 
@@ -34,52 +51,62 @@ npm run build:validate
 
 `build:validate` runs brand sync, `astro build`, strip Brand Studio, then `scripts/validate-sitemaps.mjs`. All sitemap checks must pass before deploying.
 
-## 2. Cloudflare Pages project
+## 2. Cloudflare project
 
-### Option A — Git-connected (recommended)
+### Option A — Workers Builds + `npx wrangler deploy` (matches locked dashboard)
 
-1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
-2. Select this repository (`sand-Raiders-of-sophie-cheats`).
-3. Configure build settings:
-   - **Project name:** `sand-raiders-of-sophie-cheats`
-   - **Production branch:** `main`
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-   - **Deploy command:** leave empty (do **not** use `npx wrangler deploy`)
-   - **Node.js version:** 22 (set via environment variable `NODE_VERSION=22` if needed)
-4. Save and deploy. Cloudflare runs `npm run build` on each push, then publishes `dist`.
+1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → this project.
+2. Settings → Builds:
+   - **Build command:** `npm run build` (optional if wrangler `[build]` runs)
+   - **Deploy command:** `npx wrangler deploy`
+   - **Node.js version:** 22 (`NODE_VERSION=22`)
+3. Push to `main`. Cloudflare runs deploy; wrangler builds then uploads `./dist` + `workers/site.js`.
 
-### Option B — Direct upload / Wrangler CLI
+Local dry-run:
+
+```bash
+npm run build
+npx wrangler deploy --dry-run
+```
+
+### Option B — Pages + `wrangler pages deploy` (keeps `functions/`)
+
+1. **Build command:** `npm run build`
+2. **Deploy command:** `npx wrangler pages deploy ./dist --project-name=sand-raiders-of-sophie-cheats`
+3. Or classic Pages Git: Deploy command empty, output directory `dist`.
+
+### Option C — CLI from your machine
 
 ```bash
 npm run build:validate
 npm run deploy
 ```
 
-This runs `npm run build` then `wrangler pages deploy dist --project-name=sand-raiders-of-sophie-cheats` (see `wrangler.toml` / `package.json`).
+`npm run deploy` uses Pages upload (`wrangler pages deploy`). For the Workers path locally: `npx wrangler deploy`.
+
 ## 3. Custom domain and DNS
 
-Add **warzonescheats.net** as the primary custom domain on the Pages project.
+Add **sandraiderscheats.net** as the primary custom domain on the project.
 
-### Apex (warzonescheats.net)
+### Apex (sandraiderscheats.net)
 
 In **Cloudflare DNS** for the zone:
 
 | Type  | Name | Content              | Proxy |
 |-------|------|----------------------|-------|
-| CNAME | `@`  | `<pages-subdomain>.pages.dev` | Proxied (orange cloud) |
+| CNAME | `@`  | `<pages-or-workers-subdomain>` | Proxied (orange cloud) |
 
 Cloudflare CNAME flattening handles apex records automatically.
 
 ### www → apex redirect
 
-1. Add a DNS record for `www` pointing to the same Pages project (proxied CNAME or A record).
+1. Add a DNS record for `www` pointing to the same project (proxied CNAME or A record).
 2. In **Rules** → **Redirect Rules** (or Bulk Redirects), create:
-   - **Source:** `www.warzonescheats.net/*`
-   - **Target:** `https://warzonescheats.net/${1}`
+   - **Source:** `www.sandraiderscheats.net/*`
+   - **Target:** `https://sandraiderscheats.net/${1}`
    - **Status:** 301
 
-The deployed `functions/_middleware.js` also enforces apex canonical host, legacy domain redirects (`warzonescheats.xyz`, `.net`, `.com`), and legacy path redirects.
+The Worker (`workers/site.js`) and Pages `functions/_middleware.js` also enforce apex canonical host, legacy domain redirects, and legacy path redirects.
 
 ### SSL / HTTPS
 
@@ -104,7 +131,7 @@ Verify redirects:
 - `https://www.sandraiderscheats.net` → `https://sandraiderscheats.net` (301)
 - Legacy domains (e.g. `warzonescheats.net`) → `https://sandraiderscheats.net` (301)
 - `/sitemap-index.xml` → `/sitemap.xml` (301)
-- Legacy paths (e.g. `/fortnite-hacks/`) → Warzone equivalents (301)
+- Legacy paths (e.g. `/fortnite-hacks/`) → Sand Raiders equivalents (301)
 
 ## 5. Google Search Console
 
@@ -131,12 +158,12 @@ Verify redirects:
 | Regenerate blog posts | `node scripts/generate-blog-posts.mjs` |
 | Full build + SEO validation | `npm run build:validate` |
 | Refresh gallery images | `npm run fetch:images` then `npm run optimize:images` |
-| Redeploy | Push to Git (auto) or `npm run deploy` |
+| Redeploy | Push to Git (auto) or `npm run deploy` / `npx wrangler deploy` |
 
 ## Checklist
 
 - [ ] `npm run build:validate` passes locally
-- [ ] Cloudflare Pages project attached to this repo
+- [ ] Cloudflare project attached to this repo
 - [ ] Custom domain `sandraiderscheats.net` attached and active
 - [ ] `www` redirects to apex
 - [ ] Legacy domains 301 to `sandraiderscheats.net`

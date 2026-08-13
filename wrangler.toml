@@ -1,6 +1,18 @@
-# Cloudflare Pages — not Workers.
-# Git-connected builds: dashboard Build command = npm run build, Output = dist.
-# Do NOT use `npx wrangler deploy` (Workers). Use `wrangler pages deploy` or npm run deploy.
+# Workers Builds: dashboard Deploy command = `npx wrangler deploy` (locked).
+# [build] runs Astro before upload; [assets] points at dist so deploy finds an entry.
+# workers/site.js ports functions/_middleware.js (redirects + security headers).
+# Prefer Pages Functions path when you can change Deploy command — see DEPLOY.md.
 name = "sand-raiders-of-sophie-cheats"
-compatibility_date = "2026-01-01"
-pages_build_output_dir = "dist"
+compatibility_date = "2025-08-01"
+main = "./workers/site.js"
+
+[build]
+command = "npm run build"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+# Astro multi-page site with trailingSlash: always — serve 404.html when present
+not_found_handling = "404-page"
+# Run Worker before assets so redirects/headers always apply
+run_worker_first = true
