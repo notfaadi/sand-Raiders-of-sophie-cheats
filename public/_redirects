@@ -9,5 +9,7 @@
 /sitemap-i18n.xml/ /sitemap-i18n.xml 301
 /sitemap-images.xml/ /sitemap-images.xml 301
 
-# HTTPS + www -> apex are enforced in workers/site.js / functions/_middleware.js.
+# HTTPS + www -> apex are enforced in workers/site.js / functions/_middleware.js (301).
+# Cloudflare DNS: CNAME www → sandraiderscheats.net (proxied) OR Redirect Rule
+#   Source: www.sandraiderscheats.net/* → https://sandraiderscheats.net/${1} (301).
 # Dashboard: attach custom domain sandraiderscheats.net, enable "Always Use HTTPS".

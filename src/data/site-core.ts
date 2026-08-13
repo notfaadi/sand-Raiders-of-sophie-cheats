@@ -59,7 +59,7 @@ const seoDefaults = {
 	supportDescription: 'Get help with {brand}. Email {email} with your order ID.',
 	faqTitle: '{game} FAQ | {brand}',
 	faqDescription:
-		'FAQ for {primaryKeyword}: safety, detection, Windows setup, Tarkov patches, refunds, monthly vs lifetime, and Cloud DMA on PC.',
+		'FAQ for {primaryKeyword}: safety, detection, Windows setup, patches, refunds, monthly vs lifetime, and Cloud DMA on PC.',
 	reviewsTitle: '{brand} Reviews | Buyer Feedback',
 	reviewsDescription:
 		'Real buyer reviews for {brand} — ESP, soft aim, radar, and patch updates on Windows PC.',
@@ -75,11 +75,11 @@ const brandExtra = brand as typeof brand & { seo?: Partial<SeoShape>; copy?: Par
 export const brandSeo: SeoShape = { ...seoDefaults, ...brandExtra.seo };
 export const brandCopy: CopyShape = { ...copyDefaults, ...brandExtra.copy };
 
-/** Resolved EN home meta — description not length-clamped so brand.seo.homeDescription can render in full. */
+/** Resolved EN home meta — description clamped cleanly for Seobility / SERP pixel budgets. */
 export function homeSeo() {
 	return {
 		title: seoPageTitle(brandSeo.homeTitle),
-		description: fillBrandTokens(brandSeo.homeDescription).trim(),
+		description: seoDescription(brandSeo.homeDescription),
 	};
 }
 

@@ -160,7 +160,9 @@ function trailingSlashRedirect(pathname) {
 export default {
 	async fetch(request, env) {
 		const url = new URL(request.url);
-		const host = url.hostname.toLowerCase();
+		// Prefer Host header (matches visitor host); strip port for edge cases.
+		const hostHeader = (request.headers.get('host') || url.hostname).toLowerCase();
+		const host = hostHeader.split(':')[0];
 		const proto = getClientProtocol(request);
 
 		const isLegacyHost = LEGACY_HOSTS.has(host);
@@ -168,6 +170,7 @@ export default {
 		const needsHostRedirect = host === WWW_HOST || isLegacyHost;
 		const needsHttpsRedirect = isProductionHost && proto === 'http';
 
+		// Always 301 www / legacy / http → https://sandraiderscheats.net{path}{query}
 		if (needsHostRedirect || needsHttpsRedirect) {
 			const mappedPath = PATH_REDIRECTS[url.pathname] ?? url.pathname;
 			const target = new URL(mappedPath + url.search, CANONICAL_ORIGIN);

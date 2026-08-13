@@ -55,64 +55,78 @@ export const brand = {
 	keywords: {
 		primary: 'sand raiders of sophie cheats',
 		list: [
+			'sand raiders of sophie cheats',
 			'sand sophie cheats',
 			'sophie cheats',
 			'cheats of sand raiders',
 			'cheats for sand raiders',
 			'sand raiders hacks',
-			'sand raiders of sophie cheats',
 			'undetected sand raiders cheats',
 			'buy sand raiders cheats',
 			'sand raiders aimbot',
 			'sand raiders esp',
 			'sand raiders wallhack',
 			'sand raiders cloud dma',
+			'sandraiders cheats',
+			'sand raiders of sophie hacks',
+			'buy sand raiders of sophie cheats',
 		] as const,
 	},
 
 	/**
 	 * Editable SEO meta — tokens: {brand} {game} {antiCheat} {email} {primaryKeyword}
-	 * Aim ~50–60 chars titles, ~140–160 chars descriptions.
+	 * Aim ~50–60 chars titles, ~140–155 chars descriptions (Seobility pixel budget).
 	 */
 	seo: {
-		homeTitle: 'Undetected {primaryKeyword} | {brand}',
-		homeDescription: 'SandraidersCheats.net - Premium undetected Escape from Tarkov cheats with aimbot, ESP, wallhack and radar. 24/7 support, instant delivery and regular updates. J',
+		homeTitle: '{primaryKeyword} | {brand}',
+		homeDescription:
+			'{primaryKeyword} for Windows PC — ESP, aimbot, wallhack, and radar. Instant delivery plus 24/7 support.',
 		featuresTitle: '{game} Features | {brand}',
-		featuresDescription: 'Everything in {primaryKeyword} for Windows PC. ESP, aimbot, radar, Cloud DMA, and rebuilds after {antiCheat} patches.',
+		featuresDescription:
+			'Everything in {primaryKeyword} for Windows PC. ESP, aimbot, radar, Cloud DMA, and rebuilds after {antiCheat} patches.',
 		storeTitle: '{game} Store | {brand}',
-		storeDescription: 'Buy {primaryKeyword} for Windows PC. Monthly and lifetime plans include ESP, aimbot, radar, and Cloud DMA. Instant delivery after payment.',
+		storeDescription:
+			'Buy {primaryKeyword} for Windows PC. Monthly and lifetime plans include ESP, aimbot, radar, and Cloud DMA.',
 		statusTitle: '{game} Status | {brand}',
-		statusDescription: 'Live status for {primaryKeyword} after {game} or {antiCheat} patches. Check before you queue so you stay on a current build.',
+		statusDescription:
+			'Live status for {primaryKeyword} after {game} or {antiCheat} patches. Check before you queue.',
 		previewTitle: '{game} Preview | {brand}',
-		previewDescription: 'The #1 Escape from Tarkov hack provider - SandraidersCheats.net offers advanced EFT cheats with aimbot, ESP, no recoil and more. Undetected, secure and updated',
+		previewDescription:
+			'Quick preview of {primaryKeyword} — ESP, aimbot, radar, and updates after {game} patches on Windows PC.',
 		setupTitle: '{game} Setup | {brand}',
-		setupDescription: 'Install and launch {primaryKeyword} on Windows PC after you buy. Short setup steps help you start ESP, aimbot, and radar the right way.',
+		setupDescription:
+			'Install and launch {primaryKeyword} on Windows PC after you buy. Short steps for ESP, aimbot, and radar.',
 		supportTitle: '{game} Support | {brand}',
-		supportDescription: 'Need help with {primaryKeyword}? Email {email} with your order ID for setup, license, delivery, or update questions.',
+		supportDescription:
+			'Need help with {primaryKeyword}? Email {email} with your order ID for setup, license, or updates.',
 		faqTitle: '{game} FAQ | {brand}',
-		faqDescription: 'FAQ for {primaryKeyword}: safety, detection, Windows setup, Tarkov patches, refunds, monthly vs lifetime, and Cloud DMA on PC.',
+		faqDescription:
+			'FAQ for {primaryKeyword}: safety, detection, Windows setup, patches, refunds, plans, and Cloud DMA.',
 		reviewsTitle: '{brand} Reviews | Buyer Feedback',
-		reviewsDescription: 'Real buyer reviews for {primaryKeyword}. Read honest feedback on ESP, soft aim, radar, support quality, and patch updates on Windows PC.',
+		reviewsDescription:
+			'Real buyer reviews for {primaryKeyword}. Feedback on ESP, soft aim, radar, support, and patch updates.',
 		blogTitle: '{game} Intel | {brand}',
-		blogDescription: 'Read guides and tips for {primaryKeyword}: meta play, ESP and aimbot settings, and {antiCheat} update notes for Windows PC players.',
+		blogDescription:
+			'Guides for {primaryKeyword}: meta tips, ESP and aimbot settings, and {antiCheat} update notes.',
 	},
 
 	/** On-page marketing copy (tokens allowed) */
 	copy: {
 		tagline: 'Undetected {primaryKeyword} with 24/7 support — ESP, aimbot, and radar for PC',
-		summary: '{brand} delivers undetected sandraiders cheats and escape from tarkov hacks for Windows PC. ESP, soft aim, and radar with {antiCheat} maintenance and 24/7 support.',
+		summary:
+			'{brand} delivers undetected {primaryKeyword} for Windows PC. ESP, soft aim, and radar with {antiCheat} maintenance and 24/7 support.',
 		heroLede: 'Aimbot, wallhack ESP, and 2D radar for SAND: Raiders of Sophie — Cloud DMA option available.',
 		blogLabel: '{game} Intel',
 		ctaBuy: 'Buy now',
 		ctaBuyShort: 'Buy',
 		featuresIntro: 'Everything included in one {primaryKeyword} license for Windows PC.',
 		storeIntro: 'Pick a plan. Same features on both. Instant delivery after payment.',
-		statusIntro: 'Check here after a Tarkov or {antiCheat} patch before you raid.',
+		statusIntro: 'Check here after a {game} or {antiCheat} patch before you play.',
 		previewIntro: 'A quick look at {primaryKeyword} — ESP, aimbot, radar, and updates after patches.',
 		setupIntro: 'Install {brand} on Windows PC after you buy. Follow these short steps.',
 		supportIntro: 'Need help with {brand}? Email {email} with your order ID — 24/7 support.',
 		faqIntro: 'Short answers on safety, setup, patches, refunds, and package differences.',
-		reviewsIntro: 'Real feedback from {brand} buyers — security, updates, support, and Tarkov raids.',
+		reviewsIntro: 'Real feedback from {brand} buyers — security, updates, support, and matches.',
 		chipEsp: 'ESP / wallhack',
 		chipAim: 'Soft aim',
 		chipRadar: '2D radar',
@@ -131,7 +145,7 @@ export const brand = {
 	 */
 	sitemap: {
 		/** YYYY-MM-DD — Brand Studio can bump this on save to refresh crawl dates */
-		contentLastmod: '2026-08-12',
+		contentLastmod: '2026-08-13',
 		blogImageTitle: '{brand} blog',
 		blogImageCaption: 'Tips and updates for {primaryKeyword}',
 		reviewsImageTitle: '{brand} reviews',
@@ -190,10 +204,13 @@ export function seoTitle(topic: string): string {
 	return title.length <= 60 ? title : `${topic} | ${brand.name}`;
 }
 
-/** Keep descriptions short; tokens allowed. */
+/** Keep descriptions short; tokens allowed. Prefer exact strings under 155 chars (no ellipsis junk). */
 export function seoDescription(template: string): string {
-	const text = fillBrandTokens(template).trim();
-	return text.length <= 160 ? text : `${text.slice(0, 157).trim()}…`;
+	const text = fillBrandTokens(template).trim().replace(/\s+/g, ' ');
+	if (text.length <= 155) return text;
+	const cut = text.slice(0, 155);
+	const lastSpace = cut.lastIndexOf(' ');
+	return (lastSpace > 110 ? cut.slice(0, lastSpace) : cut).trim();
 }
 
 /** Resolved EN home meta from brand.seo (title clamp lives in site-core.seoPageTitle). */

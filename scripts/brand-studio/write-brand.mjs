@@ -834,10 +834,13 @@ export function seoTitle(topic: string): string {
 	return title.length <= 60 ? title : \`\${topic} | \${brand.name}\`;
 }
 
-/** Keep descriptions short; tokens allowed. */
+/** Keep descriptions short; tokens allowed. Prefer exact strings under 155 chars (no ellipsis junk). */
 export function seoDescription(template: string): string {
-	const text = fillBrandTokens(template).trim();
-	return text.length <= 160 ? text : \`\${text.slice(0, 157).trim()}…\`;
+	const text = fillBrandTokens(template).trim().replace(/\\s+/g, ' ');
+	if (text.length <= 155) return text;
+	const cut = text.slice(0, 155);
+	const lastSpace = cut.lastIndexOf(' ');
+	return (lastSpace > 110 ? cut.slice(0, lastSpace) : cut).trim();
 }
 
 /** Resolved EN home meta from brand.seo (title clamp lives in site-core.seoPageTitle). */
