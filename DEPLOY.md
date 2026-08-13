@@ -86,27 +86,63 @@ npm run deploy
 
 ## 3. Custom domain and DNS
 
-Add **sandraiderscheats.net** as the primary custom domain on the project.
+Attach **both** hostnames to the Worker (apex + www). Code-only Host redirects cannot run if `www` never resolves or never hits the Worker — Seobility then reports **status null** (not a failed 301).
+
+`wrangler.toml` declares Custom Domains for:
+
+- `sandraiderscheats.net`
+- `www.sandraiderscheats.net`
+
+`npx wrangler deploy` provisions them when Cloudflare credentials are available and the zone is on the same account. If deploy cannot add www automatically, do the dashboard steps below.
 
 ### Apex (sandraiderscheats.net)
 
-In **Cloudflare DNS** for the zone:
+In **Cloudflare DNS** for the zone (or rely on Worker Custom Domains auto-DNS):
 
 | Type  | Name | Content              | Proxy |
 |-------|------|----------------------|-------|
-| CNAME | `@`  | `<pages-or-workers-subdomain>` | Proxied (orange cloud) |
+| CNAME | `@`  | `<workers-custom-domain target>` | Proxied (orange cloud) |
 
 Cloudflare CNAME flattening handles apex records automatically.
 
-### www → apex redirect
+### www DNS + Redirect Rule (required for Seobility)
 
-1. Add a DNS record for `www` pointing to the same project (proxied CNAME or A record).
-2. In **Rules** → **Redirect Rules** (or Bulk Redirects), create:
-   - **Source:** `www.sandraiderscheats.net/*`
-   - **Target:** `https://sandraiderscheats.net/${1}`
-   - **Status:** 301
+**Why Seobility fails:** Redirect checkers need `https://www.sandraiderscheats.net/` to **respond**, then **301** to `https://sandraiderscheats.net/`. No DNS / no Worker route → connection fails → status null. Apex https and http→https can look fine while www is broken.
 
-The Worker (`workers/site.js`) and Pages `functions/_middleware.js` also enforce apex canonical host, legacy domain redirects, and legacy path redirects.
+#### A. DNS (must exist, Proxied)
+
+In **DNS** → **Records** for `sandraiderscheats.net`:
+
+| Type  | Name | Content | Proxy |
+|-------|------|---------|-------|
+| CNAME | `www` | `sandraiderscheats.net` **or** the Worker/Pages target hostname | **Proxied (orange cloud)** |
+
+Alternatively: Workers & Pages → this Worker → **Settings** → **Domains & Routes** → **Add** → Custom Domain → `www.sandraiderscheats.net` (Cloudflare creates the DNS + cert).
+
+#### B. Worker must receive www traffic
+
+Confirm **Domains & Routes** lists:
+
+1. `sandraiderscheats.net`
+2. `www.sandraiderscheats.net`
+
+Without (2), `workers/site.js` never sees Host `www…` and cannot 301.
+
+#### C. Backup: Cloudflare Redirect Rule (if Worker route is delayed)
+
+**Rules** → **Redirect Rules** → **Create rule**:
+
+| Field | Value |
+|-------|--------|
+| **Rule name** | `www → apex 301` |
+| **If** | Custom filter expression |
+| **Expression** | `(http.host eq "www.sandraiderscheats.net")` |
+| **Then** | Dynamic redirect |
+| **Expression** | `concat("https://sandraiderscheats.net", http.request.uri.path)` |
+| **Status code** | `301` |
+| **Preserve query string** | On (if the UI offers it; otherwise append `http.request.uri.query` in the concat) |
+
+Worker + Pages middleware also enforce www / legacy / http→https → apex when the request reaches them.
 
 ### SSL / HTTPS
 
@@ -125,13 +161,20 @@ Verify these URLs return **200** with correct content:
 - `https://sandraiderscheats.net/sitemap.xml`
 - `https://sandraiderscheats.net/robots.txt`
 
-Verify redirects:
+Verify redirects (must return a real **301** + **Location**, not DNS/timeout failure):
 
 - `http://sandraiderscheats.net` → `https://sandraiderscheats.net` (301)
-- `https://www.sandraiderscheats.net` → `https://sandraiderscheats.net` (301)
+- `https://www.sandraiderscheats.net` → `https://sandraiderscheats.net` (301) — required for Seobility redirect checker
 - Legacy domains (e.g. `warzonescheats.net`) → `https://sandraiderscheats.net` (301)
 - `/sitemap-index.xml` → `/sitemap.xml` (301)
 - Legacy paths (e.g. `/fortnite-hacks/`) → Sand Raiders equivalents (301)
+
+Quick check:
+
+```bash
+curl -sI https://www.sandraiderscheats.net/ | findstr /I "HTTP Location"
+# Expect: HTTP/2 301  and  Location: https://sandraiderscheats.net/
+```
 
 ## 5. Google Search Console
 
@@ -165,9 +208,10 @@ Verify redirects:
 - [ ] `npm run build:validate` passes locally
 - [ ] Cloudflare project attached to this repo
 - [ ] Custom domain `sandraiderscheats.net` attached and active
-- [ ] `www` redirects to apex
+- [ ] Custom domain `www.sandraiderscheats.net` attached (or proxied CNAME + Redirect Rule)
+- [ ] `curl -sI https://www…` returns **301** to apex (Seobility needs this — not status null)
+- [ ] SSL Full (strict) + Always Use HTTPS
 - [ ] Legacy domains 301 to `sandraiderscheats.net`
-- [ ] Always Use HTTPS enabled
 - [ ] `robots.txt` and sitemaps serve from `https://sandraiderscheats.net`
 - [ ] Google Search Console domain verified
 - [ ] `sitemap.xml` submitted in GSC

@@ -161,11 +161,13 @@ export async function onRequest(context) {
 	const proto = getClientProtocol(context.request);
 
 	const isLegacyHost = LEGACY_HOSTS.has(host);
-	const isProductionHost = host === APEX_HOST || host === WWW_HOST || isLegacyHost;
-	const needsHostRedirect = host === WWW_HOST || isLegacyHost;
+	// www.* (incl. www.apex) and legacy hosts → apex; never serve on www.
+	const isWwwHost = host === WWW_HOST || host.startsWith('www.');
+	const isProductionHost = host === APEX_HOST || isWwwHost || isLegacyHost;
+	const needsHostRedirect = isWwwHost || isLegacyHost;
 	const needsHttpsRedirect = isProductionHost && proto === 'http';
 
-	// Always 301 www / legacy / http → https://sandraiderscheats.net{path}{query}
+	// Always 301 www / legacy / http → https://{apex}{path}{query}
 	if (needsHostRedirect || needsHttpsRedirect) {
 		const mappedPath = PATH_REDIRECTS[url.pathname] ?? url.pathname;
 		const target = new URL(mappedPath + url.search, CANONICAL_ORIGIN);

@@ -36,9 +36,9 @@ npm run optimize:images
 2. Connect this repo or upload `dist/` after `npm run build`
 3. Build command: `npm run build`
 4. Output directory: `dist`
-5. Add custom domain **sandraiderscheats.net** (apex) and redirect **www** → apex
-6. Enable SSL **Always Use HTTPS**
-7. Legacy Fortnite domains 301 via `functions/_middleware.js`
+5. Add custom domains **sandraiderscheats.net** (apex) **and** **www.sandraiderscheats.net** (Worker/Pages must receive www, then 301 to apex — see `DEPLOY.md`; Seobility fails if www does not resolve)
+6. Enable SSL **Full (strict)** + **Always Use HTTPS**
+7. Legacy Fortnite domains 301 via `functions/_middleware.js` / `workers/site.js`
 
 CLI deploy:
 

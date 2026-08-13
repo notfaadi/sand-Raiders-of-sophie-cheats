@@ -94,22 +94,27 @@ if (nextAstro === astro && !astro.includes(`site: '${brand.url}'`)) {
 }
 writeFileSync(astroPath, nextAstro, 'utf8');
 
-/** Keep Cloudflare Pages middleware apex + HTTPS redirects aligned with brand.url. */
-const middlewarePath = path.join(ROOT, 'functions/_middleware.js');
-let middleware = readFileSync(middlewarePath, 'utf8');
-try {
+/** Keep Cloudflare middleware + Worker apex redirects aligned with brand.url. */
+function syncCanonicalHosts(filePath) {
+	let source = readFileSync(filePath, 'utf8');
 	const brandHost = new URL(brand.url).hostname;
-	const nextMiddleware = middleware
+	const next = source
 		.replace(/const CANONICAL_ORIGIN = '[^']*';/, `const CANONICAL_ORIGIN = '${brand.url}';`)
 		.replace(/const APEX_HOST = '[^']*';/, `const APEX_HOST = '${brandHost}';`)
 		.replace(/const WWW_HOST = '[^']*';/, `const WWW_HOST = 'www.${brandHost}';`);
 	if (
-		!nextMiddleware.includes(`CANONICAL_ORIGIN = '${brand.url}'`) ||
-		!nextMiddleware.includes(`APEX_HOST = '${brandHost}'`)
+		!next.includes(`CANONICAL_ORIGIN = '${brand.url}'`) ||
+		!next.includes(`APEX_HOST = '${brandHost}'`) ||
+		!next.includes(`WWW_HOST = 'www.${brandHost}'`)
 	) {
-		throw new Error('Could not update canonical hosts in functions/_middleware.js');
+		throw new Error(`Could not update canonical hosts in ${path.relative(ROOT, filePath)}`);
 	}
-	writeFileSync(middlewarePath, nextMiddleware, 'utf8');
+	writeFileSync(filePath, next, 'utf8');
+}
+
+try {
+	syncCanonicalHosts(path.join(ROOT, 'functions/_middleware.js'));
+	syncCanonicalHosts(path.join(ROOT, 'workers/site.js'));
 } catch (err) {
 	throw new Error(`sync-brand middleware update failed: ${err instanceof Error ? err.message : err}`);
 }

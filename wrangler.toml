@@ -2,9 +2,22 @@
 # [build] runs Astro before upload; [assets] points at dist so deploy finds an entry.
 # workers/site.js ports functions/_middleware.js (redirects + security headers).
 # Prefer Pages Functions path when you can change Deploy command — see DEPLOY.md.
+#
+# Custom Domains: apex + www MUST both hit this Worker so www→apex 301 can run.
+# Seobility / redirect checkers fail with status null if www has no DNS / no Worker route.
+# See DEPLOY.md § "www DNS + Redirect Rule (required for Seobility)".
 name = "sand-raiders-of-sophie-cheats"
 compatibility_date = "2025-08-01"
 main = "./workers/site.js"
+
+# Attach both hostnames (Wrangler 4 Custom Domains). Zone must be on this Cloudflare account.
+[[routes]]
+pattern = "sandraiderscheats.net"
+custom_domain = true
+
+[[routes]]
+pattern = "www.sandraiderscheats.net"
+custom_domain = true
 
 [build]
 command = "npm run build"
