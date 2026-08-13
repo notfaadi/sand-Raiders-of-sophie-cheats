@@ -1,12 +1,7 @@
-# Brand Studio — never publicly routable on Cloudflare Pages
-/brand-studio /404.html 404
-/brand-studio/ /404.html 404
-/brand-studio/* /404.html 404
-/__brand /404.html 404
-/__brand/ /404.html 404
-/__brand/* /404.html 404
+# Brand Studio / __brand are blocked in workers/site.js (and functions/_middleware.js).
+# Workers static assets reject status 404 in this file -- do not add 404 rules here.
 
-# Legacy sitemap URLs → primary index (also enforced in functions/_middleware.js)
+# Legacy sitemap URLs -> primary index (also enforced in workers/site.js)
 /sitemap-index.xml /sitemap.xml 301
 /sitemap-0.xml /sitemap.xml 301
 /sitemap.xml/ /sitemap.xml 301
@@ -14,5 +9,5 @@
 /sitemap-i18n.xml/ /sitemap-i18n.xml 301
 /sitemap-images.xml/ /sitemap-images.xml 301
 
-# HTTPS + www → apex are enforced in functions/_middleware.js (Cloudflare Pages).
+# HTTPS + www -> apex are enforced in workers/site.js / functions/_middleware.js.
 # Dashboard: attach custom domain sandraiderscheats.net, enable "Always Use HTTPS".

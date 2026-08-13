@@ -129,6 +129,16 @@ function applySecurityHeaders(headers, { html = false } = {}) {
 	}
 }
 
+/** Brand Studio / legacy __brand — never publicly routable (was _redirects 404; Workers reject that). */
+function isBlockedPath(pathname) {
+	return (
+		pathname === '/brand-studio' ||
+		pathname.startsWith('/brand-studio/') ||
+		pathname === '/__brand' ||
+		pathname.startsWith('/__brand/')
+	);
+}
+
 /** Flat .xml sitemaps — redirect any other *.xml/ trailing-slash URL (locale sitemaps). */
 function xmlTrailingSlashRedirect(pathname) {
 	if (!pathname.endsWith('.xml/')) return null;
@@ -164,6 +174,12 @@ export async function onRequest(context) {
 		});
 		applySecurityHeaders(headers);
 		return new Response(null, { status: 301, headers });
+	}
+
+	if (isBlockedPath(url.pathname)) {
+		const headers = new Headers({ 'Content-Type': 'text/html; charset=utf-8' });
+		applySecurityHeaders(headers, { html: true });
+		return new Response('Not Found', { status: 404, statusText: 'Not Found', headers });
 	}
 
 	const pathRedirect =

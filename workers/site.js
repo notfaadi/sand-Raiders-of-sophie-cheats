@@ -133,6 +133,16 @@ function applySecurityHeaders(headers, { html = false } = {}) {
 	}
 }
 
+/** Brand Studio / legacy __brand — never publicly routable (was _redirects 404; Workers reject that). */
+function isBlockedPath(pathname) {
+	return (
+		pathname === '/brand-studio' ||
+		pathname.startsWith('/brand-studio/') ||
+		pathname === '/__brand' ||
+		pathname.startsWith('/__brand/')
+	);
+}
+
 /** Flat .xml sitemaps — redirect any other *.xml/ trailing-slash URL (locale sitemaps). */
 function xmlTrailingSlashRedirect(pathname) {
 	if (!pathname.endsWith('.xml/')) return null;
@@ -169,6 +179,18 @@ export default {
 			});
 			applySecurityHeaders(headers);
 			return new Response(null, { status: 301, headers });
+		}
+
+		if (isBlockedPath(url.pathname)) {
+			const notFoundUrl = new URL('/404.html', url.origin);
+			const assetResponse = await env.ASSETS.fetch(new Request(notFoundUrl, request));
+			const headers = new Headers(assetResponse.headers);
+			applySecurityHeaders(headers, { html: true });
+			return new Response(assetResponse.body, {
+				status: 404,
+				statusText: 'Not Found',
+				headers,
+			});
 		}
 
 		const pathRedirect =
