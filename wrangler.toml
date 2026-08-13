@@ -6,7 +6,8 @@
 # Custom Domains: apex + www MUST both hit this Worker so www→apex 301 can run.
 # Seobility / redirect checkers fail with status null if www has no DNS / no Worker route.
 # See DEPLOY.md § "www DNS + Redirect Rule (required for Seobility)".
-name = "sand-raiders-of-sophie-cheats"
+# Must match the Worker bound in DNS (apex A/AAAA → this script). Dashboard name: sandraiders-of-sophiecheats
+name = "sandraiders-of-sophiecheats"
 compatibility_date = "2025-08-01"
 main = "./workers/site.js"
 
